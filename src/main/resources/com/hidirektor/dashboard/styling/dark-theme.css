@@ -1,0 +1,96 @@
+@font-face {
+    font-family: 'TextaAltRegular';
+    src: url('../../../../assets/fonts/TextaAltRegular.ttf');
+}
+
+@font-face {
+    font-family: 'TextaAltBold';
+    src: url('../../../../assets/fonts/TextaAltBold.ttf');
+}
+
+.button {
+    -fx-background-color: transparent;
+    -fx-background-radius: 8em;
+}
+.button:hover {
+    -fx-background-color: #0068f7;
+    -fx-background-radius: 8em;
+    -fx-text-fill: #ffffff;
+}
+.button:pressed {
+    -fx-background-color: #0068f7;
+    -fx-background-radius: 8em;
+    -fx-text-fill: #ffffff;
+}
+.button:focused {
+    -fx-background-color: #0068f7;
+    -fx-border-color: transparent;
+    -fx-background-radius: 8em;
+    -fx-text-fill: #ffffff;
+}
+.button .image-view {
+    -fx-opacity: 1;
+}
+
+.text-field {
+    -fx-background-color: #121222;
+    -fx-text-fill: #9d9e9f;
+    -fx-text-color: #9d9e9f;
+    -fx-prompt-text-fill: #9d9e9f;
+    -fx-background-radius: 100em;
+    -fx-padding: 0 0 0 26px;
+    -fx-font-family: 'TextaAltRegular';
+}
+
+.text-field .content {
+    -fx-alignment: center-left;
+    -fx-text-color: #9d9e9f;
+    -fx-font-family: 'TextaAltBold';
+}
+
+.text-field {
+    -fx-background-image: url('../../../../assets/images/icons/icon_search.png');
+    -fx-background-size: 15px 15px;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: 6px center;
+}
+
+.rainbow-button {
+    -fx-background-color: transparent;
+    -fx-background-radius: 8em;
+    -fx-border-radius: 8em;
+    -fx-border-width: 2px;
+    -fx-border-color: linear-gradient(from 0% 0% to 100% 100%,
+    red, orange, yellow, green, blue, indigo, violet);
+    -fx-text-fill: black;
+}
+
+.rainbow-button:hover {
+    -fx-background-color: #F7F9FF;
+    -fx-background-radius: 8em;
+    -fx-border-radius: 8em;
+}
+
+.rainbow-button:pressed {
+    -fx-background-color: #F7F9FF;
+    -fx-border-radius: 8em;
+}
+
+.rainbow-button:focused {
+    -fx-background-color: #F7F9FF;
+    -fx-border-color: transparent;
+    -fx-border-radius: 8em;
+}
+
+.dashboard-header-profile {
+    -fx-background-color: #121222;
+    -fx-background-radius: 2em;
+    -fx-min-width: 32px;
+    -fx-min-height: 32px;
+    -fx-max-width: 32px;
+    -fx-max-height: 32px;
+}
+
+.label {
+    -fx-font-family: 'TextaAltBold';
+}
