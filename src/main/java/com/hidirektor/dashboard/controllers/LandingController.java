@@ -1,33 +1,27 @@
 package com.hidirektor.dashboard.controllers;
 
 import com.hidirektor.dashboard.Launcher;
+import com.hidirektor.dashboard.utils.SceneUtil;
 import javafx.animation.TranslateTransition;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
-import javafx.scene.chart.LineChart;
-import javafx.scene.chart.XYChart;
-import javafx.scene.control.Label;
+import javafx.scene.effect.ColorAdjust;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.Region;
-import javafx.scene.layout.VBox;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
-import java.io.File;
-import java.lang.management.ManagementFactory;
-import java.lang.management.MemoryMXBean;
-import java.lang.management.MemoryUsage;
-import java.lang.management.OperatingSystemMXBean;
 import java.net.URL;
 import java.util.Objects;
 import java.util.ResourceBundle;
-import java.util.concurrent.atomic.AtomicInteger;
 
 public class LandingController implements Initializable {
 
@@ -40,12 +34,23 @@ public class LandingController implements Initializable {
     @FXML
     public ImageView mainLogo;
 
+    @FXML
+    public ImageView closeIcon, minimizeIcon, expandIcon;
+
+    @FXML
+    public Pane currentPagePane;
+
     private boolean isMenuVisible = true;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         Image templateProfilePhoto = new Image(Objects.requireNonNull(Launcher.class.getResourceAsStream("/assets/images/template/profile-photo.jpg")));
         profilePhoto.setFill(new ImagePattern(templateProfilePhoto, 0, 0, 0, 0, false));
+
+        Platform.runLater(() -> {
+            addHoverEffect(closeIcon, minimizeIcon, expandIcon);
+            SceneUtil.loadFXMLIntoPane(currentPagePane, "fxml/Dashboard.fxml");
+        });
     }
 
     @FXML
@@ -110,6 +115,16 @@ public class LandingController implements Initializable {
         }
 
         transition.play();
+    }
+
+    private void addHoverEffect(ImageView... imageViews) {
+        ColorAdjust darkenEffect = new ColorAdjust();
+        darkenEffect.setBrightness(-0.5);
+
+        for (ImageView imageView : imageViews) {
+            imageView.setOnMouseEntered(event -> imageView.setEffect(darkenEffect));
+            imageView.setOnMouseExited(event -> imageView.setEffect(null));
+        }
     }
 
     private void applyClipToRoot() {

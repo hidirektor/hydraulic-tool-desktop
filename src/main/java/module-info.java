@@ -13,6 +13,9 @@ module com.hidirektor.dashboard {
     exports com.hidirektor.dashboard.controllers;
     opens com.hidirektor.dashboard.controllers to javafx.fxml;
 
+    exports com.hidirektor.dashboard.controllers.pages;
+    opens com.hidirektor.dashboard.controllers.pages to javafx.fxml;
+
     exports com.hidirektor.dashboard.utils;
     opens com.hidirektor.dashboard.utils to javafx.fxml;
 }

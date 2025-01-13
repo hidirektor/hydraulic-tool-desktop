@@ -94,3 +94,18 @@
 .label {
     -fx-font-family: 'TextaAltBold';
 }
+
+.scroll-pane {
+    -fx-background: transparent;
+    -fx-background-color: transparent;
+    -fx-padding: 0;
+}
+
+.scroll-pane .viewport {
+    -fx-background-color: transparent;
+}
+
+.cardview-icon-background {
+    -fx-background-color: #252534;
+    -fx-background-radius: 12;
+}
