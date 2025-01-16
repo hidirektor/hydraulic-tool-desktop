@@ -3,11 +3,14 @@ package com.hidirektor.dashboard.controllers.pages.calculation;
 import com.hidirektor.dashboard.Launcher;
 import com.hidirektor.dashboard.controllers.notification.NotificationController;
 import com.hidirektor.dashboard.utils.Notification.NotificationUtil;
+import com.hidirektor.dashboard.utils.Validation.ValidationUtil;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
@@ -28,12 +31,19 @@ public class ClassicController implements Initializable  {
     @FXML
     public ImageView orderSectionButtonImage, unitInfoSectionButtonImage;
 
+    //Hesaplama alanları:
+    @FXML
+    public ComboBox motorComboBox, sogutmaComboBox, hidrolikKilitComboBox, pompaComboBox, kompanzasyonComboBox, valfTipiComboBox, kilitMotorComboBox, kilitPompaComboBox;
+
+    @FXML
+    public TextField gerekenYagMiktariField;
+
     boolean orderSectionExpansed = false, unitInfoSectionExpansed = false;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         Platform.runLater(() -> {
-
+            ValidationUtil.applyValidation(gerekenYagMiktariField, ValidationUtil.ValidationType.NUMERIC);
         });
     }
 

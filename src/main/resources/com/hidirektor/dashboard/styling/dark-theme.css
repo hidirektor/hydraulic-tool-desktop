@@ -24,7 +24,7 @@
 }
 
 .colored-button .image-view {
-    -fx-effect: null;
+    fx-effect: innershadow(gaussian, rgba(255, 255, 255, 1.0), 5, 5, 5, 5);
 }
 
 .colored-button:hover {
@@ -54,10 +54,6 @@
 }
 
 .colored-button:focused .image-view {
-    -fx-effect: innershadow(gaussian, rgba(230, 95, 43, 1.0), 5, 5, 5, 5);
-}
-
-.colored-button:armed .image-view {
     -fx-effect: innershadow(gaussian, rgba(230, 95, 43, 1.0), 5, 5, 5, 5);
 }
 
