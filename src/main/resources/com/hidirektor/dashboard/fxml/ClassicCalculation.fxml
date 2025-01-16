@@ -5,7 +5,7 @@
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="620.0" prefWidth="1060.0" style="-fx-background-color: #EBDFD7;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.hidirektor.dashboard.controllers.pages.calculation.ClasicController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="620.0" prefWidth="1060.0" style="-fx-background-color: #EBDFD7;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.hidirektor.dashboard.controllers.pages.calculation.ClassicController">
    <children>
       <ScrollPane hbarPolicy="NEVER" prefHeight="200.0" prefWidth="200.0" stylesheets="@../styling/dark-theme.css" vbarPolicy="NEVER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <content>
@@ -15,7 +15,7 @@
                      <children>
                         <AnchorPane>
                            <children>
-                              <Label stylesheets="@../styling/dark-theme.css" text="Klasik Hesaplama" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+                              <Label style="-fx-text-fill: #060606;" stylesheets="@../styling/dark-theme.css" text="Klasik Hesaplama" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
                                  <font>
                                     <Font name="TextaAlt-Bold" size="20.0" />
                                  </font>
@@ -27,7 +27,7 @@
                         </AnchorPane>
                         <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" style="-fx-background-color: rgba(255, 255, 255, 0.34); -fx-background-radius: 32;">
                            <children>
-                              <Label stylesheets="@../styling/dark-theme.css" text="Sipariş Bilgileri" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+                              <Label style="-fx-text-fill: #060606;" stylesheets="@../styling/dark-theme.css" text="Sipariş Bilgileri" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
                                  <font>
                                     <Font name="TextaAlt-Regular" size="20.0" />
                                  </font>
@@ -35,19 +35,19 @@
                                     <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
                                  </padding>
                               </Label>
-                              <Button contentDisplay="RIGHT" mnemonicParsing="false" style="-fx-background-color: #ffffff; -fx-background-radius: 6em;" text="Ayarla" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                              <Button fx:id="orderSectionButton" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#handleClick" style="-fx-background-color: #ffffff; -fx-background-radius: 6em;" text="Ayarla" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                  <padding>
                                     <Insets bottom="12.0" left="16.0" right="16.0" top="12.0" />
                                  </padding>
                                  <graphic>
-                                    <ImageView fitHeight="14.0" fitWidth="14.0" pickOnBounds="true" preserveRatio="true">
+                                    <ImageView fx:id="orderSectionButtonImage" fitHeight="14.0" fitWidth="14.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
                                           <Image url="@../../../../assets/images/icons/icon_arrow_down.png" />
                                        </image>
                                     </ImageView>
                                  </graphic>
                               </Button>
-                              <AnchorPane minHeight="-Infinity" minWidth="-Infinity" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="40.0">
+                              <AnchorPane fx:id="orderSection" minHeight="-Infinity" minWidth="-Infinity" prefHeight="0.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="40.0">
                                  <children>
                                     <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="24.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                        <children>
@@ -100,33 +100,33 @@
                         </AnchorPane>
                         <AnchorPane style="-fx-background-color: rgba(255, 255, 255, 0.34); -fx-background-radius: 32;">
                            <children>
-                              <Label stylesheets="@../styling/dark-theme.css" text="Ünite Bilgileri" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+                              <Label style="-fx-text-fill: #060606;" stylesheets="@../styling/dark-theme.css" text="Ünite Bilgileri" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
                                  <font>
                                     <Font name="TextaAlt-Regular" size="20.0" />
                                  </font>
                                  <padding>
-                                    <Insets left="8.0" />
+                                    <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
                                  </padding>
                               </Label>
-                              <Button contentDisplay="RIGHT" mnemonicParsing="false" style="-fx-background-color: #ffffff; -fx-background-radius: 6em;" text="Ayarla" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                              <Button fx:id="unitInfoSectionButton" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#handleClick" style="-fx-background-color: #ffffff; -fx-background-radius: 6em;" text="Ayarla" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                  <padding>
                                     <Insets bottom="12.0" left="16.0" right="16.0" top="12.0" />
                                  </padding>
                                  <graphic>
-                                    <ImageView fitHeight="14.0" fitWidth="14.0" pickOnBounds="true" preserveRatio="true">
+                                    <ImageView fx:id="unitInfoSectionButtonImage" fitHeight="14.0" fitWidth="14.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
                                           <Image url="@../../../../assets/images/icons/icon_arrow_down.png" />
                                        </image>
                                     </ImageView>
                                  </graphic>
                               </Button>
-                              <AnchorPane minHeight="-Infinity" minWidth="-Infinity" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="40.0">
+                              <AnchorPane fx:id="unitInfoSection" minHeight="-Infinity" minWidth="-Infinity" prefHeight="0.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="40.0">
                                  <children>
                                     <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="24.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                        <children>
                                           <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                                              <children>
-                                                <Label text="Sipariş Numarası">
+                                                <Label style="-fx-text-fill: #060606;" text="Sipariş Numarası">
                                                    <font>
                                                       <Font name="TextaAlt-Regular" size="14.0" />
                                                    </font>
@@ -138,7 +138,7 @@
                                              <children>
                                                 <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                                                    <children>
-                                                      <Label text="Projeye Davet Et">
+                                                      <Label style="-fx-text-fill: #060606;" text="Projeye Davet Et">
                                                          <font>
                                                             <Font name="TextaAlt-Regular" size="14.0" />
                                                          </font>
@@ -173,12 +173,12 @@
                         </AnchorPane>
                         <AnchorPane style="-fx-background-color: rgba(255, 255, 255, 0.34); -fx-background-radius: 32;">
                            <children>
-                              <Label stylesheets="@../styling/dark-theme.css" text="Hesaplama Sonucu" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+                              <Label style="-fx-text-fill: #060606;" stylesheets="@../styling/dark-theme.css" text="Hesaplama Sonucu" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
                                  <font>
                                     <Font name="TextaAlt-Regular" size="20.0" />
                                  </font>
                                  <padding>
-                                    <Insets left="8.0" />
+                                    <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
                                  </padding>
                               </Label>
                               <Button contentDisplay="RIGHT" mnemonicParsing="false" style="-fx-background-color: #ffffff; -fx-background-radius: 6em;" text="Görüntüle" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -203,12 +203,12 @@
                         </AnchorPane>
                         <AnchorPane style="-fx-background-color: rgba(255, 255, 255, 0.34); -fx-background-radius: 32;">
                            <children>
-                              <Label stylesheets="@../styling/dark-theme.css" text="Parça Listesi" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+                              <Label style="-fx-text-fill: #060606;" stylesheets="@../styling/dark-theme.css" text="Parça Listesi" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
                                  <font>
                                     <Font name="TextaAlt-Regular" size="20.0" />
                                  </font>
                                  <padding>
-                                    <Insets left="8.0" />
+                                    <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
                                  </padding>
                               </Label>
                               <Button contentDisplay="RIGHT" mnemonicParsing="false" style="-fx-background-color: #ffffff; -fx-background-radius: 6em;" text="Görüntüle" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -233,12 +233,12 @@
                         </AnchorPane>
                         <AnchorPane style="-fx-background-color: rgba(255, 255, 255, 0.34); -fx-background-radius: 32;">
                            <children>
-                              <Label stylesheets="@../styling/dark-theme.css" text="Ünite Şeması" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+                              <Label style="-fx-text-fill: #060606;" stylesheets="@../styling/dark-theme.css" text="Ünite Şeması" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
                                  <font>
                                     <Font name="TextaAlt-Regular" size="20.0" />
                                  </font>
                                  <padding>
-                                    <Insets left="8.0" />
+                                    <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
                                  </padding>
                               </Label>
                               <Button contentDisplay="RIGHT" mnemonicParsing="false" style="-fx-background-color: #ffffff; -fx-background-radius: 6em;" text="Görüntüle" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -263,12 +263,12 @@
                         </AnchorPane>
                         <AnchorPane style="-fx-background-color: rgba(255, 255, 255, 0.34); -fx-background-radius: 32;">
                            <children>
-                              <Label stylesheets="@../styling/dark-theme.css" text="Hata Kontrol" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+                              <Label style="-fx-text-fill: #060606;" stylesheets="@../styling/dark-theme.css" text="Hata Kontrol" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
                                  <font>
                                     <Font name="TextaAlt-Regular" size="20.0" />
                                  </font>
                                  <padding>
-                                    <Insets left="8.0" />
+                                    <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
                                  </padding>
                               </Label>
                               <Button contentDisplay="RIGHT" mnemonicParsing="false" style="-fx-background-color: #ffffff; -fx-background-radius: 6em;" text="Kontrol Et" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
