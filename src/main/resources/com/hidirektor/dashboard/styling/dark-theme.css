@@ -10,33 +10,49 @@
 
 .button {
     -fx-background-color: transparent;
-    -fx-background-radius: 8em;
+    -fx-background-radius: 8em; /* Oval kenar */
 }
+
 .button:hover {
-    -fx-background-color: #0068f7;
+    -fx-background-color: #ffffff;
     -fx-background-radius: 8em;
-    -fx-text-fill: #ffffff;
+    -fx-text-fill: #060606; /* Metin rengi */
 }
+
 .button:pressed {
-    -fx-background-color: #0068f7;
-    -fx-background-radius: 8em;
-    -fx-text-fill: #ffffff;
+    -fx-background-color: #ffffff;
+    -fx-text-fill: #060606;
 }
+
 .button:focused {
-    -fx-background-color: #0068f7;
+    -fx-background-color: #ffffff;
     -fx-border-color: transparent;
     -fx-background-radius: 8em;
-    -fx-text-fill: #ffffff;
+    -fx-text-fill: #060606;
 }
-.button .image-view {
-    -fx-opacity: 1;
+
+.colored-button {
+    -fx-background-color: transparent;
+    -fx-background-radius: 8em;
+}
+
+.colored-button:hover .image-view {
+    -fx-effect: innershadow(gaussian, rgba(230, 95, 43, 1.0), 5, 5, 5, 5);
+}
+
+.colored-button:pressed .image-view {
+    -fx-effect: innershadow(gaussian, rgba(230, 95, 43, 1.0), 5, 5, 5, 5);
+}
+
+.colored-button:focused .image-view {
+    -fx-effect: innershadow(gaussian, rgba(230, 95, 43, 1.0), 5, 5, 5, 5);
 }
 
 .text-field {
-    -fx-background-color: #121222;
-    -fx-text-fill: #9d9e9f;
-    -fx-text-color: #9d9e9f;
-    -fx-prompt-text-fill: #9d9e9f;
+    -fx-background-color: #FFFFFF;
+    -fx-text-fill: #060606;
+    -fx-text-color: #060606;
+    -fx-prompt-text-fill: #060606;
     -fx-background-radius: 100em;
     -fx-padding: 0 0 0 26px;
     -fx-font-family: 'TextaAltRegular';
@@ -44,7 +60,7 @@
 
 .text-field .content {
     -fx-alignment: center-left;
-    -fx-text-color: #9d9e9f;
+    -fx-text-color: #060606;
     -fx-font-family: 'TextaAltBold';
 }
 
@@ -69,11 +85,13 @@
     -fx-background-color: #F7F9FF;
     -fx-background-radius: 8em;
     -fx-border-radius: 8em;
+    -fx-effect: innershadow(gaussian, rgba(255, 165, 0, 0.8), 1, 1, 1, 1);
 }
 
 .rainbow-button:pressed {
     -fx-background-color: #F7F9FF;
     -fx-border-radius: 8em;
+    -fx-effect: innershadow(gaussian, rgba(255, 165, 0, 0.8), 0, 0, 0, 0);
 }
 
 .rainbow-button:focused {
@@ -83,7 +101,7 @@
 }
 
 .dashboard-header-profile {
-    -fx-background-color: #121222;
+    -fx-background-color: #FFFFFF;
     -fx-background-radius: 2em;
     -fx-min-width: 32px;
     -fx-min-height: 32px;
@@ -106,6 +124,6 @@
 }
 
 .cardview-icon-background {
-    -fx-background-color: #252534;
+    -fx-background-color: #FFFFFF;
     -fx-background-radius: 12;
 }

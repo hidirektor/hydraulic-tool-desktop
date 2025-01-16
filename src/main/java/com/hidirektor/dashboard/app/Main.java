@@ -14,6 +14,13 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws IOException {
+        int displayCount = screens.size();
+
+        /*if(displayCount > 1) {
+
+        } else {
+            SceneUtil.openScreen(screens.get(0), "fxml/Landing.fxml", "/assets/images/logos/onderlift-hydraulic-logo.png");
+        }*/
         SceneUtil.openScreen(screens.get(0), "fxml/Landing.fxml", "/assets/images/logos/onderlift-hydraulic-logo.png");
     }
 

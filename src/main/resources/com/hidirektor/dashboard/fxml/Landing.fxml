@@ -7,11 +7,11 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.*?>
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" xmlns="http://javafx.com/javafx/17.0.6" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.hidirektor.dashboard.controllers.LandingController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.hidirektor.dashboard.controllers.LandingController">
    <children>
       <BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="720.0" minWidth="1280.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <top>
-            <HBox alignment="CENTER_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="30.0" style="-fx-background-color: #121222;" BorderPane.alignment="CENTER">
+            <HBox alignment="CENTER_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="30.0" style="-fx-background-color: #060606;" BorderPane.alignment="CENTER">
                <children>
                   <ImageView fx:id="closeIcon" fitHeight="12.0" fitWidth="12.0" onMouseClicked="#closeProgram" pickOnBounds="true" preserveRatio="true" styleClass="window-button">
                      <HBox.margin>
@@ -50,7 +50,7 @@
             </HBox>
          </top>
          <left>
-            <AnchorPane fx:id="hamburgerMenu" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minWidth="45.0" style="-fx-background-color: #121222;" BorderPane.alignment="CENTER">
+            <AnchorPane fx:id="hamburgerMenu" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minWidth="45.0" style="-fx-background-color: #060606;" BorderPane.alignment="CENTER">
                <children>
                   <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="200.0" minWidth="220.0" style="-fx-border-width: 0 1 0 0;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
@@ -73,128 +73,191 @@
                               <Insets bottom="12.0" left="8.0" right="12.0" top="12.0" />
                            </padding>
                         </AnchorPane>
-                        <VBox prefHeight="200.0" prefWidth="100.0" spacing="6.0">
+                        <VBox prefWidth="100.0" spacing="6.0">
                            <VBox.margin>
                               <Insets top="16.0" />
                            </VBox.margin>
                            <children>
-                              <Button alignment="TOP_LEFT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" stylesheets="@../styling/dark-theme.css" text="Anasayfa" textFill="#9d9e9f">
+                              <Button alignment="TOP_LEFT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" style="-fx-background-color: #ffffff; -fx-border-radius: 8em;" stylesheets="@../styling/dark-theme.css" text="Yeni Ünite Oluştur" textFill="#171717">
                                  <graphic>
                                     <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../../../../assets/images/icons/icon_add.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
+                                 <padding>
+                                    <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+                                 </padding>
+                              </Button>
+                           </children>
+                           <padding>
+                              <Insets bottom="12.0" left="12.0" right="12.0" top="12.0" />
+                           </padding>
+                        </VBox>
+                        <VBox maxWidth="1.7976931348623157E308" prefWidth="100.0">
+                           <VBox.margin>
+                              <Insets top="24.0" />
+                           </VBox.margin>
+                           <children>
+                              <Button alignment="TOP_LEFT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="colored-button" stylesheets="@../styling/dark-theme.css" text="Anasayfa" textFill="#f1f1f1">
+                                 <graphic>
+                                    <ImageView fitHeight="22.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
                                           <Image url="@../../../../assets/images/icons/icon_home.png" />
                                        </image>
                                     </ImageView>
                                  </graphic>
                                  <font>
-                                    <Font size="16.0" />
+                                    <Font size="14.0" />
                                  </font>
+                                 <padding>
+                                    <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+                                 </padding>
                               </Button>
-                              <Button alignment="TOP_LEFT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" stylesheets="@../styling/dark-theme.css" text="Klasik" textFill="#9d9e9f">
+                              <Button alignment="TOP_LEFT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="colored-button" stylesheets="@../styling/dark-theme.css" text="Hidrolik Üniteleri" textFill="#f1f1f1">
                                  <graphic>
-                                    <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                                    <ImageView fitHeight="22.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
-                                          <Image url="@../../../../assets/images/icons/icon_scissor_lift.png" />
+                                          <Image url="@../../../../assets/images/icons/icon_unit.png" />
                                        </image>
                                     </ImageView>
                                  </graphic>
                                  <font>
-                                    <Font size="16.0" />
+                                    <Font size="14.0" />
                                  </font>
+                                 <padding>
+                                    <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+                                 </padding>
                               </Button>
-                              <Button alignment="TOP_LEFT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" stylesheets="@../styling/dark-theme.css" text="PowerPack" textFill="#9d9e9f">
+                              <Button alignment="TOP_LEFT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="colored-button" stylesheets="@../styling/dark-theme.css" text="Destek Talepleri" textFill="#f1f1f1">
                                  <graphic>
-                                    <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                                    <ImageView fitHeight="22.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
-                                          <Image url="@../../../../assets/images/icons/icon_hidros.png" />
+                                          <Image url="@../../../../assets/images/icons/icon_ticket.png" />
                                        </image>
                                     </ImageView>
                                  </graphic>
                                  <font>
-                                    <Font size="16.0" />
+                                    <Font size="14.0" />
                                  </font>
+                                 <padding>
+                                    <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+                                 </padding>
                               </Button>
-                              <Button alignment="TOP_LEFT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" stylesheets="@../styling/dark-theme.css" text="Parametreler" textFill="#9d9e9f">
+                              <Button alignment="TOP_LEFT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="colored-button" stylesheets="@../styling/dark-theme.css" text="Kullanıcılar" textFill="#f1f1f1">
                                  <graphic>
-                                    <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                                    <ImageView fitHeight="22.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
-                                          <Image url="@../../../../assets/images/icons/icon_parameters.png" />
+                                          <Image url="@../../../../assets/images/icons/icon_users.png" />
                                        </image>
                                     </ImageView>
                                  </graphic>
                                  <font>
-                                    <Font size="16.0" />
+                                    <Font size="14.0" />
                                  </font>
+                                 <padding>
+                                    <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+                                 </padding>
                               </Button>
-                              <Button alignment="TOP_LEFT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" stylesheets="@../styling/dark-theme.css" text="Debug Mode" textFill="#9d9e9f">
+                              <Button alignment="TOP_LEFT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="colored-button" stylesheets="@../styling/dark-theme.css" text="Debug Mod" textFill="#f1f1f1">
                                  <graphic>
-                                    <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                                    <ImageView fitHeight="22.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
                                           <Image url="@../../../../assets/images/icons/icon_debug.png" />
                                        </image>
                                     </ImageView>
                                  </graphic>
                                  <font>
-                                    <Font size="16.0" />
+                                    <Font size="14.0" />
                                  </font>
+                                 <padding>
+                                    <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+                                 </padding>
                               </Button>
-                              <Button alignment="TOP_LEFT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" stylesheets="@../styling/dark-theme.css" text="Monitör" textFill="#9d9e9f">
+                              <Button alignment="TOP_LEFT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="colored-button" stylesheets="@../styling/dark-theme.css" text="Lisans Yönetimi" textFill="#f1f1f1">
                                  <graphic>
-                                    <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                                    <ImageView fitHeight="22.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
-                                          <Image url="@../../../../assets/images/icons/icon_display.png" />
+                                          <Image url="@../../../../assets/images/icons/icon_license.png" />
                                        </image>
                                     </ImageView>
                                  </graphic>
                                  <font>
-                                    <Font size="16.0" />
+                                    <Font size="14.0" />
                                  </font>
+                                 <padding>
+                                    <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+                                 </padding>
+                              </Button>
+                              <Button alignment="TOP_LEFT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="colored-button" stylesheets="@../styling/dark-theme.css" text="Kaynak Kullanımı" textFill="#f1f1f1">
+                                 <graphic>
+                                    <ImageView fitHeight="22.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../../../../assets/images/icons/icon_source.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                                 <padding>
+                                    <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+                                 </padding>
+                              </Button>
+                              <Button alignment="TOP_LEFT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="colored-button" stylesheets="@../styling/dark-theme.css" text="Şema Oluştur" textFill="#f1f1f1">
+                                 <graphic>
+                                    <ImageView fitHeight="22.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../../../../assets/images/icons/icon_layer.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                                 <padding>
+                                    <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+                                 </padding>
+                              </Button>
+                              <Button alignment="TOP_LEFT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="colored-button" stylesheets="@../styling/dark-theme.css" text="Program Ayarları" textFill="#f1f1f1">
+                                 <graphic>
+                                    <ImageView fitHeight="22.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../../../../assets/images/icons/icon_settings.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                                 <padding>
+                                    <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+                                 </padding>
                               </Button>
                            </children>
                            <padding>
-                              <Insets bottom="6.0" left="6.0" right="6.0" top="6.0" />
+                              <Insets bottom="12.0" left="12.0" right="12.0" top="12.0" />
                            </padding>
                         </VBox>
                      </children>
                   </VBox>
                   <VBox alignment="BOTTOM_LEFT" spacing="6.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                      <children>
-                        <Button alignment="TOP_LEFT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" stylesheets="@../styling/dark-theme.css" text="Kaynak Kullanımı" textFill="#9d9e9f">
-                           <graphic>
-                              <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../../../../assets/images/icons/icon_usage.png" />
-                                 </image>
-                              </ImageView>
-                           </graphic>
-                           <font>
-                              <Font size="16.0" />
-                           </font>
-                        </Button>
-                        <Button alignment="TOP_LEFT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" stylesheets="@../styling/dark-theme.css" text="Ayarlar" textFill="#9d9e9f">
-                           <graphic>
-                              <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../../../../assets/images/icons/icon_settings.png" />
-                                 </image>
-                              </ImageView>
-                           </graphic>
-                           <font>
-                              <Font size="16.0" />
-                           </font>
-                        </Button>
-                        <Button alignment="TOP_LEFT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" stylesheets="@../styling/dark-theme.css" text="Destek Merkezi" textFill="#9d9e9f">
-                           <graphic>
-                              <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../../../../assets/images/icons/icon_support.png" />
-                                 </image>
-                              </ImageView>
-                           </graphic>
-                           <font>
-                              <Font size="16.0" />
-                           </font>
-                        </Button>
+                        <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../../assets/images/icons/icon_support.png" />
+                           </image>
+                           <VBox.margin>
+                              <Insets bottom="12.0" left="12.0" right="12.0" />
+                           </VBox.margin>
+                        </ImageView>
                      </children>
                      <padding>
                         <Insets bottom="6.0" left="6.0" right="6.0" top="6.0" />
@@ -204,7 +267,7 @@
             </AnchorPane>
          </left>
          <center>
-            <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" style="-fx-background-color: #020617;" BorderPane.alignment="CENTER">
+            <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" style="-fx-background-color: #EBDFD7;" BorderPane.alignment="CENTER">
                <children>
                   <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
@@ -212,9 +275,9 @@
                            <children>
                               <HBox alignment="CENTER_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" spacing="16.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
                                  <children>
-                                    <Label stylesheets="@../styling/dark-theme.css" text="Anasayfa" textAlignment="CENTER" textFill="WHITE">
+                                    <Label stylesheets="@../styling/dark-theme.css" text="Anasayfa" textAlignment="CENTER" textFill="#060606">
                                        <font>
-                                          <Font size="26.0" />
+                                          <Font name="TextaAlt-Bold" size="26.0" />
                                        </font>
                                        <padding>
                                           <Insets bottom="6.0" left="6.0" right="6.0" top="6.0" />
@@ -237,9 +300,37 @@
                                           </ImageView>
                                        </children>
                                     </StackPane>
-                                    <StackPane prefHeight="24.0" prefWidth="24.0" styleClass="rounded-image-view">
+                                    <StackPane maxWidth="1.7976931348623157E308" prefHeight="32.0" style="-fx-background-color: #ffffff; -fx-background-radius: 8em;">
                                        <children>
-                                          <Circle fx:id="profilePhoto" fill="WHITE" radius="24.0" stroke="BLACK" strokeType="INSIDE" />
+                                          <HBox alignment="CENTER_LEFT" maxWidth="1.7976931348623157E308">
+                                             <children>
+                                                <Circle fx:id="profilePhoto" fill="#060606" radius="16.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0">
+                                                   <HBox.margin>
+                                                      <Insets left="4.0" right="12.0" />
+                                                   </HBox.margin>
+                                                </Circle>
+                                                <VBox maxWidth="1.7976931348623157E308" spacing="2.0">
+                                                   <children>
+                                                      <Label text="Halil İbrahim DİREKTÖR" textFill="#292d32" />
+                                                      <Label opacity="0.44" text="RESTful Architect" textFill="#292d32" />
+                                                   </children>
+                                                   <HBox.margin>
+                                                      <Insets right="12.0" />
+                                                   </HBox.margin>
+                                                   <padding>
+                                                      <Insets bottom="6.0" top="6.0" />
+                                                   </padding>
+                                                </VBox>
+                                                <ImageView fitHeight="14.0" fitWidth="14.0" pickOnBounds="true" preserveRatio="true">
+                                                   <HBox.margin>
+                                                      <Insets right="12.0" />
+                                                   </HBox.margin>
+                                                   <image>
+                                                      <Image url="@../../../../assets/images/icons/icon_arrow_down.png" />
+                                                   </image>
+                                                </ImageView>
+                                             </children>
+                                          </HBox>
                                        </children>
                                     </StackPane>
                                  </children>

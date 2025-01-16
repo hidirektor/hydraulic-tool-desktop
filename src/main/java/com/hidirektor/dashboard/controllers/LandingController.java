@@ -1,7 +1,6 @@
 package com.hidirektor.dashboard.controllers;
 
 import com.hidirektor.dashboard.Launcher;
-import com.hidirektor.dashboard.utils.SceneUtil;
 import javafx.animation.TranslateTransition;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
@@ -49,7 +48,7 @@ public class LandingController implements Initializable {
 
         Platform.runLater(() -> {
             addHoverEffect(closeIcon, minimizeIcon, expandIcon);
-            SceneUtil.loadFXMLIntoPane(currentPagePane, "fxml/Dashboard.fxml");
+            //SceneUtil.loadFXMLIntoPane(currentPagePane, "fxml/Dashboard.fxml");
         });
     }
 
