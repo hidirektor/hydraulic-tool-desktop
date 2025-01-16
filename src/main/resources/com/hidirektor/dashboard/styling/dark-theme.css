@@ -13,27 +13,32 @@
     -fx-background-radius: 8em; /* Oval kenar */
 }
 
-.button:hover {
+.colored-button {
+    -fx-background-color: transparent;
+    -fx-background-radius: 8em;
+    -fx-text-fill: #FFFFFF;
+}
+
+.colored-button .image-view {
+    -fx-effect: null;
+}
+
+.colored-button:hover {
     -fx-background-color: #ffffff;
     -fx-background-radius: 8em;
     -fx-text-fill: #060606; /* Metin rengi */
 }
 
-.button:pressed {
+.colored-button:pressed {
     -fx-background-color: #ffffff;
     -fx-text-fill: #060606;
 }
 
-.button:focused {
+.colored-button:focused {
     -fx-background-color: #ffffff;
     -fx-border-color: transparent;
     -fx-background-radius: 8em;
     -fx-text-fill: #060606;
-}
-
-.colored-button {
-    -fx-background-color: transparent;
-    -fx-background-radius: 8em;
 }
 
 .colored-button:hover .image-view {
@@ -45,6 +50,10 @@
 }
 
 .colored-button:focused .image-view {
+    -fx-effect: innershadow(gaussian, rgba(230, 95, 43, 1.0), 5, 5, 5, 5);
+}
+
+.colored-button:armed .image-view {
     -fx-effect: innershadow(gaussian, rgba(230, 95, 43, 1.0), 5, 5, 5, 5);
 }
 

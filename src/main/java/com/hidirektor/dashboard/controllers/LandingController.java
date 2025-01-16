@@ -4,6 +4,7 @@ import com.hidirektor.dashboard.Launcher;
 import com.hidirektor.dashboard.controllers.notification.NotificationController;
 import com.hidirektor.dashboard.utils.Notification.NotificationUtil;
 import com.hidirektor.dashboard.utils.SceneUtil;
+import com.hidirektor.dashboard.utils.Utils;
 import javafx.animation.TranslateTransition;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -14,11 +15,10 @@ import javafx.scene.control.Button;
 import javafx.scene.effect.ColorAdjust;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseButton;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Region;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
@@ -55,6 +55,9 @@ public class LandingController implements Initializable {
     @FXML
     public ImageView collapseMenuIcon;
 
+    @FXML
+    public VBox collapsedVBox, expandedVBox;
+
     private boolean isMenuVisible = true;
 
     @Override
@@ -65,8 +68,7 @@ public class LandingController implements Initializable {
         Platform.runLater(() -> {
             addHoverEffect(closeIcon, minimizeIcon, expandIcon);
 
-            MouseEvent mousePressedEvent = new MouseEvent(MouseEvent.MOUSE_PRESSED, 0, 0, 0, 0, MouseButton.PRIMARY, 1, false, false, false, false, false, false, false, false, false, false, null);
-            homeButton.fireEvent(mousePressedEvent);
+            Utils.clickButton(homeButton, 1);
         });
     }
 

@@ -103,7 +103,7 @@
                                     <Insets bottom="12.0" left="12.0" right="12.0" top="12.0" />
                                  </padding>
                               </VBox>
-                              <VBox maxWidth="1.7976931348623157E308" prefWidth="100.0" spacing="2.0">
+                              <VBox fx:id="expandedVBox" maxWidth="1.7976931348623157E308" prefWidth="100.0" spacing="2.0">
                                  <VBox.margin>
                                     <Insets top="24.0" />
                                  </VBox.margin>
@@ -305,7 +305,7 @@
                                     <Insets bottom="12.0" left="12.0" right="12.0" top="12.0" />
                                  </padding>
                               </VBox>
-                              <VBox alignment="CENTER" spacing="4.0" stylesheets="@../styling/dark-theme.css">
+                              <VBox fx:id="collapsedVBox" alignment="CENTER" spacing="4.0" stylesheets="@../styling/dark-theme.css">
                                  <VBox.margin>
                                     <Insets top="24.0" />
                                  </VBox.margin>
