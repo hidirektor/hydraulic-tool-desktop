@@ -1,6 +1,8 @@
 package com.hidirektor.dashboard.controllers;
 
 import com.hidirektor.dashboard.Launcher;
+import com.hidirektor.dashboard.controllers.notification.NotificationController;
+import com.hidirektor.dashboard.utils.Notification.NotificationUtil;
 import com.hidirektor.dashboard.utils.SceneUtil;
 import javafx.animation.TranslateTransition;
 import javafx.application.Platform;
@@ -45,7 +47,10 @@ public class LandingController implements Initializable {
     public Pane currentPagePane;
 
     @FXML
-    public Button homeButton;
+    public Button homeButton, hydraulicUnitsButton, ticketButton, usersButton, debugButton, licenseButton, sourceUsageButton, schemeButton, settingsButton;
+
+    @FXML
+    public Button homeButtonMini, hydraulicUnitsButtonMini, ticketButtonMini, usersButtonMini, debugButtonMini, licenseButtonMini, sourceUsageButtonMini, schemeButtonMini, settingsButtonMini;
 
     @FXML
     public ImageView collapseMenuIcon;
@@ -140,8 +145,26 @@ public class LandingController implements Initializable {
 
     @FXML
     public void handleClick(ActionEvent actionEvent) {
-        if(actionEvent.getSource().equals(homeButton)) {
+        if(actionEvent.getSource().equals(homeButton) || actionEvent.getSource().equals(homeButtonMini)) {
             SceneUtil.loadFXMLIntoPane(currentPagePane, "fxml/Dashboard.fxml");
+        } else if(actionEvent.getSource().equals(hydraulicUnitsButton) || actionEvent.getSource().equals(hydraulicUnitsButtonMini)) {
+            //Hidrolik Üniteleri
+        } else if(actionEvent.getSource().equals(ticketButton) || actionEvent.getSource().equals(ticketButtonMini)) {
+            //Destek Talepleri
+        } else if(actionEvent.getSource().equals(usersButton) || actionEvent.getSource().equals(usersButtonMini)) {
+            //Kullanıcılar
+        } else if(actionEvent.getSource().equals(debugButton) || actionEvent.getSource().equals(debugButtonMini)) {
+            //Debug Modu
+        } else if(actionEvent.getSource().equals(licenseButton) || actionEvent.getSource().equals(licenseButtonMini)) {
+            //Lisans Yönetimi
+        } else if(actionEvent.getSource().equals(sourceUsageButton) || actionEvent.getSource().equals(sourceUsageButtonMini)) {
+            //Kaynak Kullanımı
+        } else if(actionEvent.getSource().equals(schemeButton) || actionEvent.getSource().equals(schemeButtonMini)) {
+            //2 Boyutlu Şema Alt Programı
+        } else if(actionEvent.getSource().equals(settingsButton) || actionEvent.getSource().equals(settingsButtonMini)) {
+            //Ayarlar
+        } else {
+            NotificationUtil.showNotification(collapseMenuIcon.getScene().getWindow(), NotificationController.NotificationType.ALERT, "Buton Hatası", "Buton hatası meydana geldi. Lütfen yaptığınız işlemle birlikte hatayı bize bildirin.");
         }
     }
 
