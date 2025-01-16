@@ -26,8 +26,7 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 
 import java.net.URL;
-import java.util.Objects;
-import java.util.ResourceBundle;
+import java.util.*;
 
 public class LandingController implements Initializable {
 
@@ -50,13 +49,18 @@ public class LandingController implements Initializable {
     public Button homeButton, hydraulicUnitsButton, ticketButton, usersButton, debugButton, licenseButton, sourceUsageButton, schemeButton, settingsButton;
 
     @FXML
-    public Button homeButtonMini, hydraulicUnitsButtonMini, ticketButtonMini, usersButtonMini, debugButtonMini, licenseButtonMini, sourceUsageButtonMini, schemeButtonMini, settingsButtonMini;
+    public Button createHydraulicUnitButton;
+
+    @FXML
+    public ImageView contactUsButton, contactUsMiniButton, createHydraulicUnitImageButton;
 
     @FXML
     public ImageView collapseMenuIcon;
 
     @FXML
     public VBox collapsedVBox, expandedVBox;
+
+    private static final Map<Button, String> buttonPromptTextMap = new HashMap<>();
 
     private boolean isMenuVisible = true;
 
@@ -66,7 +70,8 @@ public class LandingController implements Initializable {
         profilePhoto.setFill(new ImagePattern(templateProfilePhoto, 0, 0, 0, 0, false));
 
         Platform.runLater(() -> {
-            addHoverEffect(closeIcon, minimizeIcon, expandIcon);
+            addHoverEffect(closeIcon, minimizeIcon, expandIcon, contactUsButton, collapseMenuIcon, createHydraulicUnitImageButton, contactUsMiniButton);
+            addHoverEffectToButtons(createHydraulicUnitButton);
 
             Utils.clickButton(homeButton, 1);
         });
@@ -127,6 +132,21 @@ public class LandingController implements Initializable {
             AnchorPane.setTopAnchor(collapseMenuIcon, 48.0);
 
             collapseMenuIcon.setImage(collapsedIcon);
+
+            // Use a LinkedList to maintain order
+            LinkedList<Button> buttonsToMove = new LinkedList<>();
+            for (Node node : expandedVBox.getChildren()) {
+                if (node instanceof Button) {
+                    Button button = (Button) node;
+                    buttonPromptTextMap.put(button, button.getText());
+                    button.setText(""); // Hide the prompt text
+                    buttonsToMove.add(button);
+                }
+            }
+
+            // Move the buttons to collapsedVBox while maintaining order
+            collapsedVBox.getChildren().addAll(buttonsToMove);
+            expandedVBox.getChildren().removeAll(buttonsToMove);
         } else {
             hamburgerMenu.setMinWidth(Region.USE_COMPUTED_SIZE);
             hamburgerMenu.setPrefWidth(Region.USE_COMPUTED_SIZE);
@@ -140,6 +160,23 @@ public class LandingController implements Initializable {
             AnchorPane.setTopAnchor(collapseMenuIcon, 40.0);
 
             collapseMenuIcon.setImage(expandedIcon);
+
+            // Use a LinkedList to maintain order
+            LinkedList<Button> buttonsToMoveBack = new LinkedList<>();
+            for (Node node : collapsedVBox.getChildren()) {
+                if (node instanceof Button) {
+                    Button button = (Button) node;
+                    String originalPromptText = buttonPromptTextMap.get(button);
+                    if (originalPromptText != null) {
+                        button.setText(originalPromptText); // Restore the original prompt text
+                    }
+                    buttonsToMoveBack.add(button);
+                }
+            }
+
+            // Move the buttons back to expandedVBox while maintaining order
+            expandedVBox.getChildren().addAll(buttonsToMoveBack);
+            collapsedVBox.getChildren().removeAll(buttonsToMoveBack);
         }
 
         transition.play();
@@ -147,24 +184,28 @@ public class LandingController implements Initializable {
 
     @FXML
     public void handleClick(ActionEvent actionEvent) {
-        if(actionEvent.getSource().equals(homeButton) || actionEvent.getSource().equals(homeButtonMini)) {
+        if(actionEvent.getSource().equals(homeButton)) {
             SceneUtil.loadFXMLIntoPane(currentPagePane, "fxml/Dashboard.fxml");
-        } else if(actionEvent.getSource().equals(hydraulicUnitsButton) || actionEvent.getSource().equals(hydraulicUnitsButtonMini)) {
+        } else if(actionEvent.getSource().equals(hydraulicUnitsButton)) {
             //Hidrolik Üniteleri
-        } else if(actionEvent.getSource().equals(ticketButton) || actionEvent.getSource().equals(ticketButtonMini)) {
+        } else if(actionEvent.getSource().equals(ticketButton)) {
             //Destek Talepleri
-        } else if(actionEvent.getSource().equals(usersButton) || actionEvent.getSource().equals(usersButtonMini)) {
+        } else if(actionEvent.getSource().equals(usersButton)) {
             //Kullanıcılar
-        } else if(actionEvent.getSource().equals(debugButton) || actionEvent.getSource().equals(debugButtonMini)) {
+        } else if(actionEvent.getSource().equals(debugButton)) {
             //Debug Modu
-        } else if(actionEvent.getSource().equals(licenseButton) || actionEvent.getSource().equals(licenseButtonMini)) {
+        } else if(actionEvent.getSource().equals(licenseButton)) {
             //Lisans Yönetimi
-        } else if(actionEvent.getSource().equals(sourceUsageButton) || actionEvent.getSource().equals(sourceUsageButtonMini)) {
+        } else if(actionEvent.getSource().equals(sourceUsageButton)) {
             //Kaynak Kullanımı
-        } else if(actionEvent.getSource().equals(schemeButton) || actionEvent.getSource().equals(schemeButtonMini)) {
+        } else if(actionEvent.getSource().equals(schemeButton)) {
             //2 Boyutlu Şema Alt Programı
-        } else if(actionEvent.getSource().equals(settingsButton) || actionEvent.getSource().equals(settingsButtonMini)) {
+        } else if(actionEvent.getSource().equals(settingsButton)) {
             //Ayarlar
+        } else if(actionEvent.getSource().equals(createHydraulicUnitButton) || actionEvent.getSource().equals(createHydraulicUnitImageButton)) {
+            //Ünite Oluştur
+        } else if(actionEvent.getSource().equals(contactUsButton) || actionEvent.getSource().equals(contactUsMiniButton)) {
+            //Destek Butonu
         } else {
             NotificationUtil.showNotification(collapseMenuIcon.getScene().getWindow(), NotificationController.NotificationType.ALERT, "Buton Hatası", "Buton hatası meydana geldi. Lütfen yaptığınız işlemle birlikte hatayı bize bildirin.");
         }
@@ -177,6 +218,16 @@ public class LandingController implements Initializable {
         for (ImageView imageView : imageViews) {
             imageView.setOnMouseEntered(event -> imageView.setEffect(darkenEffect));
             imageView.setOnMouseExited(event -> imageView.setEffect(null));
+        }
+    }
+
+    private void addHoverEffectToButtons(Button... buttons) {
+        ColorAdjust darkenEffect = new ColorAdjust();
+        darkenEffect.setBrightness(-0.5);
+
+        for (Button button : buttons) {
+            button.setOnMouseEntered(event -> button.setEffect(darkenEffect));
+            button.setOnMouseExited(event -> button.setEffect(null));
         }
     }
 

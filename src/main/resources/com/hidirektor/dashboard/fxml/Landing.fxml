@@ -80,7 +80,7 @@
                                     <Insets top="16.0" />
                                  </VBox.margin>
                                  <children>
-                                    <Button alignment="TOP_LEFT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" style="-fx-background-color: #ffffff; -fx-border-radius: 8em;" stylesheets="@../styling/dark-theme.css" text="Yeni Ünite Oluştur" textFill="#171717">
+                                    <Button fx:id="createHydraulicUnitButton" alignment="TOP_LEFT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleClick" style="-fx-background-color: #ffffff; -fx-border-radius: 8em;" stylesheets="@../styling/dark-theme.css" text="Yeni Ünite Oluştur" textFill="#171717">
                                        <graphic>
                                           <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
@@ -252,7 +252,7 @@
                         </VBox>
                         <VBox alignment="BOTTOM_LEFT" spacing="6.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                            <children>
-                              <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fx:id="contactUsButton" fitHeight="32.0" fitWidth="32.0" onMouseClicked="#handleClick" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../../../../assets/images/icons/icon_support.png" />
                                  </image>
@@ -295,7 +295,7 @@
                                     <Insets top="16.0" />
                                  </VBox.margin>
                                  <children>
-                                    <ImageView fitHeight="28.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
+                                    <ImageView fx:id="createHydraulicUnitImageButton" fitHeight="28.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
                                           <Image url="@../../../../assets/images/icons/icon_add.png" />
                                        </image>
@@ -312,143 +312,6 @@
                                  <padding>
                                     <Insets bottom="12.0" left="12.0" right="12.0" top="12.0" />
                                  </padding>
-                                 <children>
-                                    <Button fx:id="homeButtonMini" alignment="TOP_LEFT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleClick" styleClass="colored-button" stylesheets="@../styling/dark-theme.css" textFill="#f1f1f1">
-                                       <graphic>
-                                          <ImageView fitHeight="22.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@../../../../assets/images/icons/icon_home.png" />
-                                             </image>
-                                          </ImageView>
-                                       </graphic>
-                                       <font>
-                                          <Font size="14.0" />
-                                       </font>
-                                       <padding>
-                                          <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
-                                       </padding>
-                                    </Button>
-                                    <Button fx:id="hydraulicUnitsButtonMini" alignment="TOP_LEFT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleClick" styleClass="colored-button" stylesheets="@../styling/dark-theme.css" textFill="#f1f1f1">
-                                       <graphic>
-                                          <ImageView fitHeight="22.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@../../../../assets/images/icons/icon_unit.png" />
-                                             </image>
-                                          </ImageView>
-                                       </graphic>
-                                       <font>
-                                          <Font size="14.0" />
-                                       </font>
-                                       <padding>
-                                          <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
-                                       </padding>
-                                    </Button>
-                                    <Button fx:id="ticketButtonMini" alignment="TOP_LEFT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleClick" styleClass="colored-button" stylesheets="@../styling/dark-theme.css" textFill="#f1f1f1">
-                                       <graphic>
-                                          <ImageView fitHeight="22.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@../../../../assets/images/icons/icon_ticket.png" />
-                                             </image>
-                                          </ImageView>
-                                       </graphic>
-                                       <font>
-                                          <Font size="14.0" />
-                                       </font>
-                                       <padding>
-                                          <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
-                                       </padding>
-                                    </Button>
-                                    <Button fx:id="usersButtonMini" alignment="TOP_LEFT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleClick" styleClass="colored-button" stylesheets="@../styling/dark-theme.css" textFill="#f1f1f1">
-                                       <graphic>
-                                          <ImageView fitHeight="22.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@../../../../assets/images/icons/icon_users.png" />
-                                             </image>
-                                          </ImageView>
-                                       </graphic>
-                                       <font>
-                                          <Font size="14.0" />
-                                       </font>
-                                       <padding>
-                                          <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
-                                       </padding>
-                                    </Button>
-                                    <Button fx:id="debugButtonMini" alignment="TOP_LEFT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleClick" styleClass="colored-button" stylesheets="@../styling/dark-theme.css" textFill="#f1f1f1">
-                                       <graphic>
-                                          <ImageView fitHeight="22.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@../../../../assets/images/icons/icon_debug.png" />
-                                             </image>
-                                          </ImageView>
-                                       </graphic>
-                                       <font>
-                                          <Font size="14.0" />
-                                       </font>
-                                       <padding>
-                                          <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
-                                       </padding>
-                                    </Button>
-                                    <Button fx:id="licenseButtonMini" alignment="TOP_LEFT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleClick" styleClass="colored-button" stylesheets="@../styling/dark-theme.css" textFill="#f1f1f1">
-                                       <graphic>
-                                          <ImageView fitHeight="22.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@../../../../assets/images/icons/icon_license.png" />
-                                             </image>
-                                          </ImageView>
-                                       </graphic>
-                                       <font>
-                                          <Font size="14.0" />
-                                       </font>
-                                       <padding>
-                                          <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
-                                       </padding>
-                                    </Button>
-                                    <Button fx:id="sourceUsageButtonMini" alignment="TOP_LEFT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleClick" styleClass="colored-button" stylesheets="@../styling/dark-theme.css" textFill="#f1f1f1">
-                                       <graphic>
-                                          <ImageView fitHeight="22.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@../../../../assets/images/icons/icon_source.png" />
-                                             </image>
-                                          </ImageView>
-                                       </graphic>
-                                       <font>
-                                          <Font size="14.0" />
-                                       </font>
-                                       <padding>
-                                          <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
-                                       </padding>
-                                    </Button>
-                                    <Button fx:id="schemeButtonMini" alignment="TOP_LEFT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleClick" styleClass="colored-button" stylesheets="@../styling/dark-theme.css" textFill="#f1f1f1">
-                                       <graphic>
-                                          <ImageView fitHeight="22.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@../../../../assets/images/icons/icon_layer.png" />
-                                             </image>
-                                          </ImageView>
-                                       </graphic>
-                                       <font>
-                                          <Font size="14.0" />
-                                       </font>
-                                       <padding>
-                                          <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
-                                       </padding>
-                                    </Button>
-                                    <Button fx:id="settingsButtonMini" alignment="TOP_LEFT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleClick" styleClass="colored-button" stylesheets="@../styling/dark-theme.css" textFill="#f1f1f1">
-                                       <graphic>
-                                          <ImageView fitHeight="22.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@../../../../assets/images/icons/icon_settings.png" />
-                                             </image>
-                                          </ImageView>
-                                       </graphic>
-                                       <font>
-                                          <Font size="14.0" />
-                                       </font>
-                                       <padding>
-                                          <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
-                                       </padding>
-                                    </Button>
-                                 </children>
                               </VBox>
                            </children>
                            <padding>
@@ -457,7 +320,7 @@
                         </VBox>
                         <VBox alignment="CENTER" fillWidth="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0">
                            <children>
-                              <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fx:id="contactUsMiniButton" fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../../../../assets/images/icons/icon_support.png" />
                                  </image>
