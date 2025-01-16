@@ -204,6 +204,7 @@ public class LandingController implements Initializable {
             //Ayarlar
         } else if(actionEvent.getSource().equals(createHydraulicUnitButton) || actionEvent.getSource().equals(createHydraulicUnitImageButton)) {
             //Ünite Oluştur
+            SceneUtil.loadFXMLIntoPane(currentPagePane, "fxml/ClassicCalculation.fxml");
         } else if(actionEvent.getSource().equals(contactUsButton) || actionEvent.getSource().equals(contactUsMiniButton)) {
             //Destek Butonu
         } else {

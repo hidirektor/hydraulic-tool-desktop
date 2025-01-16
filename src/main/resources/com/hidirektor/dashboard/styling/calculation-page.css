@@ -1,0 +1,21 @@
+.text-field {
+    -fx-background-color: #FFFFFF;
+    -fx-text-fill: #060606;
+    -fx-text-color: #060606;
+    -fx-prompt-text-fill: #060606;
+    -fx-background-radius: 100em;
+    -fx-padding: 0 0 0 26px;
+    -fx-font-family: 'TextaAltRegular';
+}
+
+.text-field .content {
+    -fx-alignment: center-left;
+    -fx-text-color: #060606;
+    -fx-font-family: 'TextaAltBold';
+}
+
+.text-field {
+    -fx-background-size: 15px 15px;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: 6px center;
+}
