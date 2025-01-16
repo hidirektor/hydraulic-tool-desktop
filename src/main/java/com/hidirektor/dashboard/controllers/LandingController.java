@@ -12,6 +12,8 @@ import javafx.scene.control.Button;
 import javafx.scene.effect.ColorAdjust;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseButton;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Region;
@@ -58,9 +60,8 @@ public class LandingController implements Initializable {
         Platform.runLater(() -> {
             addHoverEffect(closeIcon, minimizeIcon, expandIcon);
 
-            homeButton.fire();
-            homeButton.setStyle("-fx-background-color: #ffffff; -fx-text-fill: #060606;");
-            homeButton.getGraphic().setStyle("-fx-effect: innershadow(gaussian, rgba(230, 95, 43, 1.0), 5, 5, 5, 5); ");
+            MouseEvent mousePressedEvent = new MouseEvent(MouseEvent.MOUSE_PRESSED, 0, 0, 0, 0, MouseButton.PRIMARY, 1, false, false, false, false, false, false, false, false, false, false, null);
+            homeButton.fireEvent(mousePressedEvent);
         });
     }
 
