@@ -6,6 +6,7 @@ import javafx.geometry.Rectangle2D;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Rectangle;
@@ -66,13 +67,12 @@ public class SceneUtil {
         primaryStage.show();
     }
 
-    public static void loadFXMLIntoPane(Pane currentPagePane, String fxmlPath) {
+    public static void loadFXMLIntoPane(ScrollPane currentPagePane, String fxmlPath) {
         try {
             FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(Launcher.class.getResource(fxmlPath)));
             Pane loadedPane = loader.load();
 
-            currentPagePane.getChildren().clear();
-            currentPagePane.getChildren().add(loadedPane);
+            currentPagePane.setContent(loadedPane);
 
         } catch (Exception e) {
             e.printStackTrace();

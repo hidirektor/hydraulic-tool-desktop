@@ -19,3 +19,24 @@
     -fx-background-repeat: no-repeat;
     -fx-background-position: 6px center;
 }
+
+.combo-box {
+    -fx-border-color: transparent;
+    -fx-border-width: 0;
+    -fx-background-color: white;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 10, 0, 2, 2);
+}
+
+.combo-box-popup {
+    -fx-background-color: white;
+    -fx-border-color: transparent;
+    -fx-border-radius: 12;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 10, 0, 2, 2);
+}
+
+.combo-box .arrow {
+    -fx-background-image: url('../../../../assets/images/icons/icon_arrow_down.png');
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+    -fx-background-size: 16px 16px;
+}

@@ -13,6 +13,10 @@
     -fx-background-radius: 8em; /* Oval kenar */
 }
 
+.button .image-view {
+    -fx-effect: null;
+}
+
 .colored-button {
     -fx-background-color: transparent;
     -fx-background-radius: 8em;
