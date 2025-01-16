@@ -133,18 +133,16 @@ public class LandingController implements Initializable {
 
             collapseMenuIcon.setImage(collapsedIcon);
 
-            // Use a LinkedList to maintain order
             LinkedList<Button> buttonsToMove = new LinkedList<>();
             for (Node node : expandedVBox.getChildren()) {
                 if (node instanceof Button) {
                     Button button = (Button) node;
                     buttonPromptTextMap.put(button, button.getText());
-                    button.setText(""); // Hide the prompt text
+                    button.setText("");
                     buttonsToMove.add(button);
                 }
             }
 
-            // Move the buttons to collapsedVBox while maintaining order
             collapsedVBox.getChildren().addAll(buttonsToMove);
             expandedVBox.getChildren().removeAll(buttonsToMove);
         } else {
@@ -161,20 +159,18 @@ public class LandingController implements Initializable {
 
             collapseMenuIcon.setImage(expandedIcon);
 
-            // Use a LinkedList to maintain order
             LinkedList<Button> buttonsToMoveBack = new LinkedList<>();
             for (Node node : collapsedVBox.getChildren()) {
                 if (node instanceof Button) {
                     Button button = (Button) node;
                     String originalPromptText = buttonPromptTextMap.get(button);
                     if (originalPromptText != null) {
-                        button.setText(originalPromptText); // Restore the original prompt text
+                        button.setText(originalPromptText);
                     }
                     buttonsToMoveBack.add(button);
                 }
             }
 
-            // Move the buttons back to expandedVBox while maintaining order
             expandedVBox.getChildren().addAll(buttonsToMoveBack);
             collapsedVBox.getChildren().removeAll(buttonsToMoveBack);
         }
@@ -202,6 +198,7 @@ public class LandingController implements Initializable {
             //2 Boyutlu Şema Alt Programı
         } else if(actionEvent.getSource().equals(settingsButton)) {
             //Ayarlar
+            SceneUtil.loadFXMLIntoPane(currentPagePane, "fxml/Settings.fxml");
         } else if(actionEvent.getSource().equals(createHydraulicUnitButton) || actionEvent.getSource().equals(createHydraulicUnitImageButton)) {
             //Ünite Oluştur
             SceneUtil.loadFXMLIntoPane(currentPagePane, "fxml/ClassicCalculation.fxml");

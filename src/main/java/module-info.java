@@ -20,6 +20,9 @@ module com.hidirektor.dashboard {
     exports com.hidirektor.dashboard.controllers.pages.calculation;
     opens com.hidirektor.dashboard.controllers.pages.calculation to javafx.fxml;
 
+    exports com.hidirektor.dashboard.controllers.pages.settings;
+    opens com.hidirektor.dashboard.controllers.pages.settings to javafx.fxml;
+
     exports com.hidirektor.dashboard.controllers.notification;
     opens com.hidirektor.dashboard.controllers.notification to javafx.fxml;
 
