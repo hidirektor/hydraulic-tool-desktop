@@ -3,6 +3,7 @@ module com.hidirektor.dashboard {
     requires javafx.controls;
     requires me.t3sl4.util.os;
     requires java.management;
+    requires java.desktop;
 
     exports com.hidirektor.dashboard;
     opens com.hidirektor.dashboard to javafx.base, javafx.fxml;

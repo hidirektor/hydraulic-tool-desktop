@@ -1,11 +1,14 @@
 package com.hidirektor.dashboard.controllers;
 
 import com.hidirektor.dashboard.Launcher;
+import com.hidirektor.dashboard.utils.SceneUtil;
 import javafx.animation.TranslateTransition;
 import javafx.application.Platform;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.control.Button;
 import javafx.scene.effect.ColorAdjust;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -25,7 +28,7 @@ import java.util.ResourceBundle;
 public class LandingController implements Initializable {
 
     @FXML
-    public AnchorPane hamburgerMenu;
+    public AnchorPane hamburgerMenu, collapsedPane, expandedPane;
 
     @FXML
     public Circle profilePhoto;
@@ -39,6 +42,12 @@ public class LandingController implements Initializable {
     @FXML
     public Pane currentPagePane;
 
+    @FXML
+    public Button homeButton;
+
+    @FXML
+    public ImageView collapseMenuIcon;
+
     private boolean isMenuVisible = true;
 
     @Override
@@ -48,7 +57,10 @@ public class LandingController implements Initializable {
 
         Platform.runLater(() -> {
             addHoverEffect(closeIcon, minimizeIcon, expandIcon);
-            //SceneUtil.loadFXMLIntoPane(currentPagePane, "fxml/Dashboard.fxml");
+
+            homeButton.fire();
+            homeButton.setStyle("-fx-background-color: #ffffff; -fx-text-fill: #060606;");
+            homeButton.getGraphic().setStyle("-fx-effect: innershadow(gaussian, rgba(230, 95, 43, 1.0), 5, 5, 5, 5); ");
         });
     }
 
@@ -91,29 +103,45 @@ public class LandingController implements Initializable {
     private void collapseMenu() {
         TranslateTransition transition = new TranslateTransition(Duration.millis(300), hamburgerMenu);
 
-        Image collapsedLogo = new Image(Objects.requireNonNull(Launcher.class.getResourceAsStream("/assets/images/logos/onderlift-logo-mini-beyaz.png")));
-        Image expandedLogo = new Image(Objects.requireNonNull(Launcher.class.getResourceAsStream("/assets/images/logos/onderlift-logo-beyaz.png")));
+        Image collapsedIcon = new Image(Objects.requireNonNull(Launcher.class.getResourceAsStream("/assets/images/icons/icon_expand_menu.png")));
+        Image expandedIcon = new Image(Objects.requireNonNull(Launcher.class.getResourceAsStream("/assets/images/icons/icon_collapse_menu.png")));
 
         if (isMenuVisible) {
-            hamburgerMenu.setPrefWidth(45.0);
+            hamburgerMenu.setPrefWidth(80.0);
             hamburgerMenu.setMinWidth(hamburgerMenu.getPrefWidth());
 
             isMenuVisible = false;
 
-            mainLogo.setImage(collapsedLogo);
-            mainLogo.setFitWidth(32.0);
-            mainLogo.setFitHeight(32.0);
+            expandedPane.setVisible(false);
+            collapsedPane.setVisible(true);
+
+            AnchorPane.setLeftAnchor(collapseMenuIcon, 68.0);
+            AnchorPane.setTopAnchor(collapseMenuIcon, 48.0);
+
+            collapseMenuIcon.setImage(collapsedIcon);
         } else {
             hamburgerMenu.setMinWidth(Region.USE_COMPUTED_SIZE);
             hamburgerMenu.setPrefWidth(Region.USE_COMPUTED_SIZE);
+
             isMenuVisible = true;
 
-            mainLogo.setImage(expandedLogo);
-            mainLogo.setFitWidth(140.0);
-            mainLogo.setFitHeight(50.0);
+            expandedPane.setVisible(true);
+            collapsedPane.setVisible(false);
+
+            AnchorPane.setLeftAnchor(collapseMenuIcon, 208.0);
+            AnchorPane.setTopAnchor(collapseMenuIcon, 40.0);
+
+            collapseMenuIcon.setImage(expandedIcon);
         }
 
         transition.play();
+    }
+
+    @FXML
+    public void handleClick(ActionEvent actionEvent) {
+        if(actionEvent.getSource().equals(homeButton)) {
+            SceneUtil.loadFXMLIntoPane(currentPagePane, "fxml/Dashboard.fxml");
+        }
     }
 
     private void addHoverEffect(ImageView... imageViews) {
