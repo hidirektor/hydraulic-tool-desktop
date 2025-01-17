@@ -3,27 +3,27 @@ package com.hidirektor.dashboard.utils.Model.Table;
 import javafx.beans.property.SimpleStringProperty;
 
 public class DataControlTable {
-    private final SimpleStringProperty dataKey;
-    private final SimpleStringProperty dataValue;
+    private final SimpleStringProperty programParameter;
+    private final SimpleStringProperty selectedParameterValue;
 
-    public DataControlTable(String dataKey, String dataValue) {
-        this.dataKey = new SimpleStringProperty(dataKey);
-        this.dataValue = new SimpleStringProperty(dataValue);
+    public DataControlTable(String programParameter, String selectedParameterValue) {
+        this.programParameter = new SimpleStringProperty(programParameter);
+        this.selectedParameterValue = new SimpleStringProperty(selectedParameterValue);
     }
 
-    public String getDataKey() {
-        return dataKey.get();
+    public String getProgramParameter() {
+        return programParameter.get();
     }
 
-    public void setDataKey(String newDataKey) {
-        dataKey.set(newDataKey);
+    public void setProgramParameter(String newProgramParameter) {
+        programParameter.set(newProgramParameter);
     }
 
-    public String getDataValue() {
-        return dataValue.get();
+    public String getSelectedParameterValue() {
+        return selectedParameterValue.get();
     }
 
-    public void setDataValue(String newDataValue) {
-        dataValue.set(newDataValue);
+    public void setSelectedParameterValue(String selectedParameter) {
+        selectedParameterValue.set(selectedParameter);
     }
 }

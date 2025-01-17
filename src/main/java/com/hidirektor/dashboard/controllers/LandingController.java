@@ -15,10 +15,8 @@ import javafx.scene.control.Button;
 import javafx.scene.effect.ColorAdjust;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.Region;
-import javafx.scene.layout.VBox;
+import javafx.scene.input.KeyCode;
+import javafx.scene.layout.*;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
@@ -34,6 +32,9 @@ public class LandingController implements Initializable {
     public AnchorPane hamburgerMenu, collapsedPane, expandedPane;
 
     @FXML
+    public HBox programControlBar;
+
+    @FXML
     public Circle profilePhoto;
 
     @FXML
@@ -43,7 +44,7 @@ public class LandingController implements Initializable {
     public ImageView closeIcon, minimizeIcon, expandIcon;
 
     @FXML
-    public Pane currentPagePane;
+    public StackPane currentPagePane;
 
     @FXML
     public Button homeButton, hydraulicUnitsButton, ticketButton, usersButton, debugButton, licenseButton, sourceUsageButton, schemeButton, settingsButton;
@@ -63,6 +64,7 @@ public class LandingController implements Initializable {
     private static final Map<Button, String> buttonPromptTextMap = new HashMap<>();
 
     private boolean isMenuVisible = true;
+    private Stage currentStage = null;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -70,10 +72,29 @@ public class LandingController implements Initializable {
         profilePhoto.setFill(new ImagePattern(templateProfilePhoto, 0, 0, 0, 0, false));
 
         Platform.runLater(() -> {
+            currentStage = (Stage) profilePhoto.getScene().getWindow();
+
             addHoverEffect(closeIcon, minimizeIcon, expandIcon, contactUsButton, collapseMenuIcon, createHydraulicUnitImageButton, contactUsMiniButton);
             addHoverEffectToButtons(createHydraulicUnitButton);
 
+            homeButton.fire();
             Utils.clickButton(homeButton, 1);
+
+            programControlBar.setOnMouseClicked(event -> {
+                if (event.getClickCount() == 2) {
+                    if(!currentStage.isMaximized()) {
+                        expandProgram();
+                    }
+                }
+            });
+
+            profilePhoto.getScene().setOnKeyPressed(event -> {
+                if (event.getCode() == KeyCode.ESCAPE) {
+                    if(currentStage.isMaximized()) {
+                        expandProgram();
+                    }
+                }
+            });
         });
     }
 
@@ -98,8 +119,7 @@ public class LandingController implements Initializable {
 
     @FXML
     public void expandProgram() {
-        Stage stage = (Stage) (profilePhoto.getScene().getWindow());
-        boolean isMaximized = stage.isMaximized();
+        boolean isMaximized = currentStage.isMaximized();
 
         Node root = profilePhoto.getScene().getRoot();
 
@@ -109,7 +129,7 @@ public class LandingController implements Initializable {
             root.setClip(null);
         }
 
-        stage.setMaximized(!isMaximized);
+        currentStage.setMaximized(!isMaximized);
     }
 
     @FXML

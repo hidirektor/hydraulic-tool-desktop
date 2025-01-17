@@ -5,9 +5,10 @@
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
-<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" style="-fx-background-color: #EBDFD7;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.hidirektor.dashboard.controllers.pages.calculation.ClassicController">
+<?import java.net.URL?>
+<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="610.0" prefWidth="1040.0" style="-fx-background-color: #EBDFD7;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.hidirektor.dashboard.controllers.pages.calculation.ClassicController">
    <children>
-      <ScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minViewportHeight="610.0" minViewportWidth="1040.0" minWidth="-Infinity" prefHeight="610.0" prefWidth="1040.0" stylesheets="@../styling/dark-theme.css" vbarPolicy="NEVER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <ScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" vbarPolicy="NEVER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <content>
           <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity">
                <children>
@@ -15,7 +16,7 @@
                      <children>
                         <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity">
                            <children>
-                              <Label fx:id="classicCaclulationTitle" style="-fx-text-fill: #060606;" stylesheets="@../styling/dark-theme.css" text="Klasik Hesaplama" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+                              <Label fx:id="classicCaclulationTitle" style="-fx-text-fill: #060606;" text="Klasik Hesaplama" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
                                  <font>
                                     <Font name="TextaAlt-Bold" size="20.0" />
                                  </font>
@@ -27,7 +28,7 @@
                         </AnchorPane>
                         <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" style="-fx-background-color: rgba(255, 255, 255, 0.34); -fx-background-radius: 32;">
                            <children>
-                              <Label style="-fx-text-fill: #060606;" stylesheets="@../styling/dark-theme.css" text="Sipariş Bilgileri" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+                              <Label text="Sipariş Bilgileri" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
                                  <font>
                                     <Font name="TextaAlt-Regular" size="20.0" />
                                  </font>
@@ -58,7 +59,7 @@
                                                       <Font name="TextaAlt-Regular" size="14.0" />
                                                    </font>
                                                 </Label>
-                                                <TextField fx:id="siparisNumarasiField" minWidth="-Infinity" prefHeight="30.0" prefWidth="240.0" promptText="Sipariş numarasını girin..." stylesheets="@../styling/calculation-page.css" />
+                                                <TextField fx:id="siparisNumarasiField" minWidth="-Infinity" prefHeight="30.0" prefWidth="240.0" promptText="Sipariş numarasını girin..." />
                                              </children>
                                           </VBox>
                                           <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
@@ -70,7 +71,7 @@
                                                             <Font name="TextaAlt-Regular" size="14.0" />
                                                          </font>
                                                       </Label>
-                                                      <TextField fx:id="inviteUserTextField" minWidth="-Infinity" prefHeight="30.0" prefWidth="240.0" promptText="E-posta ya da kullanıcı adını girin..." stylesheets="@../styling/calculation-page.css" />
+                                                      <TextField fx:id="inviteUserTextField" minWidth="-Infinity" prefHeight="30.0" prefWidth="240.0" promptText="E-posta ya da kullanıcı adını girin..." />
                                                    </children>
                                                 </VBox>
                                                 <ImageView fitHeight="28.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
@@ -98,9 +99,9 @@
                               <Insets left="16.0" right="16.0" />
                            </VBox.margin>
                         </AnchorPane>
-                        <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" style="-fx-background-color: rgba(255, 255, 255, 0.34); -fx-background-radius: 32;" stylesheets="@../styling/calculation-page.css">
+                        <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" style="-fx-background-color: rgba(255, 255, 255, 0.34); -fx-background-radius: 32;">
                            <children>
-                              <Label style="-fx-text-fill: #060606;" stylesheets="@../styling/dark-theme.css" text="Ünite Bilgileri" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+                              <Label text="Ünite Bilgileri" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
                                  <font>
                                     <Font name="TextaAlt-Regular" size="20.0" />
                                  </font>
@@ -120,7 +121,7 @@
                                     </ImageView>
                                  </graphic>
                               </Button>
-                              <AnchorPane fx:id="unitInfoSection" minHeight="-Infinity" minWidth="-Infinity" prefHeight="0.0" stylesheets="@../styling/calculation-page.css" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="40.0">
+                              <AnchorPane fx:id="unitInfoSection" minHeight="-Infinity" minWidth="-Infinity" prefHeight="0.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="40.0">
                                  <children>
                                     <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="8.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                        <children>
@@ -136,7 +137,7 @@
                                                             <Font name="TextaAlt-Regular" size="14.0" />
                                                          </font>
                                                       </Label>
-                                                      <ComboBox fx:id="motorComboBox" disable="true" minWidth="-Infinity" prefWidth="250.0" promptText="Motor seçimini yapın." stylesheets="@../styling/calculation-page.css" />
+                                                      <ComboBox fx:id="motorComboBox" disable="true" minWidth="-Infinity" prefWidth="250.0" promptText="Motor seçimini yapın." />
                                                    </children>
                                                 </VBox>
                                                 <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
@@ -146,7 +147,7 @@
                                                             <Font name="TextaAlt-Regular" size="14.0" />
                                                          </font>
                                                       </Label>
-                                                      <ComboBox fx:id="sogutmaComboBox" disable="true" minWidth="-Infinity" prefWidth="250.0" promptText="Soğutma seçimini yapın." stylesheets="@../styling/calculation-page.css" />
+                                                      <ComboBox fx:id="sogutmaComboBox" disable="true" minWidth="-Infinity" prefWidth="250.0" promptText="Soğutma seçimini yapın." />
                                                    </children>
                                                 </VBox>
                                                 <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
@@ -156,7 +157,7 @@
                                                             <Font name="TextaAlt-Regular" size="14.0" />
                                                          </font>
                                                       </Label>
-                                                      <ComboBox fx:id="hidrolikKilitComboBox" disable="true" minWidth="-Infinity" prefWidth="250.0" promptText="Hidrolik kilit seçimini yapın." stylesheets="@../styling/calculation-page.css" />
+                                                      <ComboBox fx:id="hidrolikKilitComboBox" disable="true" minWidth="-Infinity" prefWidth="250.0" promptText="Hidrolik kilit seçimini yapın." />
                                                    </children>
                                                 </VBox>
                                              </children>
@@ -173,10 +174,10 @@
                                                             <Font name="TextaAlt-Regular" size="14.0" />
                                                          </font>
                                                       </Label>
-                                                      <ComboBox fx:id="pompaComboBox" disable="true" minWidth="-Infinity" prefWidth="250.0" promptText="Pompa seçimini yapın." stylesheets="@../styling/calculation-page.css" />
+                                                      <ComboBox fx:id="pompaComboBox" disable="true" minWidth="-Infinity" prefWidth="250.0" promptText="Pompa seçimini yapın." />
                                                    </children>
                                                 </VBox>
-                                                <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" stylesheets="@../styling/calculation-page.css">
+                                                <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                                                    <children>
                                                       <Label style="-fx-text-fill: #060606;" text="Gerekli Yağ Miktarı">
                                                          <font>
@@ -193,7 +194,7 @@
                                                             <Font name="TextaAlt-Regular" size="14.0" />
                                                          </font>
                                                       </Label>
-                                                      <ComboBox fx:id="kompanzasyonComboBox" disable="true" minWidth="-Infinity" prefWidth="250.0" promptText="Kompanzasyon seçimini yapın." stylesheets="@../styling/calculation-page.css" />
+                                                      <ComboBox fx:id="kompanzasyonComboBox" disable="true" minWidth="-Infinity" prefWidth="250.0" promptText="Kompanzasyon seçimini yapın." />
                                                    </children>
                                                 </VBox>
                                              </children>
@@ -210,7 +211,7 @@
                                                             <Font name="TextaAlt-Regular" size="14.0" />
                                                          </font>
                                                       </Label>
-                                                      <ComboBox fx:id="valfTipiComboBox" disable="true" minWidth="-Infinity" prefWidth="250.0" promptText="Valf tipi seçimini yapın." stylesheets="@../styling/calculation-page.css" />
+                                                      <ComboBox fx:id="valfTipiComboBox" disable="true" minWidth="-Infinity" prefWidth="250.0" promptText="Valf tipi seçimini yapın." />
                                                    </children>
                                                 </VBox>
                                                 <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
@@ -220,7 +221,7 @@
                                                             <Font name="TextaAlt-Regular" size="14.0" />
                                                          </font>
                                                       </Label>
-                                                      <ComboBox fx:id="kilitMotorComboBox" disable="true" minWidth="-Infinity" prefWidth="250.0" promptText="Kilit motor seçimini yapın." stylesheets="@../styling/calculation-page.css" />
+                                                      <ComboBox fx:id="kilitMotorComboBox" disable="true" minWidth="-Infinity" prefWidth="250.0" promptText="Kilit motor seçimini yapın." />
                                                    </children>
                                                 </VBox>
                                                 <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
@@ -230,7 +231,7 @@
                                                             <Font name="TextaAlt-Regular" size="14.0" />
                                                          </font>
                                                       </Label>
-                                                      <ComboBox fx:id="kilitPompaComboBox" disable="true" minWidth="-Infinity" prefWidth="250.0" promptText="Kilit pompa seçimini yapın." stylesheets="@../styling/calculation-page.css" />
+                                                      <ComboBox fx:id="kilitPompaComboBox" disable="true" minWidth="-Infinity" prefWidth="250.0" promptText="Kilit pompa seçimini yapın." />
                                                    </children>
                                                 </VBox>
                                              </children>
@@ -255,7 +256,7 @@
                         </AnchorPane>
                         <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" style="-fx-background-color: rgba(255, 255, 255, 0.34); -fx-background-radius: 32;">
                            <children>
-                              <Label style="-fx-text-fill: #060606;" stylesheets="@../styling/dark-theme.css" text="Hesaplama Sonucu" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+                              <Label text="Hesaplama Sonucu" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
                                  <font>
                                     <Font name="TextaAlt-Regular" size="20.0" />
                                  </font>
@@ -275,7 +276,7 @@
                                     </ImageView>
                                  </graphic>
                               </Button>
-                              <AnchorPane fx:id="calculationResultSection" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="0.0" stylesheets="@../styling/calculation-page.css" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="40.0">
+                              <AnchorPane fx:id="calculationResultSection" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="0.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="40.0">
                                  <padding>
                                     <Insets bottom="12.0" left="12.0" right="12.0" top="12.0" />
                                  </padding>
@@ -341,7 +342,7 @@
                         </AnchorPane>
                         <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" style="-fx-background-color: rgba(255, 255, 255, 0.34); -fx-background-radius: 32;">
                            <children>
-                              <Label style="-fx-text-fill: #060606;" stylesheets="@../styling/dark-theme.css" text="Parça Listesi" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+                              <Label text="Parça Listesi" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
                                  <font>
                                     <Font name="TextaAlt-Regular" size="20.0" />
                                  </font>
@@ -371,7 +372,7 @@
                         </AnchorPane>
                         <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" style="-fx-background-color: rgba(255, 255, 255, 0.34); -fx-background-radius: 32;">
                            <children>
-                              <Label style="-fx-text-fill: #060606;" stylesheets="@../styling/dark-theme.css" text="Ünite Şeması" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+                              <Label text="Ünite Şeması" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
                                  <font>
                                     <Font name="TextaAlt-Regular" size="20.0" />
                                  </font>
@@ -401,7 +402,7 @@
                         </AnchorPane>
                         <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" style="-fx-background-color: rgba(255, 255, 255, 0.34); -fx-background-radius: 32;">
                            <children>
-                              <Label style="-fx-text-fill: #060606;" stylesheets="@../styling/dark-theme.css" text="Hata Kontrol" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+                              <Label text="Hata Kontrol" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
                                  <font>
                                     <Font name="TextaAlt-Regular" size="20.0" />
                                  </font>
@@ -409,27 +410,27 @@
                                     <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
                                  </padding>
                               </Label>
-                              <Button contentDisplay="RIGHT" mnemonicParsing="false" onAction="#handleClick" style="-fx-background-color: #ffffff; -fx-background-radius: 6em;" text="Kontrol Et" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                              <Button fx:id="calculationControlSectionButton" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#handleClick" style="-fx-background-color: #ffffff; -fx-background-radius: 6em;" text="Kontrol Et" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                  <padding>
                                     <Insets bottom="12.0" left="16.0" right="16.0" top="12.0" />
                                  </padding>
                                  <graphic>
-                                    <ImageView fitHeight="14.0" fitWidth="14.0" pickOnBounds="true" preserveRatio="true">
+                                    <ImageView fx:id="calculationControlSectionButtonImage" fitHeight="14.0" fitWidth="14.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
                                           <Image url="@../../../../assets/images/icons/icon_arrow_down.png" />
                                        </image>
                                     </ImageView>
                                  </graphic>
                               </Button>
-                              <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="0.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="42.0">
+                              <AnchorPane fx:id="calculationControlSection" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="0.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="42.0">
                                  <padding>
                                     <Insets bottom="12.0" left="12.0" right="12.0" top="12.0" />
                                  </padding>
                                  <children>
                                     <TableView fx:id="sonucTablo" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                       <columns>
-                                        <TableColumn fx:id="dataKeyLine" maxWidth="1.7976931348623157E308" minWidth="200.0" prefWidth="-1.0" text="C1" />
-                                        <TableColumn fx:id="dataValueLine" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="-1.0" text="C2" />
+                                        <TableColumn fx:id="dataKeyLine" editable="false" maxWidth="1.7976931348623157E308" minWidth="200.0" prefWidth="-1.0" text="Parametre" />
+                                        <TableColumn fx:id="dataValueLine" editable="false" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="-1.0" text="Seçilen Değer" />
                                       </columns>
                                     </TableView>
                                  </children>
@@ -450,6 +451,10 @@
          <padding>
             <Insets bottom="16.0" left="16.0" right="16.0" top="16.0" />
          </padding>
+         <stylesheets>
+            <URL value="@../styling/dark-theme.css" />
+            <URL value="@../styling/calculation-page.css" />
+         </stylesheets>
       </ScrollPane>
    </children>
 </AnchorPane>

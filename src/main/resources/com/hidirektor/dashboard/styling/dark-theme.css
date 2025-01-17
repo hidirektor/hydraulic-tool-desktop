@@ -120,6 +120,7 @@
 
 .label {
     -fx-font-family: 'TextaAltBold';
+    -fx-text-fill: #060606;
 }
 
 .scroll-pane {

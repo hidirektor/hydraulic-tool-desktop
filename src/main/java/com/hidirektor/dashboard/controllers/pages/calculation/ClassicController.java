@@ -13,6 +13,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
@@ -29,6 +30,7 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Objects;
 import java.util.ResourceBundle;
+import java.util.function.Consumer;
 
 public class ClassicController implements Initializable  {
 
@@ -36,13 +38,13 @@ public class ClassicController implements Initializable  {
     public Label classicCaclulationTitle;
 
     @FXML
-    public AnchorPane orderSection, unitInfoSection, calculationResultSection;
+    public AnchorPane orderSection, unitInfoSection, calculationResultSection, calculationControlSection;
 
     @FXML
-    public Button orderSectionButton, unitInfoSectionButton, calculationResultSectionButton;
+    public Button orderSectionButton, unitInfoSectionButton, calculationResultSectionButton, calculationControlSectionButton;
 
     @FXML
-    public ImageView orderSectionButtonImage, unitInfoSectionButtonImage, calculationResultSectionButtonImage;
+    public ImageView orderSectionButtonImage, unitInfoSectionButtonImage, calculationResultSectionButtonImage, calculationControlSectionButtonImage;
 
     //Hesaplama alanları:
     @FXML
@@ -54,7 +56,7 @@ public class ClassicController implements Initializable  {
     @FXML
     public TextField gerekenYagMiktariField;
 
-    boolean orderSectionExpanded = false, unitInfoSectionExpanded = false, calculationResultSectionExpanded = false;
+    boolean isOrderSectionExpanded = false, isUnitInfoSectionExpanded = false, isCalculationResultSectionExpanded = false, isCalculationControlSectionExpanded = false;
 
     /*
     Sonuç için label ve imagelar
@@ -113,23 +115,169 @@ public class ClassicController implements Initializable  {
         Platform.runLater(() -> {
             ValidationUtil.applyValidation(gerekenYagMiktariField, ValidationUtil.ValidationType.NUMERIC);
             comboBoxListener();
+
+            dataKeyLine.setCellValueFactory(new PropertyValueFactory<>("programParameter"));
+            dataValueLine.setCellValueFactory(new PropertyValueFactory<>("selectedParameterValue"));
         });
     }
 
     @FXML
     public void handleClick(ActionEvent actionEvent) {
         if(actionEvent.getSource().equals(orderSectionButton)) {
-            collapseAndExpandSection(orderSection, orderSectionExpanded, orderSectionButtonImage, false);
-            orderSectionExpanded = !orderSectionExpanded;
+            collapseAndExpandSection(orderSection, isOrderSectionExpanded, orderSectionButtonImage, false);
+            isOrderSectionExpanded = !isOrderSectionExpanded;
         } else if(actionEvent.getSource().equals(unitInfoSectionButton)) {
-            collapseAndExpandSection(unitInfoSection, unitInfoSectionExpanded, unitInfoSectionButtonImage, false);
-            unitInfoSectionExpanded = !unitInfoSectionExpanded;
+            collapseAndExpandSection(unitInfoSection, isUnitInfoSectionExpanded, unitInfoSectionButtonImage, false);
+            isUnitInfoSectionExpanded = !isUnitInfoSectionExpanded;
         } else if(actionEvent.getSource().equals(calculationResultSectionButton)) {
-            collapseAndExpandSection(calculationResultSection, calculationResultSectionExpanded, calculationResultSectionButtonImage, false);
-            calculationResultSectionExpanded = !calculationResultSectionExpanded;
+            collapseAndExpandSection(calculationResultSection, isCalculationResultSectionExpanded, calculationResultSectionButtonImage, false);
+            isCalculationResultSectionExpanded = !isCalculationResultSectionExpanded;
+        } else if(actionEvent.getSource().equals(calculationControlSectionButton)) {
+            collapseAndExpandSection(calculationControlSection, isCalculationControlSectionExpanded, calculationControlSectionButtonImage, false);
+            isCalculationControlSectionExpanded = !isCalculationControlSectionExpanded;
         } else {
             NotificationUtil.showNotification(orderSectionButton.getScene().getWindow(), NotificationController.NotificationType.ALERT, "Buton Hatası", "Buton hatası meydana geldi. Lütfen yaptığınız işlemle birlikte hatayı bize bildirin.");
         }
+    }
+
+    public static void changeInputDataForTextField(TextField targetField, Consumer<String> successConsumer) {
+        targetField.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue != null && !newValue.isEmpty()) {
+                if (!newValue.equals(oldValue)) {
+                    successConsumer.accept(newValue);
+                }
+            }
+        });
+    }
+
+    public static void changeInputDataForComboBox(ComboBox targetCombo, Consumer<String> successConsumer, Runnable isDataExistRunnable) {
+        targetCombo.getSelectionModel().selectedItemProperty().addListener((options, oldValue, newValue) -> {
+            if(!targetCombo.getItems().isEmpty()) {
+                if(newValue != null) {
+                    if(oldValue != newValue) {
+                        if(oldValue == null) {
+                            if(isDataExistRunnable != null) {
+                                isDataExistRunnable.run();
+                            }
+                        }
+
+                        successConsumer.accept(newValue.toString());
+                    }
+                }
+            }
+        });
+    }
+
+    private void comboBoxListener() {
+        changeInputDataForTextField(siparisNumarasiField, newValue -> {
+            girilenSiparisNumarasi = newValue;
+            dataInit("motor", null);
+            tabloGuncelle();
+        });
+
+        changeInputDataForComboBox(motorComboBox, newValue -> {
+            secilenMotor = newValue;
+            secilenKampana = Integer.parseInt(SystemDefaults.getLocalHydraulicData().motorKampanaMap.get(motorComboBox.getSelectionModel().getSelectedItem().toString()).replace(" mm", ""));
+
+            dataInit("sogutma", null);
+
+            tabloGuncelle();
+        }, null);
+
+        changeInputDataForComboBox(sogutmaComboBox, newValue -> {
+            secilenSogutmaDurumu = newValue;
+
+            if(secilenSogutmaDurumu != null && secilenHidrolikKilitDurumu != null && secilenPompa != null && kompanzasyonDurumu != null) {
+                initValfValues();
+            } else {
+                dataInit("hidrolikKilit", null);
+            }
+
+            tabloGuncelle();
+        }, null);
+
+        changeInputDataForComboBox(hidrolikKilitComboBox, newValue -> {
+            secilenHidrolikKilitDurumu = newValue;
+
+            if(secilenSogutmaDurumu != null && secilenHidrolikKilitDurumu != null && secilenPompa != null && kompanzasyonDurumu != null) {
+                initValfValues();
+            } else {
+                dataInit("pompa", null);
+            }
+
+            tabloGuncelle();
+        }, null);
+
+        changeInputDataForComboBox(pompaComboBox, newValue -> {
+            secilenPompa = newValue;
+            secilenPompaVal = Utils.stringToDouble(secilenPompa);
+
+            if(secilenSogutmaDurumu != null && secilenHidrolikKilitDurumu != null && secilenPompa != null && kompanzasyonDurumu != null) {
+                initValfValues();
+            } else {
+                dataInit("yagMiktari", null);
+            }
+
+            tabloGuncelle();
+        }, () -> imageTextDisable());
+
+        changeInputDataForTextField(gerekenYagMiktariField, newValue -> {
+            girilenTankKapasitesiMiktari = Integer.parseInt(newValue);
+
+            dataInit("kompanzasyon", null);
+
+            tabloGuncelle();
+        });
+
+        changeInputDataForComboBox(kompanzasyonComboBox, newValue -> {
+            kompanzasyonDurumu = newValue;
+
+            if(secilenSogutmaDurumu != null && secilenHidrolikKilitDurumu != null && secilenPompa != null && kompanzasyonDurumu != null) {
+                initValfValues();
+            }
+
+            tabloGuncelle();
+        }, () -> imageTextDisable());
+
+        changeInputDataForComboBox(valfTipiComboBox, newValue -> {
+            secilenValfTipi = newValue;
+
+            if(secilenSogutmaDurumu.equals("Yok") && secilenHidrolikKilitDurumu.equals("Var") && kompanzasyonDurumu.equals("Var")) {
+                dataInit("kilitMotor", 0);
+            } else {
+                hesaplaFunc();
+            }
+
+            tabloGuncelle();
+        }, () -> imageTextDisable());
+
+        changeInputDataForComboBox(kilitMotorComboBox, newValue -> {
+            secilenKilitMotor = kilitMotorComboBox.getValue();
+
+            dataInit("kilitPompa", null);
+
+            tabloGuncelle();
+        }, () -> imageTextDisable());
+
+        changeInputDataForComboBox(kilitPompaComboBox, newValue -> {
+            secilenKilitPompa = kilitPompaComboBox.getValue();
+
+            hesaplaFunc();
+
+            tabloGuncelle();
+        }, () -> imageTextDisable());
+    }
+
+    private boolean checkComboBox() {
+        if(siparisNumarasiField.getText().isEmpty() || motorComboBox.getSelectionModel().isEmpty() || kompanzasyonComboBox.getSelectionModel().isEmpty() || pompaComboBox.getSelectionModel().isEmpty() || valfTipiComboBox.getSelectionModel().isEmpty() || hidrolikKilitComboBox.getSelectionModel().isEmpty() || sogutmaComboBox.getSelectionModel().isEmpty()) {
+            return true;
+        }
+        int girilenTankKapasitesi = 0;
+        girilenTankKapasitesi = Integer.parseInt(gerekenYagMiktariField.getText());
+
+        if(gerekenYagMiktariField.getText() == null || girilenTankKapasitesi == 0) {
+            return true;
+        } else return girilenTankKapasitesi < 1 || girilenTankKapasitesi > 500;
     }
 
     public void hesaplaFunc() {
@@ -245,7 +393,7 @@ public class ClassicController implements Initializable  {
     }
 
     private void enableSonucSection() {
-        collapseAndExpandSection(calculationResultSection, calculationResultSectionExpanded, calculationResultSectionButtonImage, true);
+        collapseAndExpandSection(calculationResultSection, isCalculationResultSectionExpanded, calculationResultSectionButtonImage, true);
     }
 
     private void tankGorselLoad() {
@@ -297,154 +445,6 @@ public class ClassicController implements Initializable  {
                 }
             }
         }
-    }
-
-    private boolean checkComboBox() {
-        if(siparisNumarasiField.getText().isEmpty() || motorComboBox.getSelectionModel().isEmpty() || kompanzasyonComboBox.getSelectionModel().isEmpty() || pompaComboBox.getSelectionModel().isEmpty() || valfTipiComboBox.getSelectionModel().isEmpty() || hidrolikKilitComboBox.getSelectionModel().isEmpty() || sogutmaComboBox.getSelectionModel().isEmpty()) {
-            return true;
-        }
-        int girilenTankKapasitesi = 0;
-        girilenTankKapasitesi = Integer.parseInt(gerekenYagMiktariField.getText());
-
-        if(gerekenYagMiktariField.getText() == null || girilenTankKapasitesi == 0) {
-            return true;
-        } else return girilenTankKapasitesi < 1 || girilenTankKapasitesi > 500;
-    }
-
-    private void comboBoxListener() {
-        siparisNumarasiField.textProperty().addListener((observable, oldValue, newValue) -> {
-            if(!siparisNumarasiField.getText().isEmpty()) {
-                girilenSiparisNumarasi = newValue;
-            }
-
-            dataInit("motor", null);
-
-            if(girilenSiparisNumarasi != null) {
-                tabloGuncelle();
-            }
-        });
-
-        motorComboBox.getSelectionModel().selectedItemProperty().addListener((options, oldValue, newValue) -> {
-            if(!motorComboBox.getItems().isEmpty() && newValue != null) {
-                secilenMotor = newValue;
-                secilenKampana = Integer.parseInt(SystemDefaults.getLocalHydraulicData().motorKampanaMap.get(motorComboBox.getSelectionModel().getSelectedItem().toString()).replace(" mm", ""));
-
-                dataInit("sogutma", null);
-
-                if(secilenMotor != null) {
-                    tabloGuncelle();
-                }
-            }
-        });
-
-        sogutmaComboBox.getSelectionModel().selectedItemProperty().addListener((options, oldValue, newValue) -> {
-            secilenSogutmaDurumu = sogutmaComboBox.getValue();
-
-            if(secilenSogutmaDurumu != null && secilenHidrolikKilitDurumu != null && secilenPompa != null && kompanzasyonDurumu != null) {
-                initValfValues();
-            } else {
-                dataInit("hidrolikKilit", null);
-            }
-
-            if(secilenSogutmaDurumu != null) {
-                tabloGuncelle();
-            }
-        });
-
-        hidrolikKilitComboBox.getSelectionModel().selectedItemProperty().addListener((options, oldValue, newValue) -> {
-            secilenHidrolikKilitDurumu = newValue;
-
-            if(secilenSogutmaDurumu != null && secilenHidrolikKilitDurumu != null && secilenPompa != null && kompanzasyonDurumu != null) {
-                initValfValues();
-            } else {
-                dataInit("pompa", null);
-            }
-
-            if(secilenPompa != null) {
-                tabloGuncelle();
-            }
-        });
-
-        pompaComboBox.getSelectionModel().selectedItemProperty().addListener((options, oldValue, newValue) -> {
-            secilenPompa = newValue;
-            if(oldValue != null && secilenPompa != null) {
-                double oldSecilenPompaVal = Utils.stringToDouble(oldValue);
-                secilenPompaVal = Utils.stringToDouble(secilenPompa);
-
-                if(secilenSogutmaDurumu != null && secilenHidrolikKilitDurumu != null && secilenPompa != null && kompanzasyonDurumu != null) {
-                    initValfValues();
-                } else {
-                    dataInit("yagMiktari", null);
-                }
-            } else {
-                if(secilenSogutmaDurumu != null && secilenHidrolikKilitDurumu != null && secilenPompa != null && kompanzasyonDurumu != null) {
-                    initValfValues();
-                } else {
-                    dataInit("yagMiktari", null);
-                }
-            }
-
-            if(secilenPompa != null) {
-                tabloGuncelle();
-                imageTextDisable();
-            }
-        });
-
-        gerekenYagMiktariField.textProperty().addListener((observable, oldValue, newValue) -> {
-            if(!gerekenYagMiktariField.getText().isEmpty()) {
-                girilenTankKapasitesiMiktari = Integer.parseInt(newValue);
-            }
-
-            dataInit("kompanzasyon", null);
-
-            if(girilenTankKapasitesiMiktari != 0) {
-                tabloGuncelle();
-            }
-        });
-
-        kompanzasyonComboBox.getSelectionModel().selectedItemProperty().addListener((options, oldValue, newValue) -> {
-            kompanzasyonDurumu = newValue;
-
-            if(secilenSogutmaDurumu != null && secilenHidrolikKilitDurumu != null && secilenPompa != null && kompanzasyonDurumu != null) {
-                initValfValues();
-            }
-
-            if(secilenValfTipi != null) {
-                tabloGuncelle();
-            }
-        });
-
-        valfTipiComboBox.getSelectionModel().selectedItemProperty().addListener((options, oldValue, newValue) -> {
-            secilenValfTipi = newValue;
-
-            if(secilenSogutmaDurumu.equals("Yok") && secilenHidrolikKilitDurumu.equals("Var") && kompanzasyonDurumu.equals("Var")) {
-                dataInit("kilitMotor", 0);
-            } else {
-                hesaplaFunc();
-            }
-
-            if(secilenValfTipi != null) {
-                tabloGuncelle();
-            }
-        });
-
-        kilitMotorComboBox.getSelectionModel().selectedItemProperty().addListener((options, oldValue, newValue) -> {
-            secilenKilitMotor = kilitMotorComboBox.getValue();
-            dataInit("kilitPompa", null);
-            if(secilenKilitMotor != null) {
-                tabloGuncelle();
-            }
-        });
-
-        kilitPompaComboBox.getSelectionModel().selectedItemProperty().addListener((options, oldValue, newValue) -> {
-            secilenKilitPompa = kilitPompaComboBox.getValue();
-
-            hesaplaFunc();
-
-            if(secilenKilitPompa != null) {
-                tabloGuncelle();
-            }
-        });
     }
 
     private void dataInit(String componentName, @Nullable Integer valfTipiStat) {
