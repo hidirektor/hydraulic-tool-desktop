@@ -362,7 +362,7 @@
                               </HBox>
                               <HBox alignment="CENTER_RIGHT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" spacing="12.0" stylesheets="@../styling/dark-theme.css" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                  <children>
-                                    <TextField prefHeight="36.0" prefWidth="226.0" promptText="Siparişlerde Ara" styleClass="text-field" stylesheets="@../styling/dark-theme.css" />
+                                    <TextField prefHeight="36.0" prefWidth="226.0" promptText="Siparişlerde Ara" styleClass="search-field" stylesheets="@../styling/dark-theme.css" />
                                     <StackPane prefHeight="32.0" prefWidth="32.0" styleClass="dashboard-header-profile">
                                        <children>
                                           <ImageView cache="true" fitHeight="16.0" fitWidth="16.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
@@ -413,7 +413,7 @@
                               <Insets left="10.0" right="10.0" top="10.0" />
                            </padding>
                         </AnchorPane>
-                        <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity">
+                        <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" VBox.vgrow="ALWAYS">
                            <children>
                               <StackPane fx:id="currentPagePane" alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                            </children>

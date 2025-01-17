@@ -40,6 +40,8 @@ module com.hidirektor.dashboard {
     opens com.hidirektor.dashboard.utils.Model.User to javafx.fxml;
     exports com.hidirektor.dashboard.utils.Notification;
     opens com.hidirektor.dashboard.utils.Notification to javafx.fxml;
+    exports com.hidirektor.dashboard.utils.Process;
+    opens com.hidirektor.dashboard.utils.Process to javafx.fxml;
     exports com.hidirektor.dashboard.utils.System;
     opens com.hidirektor.dashboard.utils.System to javafx.fxml;
     exports com.hidirektor.dashboard.utils.Validation;
