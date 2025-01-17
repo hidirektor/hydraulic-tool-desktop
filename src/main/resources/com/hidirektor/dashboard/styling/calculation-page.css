@@ -1,4 +1,42 @@
-.text-field {
+@font-face {
+    font-family: 'TextaAltRegular';
+    src: url('../../../../assets/fonts/TextaAltRegular.ttf');
+}
+
+@font-face {
+    font-family: 'TextaAltBold';
+    src: url('../../../../assets/fonts/TextaAltBold.ttf');
+}
+
+.main-component {
+    -fx-background-color:  #EBDFD7;
+}
+
+.main-label {
+    -fx-text-fill: #060606;
+    -fx-font-family: 'TextaAltBold';
+    -fx-font-size: 20;
+    -fx-font-weight: bold;
+}
+
+.description-label {
+    -fx-text-fill: #060606;
+    -fx-font-family: 'TextaAltRegular';
+    -fx-font-size: 20;
+}
+
+.component-title {
+    -fx-text-fill: #060606;
+    -fx-font-family: 'TextaAltRegular';
+    -fx-font-size: 16;
+}
+
+.main-button {
+    -fx-background-color: #ffffff;
+    -fx-background-radius: 6em;
+}
+
+.order-field {
     -fx-background-color: #FFFFFF;
     -fx-text-fill: #060606;
     -fx-text-color: #060606;
@@ -8,16 +46,10 @@
     -fx-font-family: 'TextaAltRegular';
 }
 
-.text-field .content {
+.order-field .content {
     -fx-alignment: center-left;
     -fx-text-color: #060606;
     -fx-font-family: 'TextaAltBold';
-}
-
-.text-field {
-    -fx-background-size: 15px 15px;
-    -fx-background-repeat: no-repeat;
-    -fx-background-position: 6px center;
 }
 
 .combo-box {
@@ -39,4 +71,9 @@
     -fx-background-repeat: no-repeat;
     -fx-background-position: center;
     -fx-background-size: 16px 16px;
+}
+
+.accordion-section {
+    -fx-background-color:  rgba(255, 255, 255, 0.34);
+    -fx-background-radius: 32;
 }
