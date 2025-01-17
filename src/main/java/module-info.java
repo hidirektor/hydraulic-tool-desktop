@@ -9,6 +9,7 @@ module com.hidirektor.dashboard {
     requires org.json;
     requires itextpdf;
     requires java.logging;
+    requires annotations;
 
     exports com.hidirektor.dashboard;
     opens com.hidirektor.dashboard to javafx.base, javafx.fxml;

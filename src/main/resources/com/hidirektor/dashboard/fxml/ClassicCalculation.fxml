@@ -15,7 +15,7 @@
                      <children>
                         <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity">
                            <children>
-                              <Label style="-fx-text-fill: #060606;" stylesheets="@../styling/dark-theme.css" text="Klasik Hesaplama" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+                              <Label fx:id="classicCaclulationTitle" style="-fx-text-fill: #060606;" stylesheets="@../styling/dark-theme.css" text="Klasik Hesaplama" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
                                  <font>
                                     <Font name="TextaAlt-Bold" size="20.0" />
                                  </font>
@@ -58,7 +58,7 @@
                                                       <Font name="TextaAlt-Regular" size="14.0" />
                                                    </font>
                                                 </Label>
-                                                <TextField minWidth="-Infinity" prefHeight="30.0" prefWidth="240.0" promptText="Sipariş numarasını girin..." stylesheets="@../styling/calculation-page.css" />
+                                                <TextField fx:id="siparisNumarasiField" minWidth="-Infinity" prefHeight="30.0" prefWidth="240.0" promptText="Sipariş numarasını girin..." stylesheets="@../styling/calculation-page.css" />
                                              </children>
                                           </VBox>
                                           <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
@@ -70,7 +70,7 @@
                                                             <Font name="TextaAlt-Regular" size="14.0" />
                                                          </font>
                                                       </Label>
-                                                      <TextField minWidth="-Infinity" prefHeight="30.0" prefWidth="240.0" promptText="E-posta ya da kullanıcı adını girin..." stylesheets="@../styling/calculation-page.css" />
+                                                      <TextField fx:id="inviteUserTextField" minWidth="-Infinity" prefHeight="30.0" prefWidth="240.0" promptText="E-posta ya da kullanıcı adını girin..." stylesheets="@../styling/calculation-page.css" />
                                                    </children>
                                                 </VBox>
                                                 <ImageView fitHeight="28.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
@@ -136,7 +136,7 @@
                                                             <Font name="TextaAlt-Regular" size="14.0" />
                                                          </font>
                                                       </Label>
-                                                      <ComboBox fx:id="motorComboBox" minWidth="-Infinity" prefWidth="250.0" promptText="Motor seçimini yapın." stylesheets="@../styling/calculation-page.css" />
+                                                      <ComboBox fx:id="motorComboBox" disable="true" minWidth="-Infinity" prefWidth="250.0" promptText="Motor seçimini yapın." stylesheets="@../styling/calculation-page.css" />
                                                    </children>
                                                 </VBox>
                                                 <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
@@ -146,7 +146,7 @@
                                                             <Font name="TextaAlt-Regular" size="14.0" />
                                                          </font>
                                                       </Label>
-                                                      <ComboBox fx:id="sogutmaComboBox" minWidth="-Infinity" prefWidth="250.0" promptText="Soğutma seçimini yapın." stylesheets="@../styling/calculation-page.css" />
+                                                      <ComboBox fx:id="sogutmaComboBox" disable="true" minWidth="-Infinity" prefWidth="250.0" promptText="Soğutma seçimini yapın." stylesheets="@../styling/calculation-page.css" />
                                                    </children>
                                                 </VBox>
                                                 <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
@@ -156,7 +156,7 @@
                                                             <Font name="TextaAlt-Regular" size="14.0" />
                                                          </font>
                                                       </Label>
-                                                      <ComboBox fx:id="hidrolikKilitComboBox" minWidth="-Infinity" prefWidth="250.0" promptText="Hidrolik kilit seçimini yapın." stylesheets="@../styling/calculation-page.css" />
+                                                      <ComboBox fx:id="hidrolikKilitComboBox" disable="true" minWidth="-Infinity" prefWidth="250.0" promptText="Hidrolik kilit seçimini yapın." stylesheets="@../styling/calculation-page.css" />
                                                    </children>
                                                 </VBox>
                                              </children>
@@ -173,7 +173,7 @@
                                                             <Font name="TextaAlt-Regular" size="14.0" />
                                                          </font>
                                                       </Label>
-                                                      <ComboBox fx:id="pompaComboBox" minWidth="-Infinity" prefWidth="250.0" promptText="Pompa seçimini yapın." stylesheets="@../styling/calculation-page.css" />
+                                                      <ComboBox fx:id="pompaComboBox" disable="true" minWidth="-Infinity" prefWidth="250.0" promptText="Pompa seçimini yapın." stylesheets="@../styling/calculation-page.css" />
                                                    </children>
                                                 </VBox>
                                                 <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" stylesheets="@../styling/calculation-page.css">
@@ -183,7 +183,7 @@
                                                             <Font name="TextaAlt-Regular" size="14.0" />
                                                          </font>
                                                       </Label>
-                                                      <TextField fx:id="gerekenYagMiktariField" minWidth="-Infinity" prefHeight="30.0" prefWidth="250.0" promptText="Gerekli yağ miktarını girin." style="-fx-background-image: null;" styleClass="text-field" />
+                                                      <TextField fx:id="gerekenYagMiktariField" disable="true" minWidth="-Infinity" prefHeight="30.0" prefWidth="250.0" promptText="Gerekli yağ miktarını girin." style="-fx-background-image: null;" styleClass="text-field" />
                                                    </children>
                                                 </VBox>
                                                 <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
@@ -193,7 +193,7 @@
                                                             <Font name="TextaAlt-Regular" size="14.0" />
                                                          </font>
                                                       </Label>
-                                                      <ComboBox fx:id="kompanzasyonComboBox" minWidth="-Infinity" prefWidth="250.0" promptText="Kompanzasyon seçimini yapın." stylesheets="@../styling/calculation-page.css" />
+                                                      <ComboBox fx:id="kompanzasyonComboBox" disable="true" minWidth="-Infinity" prefWidth="250.0" promptText="Kompanzasyon seçimini yapın." stylesheets="@../styling/calculation-page.css" />
                                                    </children>
                                                 </VBox>
                                              </children>
@@ -210,7 +210,7 @@
                                                             <Font name="TextaAlt-Regular" size="14.0" />
                                                          </font>
                                                       </Label>
-                                                      <ComboBox fx:id="valfTipiComboBox" minWidth="-Infinity" prefWidth="250.0" promptText="Valf tipi seçimini yapın." stylesheets="@../styling/calculation-page.css" />
+                                                      <ComboBox fx:id="valfTipiComboBox" disable="true" minWidth="-Infinity" prefWidth="250.0" promptText="Valf tipi seçimini yapın." stylesheets="@../styling/calculation-page.css" />
                                                    </children>
                                                 </VBox>
                                                 <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
@@ -220,7 +220,7 @@
                                                             <Font name="TextaAlt-Regular" size="14.0" />
                                                          </font>
                                                       </Label>
-                                                      <ComboBox fx:id="kilitMotorComboBox" minWidth="-Infinity" prefWidth="250.0" promptText="Kilit motor seçimini yapın." stylesheets="@../styling/calculation-page.css" />
+                                                      <ComboBox fx:id="kilitMotorComboBox" disable="true" minWidth="-Infinity" prefWidth="250.0" promptText="Kilit motor seçimini yapın." stylesheets="@../styling/calculation-page.css" />
                                                    </children>
                                                 </VBox>
                                                 <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
@@ -230,7 +230,7 @@
                                                             <Font name="TextaAlt-Regular" size="14.0" />
                                                          </font>
                                                       </Label>
-                                                      <ComboBox fx:id="kilitPompaComboBox" minWidth="-Infinity" prefWidth="250.0" promptText="Kilit pompa seçimini yapın." stylesheets="@../styling/calculation-page.css" />
+                                                      <ComboBox fx:id="kilitPompaComboBox" disable="true" minWidth="-Infinity" prefWidth="250.0" promptText="Kilit pompa seçimini yapın." stylesheets="@../styling/calculation-page.css" />
                                                    </children>
                                                 </VBox>
                                              </children>
@@ -295,7 +295,7 @@
                                                 <ImageView fx:id="tankImage" fitHeight="280.0" fitWidth="375.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="12.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
                                              </children>
                                           </AnchorPane>
-                                          <AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="350.0" prefWidth="500.0">
+                                          <AnchorPane fx:id="hydraulicUnitSchemePane" minHeight="-Infinity" minWidth="-Infinity" prefHeight="350.0" prefWidth="500.0">
                                              <padding>
                                                 <Insets bottom="12.0" left="12.0" right="12.0" top="12.0" />
                                              </padding>
@@ -409,7 +409,7 @@
                                     <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
                                  </padding>
                               </Label>
-                              <Button contentDisplay="RIGHT" mnemonicParsing="false" onAction="#handleClick" style="-fx-background-color: #ffffff; -fx-background-radius: 6em;" text="Kontrol Et" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                              <Button contentDisplay="RIGHT" mnemonicParsing="false" onAction="#handleClick" style="-fx-background-color: #ffffff; -fx-background-radius: 6em;" text="Kontrol Et" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                  <padding>
                                     <Insets bottom="12.0" left="16.0" right="16.0" top="12.0" />
                                  </padding>
@@ -421,6 +421,19 @@
                                     </ImageView>
                                  </graphic>
                               </Button>
+                              <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="0.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="42.0">
+                                 <padding>
+                                    <Insets bottom="12.0" left="12.0" right="12.0" top="12.0" />
+                                 </padding>
+                                 <children>
+                                    <TableView fx:id="sonucTablo" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                      <columns>
+                                        <TableColumn fx:id="dataKeyLine" maxWidth="1.7976931348623157E308" minWidth="200.0" prefWidth="-1.0" text="C1" />
+                                        <TableColumn fx:id="dataValueLine" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="-1.0" text="C2" />
+                                      </columns>
+                                    </TableView>
+                                 </children>
+                              </AnchorPane>
                            </children>
                            <padding>
                               <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />

@@ -27,6 +27,12 @@ public class Utils {
         return String.valueOf(unixTime);
     }
 
+    public static double stringToDouble(String inputVal) {
+        String[] secPmp = inputVal.split(" cc");
+
+        return Double.parseDouble(secPmp[0]);
+    }
+
     @SuppressWarnings("unchecked")
     public static void createLocalUnitData(String yamlFilePath, String orderNumber, String createdDate, String unitType,
                                            String pdfPath, String excelPath, String isOffline, String createdBy, JSONObject unitParameters) {
