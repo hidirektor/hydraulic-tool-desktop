@@ -80,7 +80,7 @@
                                     <Insets top="16.0" />
                                  </VBox.margin>
                                  <children>
-                                    <Button fx:id="createHydraulicUnitButton" alignment="TOP_LEFT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleClick" style="-fx-background-color: #ffffff; -fx-border-radius: 8em;" stylesheets="@../styling/dark-theme.css" text="Yeni Ünite Oluştur" textFill="#171717">
+                                    <Button fx:id="createClassicUnit" alignment="TOP_LEFT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleClick" style="-fx-background-color: #ffffff; -fx-border-radius: 8em;" stylesheets="@../styling/dark-theme.css" text="Klasik Ünite" textFill="#171717">
                                        <graphic>
                                           <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
@@ -94,6 +94,21 @@
                                        <VBox.margin>
                                           <Insets />
                                        </VBox.margin>
+                                       <padding>
+                                          <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+                                       </padding>
+                                    </Button>
+                                    <Button fx:id="createPowerPackUnit" alignment="TOP_LEFT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleClick" style="-fx-background-color: #ffffff; -fx-border-radius: 8em;" stylesheets="@../styling/dark-theme.css" text="PowerPack Ünite" textFill="#171717">
+                                       <graphic>
+                                          <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../../../../assets/images/icons/icon_add.png" />
+                                             </image>
+                                          </ImageView>
+                                       </graphic>
+                                       <font>
+                                          <Font size="16.0" />
+                                       </font>
                                        <padding>
                                           <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
                                        </padding>
@@ -290,14 +305,19 @@
                                     <Insets bottom="12.0" left="12.0" right="12.0" top="12.0" />
                                  </padding>
                               </AnchorPane>
-                              <VBox alignment="CENTER">
+                              <VBox alignment="CENTER" spacing="6.0">
                                  <VBox.margin>
                                     <Insets top="16.0" />
                                  </VBox.margin>
                                  <children>
-                                    <ImageView fx:id="createHydraulicUnitImageButton" fitHeight="28.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
+                                    <ImageView fx:id="createClassicUnitImageButton" fitHeight="28.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
-                                          <Image url="@../../../../assets/images/icons/icon_add.png" />
+                                          <Image url="@../../../../assets/images/icons/icon_scissor_lift.png" />
+                                       </image>
+                                    </ImageView>
+                                    <ImageView fx:id="createPowerPackUnitImageButton" fitHeight="28.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../../../../assets/images/icons/icon_hidros.png" />
                                        </image>
                                     </ImageView>
                                  </children>

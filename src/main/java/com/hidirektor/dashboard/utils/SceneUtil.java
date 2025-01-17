@@ -1,6 +1,7 @@
 package com.hidirektor.dashboard.utils;
 
 import com.hidirektor.dashboard.Launcher;
+import com.hidirektor.dashboard.utils.Process.UIProcess;
 import com.hidirektor.dashboard.utils.System.SystemDefaults;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Rectangle2D;
@@ -72,6 +73,8 @@ public class SceneUtil {
         try {
             FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(Launcher.class.getResource(fxmlPath)));
             Pane loadedPane = loader.load();
+
+            UIProcess.clearOldCalculationData();
 
             currentPagePane.getChildren().clear();
             currentPagePane.getChildren().add(loadedPane);

@@ -317,7 +317,10 @@
                                                 </Label>
                                                 <VBox alignment="CENTER" minHeight="-Infinity" minWidth="-Infinity" spacing="12.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="48.0">
                                                    <children>
-                                                      <ImageView fx:id="schemeImage" fitHeight="275.0" fitWidth="430.0" pickOnBounds="true" preserveRatio="true" />
+                                                      <ImageView fx:id="schemeImage" fitHeight="275.0" fitWidth="430.0" pickOnBounds="true" preserveRatio="true">
+                                                         <VBox.margin>
+                                                            <Insets bottom="12.0" left="12.0" right="12.0" top="12.0" />
+                                                         </VBox.margin></ImageView>
                                                       <Label fx:id="disOlculerLabel" alignment="CENTER" contentDisplay="CENTER" style="-fx-text-fill: #060606;" text="Lütfen önce hesaplamayı bitirin." textAlignment="CENTER" wrapText="true">
                                                          <font>
                                                             <Font name="TextaAlt-Regular" size="16.0" />

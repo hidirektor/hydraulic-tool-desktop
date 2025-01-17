@@ -50,10 +50,10 @@ public class LandingController implements Initializable {
     public Button homeButton, hydraulicUnitsButton, ticketButton, usersButton, debugButton, licenseButton, sourceUsageButton, schemeButton, settingsButton;
 
     @FXML
-    public Button createHydraulicUnitButton;
+    public Button createClassicUnit, createPowerPackUnit;
 
     @FXML
-    public ImageView contactUsButton, contactUsMiniButton, createHydraulicUnitImageButton;
+    public ImageView contactUsButton, contactUsMiniButton, createClassicUnitImageButton, createPowerPackUnitImageButton;
 
     @FXML
     public ImageView collapseMenuIcon;
@@ -74,8 +74,8 @@ public class LandingController implements Initializable {
         Platform.runLater(() -> {
             currentStage = (Stage) profilePhoto.getScene().getWindow();
 
-            addHoverEffect(closeIcon, minimizeIcon, expandIcon, contactUsButton, collapseMenuIcon, createHydraulicUnitImageButton, contactUsMiniButton);
-            addHoverEffectToButtons(createHydraulicUnitButton);
+            addHoverEffect(closeIcon, minimizeIcon, expandIcon, contactUsButton, collapseMenuIcon, createClassicUnitImageButton, createPowerPackUnitImageButton, contactUsMiniButton);
+            addHoverEffectToButtons(createClassicUnit, createPowerPackUnit);
 
             homeButton.fire();
             Utils.clickButton(homeButton, 1);
@@ -219,9 +219,11 @@ public class LandingController implements Initializable {
         } else if(actionEvent.getSource().equals(settingsButton)) {
             //Ayarlar
             SceneUtil.loadFXMLIntoPane(currentPagePane, "fxml/Settings.fxml");
-        } else if(actionEvent.getSource().equals(createHydraulicUnitButton) || actionEvent.getSource().equals(createHydraulicUnitImageButton)) {
-            //Ünite Oluştur
+        } else if(actionEvent.getSource().equals(createClassicUnit) || actionEvent.getSource().equals(createClassicUnitImageButton)) {
+            //Klasik Ünite Oluştur
             SceneUtil.loadFXMLIntoPane(currentPagePane, "fxml/ClassicCalculation.fxml");
+        } else if(actionEvent.getSource().equals(createPowerPackUnit) || actionEvent.getSource().equals(createPowerPackUnitImageButton)) {
+            //PowerPack Ünite Oluştur
         } else if(actionEvent.getSource().equals(contactUsButton) || actionEvent.getSource().equals(contactUsMiniButton)) {
             //Destek Butonu
         } else {
