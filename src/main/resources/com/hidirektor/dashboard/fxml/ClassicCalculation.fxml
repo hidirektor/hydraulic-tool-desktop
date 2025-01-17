@@ -5,371 +5,438 @@
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
-<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="610.0" prefWidth="1040.0" style="-fx-background-color: #EBDFD7;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.hidirektor.dashboard.controllers.pages.calculation.ClassicController">
+<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" style="-fx-background-color: #EBDFD7;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.hidirektor.dashboard.controllers.pages.calculation.ClassicController">
    <children>
-      <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" spacing="12.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-         <children>
-            <AnchorPane>
+      <ScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minViewportHeight="610.0" minViewportWidth="1040.0" minWidth="-Infinity" prefHeight="610.0" prefWidth="1040.0" stylesheets="@../styling/dark-theme.css" vbarPolicy="NEVER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <content>
+          <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity">
                <children>
-                  <Label style="-fx-text-fill: #060606;" stylesheets="@../styling/dark-theme.css" text="Klasik Hesaplama" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
-                     <font>
-                        <Font name="TextaAlt-Bold" size="20.0" />
-                     </font>
-                  </Label>
-               </children>
-               <padding>
-                  <Insets bottom="12.0" left="12.0" right="12.0" top="12.0" />
-               </padding>
-            </AnchorPane>
-            <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" style="-fx-background-color: rgba(255, 255, 255, 0.34); -fx-background-radius: 32;">
-               <children>
-                  <Label style="-fx-text-fill: #060606;" stylesheets="@../styling/dark-theme.css" text="Sipariş Bilgileri" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
-                     <font>
-                        <Font name="TextaAlt-Regular" size="20.0" />
-                     </font>
-                     <padding>
-                        <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
-                     </padding>
-                  </Label>
-                  <Button fx:id="orderSectionButton" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#handleClick" style="-fx-background-color: #ffffff; -fx-background-radius: 6em;" text="Ayarla" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                     <padding>
-                        <Insets bottom="12.0" left="16.0" right="16.0" top="12.0" />
-                     </padding>
-                     <graphic>
-                        <ImageView fx:id="orderSectionButtonImage" fitHeight="14.0" fitWidth="14.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../../../../assets/images/icons/icon_arrow_down.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                  </Button>
-                  <AnchorPane fx:id="orderSection" minHeight="-Infinity" minWidth="-Infinity" prefHeight="0.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="40.0">
+                  <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" spacing="12.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
-                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="24.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity">
                            <children>
-                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
-                                 <children>
-                                    <Label style="-fx-text-fill: #060606;" text="Sipariş Numarası">
-                                       <font>
-                                          <Font name="TextaAlt-Regular" size="14.0" />
-                                       </font>
-                                    </Label>
-                                    <TextField minWidth="-Infinity" prefHeight="30.0" prefWidth="240.0" promptText="Sipariş numarasını girin..." stylesheets="@../styling/calculation-page.css" />
-                                 </children>
-                              </VBox>
-                              <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
-                                 <children>
-                                    <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
-                                       <children>
-                                          <Label style="-fx-text-fill: #060606;" text="Projeye Davet Et">
-                                             <font>
-                                                <Font name="TextaAlt-Regular" size="14.0" />
-                                             </font>
-                                          </Label>
-                                          <TextField minWidth="-Infinity" prefHeight="30.0" prefWidth="240.0" promptText="E-posta ya da kullanıcı adını girin..." stylesheets="@../styling/calculation-page.css" />
-                                       </children>
-                                    </VBox>
-                                    <ImageView fitHeight="28.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@../../../../assets/images/icons/icon_invite.png" />
-                                       </image>
-                                       <HBox.margin>
-                                          <Insets left="8.0" top="22.0" />
-                                       </HBox.margin>
-                                    </ImageView>
-                                 </children>
-                              </HBox>
-                           </children>
-                        </HBox>
-                     </children>
-                     <padding>
-                        <Insets bottom="12.0" left="12.0" right="12.0" top="12.0" />
-                     </padding>
-                  </AnchorPane>
-               </children>
-               <padding>
-                  <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
-               </padding>
-               <VBox.margin>
-                  <Insets left="16.0" right="16.0" />
-               </VBox.margin>
-            </AnchorPane>
-            <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" style="-fx-background-color: rgba(255, 255, 255, 0.34); -fx-background-radius: 32;" stylesheets="@../styling/calculation-page.css">
-               <children>
-                  <Label style="-fx-text-fill: #060606;" stylesheets="@../styling/dark-theme.css" text="Ünite Bilgileri" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
-                     <font>
-                        <Font name="TextaAlt-Regular" size="20.0" />
-                     </font>
-                     <padding>
-                        <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
-                     </padding>
-                  </Label>
-                  <Button fx:id="unitInfoSectionButton" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#handleClick" style="-fx-background-color: #ffffff; -fx-background-radius: 6em;" text="Ayarla" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                     <padding>
-                        <Insets bottom="12.0" left="16.0" right="16.0" top="12.0" />
-                     </padding>
-                     <graphic>
-                        <ImageView fx:id="unitInfoSectionButtonImage" fitHeight="14.0" fitWidth="14.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../../../../assets/images/icons/icon_arrow_down.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                  </Button>
-                  <AnchorPane fx:id="unitInfoSection" minHeight="-Infinity" minWidth="-Infinity" prefHeight="0.0" stylesheets="@../styling/calculation-page.css" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="40.0">
-                     <children>
-                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="8.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                           <children>
-                              <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="8.0">
-                                 <padding>
-                                    <Insets bottom="12.0" left="12.0" right="12.0" top="12.0" />
-                                 </padding>
-                                 <children>
-                                    <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
-                                       <children>
-                                          <Label style="-fx-text-fill: #060606;" text="Motor">
-                                             <font>
-                                                <Font name="TextaAlt-Regular" size="14.0" />
-                                             </font>
-                                          </Label>
-                                          <ComboBox fx:id="motorComboBox" minWidth="-Infinity" prefWidth="250.0" promptText="Motor seçimini yapın." stylesheets="@../styling/calculation-page.css" />
-                                       </children>
-                                    </VBox>
-                                    <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
-                                       <children>
-                                          <Label style="-fx-text-fill: #060606;" text="Soğutma Durumu">
-                                             <font>
-                                                <Font name="TextaAlt-Regular" size="14.0" />
-                                             </font>
-                                          </Label>
-                                          <ComboBox fx:id="sogutmaComboBox" minWidth="-Infinity" prefWidth="250.0" promptText="Soğutma seçimini yapın." stylesheets="@../styling/calculation-page.css" />
-                                       </children>
-                                    </VBox>
-                                    <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
-                                       <children>
-                                          <Label style="-fx-text-fill: #060606;" text="Hidrolik Kilit Durumu">
-                                             <font>
-                                                <Font name="TextaAlt-Regular" size="14.0" />
-                                             </font>
-                                          </Label>
-                                          <ComboBox fx:id="hidrolikKilitComboBox" minWidth="-Infinity" prefWidth="250.0" promptText="Hidrolik kilit seçimini yapın." stylesheets="@../styling/calculation-page.css" />
-                                       </children>
-                                    </VBox>
-                                 </children>
-                              </HBox>
-                              <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="8.0">
-                                 <padding>
-                                    <Insets bottom="12.0" left="12.0" right="12.0" top="12.0" />
-                                 </padding>
-                                 <children>
-                                    <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
-                                       <children>
-                                          <Label style="-fx-text-fill: #060606;" text="Pompa">
-                                             <font>
-                                                <Font name="TextaAlt-Regular" size="14.0" />
-                                             </font>
-                                          </Label>
-                                          <ComboBox fx:id="pompaComboBox" minWidth="-Infinity" prefWidth="250.0" promptText="Pompa seçimini yapın." stylesheets="@../styling/calculation-page.css" />
-                                       </children>
-                                    </VBox>
-                                    <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" stylesheets="@../styling/calculation-page.css">
-                                       <children>
-                                          <Label style="-fx-text-fill: #060606;" text="Gerekli Yağ Miktarı">
-                                             <font>
-                                                <Font name="TextaAlt-Regular" size="14.0" />
-                                             </font>
-                                          </Label>
-                                          <TextField fx:id="gerekenYagMiktariField" minWidth="-Infinity" prefHeight="30.0" prefWidth="250.0" promptText="Gerekli yağ miktarını girin." style="-fx-background-image: null;" styleClass="text-field" />
-                                       </children>
-                                    </VBox>
-                                    <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
-                                       <children>
-                                          <Label style="-fx-text-fill: #060606;" text="Kompanzasyon">
-                                             <font>
-                                                <Font name="TextaAlt-Regular" size="14.0" />
-                                             </font>
-                                          </Label>
-                                          <ComboBox fx:id="kompanzasyonComboBox" minWidth="-Infinity" prefWidth="250.0" promptText="Kompanzasyon seçimini yapın." stylesheets="@../styling/calculation-page.css" />
-                                       </children>
-                                    </VBox>
-                                 </children>
-                              </HBox>
-                              <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="8.0">
-                                 <padding>
-                                    <Insets bottom="12.0" left="12.0" right="12.0" top="12.0" />
-                                 </padding>
-                                 <children>
-                                    <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
-                                       <children>
-                                          <Label style="-fx-text-fill: #060606;" text="Valf Tipi">
-                                             <font>
-                                                <Font name="TextaAlt-Regular" size="14.0" />
-                                             </font>
-                                          </Label>
-                                          <ComboBox fx:id="valfTipiComboBox" minWidth="-Infinity" prefWidth="250.0" promptText="Valf tipi seçimini yapın." stylesheets="@../styling/calculation-page.css" />
-                                       </children>
-                                    </VBox>
-                                    <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
-                                       <children>
-                                          <Label style="-fx-text-fill: #060606;" text="Kilit Motor">
-                                             <font>
-                                                <Font name="TextaAlt-Regular" size="14.0" />
-                                             </font>
-                                          </Label>
-                                          <ComboBox fx:id="kilitMotorComboBox" minWidth="-Infinity" prefWidth="250.0" promptText="Kilit motor seçimini yapın." stylesheets="@../styling/calculation-page.css" />
-                                       </children>
-                                    </VBox>
-                                    <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
-                                       <children>
-                                          <Label style="-fx-text-fill: #060606;" text="Kilit Pompa">
-                                             <font>
-                                                <Font name="TextaAlt-Regular" size="14.0" />
-                                             </font>
-                                          </Label>
-                                          <ComboBox fx:id="kilitPompaComboBox" minWidth="-Infinity" prefWidth="250.0" promptText="Kilit pompa seçimini yapın." stylesheets="@../styling/calculation-page.css" />
-                                       </children>
-                                    </VBox>
-                                 </children>
-                              </HBox>
+                              <Label style="-fx-text-fill: #060606;" stylesheets="@../styling/dark-theme.css" text="Klasik Hesaplama" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <font>
+                                    <Font name="TextaAlt-Bold" size="20.0" />
+                                 </font>
+                              </Label>
                            </children>
                            <padding>
                               <Insets bottom="12.0" left="12.0" right="12.0" top="12.0" />
                            </padding>
-                        </VBox>
+                        </AnchorPane>
+                        <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" style="-fx-background-color: rgba(255, 255, 255, 0.34); -fx-background-radius: 32;">
+                           <children>
+                              <Label style="-fx-text-fill: #060606;" stylesheets="@../styling/dark-theme.css" text="Sipariş Bilgileri" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <font>
+                                    <Font name="TextaAlt-Regular" size="20.0" />
+                                 </font>
+                                 <padding>
+                                    <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+                                 </padding>
+                              </Label>
+                              <Button fx:id="orderSectionButton" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#handleClick" style="-fx-background-color: #ffffff; -fx-background-radius: 6em;" text="Ayarla" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <padding>
+                                    <Insets bottom="12.0" left="16.0" right="16.0" top="12.0" />
+                                 </padding>
+                                 <graphic>
+                                    <ImageView fx:id="orderSectionButtonImage" fitHeight="14.0" fitWidth="14.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../../../../assets/images/icons/icon_arrow_down.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </Button>
+                              <AnchorPane fx:id="orderSection" minHeight="-Infinity" minWidth="-Infinity" prefHeight="0.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="40.0">
+                                 <children>
+                                    <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="24.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                       <children>
+                                          <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                                             <children>
+                                                <Label style="-fx-text-fill: #060606;" text="Sipariş Numarası">
+                                                   <font>
+                                                      <Font name="TextaAlt-Regular" size="14.0" />
+                                                   </font>
+                                                </Label>
+                                                <TextField minWidth="-Infinity" prefHeight="30.0" prefWidth="240.0" promptText="Sipariş numarasını girin..." stylesheets="@../styling/calculation-page.css" />
+                                             </children>
+                                          </VBox>
+                                          <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                                             <children>
+                                                <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                                                   <children>
+                                                      <Label style="-fx-text-fill: #060606;" text="Projeye Davet Et">
+                                                         <font>
+                                                            <Font name="TextaAlt-Regular" size="14.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <TextField minWidth="-Infinity" prefHeight="30.0" prefWidth="240.0" promptText="E-posta ya da kullanıcı adını girin..." stylesheets="@../styling/calculation-page.css" />
+                                                   </children>
+                                                </VBox>
+                                                <ImageView fitHeight="28.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@../../../../assets/images/icons/icon_invite.png" />
+                                                   </image>
+                                                   <HBox.margin>
+                                                      <Insets left="8.0" top="22.0" />
+                                                   </HBox.margin>
+                                                </ImageView>
+                                             </children>
+                                          </HBox>
+                                       </children>
+                                    </HBox>
+                                 </children>
+                                 <padding>
+                                    <Insets bottom="12.0" left="12.0" right="12.0" top="12.0" />
+                                 </padding>
+                              </AnchorPane>
+                           </children>
+                           <padding>
+                              <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+                           </padding>
+                           <VBox.margin>
+                              <Insets left="16.0" right="16.0" />
+                           </VBox.margin>
+                        </AnchorPane>
+                        <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" style="-fx-background-color: rgba(255, 255, 255, 0.34); -fx-background-radius: 32;" stylesheets="@../styling/calculation-page.css">
+                           <children>
+                              <Label style="-fx-text-fill: #060606;" stylesheets="@../styling/dark-theme.css" text="Ünite Bilgileri" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <font>
+                                    <Font name="TextaAlt-Regular" size="20.0" />
+                                 </font>
+                                 <padding>
+                                    <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+                                 </padding>
+                              </Label>
+                              <Button fx:id="unitInfoSectionButton" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#handleClick" style="-fx-background-color: #ffffff; -fx-background-radius: 6em;" text="Ayarla" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <padding>
+                                    <Insets bottom="12.0" left="16.0" right="16.0" top="12.0" />
+                                 </padding>
+                                 <graphic>
+                                    <ImageView fx:id="unitInfoSectionButtonImage" fitHeight="14.0" fitWidth="14.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../../../../assets/images/icons/icon_arrow_down.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </Button>
+                              <AnchorPane fx:id="unitInfoSection" minHeight="-Infinity" minWidth="-Infinity" prefHeight="0.0" stylesheets="@../styling/calculation-page.css" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="40.0">
+                                 <children>
+                                    <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="8.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                       <children>
+                                          <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="8.0">
+                                             <padding>
+                                                <Insets bottom="12.0" left="12.0" right="12.0" top="12.0" />
+                                             </padding>
+                                             <children>
+                                                <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                                                   <children>
+                                                      <Label style="-fx-text-fill: #060606;" text="Motor">
+                                                         <font>
+                                                            <Font name="TextaAlt-Regular" size="14.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <ComboBox fx:id="motorComboBox" minWidth="-Infinity" prefWidth="250.0" promptText="Motor seçimini yapın." stylesheets="@../styling/calculation-page.css" />
+                                                   </children>
+                                                </VBox>
+                                                <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                                                   <children>
+                                                      <Label style="-fx-text-fill: #060606;" text="Soğutma Durumu">
+                                                         <font>
+                                                            <Font name="TextaAlt-Regular" size="14.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <ComboBox fx:id="sogutmaComboBox" minWidth="-Infinity" prefWidth="250.0" promptText="Soğutma seçimini yapın." stylesheets="@../styling/calculation-page.css" />
+                                                   </children>
+                                                </VBox>
+                                                <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                                                   <children>
+                                                      <Label style="-fx-text-fill: #060606;" text="Hidrolik Kilit Durumu">
+                                                         <font>
+                                                            <Font name="TextaAlt-Regular" size="14.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <ComboBox fx:id="hidrolikKilitComboBox" minWidth="-Infinity" prefWidth="250.0" promptText="Hidrolik kilit seçimini yapın." stylesheets="@../styling/calculation-page.css" />
+                                                   </children>
+                                                </VBox>
+                                             </children>
+                                          </HBox>
+                                          <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="8.0">
+                                             <padding>
+                                                <Insets bottom="12.0" left="12.0" right="12.0" top="12.0" />
+                                             </padding>
+                                             <children>
+                                                <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                                                   <children>
+                                                      <Label style="-fx-text-fill: #060606;" text="Pompa">
+                                                         <font>
+                                                            <Font name="TextaAlt-Regular" size="14.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <ComboBox fx:id="pompaComboBox" minWidth="-Infinity" prefWidth="250.0" promptText="Pompa seçimini yapın." stylesheets="@../styling/calculation-page.css" />
+                                                   </children>
+                                                </VBox>
+                                                <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" stylesheets="@../styling/calculation-page.css">
+                                                   <children>
+                                                      <Label style="-fx-text-fill: #060606;" text="Gerekli Yağ Miktarı">
+                                                         <font>
+                                                            <Font name="TextaAlt-Regular" size="14.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <TextField fx:id="gerekenYagMiktariField" minWidth="-Infinity" prefHeight="30.0" prefWidth="250.0" promptText="Gerekli yağ miktarını girin." style="-fx-background-image: null;" styleClass="text-field" />
+                                                   </children>
+                                                </VBox>
+                                                <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                                                   <children>
+                                                      <Label style="-fx-text-fill: #060606;" text="Kompanzasyon">
+                                                         <font>
+                                                            <Font name="TextaAlt-Regular" size="14.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <ComboBox fx:id="kompanzasyonComboBox" minWidth="-Infinity" prefWidth="250.0" promptText="Kompanzasyon seçimini yapın." stylesheets="@../styling/calculation-page.css" />
+                                                   </children>
+                                                </VBox>
+                                             </children>
+                                          </HBox>
+                                          <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="8.0">
+                                             <padding>
+                                                <Insets bottom="12.0" left="12.0" right="12.0" top="12.0" />
+                                             </padding>
+                                             <children>
+                                                <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                                                   <children>
+                                                      <Label style="-fx-text-fill: #060606;" text="Valf Tipi">
+                                                         <font>
+                                                            <Font name="TextaAlt-Regular" size="14.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <ComboBox fx:id="valfTipiComboBox" minWidth="-Infinity" prefWidth="250.0" promptText="Valf tipi seçimini yapın." stylesheets="@../styling/calculation-page.css" />
+                                                   </children>
+                                                </VBox>
+                                                <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                                                   <children>
+                                                      <Label style="-fx-text-fill: #060606;" text="Kilit Motor">
+                                                         <font>
+                                                            <Font name="TextaAlt-Regular" size="14.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <ComboBox fx:id="kilitMotorComboBox" minWidth="-Infinity" prefWidth="250.0" promptText="Kilit motor seçimini yapın." stylesheets="@../styling/calculation-page.css" />
+                                                   </children>
+                                                </VBox>
+                                                <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                                                   <children>
+                                                      <Label style="-fx-text-fill: #060606;" text="Kilit Pompa">
+                                                         <font>
+                                                            <Font name="TextaAlt-Regular" size="14.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <ComboBox fx:id="kilitPompaComboBox" minWidth="-Infinity" prefWidth="250.0" promptText="Kilit pompa seçimini yapın." stylesheets="@../styling/calculation-page.css" />
+                                                   </children>
+                                                </VBox>
+                                             </children>
+                                          </HBox>
+                                       </children>
+                                       <padding>
+                                          <Insets bottom="12.0" left="12.0" right="12.0" top="12.0" />
+                                       </padding>
+                                    </VBox>
+                                 </children>
+                                 <padding>
+                                    <Insets bottom="12.0" left="12.0" right="12.0" top="12.0" />
+                                 </padding>
+                              </AnchorPane>
+                           </children>
+                           <padding>
+                              <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+                           </padding>
+                           <VBox.margin>
+                              <Insets left="16.0" right="16.0" />
+                           </VBox.margin>
+                        </AnchorPane>
+                        <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" style="-fx-background-color: rgba(255, 255, 255, 0.34); -fx-background-radius: 32;">
+                           <children>
+                              <Label style="-fx-text-fill: #060606;" stylesheets="@../styling/dark-theme.css" text="Hesaplama Sonucu" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <font>
+                                    <Font name="TextaAlt-Regular" size="20.0" />
+                                 </font>
+                                 <padding>
+                                    <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+                                 </padding>
+                              </Label>
+                              <Button fx:id="calculationResultSectionButton" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#handleClick" style="-fx-background-color: #ffffff; -fx-background-radius: 6em;" text="Görüntüle" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <padding>
+                                    <Insets bottom="12.0" left="16.0" right="16.0" top="12.0" />
+                                 </padding>
+                                 <graphic>
+                                    <ImageView fx:id="calculationResultSectionButtonImage" fitHeight="14.0" fitWidth="14.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../../../../assets/images/icons/icon_arrow_down.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </Button>
+                              <AnchorPane fx:id="calculationResultSection" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="0.0" stylesheets="@../styling/calculation-page.css" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="40.0">
+                                 <padding>
+                                    <Insets bottom="12.0" left="12.0" right="12.0" top="12.0" />
+                                 </padding>
+                                 <children>
+                                    <HBox alignment="CENTER" minHeight="-Infinity" minWidth="-Infinity" spacing="12.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                                       <children>
+                                          <AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="400.0">
+                                             <padding>
+                                                <Insets bottom="12.0" left="12.0" right="12.0" top="12.0" />
+                                             </padding>
+                                             <children>
+                                                <Label fx:id="tankTitle" style="-fx-text-fill: #060606;" text="Tank: 40L" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                   <font>
+                                                      <Font name="TextaAlt-Regular" size="16.0" />
+                                                   </font>
+                                                </Label>
+                                                <ImageView fx:id="tankImage" fitHeight="280.0" fitWidth="375.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="12.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+                                             </children>
+                                          </AnchorPane>
+                                          <AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="350.0" prefWidth="500.0">
+                                             <padding>
+                                                <Insets bottom="12.0" left="12.0" right="12.0" top="12.0" />
+                                             </padding>
+                                             <children>
+                                                <Label fx:id="kabinTitle" style="-fx-text-fill: #060606;" text="Tank: 40L" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                   <font>
+                                                      <Font name="TextaAlt-Regular" size="16.0" />
+                                                   </font>
+                                                </Label>
+                                                <ImageView fx:id="schemeImage" fitHeight="210.0" fitWidth="480.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="24.0" />
+                                                <VBox alignment="CENTER" minHeight="-Infinity" minWidth="-Infinity" prefWidth="100.0" AnchorPane.bottomAnchor="12.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                                                   <children>
+                                                      <Label fx:id="disOlculerLabel" alignment="CENTER" contentDisplay="CENTER" style="-fx-text-fill: #060606;" text="Dış Ölçüler: 700x518x1132 (x, y, h)" textAlignment="CENTER" wrapText="true">
+                                                         <font>
+                                                            <Font name="TextaAlt-Regular" size="16.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <Label fx:id="gecisOlculeriLabel" style="-fx-text-fill: #060606;" text="Geçiş Ölçüleri: 580x460x787 (x, y, h)" wrapText="true">
+                                                         <font>
+                                                            <Font name="TextaAlt-Regular" size="16.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <Label fx:id="tankOlculeriLabel" style="-fx-text-fill: #060606;" text="Tank Ölçüleri: 550x350x300 (x, y, h)" wrapText="true">
+                                                         <font>
+                                                            <Font name="TextaAlt-Regular" size="16.0" />
+                                                         </font>
+                                                      </Label>
+                                                   </children>
+                                                </VBox>
+                                             </children>
+                                          </AnchorPane>
+                                       </children>
+                                    </HBox>
+                                 </children>
+                              </AnchorPane>
+                           </children>
+                           <padding>
+                              <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+                           </padding>
+                           <VBox.margin>
+                              <Insets left="16.0" right="16.0" />
+                           </VBox.margin>
+                        </AnchorPane>
+                        <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" style="-fx-background-color: rgba(255, 255, 255, 0.34); -fx-background-radius: 32;">
+                           <children>
+                              <Label style="-fx-text-fill: #060606;" stylesheets="@../styling/dark-theme.css" text="Parça Listesi" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <font>
+                                    <Font name="TextaAlt-Regular" size="20.0" />
+                                 </font>
+                                 <padding>
+                                    <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+                                 </padding>
+                              </Label>
+                              <Button contentDisplay="RIGHT" mnemonicParsing="false" onAction="#handleClick" style="-fx-background-color: #ffffff; -fx-background-radius: 6em;" text="Görüntüle" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <padding>
+                                    <Insets bottom="12.0" left="16.0" right="16.0" top="12.0" />
+                                 </padding>
+                                 <graphic>
+                                    <ImageView fitHeight="14.0" fitWidth="14.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../../../../assets/images/icons/icon_arrow_down.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </Button>
+                           </children>
+                           <padding>
+                              <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+                           </padding>
+                           <VBox.margin>
+                              <Insets left="16.0" right="16.0" />
+                           </VBox.margin>
+                        </AnchorPane>
+                        <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" style="-fx-background-color: rgba(255, 255, 255, 0.34); -fx-background-radius: 32;">
+                           <children>
+                              <Label style="-fx-text-fill: #060606;" stylesheets="@../styling/dark-theme.css" text="Ünite Şeması" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <font>
+                                    <Font name="TextaAlt-Regular" size="20.0" />
+                                 </font>
+                                 <padding>
+                                    <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+                                 </padding>
+                              </Label>
+                              <Button contentDisplay="RIGHT" mnemonicParsing="false" onAction="#handleClick" style="-fx-background-color: #ffffff; -fx-background-radius: 6em;" text="Görüntüle" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <padding>
+                                    <Insets bottom="12.0" left="16.0" right="16.0" top="12.0" />
+                                 </padding>
+                                 <graphic>
+                                    <ImageView fitHeight="14.0" fitWidth="14.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../../../../assets/images/icons/icon_arrow_down.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </Button>
+                           </children>
+                           <padding>
+                              <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+                           </padding>
+                           <VBox.margin>
+                              <Insets left="16.0" right="16.0" />
+                           </VBox.margin>
+                        </AnchorPane>
+                        <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" style="-fx-background-color: rgba(255, 255, 255, 0.34); -fx-background-radius: 32;">
+                           <children>
+                              <Label style="-fx-text-fill: #060606;" stylesheets="@../styling/dark-theme.css" text="Hata Kontrol" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <font>
+                                    <Font name="TextaAlt-Regular" size="20.0" />
+                                 </font>
+                                 <padding>
+                                    <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+                                 </padding>
+                              </Label>
+                              <Button contentDisplay="RIGHT" mnemonicParsing="false" onAction="#handleClick" style="-fx-background-color: #ffffff; -fx-background-radius: 6em;" text="Kontrol Et" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <padding>
+                                    <Insets bottom="12.0" left="16.0" right="16.0" top="12.0" />
+                                 </padding>
+                                 <graphic>
+                                    <ImageView fitHeight="14.0" fitWidth="14.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../../../../assets/images/icons/icon_arrow_down.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </Button>
+                           </children>
+                           <padding>
+                              <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+                           </padding>
+                           <VBox.margin>
+                              <Insets left="16.0" right="16.0" />
+                           </VBox.margin>
+                        </AnchorPane>
                      </children>
-                     <padding>
-                        <Insets bottom="12.0" left="12.0" right="12.0" top="12.0" />
-                     </padding>
-                  </AnchorPane>
+                  </VBox>
                </children>
-               <padding>
-                  <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
-               </padding>
-               <VBox.margin>
-                  <Insets left="16.0" right="16.0" />
-               </VBox.margin>
             </AnchorPane>
-            <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" style="-fx-background-color: rgba(255, 255, 255, 0.34); -fx-background-radius: 32;">
-               <children>
-                  <Label style="-fx-text-fill: #060606;" stylesheets="@../styling/dark-theme.css" text="Hesaplama Sonucu" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
-                     <font>
-                        <Font name="TextaAlt-Regular" size="20.0" />
-                     </font>
-                     <padding>
-                        <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
-                     </padding>
-                  </Label>
-                  <Button contentDisplay="RIGHT" mnemonicParsing="false" style="-fx-background-color: #ffffff; -fx-background-radius: 6em;" text="Görüntüle" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                     <padding>
-                        <Insets bottom="12.0" left="16.0" right="16.0" top="12.0" />
-                     </padding>
-                     <graphic>
-                        <ImageView fitHeight="14.0" fitWidth="14.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../../../../assets/images/icons/icon_arrow_down.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                  </Button>
-               </children>
-               <padding>
-                  <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
-               </padding>
-               <VBox.margin>
-                  <Insets left="16.0" right="16.0" />
-               </VBox.margin>
-            </AnchorPane>
-            <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" style="-fx-background-color: rgba(255, 255, 255, 0.34); -fx-background-radius: 32;">
-               <children>
-                  <Label style="-fx-text-fill: #060606;" stylesheets="@../styling/dark-theme.css" text="Parça Listesi" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
-                     <font>
-                        <Font name="TextaAlt-Regular" size="20.0" />
-                     </font>
-                     <padding>
-                        <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
-                     </padding>
-                  </Label>
-                  <Button contentDisplay="RIGHT" mnemonicParsing="false" style="-fx-background-color: #ffffff; -fx-background-radius: 6em;" text="Görüntüle" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                     <padding>
-                        <Insets bottom="12.0" left="16.0" right="16.0" top="12.0" />
-                     </padding>
-                     <graphic>
-                        <ImageView fitHeight="14.0" fitWidth="14.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../../../../assets/images/icons/icon_arrow_down.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                  </Button>
-               </children>
-               <padding>
-                  <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
-               </padding>
-               <VBox.margin>
-                  <Insets left="16.0" right="16.0" />
-               </VBox.margin>
-            </AnchorPane>
-            <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" style="-fx-background-color: rgba(255, 255, 255, 0.34); -fx-background-radius: 32;">
-               <children>
-                  <Label style="-fx-text-fill: #060606;" stylesheets="@../styling/dark-theme.css" text="Ünite Şeması" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
-                     <font>
-                        <Font name="TextaAlt-Regular" size="20.0" />
-                     </font>
-                     <padding>
-                        <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
-                     </padding>
-                  </Label>
-                  <Button contentDisplay="RIGHT" mnemonicParsing="false" style="-fx-background-color: #ffffff; -fx-background-radius: 6em;" text="Görüntüle" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                     <padding>
-                        <Insets bottom="12.0" left="16.0" right="16.0" top="12.0" />
-                     </padding>
-                     <graphic>
-                        <ImageView fitHeight="14.0" fitWidth="14.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../../../../assets/images/icons/icon_arrow_down.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                  </Button>
-               </children>
-               <padding>
-                  <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
-               </padding>
-               <VBox.margin>
-                  <Insets left="16.0" right="16.0" />
-               </VBox.margin>
-            </AnchorPane>
-            <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" style="-fx-background-color: rgba(255, 255, 255, 0.34); -fx-background-radius: 32;">
-               <children>
-                  <Label style="-fx-text-fill: #060606;" stylesheets="@../styling/dark-theme.css" text="Hata Kontrol" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
-                     <font>
-                        <Font name="TextaAlt-Regular" size="20.0" />
-                     </font>
-                     <padding>
-                        <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
-                     </padding>
-                  </Label>
-                  <Button contentDisplay="RIGHT" mnemonicParsing="false" style="-fx-background-color: #ffffff; -fx-background-radius: 6em;" text="Kontrol Et" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                     <padding>
-                        <Insets bottom="12.0" left="16.0" right="16.0" top="12.0" />
-                     </padding>
-                     <graphic>
-                        <ImageView fitHeight="14.0" fitWidth="14.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../../../../assets/images/icons/icon_arrow_down.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                  </Button>
-               </children>
-               <padding>
-                  <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
-               </padding>
-               <VBox.margin>
-                  <Insets left="16.0" right="16.0" />
-               </VBox.margin>
-            </AnchorPane>
-         </children>
-      </VBox>
+        </content>
+         <padding>
+            <Insets bottom="16.0" left="16.0" right="16.0" top="16.0" />
+         </padding>
+      </ScrollPane>
    </children>
 </AnchorPane>

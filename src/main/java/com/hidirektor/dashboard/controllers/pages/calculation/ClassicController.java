@@ -23,13 +23,13 @@ import java.util.ResourceBundle;
 public class ClassicController implements Initializable  {
 
     @FXML
-    public AnchorPane orderSection, unitInfoSection;
+    public AnchorPane orderSection, unitInfoSection, calculationResultSection;
 
     @FXML
-    public Button orderSectionButton, unitInfoSectionButton;
+    public Button orderSectionButton, unitInfoSectionButton, calculationResultSectionButton;
 
     @FXML
-    public ImageView orderSectionButtonImage, unitInfoSectionButtonImage;
+    public ImageView orderSectionButtonImage, unitInfoSectionButtonImage, calculationResultSectionButtonImage;
 
     //Hesaplama alanları:
     @FXML
@@ -38,7 +38,7 @@ public class ClassicController implements Initializable  {
     @FXML
     public TextField gerekenYagMiktariField;
 
-    boolean orderSectionExpansed = false, unitInfoSectionExpansed = false;
+    boolean orderSectionExpanded = false, unitInfoSectionExpanded = false, calculationResultSectionExpanded = false;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -50,11 +50,14 @@ public class ClassicController implements Initializable  {
     @FXML
     public void handleClick(ActionEvent actionEvent) {
         if(actionEvent.getSource().equals(orderSectionButton)) {
-            collapseAndExpandSection(orderSection, orderSectionExpansed, orderSectionButtonImage);
-            orderSectionExpansed = !orderSectionExpansed;
+            collapseAndExpandSection(orderSection, orderSectionExpanded, orderSectionButtonImage);
+            orderSectionExpanded = !orderSectionExpanded;
         } else if(actionEvent.getSource().equals(unitInfoSectionButton)) {
-            collapseAndExpandSection(unitInfoSection, unitInfoSectionExpansed, unitInfoSectionButtonImage);
-            unitInfoSectionExpansed = !unitInfoSectionExpansed;
+            collapseAndExpandSection(unitInfoSection, unitInfoSectionExpanded, unitInfoSectionButtonImage);
+            unitInfoSectionExpanded = !unitInfoSectionExpanded;
+        } else if(actionEvent.getSource().equals(calculationResultSectionButton)) {
+            collapseAndExpandSection(calculationResultSection, calculationResultSectionExpanded, calculationResultSectionButtonImage);
+            calculationResultSectionExpanded = !calculationResultSectionExpanded;
         } else {
             NotificationUtil.showNotification(orderSectionButton.getScene().getWindow(), NotificationController.NotificationType.ALERT, "Buton Hatası", "Buton hatası meydana geldi. Lütfen yaptığınız işlemle birlikte hatayı bize bildirin.");
         }
