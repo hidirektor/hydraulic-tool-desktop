@@ -1,0 +1,531 @@
+cift_hiz:
+  '0':
+    key: "cift_hiz_1"
+    value: "50 mm"
+  '1':
+    key: "cift_hiz_2"
+    value: "50 mm"
+  '2':
+    key: "cift_hiz_3"
+    value: "30 mm"
+  '3':
+    key: "cift_hiz_4"
+    value: "65 mm"
+  '4':
+    key: "cift_hiz_5"
+    value: "125 mm"
+  '5':
+    key: "cift_hiz_6"
+    value: "Ø25"
+  '6':
+    key: "cift_hiz_7"
+    value: "Ø30"
+  '7':
+    key: "cift_hiz_8"
+    value: "70 mm"
+  '8':
+    key: "cift_hiz_9"
+    value: "70 mm"
+  '9':
+    key: "cift_hiz_10"
+    value: "Ø30"
+  '10':
+    key: "cift_hiz_11"
+    value: "35 mm"
+  '11':
+    key: "cift_hiz_12"
+    value: "35 mm"
+kilit_ayri_cift_hiz:
+  '0':
+    key: "kilit_ayri_cift_hiz_1"
+    value: "40 mm"
+  '1':
+    key: "kilit_ayri_cift_hiz_2"
+    value: "100 mm"
+  '2':
+    key: "kilit_ayri_cift_hiz_3"
+    value: "Ø110"
+  '3':
+    key: "kilit_ayri_cift_hiz_4"
+    value: "70 mm"
+  '4':
+    key: "kilit_ayri_cift_hiz_5"
+    value: "70 mm"
+  '5':
+    key: "kilit_ayri_cift_hiz_6"
+    value: "210 mm"
+  '6':
+    key: "kilit_ayri_cift_hiz_7"
+    value: "50 mm"
+  '7':
+    key: "kilit_ayri_cift_hiz_8"
+    value: "60 mm"
+  '8':
+    key: "kilit_ayri_cift_hiz_9"
+    value: "Ø30"
+  '9':
+    key: "kilit_ayri_cift_hiz_10"
+    value: "Ø25"
+  '10':
+    key: "kilit_ayri_cift_hiz_11"
+    value: "50 mm"
+  '11':
+    key: "kilit_ayri_cift_hiz_12"
+    value: "70 mm"
+  '12':
+    key: "kilit_ayri_cift_hiz_13"
+    value: "100 mm"
+  '13':
+    key: "kilit_ayri_cift_hiz_14"
+    value: "Ø52"
+  '14':
+    key: "kilit_ayri_cift_hiz_15"
+    value: "50 mm"
+  '15':
+    key: "kilit_ayri_cift_hiz_16"
+    value: "50 mm"
+kilit_ayri_tek_hiz:
+  '0':
+    key: "kilit_ayri_tek_hiz_1"
+    value: "40 mm"
+  '1':
+    key: "kilit_ayri_tek_hiz_2"
+    value: "100 mm"
+  '2':
+    key: "kilit_ayri_tek_hiz_3"
+    value: "Ø110"
+  '3':
+    key: "kilit_ayri_tek_hiz_4"
+    value: "70 mm"
+  '4':
+    key: "kilit_ayri_tek_hiz_5"
+    value: "70 mm"
+  '5':
+    key: "kilit_ayri_tek_hiz_6"
+    value: "180 mm"
+  '6':
+    key: "kilit_ayri_tek_hiz_7"
+    value: "150 mm"
+  '7':
+    key: "kilit_ayri_tek_hiz_8"
+    value: "50 mm"
+  '8':
+    key: "kilit_ayri_tek_hiz_9"
+    value: "70 mm"
+  '9':
+    key: "kilit_ayri_tek_hiz_10"
+    value: "100 mm"
+  '10':
+    key: "kilit_ayri_tek_hiz_11"
+    value: "100 mm"
+  '11':
+    key: "kilit_ayri_tek_hiz_12"
+    value: "Ø30"
+  '12':
+    key: "kilit_ayri_tek_hiz_13"
+    value: "Ø25"
+  '13':
+    key: "kilit_ayri_tek_hiz_14"
+    value: "Ø52"
+  '14':
+    key: "kilit_ayri_tek_hiz_15"
+    value: "50 mm"
+  '15':
+    key: "kilit_ayri_tek_hiz_16"
+    value: "50 mm"
+kilitli_blok:
+  '0':
+    key: "kilitli_blok_1"
+    value: "50 mm"
+  '1':
+    key: "kilitli_blok_2"
+    value: "50 mm"
+  '2':
+    key: "kilitli_blok_3"
+    value: "200 mm"
+  '3':
+    key: "kilitli_blok_4"
+    value: "50 mm"
+  '4':
+    key: "kilitli_blok_5"
+    value: "Ø25"
+  '5':
+    key: "kilitli_blok_6"
+    value: "70 mm"
+  '6':
+    key: "kilitli_blok_7"
+    value: "70 mm"
+  '7':
+    key: "kilitli_blok_8"
+    value: "Ø30"
+  '8':
+    key: "kilitli_blok_9"
+    value: "35 mm"
+  '9':
+    key: "kilitli_blok_10"
+    value: "35 mm"
+tek_hiz_kompanzasyon_arti_tek_hiz:
+  '0':
+    key: "tek_hiz_kompanzasyon_arti_tek_hiz_1"
+    value: "70 mm"
+  '1':
+    key: "tek_hiz_kompanzasyon_arti_tek_hiz_2"
+    value: "100 mm"
+  '2':
+    key: "tek_hiz_kompanzasyon_arti_tek_hiz_3"
+    value: "30 mm"
+  '3':
+    key: "tek_hiz_kompanzasyon_arti_tek_hiz_4"
+    value: "150 mm"
+  '4':
+    key: "tek_hiz_kompanzasyon_arti_tek_hiz_5"
+    value: "65 mm"
+  '5':
+    key: "tek_hiz_kompanzasyon_arti_tek_hiz_6"
+    value: "Ø25"
+  '6':
+    key: "tek_hiz_kompanzasyon_arti_tek_hiz_7"
+    value: "Ø30"
+  '7':
+    key: "tek_hiz_kompanzasyon_arti_tek_hiz_8"
+    value: "70 mm"
+  '8':
+    key: "tek_hiz_kompanzasyon_arti_tek_hiz_9"
+    value: "70 mm"
+  '9':
+    key: "tek_hiz_kompanzasyon_arti_tek_hiz_10"
+    value: "Ø30"
+  '10':
+    key: "tek_hiz_kompanzasyon_arti_tek_hiz_11"
+    value: "35 mm"
+  '11':
+    key: "tek_hiz_kompanzasyon_arti_tek_hiz_12"
+    value: "35 mm"
+sogutma_kilitsiz_cift_hiz:
+  '0':
+    key: "sogutma_kilitsiz_cift_hiz_1"
+    value: "235 mm"
+  '1':
+    key: "sogutma_kilitsiz_cift_hiz_2"
+    value: "50 mm"
+  '2':
+    key: "sogutma_kilitsiz_cift_hiz_3"
+    value: "50 mm"
+  '3':
+    key: "sogutma_kilitsiz_cift_hiz_4"
+    value: "230 mm"
+  '4':
+    key: "sogutma_kilitsiz_cift_hiz_5"
+    value: "60 mm"
+  '5':
+    key: "sogutma_kilitsiz_cift_hiz_6"
+    value: "100 mm"
+  '6':
+    key: "sogutma_kilitsiz_cift_hiz_7"
+    value: "Ø30"
+  '7':
+    key: "sogutma_kilitsiz_cift_hiz_8"
+    value: "Ø40"
+  '8':
+    key: "sogutma_kilitsiz_cift_hiz_9"
+    value: "Ø40"
+  '9':
+    key: "sogutma_kilitsiz_cift_hiz_10"
+    value: "70 mm"
+  '10':
+    key: "sogutma_kilitsiz_cift_hiz_11"
+    value: "50 mm"
+  '11':
+    key: "sogutma_kilitsiz_cift_hiz_12"
+    value: "70 mm"
+  '12':
+    key: "sogutma_kilitsiz_cift_hiz_13"
+    value: "70 mm"
+  '13':
+    key: "sogutma_kilitsiz_cift_hiz_14"
+    value: "163 mm"
+  '14':
+    key: "sogutma_kilitsiz_cift_hiz_15"
+    value: "Ø30"
+  '15':
+    key: "sogutma_kilitsiz_cift_hiz_16"
+    value: "Ø52"
+  '16':
+    key: "sogutma_kilitsiz_cift_hiz_17"
+    value: "400 mm"
+  '17':
+    key: "sogutma_kilitsiz_cift_hiz_18"
+    value: "Soğutma Radyatörü"
+  '18':
+    key: "sogutma_kilitsiz_cift_hiz_19"
+    value: "328 mm"
+  '19':
+    key: "sogutma_kilitsiz_cift_hiz_20"
+    value: "235 mm"
+  '20':
+    key: "sogutma_kilitsiz_cift_hiz_21"
+    value: "40 mm"
+  '21':
+    key: "sogutma_kilitsiz_cift_hiz_22"
+    value: "Ø8"
+  '22':
+    key: "sogutma_kilitsiz_cift_hiz_23"
+    value: "100 mm"
+  '23':
+    key: "sogutma_kilitsiz_cift_hiz_24"
+    value: "60 mm"
+  '24':
+    key: "sogutma_kilitsiz_cift_hiz_25"
+    value: "Ø40"
+  '25':
+    key: "sogutma_kilitsiz_cift_hiz_26"
+    value: "Kampana: 250\nKesim Çapı: Ø173"
+sogutma_kilitli_cift_hiz:
+  '0':
+    key: "sogutma_kilitli_cift_hiz_1"
+    value: "100 mm"
+  '1':
+    key: "sogutma_kilitli_cift_hiz_2"
+    value: "50 mm"
+  '2':
+    key: "sogutma_kilitli_cift_hiz_3"
+    value: "235 mm"
+  '3':
+    key: "sogutma_kilitli_cift_hiz_4"
+    value: "50 mm"
+  '4':
+    key: "sogutma_kilitli_cift_hiz_5"
+    value: "50 mm"
+  '5':
+    key: "sogutma_kilitli_cift_hiz_6"
+    value: "230 mm"
+  '6':
+    key: "sogutma_kilitli_cift_hiz_7"
+    value: "60 mm"
+  '7':
+    key: "sogutma_kilitli_cift_hiz_8"
+    value: "100 mm"
+  '8':
+    key: "sogutma_kilitli_cift_hiz_9"
+    value: "Ø30"
+  '9':
+    key: "sogutma_kilitli_cift_hiz_10"
+    value: "Ø40"
+  '10':
+    key: "sogutma_kilitli_cift_hiz_11"
+    value: "Ø40"
+  '11':
+    key: "sogutma_kilitli_cift_hiz_12"
+    value: "70 mm"
+  '12':
+    key: "sogutma_kilitli_cift_hiz_13"
+    value: "50 mm"
+  '13':
+    key: "sogutma_kilitli_cift_hiz_14"
+    value: "70 mm"
+  '14':
+    key: "sogutma_kilitli_cift_hiz_15"
+    value: "70 mm"
+  '15':
+    key: "sogutma_kilitli_cift_hiz_16"
+    value: "163 mm"
+  '16':
+    key: "sogutma_kilitli_cift_hiz_17"
+    value: "Ø30"
+  '17':
+    key: "sogutma_kilitli_cift_hiz_18"
+    value: "Ø52"
+  '18':
+    key: "sogutma_kilitli_cift_hiz_19"
+    value: "400 mm"
+  '19':
+    key: "sogutma_kilitli_cift_hiz_20"
+    value: "Soğutma Radyatörü"
+  '20':
+    key: "sogutma_kilitli_cift_hiz_21"
+    value: "328 mm"
+  '21':
+    key: "sogutma_kilitli_cift_hiz_22"
+    value: "235 mm"
+  '22':
+    key: "sogutma_kilitli_cift_hiz_23"
+    value: "40 mm"
+  '23':
+    key: "sogutma_kilitli_cift_hiz_24"
+    value: "Ø8"
+  '24':
+    key: "sogutma_kilitli_cift_hiz_25"
+    value: "100 mm"
+  '25':
+    key: "sogutma_kilitli_cift_hiz_26"
+    value: "60 mm"
+  '26':
+    key: "sogutma_kilitli_cift_hiz_27"
+    value: "Ø40"
+  '27':
+    key: "sogutma_kilitli_cift_hiz_28"
+    value: "Kampana: 250\nKesim Çapı: Ø173"
+sogutma_kilitsiz_tek_hiz:
+  '0':
+    key: "sogutma_kilitsiz_tek_hiz_1"
+    value: "235 mm"
+  '1':
+    key: "sogutma_kilitsiz_tek_hiz_2"
+    value: "100 mm"
+  '2':
+    key: "sogutma_kilitsiz_tek_hiz_3"
+    value: "50 mm"
+  '3':
+    key: "sogutma_kilitsiz_tek_hiz_4"
+    value: "230 mm"
+  '4':
+    key: "sogutma_kilitsiz_tek_hiz_5"
+    value: "60 mm"
+  '5':
+    key: "sogutma_kilitsiz_tek_hiz_6"
+    value: "100 mm"
+  '6':
+    key: "sogutma_kilitsiz_tek_hiz_7"
+    value: "Ø30"
+  '7':
+    key: "sogutma_kilitsiz_tek_hiz_8"
+    value: "Ø40"
+  '8':
+    key: "sogutma_kilitsiz_tek_hiz_9"
+    value: "Ø40"
+  '9':
+    key: "sogutma_kilitsiz_tek_hiz_10"
+    value: "70 mm"
+  '10':
+    key: "sogutma_kilitsiz_tek_hiz_11"
+    value: "50 mm"
+  '11':
+    key: "sogutma_kilitsiz_tek_hiz_12"
+    value: "70 mm"
+  '12':
+    key: "sogutma_kilitsiz_tek_hiz_13"
+    value: "70 mm"
+  '13':
+    key: "sogutma_kilitsiz_tek_hiz_14"
+    value: "163 mm"
+  '14':
+    key: "sogutma_kilitsiz_tek_hiz_15"
+    value: "Ø30"
+  '15':
+    key: "sogutma_kilitsiz_tek_hiz_16"
+    value: "Ø52"
+  '16':
+    key: "sogutma_kilitsiz_tek_hiz_17"
+    value: "400 mm"
+  '17':
+    key: "sogutma_kilitsiz_tek_hiz_18"
+    value: "Soğutma Radyatörü"
+  '18':
+    key: "sogutma_kilitsiz_tek_hiz_19"
+    value: "328 mm"
+  '19':
+    key: "sogutma_kilitsiz_tek_hiz_20"
+    value: "235 mm"
+  '20':
+    key: "sogutma_kilitsiz_tek_hiz_21"
+    value: "40 mm"
+  '21':
+    key: "sogutma_kilitsiz_tek_hiz_22"
+    value: "Ø8"
+  '22':
+    key: "sogutma_kilitsiz_tek_hiz_23"
+    value: "100 mm"
+  '23':
+    key: "sogutma_kilitsiz_tek_hiz_24"
+    value: "60 mm"
+  '24':
+    key: "sogutma_kilitsiz_tek_hiz_25"
+    value: "Ø40"
+  '25':
+    key: "sogutma_kilitsiz_tek_hiz_26"
+    value: "Kampana: 250\nKesim Çapı: Ø173"
+sogutma_kilitli_tek_hiz:
+  '0':
+    key: "sogutma_kilitli_tek_hiz_1"
+    value: "100 mm"
+  '1':
+    key: "sogutma_kilitli_tek_hiz_2"
+    value: "50 mm"
+  '2':
+    key: "sogutma_kilitli_tek_hiz_3"
+    value: "235 mm"
+  '3':
+    key: "sogutma_kilitli_tek_hiz_4"
+    value: "100 mm"
+  '4':
+    key: "sogutma_kilitli_tek_hiz_5"
+    value: "50 mm"
+  '5':
+    key: "sogutma_kilitli_tek_hiz_6"
+    value: "230 mm"
+  '6':
+    key: "sogutma_kilitli_tek_hiz_7"
+    value: "60 mm"
+  '7':
+    key: "sogutma_kilitli_tek_hiz_8"
+    value: "100 mm"
+  '8':
+    key: "sogutma_kilitli_tek_hiz_9"
+    value: "Ø30"
+  '9':
+    key: "sogutma_kilitli_tek_hiz_10"
+    value: "Ø40"
+  '10':
+    key: "sogutma_kilitli_tek_hiz_11"
+    value: "Ø40"
+  '11':
+    key: "sogutma_kilitli_tek_hiz_12"
+    value: "70 mm"
+  '12':
+    key: "sogutma_kilitli_tek_hiz_13"
+    value: "50 mm"
+  '13':
+    key: "sogutma_kilitli_tek_hiz_14"
+    value: "70 mm"
+  '14':
+    key: "sogutma_kilitli_tek_hiz_15"
+    value: "70 mm"
+  '15':
+    key: "sogutma_kilitli_tek_hiz_16"
+    value: "163 mm"
+  '16':
+    key: "sogutma_kilitli_tek_hiz_17"
+    value: "Ø30"
+  '17':
+    key: "sogutma_kilitli_tek_hiz_18"
+    value: "Ø52"
+  '18':
+    key: "sogutma_kilitli_tek_hiz_19"
+    value: "400 mm"
+  '19':
+    key: "sogutma_kilitli_tek_hiz_20"
+    value: "Soğutma Radyatörü"
+  '20':
+    key: "sogutma_kilitli_tek_hiz_21"
+    value: "328 mm"
+  '21':
+    key: "sogutma_kilitli_tek_hiz_22"
+    value: "235 mm"
+  '22':
+    key: "sogutma_kilitli_tek_hiz_23"
+    value: "40 mm"
+  '23':
+    key: "sogutma_kilitli_tek_hiz_24"
+    value: "Ø8"
+  '24':
+    key: "sogutma_kilitli_tek_hiz_25"
+    value: "100 mm"
+  '25':
+    key: "sogutma_kilitli_tek_hiz_26"
+    value: "60 mm"
+  '26':
+    key: "sogutma_kilitli_tek_hiz_27"
+    value: "Ø40"
+  '27':
+    key: "sogutma_kilitli_tek_hiz_28"
+    value: "Kampana: 250\nKesim Çapı: Ø173"

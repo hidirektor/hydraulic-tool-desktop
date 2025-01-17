@@ -1,0 +1,6 @@
+part_origins:
+  '0': # Part numarası
+    parts:
+      '0': # İç parça numarası
+        malzemeKodu: "150-51-01-305" # Benzersiz malzeme kodu 150-51-01-305
+        malzemeAdi: "9.5 cc Pompa"  # Malzeme adı

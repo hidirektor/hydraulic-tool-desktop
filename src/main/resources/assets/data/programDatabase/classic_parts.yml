@@ -1,0 +1,2013 @@
+motor:
+  '0': #2.2 kW
+    parts:
+      '0':
+        malzemeKodu: "150-52-13-012"
+        malzemeAdi: "2.2 KW 1500d/dk 380V B5 FLANŞLI VOLT"
+        malzemeAdet: "1"
+  '1': #3 kW
+    parts:
+      '0':
+        malzemeKodu: "150-52-13-013"
+        malzemeAdi: "3 KW 1500d/dk 380V B5 FLANŞLI VOLT"
+        malzemeAdet: "1"
+  '2': #4 kW
+    parts:
+      '0':
+        malzemeKodu: "150-52-13-014"
+        malzemeAdi: "4 kW B5 Flanşlı Motor"
+        malzemeAdet: "1"
+  '3': #5.5 kW
+    parts:
+      '0':
+        malzemeKodu: "150-52-13-016"
+        malzemeAdi: "5.5 kW  B5 Flanşlı Motor"
+        malzemeAdet: "1"
+  '4': #5.5 kW (Kompakt)
+    parts:
+      '0':
+        malzemeKodu: "150-52-13-016"
+        malzemeAdi: "5.5 kW (Kompakt)  B5 Flanşlı Motor"
+        malzemeAdet: "1"
+  '5': #7.5 kW (Kompakt)
+    parts:
+      '0':
+        malzemeKodu: "150-52-13-017"
+        malzemeAdi: "7.5 kW (Kompakt)  B5 Flanşlı Motor"
+        malzemeAdet: "1"
+  '6': #11 kW
+    parts:
+      '0':
+        malzemeKodu: "150-52-13-213"
+        malzemeAdi: "11 kW  B5 Flanşlı Motor"
+        malzemeAdet: "1"
+  '7': #11 kW (Kompakt)
+    parts:
+      '0':
+        malzemeKodu: "150-52-13-018"
+        malzemeAdi: "11 kW (Kompakt)  B5 Flanşlı Motor"
+        malzemeAdet: "1"
+  '8': #15 kW
+    parts:
+      '0':
+        malzemeKodu: "150-52-13-019"
+        malzemeAdi: "15 kW  B5 Flanşlı Motor"
+        malzemeAdet: "1"
+  '9': #18.5 kW
+    parts:
+      '0':
+        malzemeKodu: "150-52-13-196"
+        malzemeAdi: "18.5 kW  B5 Flanşlı Motor"
+        malzemeAdet: "1"
+  '10': #22 kW
+    parts:
+      '0':
+        malzemeKodu: "150-52-13-020"
+        malzemeAdi: "22 kW  B5 Flanşlı Motor"
+        malzemeAdet: "1"
+  '11': #37 kW
+    parts:
+      '0':
+        malzemeKodu: "150-52-13-206"
+        malzemeAdi: "ELEKTRİK MOTORU 37 KW 1500 d/dk 380V B5 FLANŞLI VOLT"
+        malzemeAdet: "1"
+kampana:
+  '0': #1K 250
+    parts:
+      '0':
+        malzemeKodu: "150-51-06-506"
+        malzemeAdi: "1K-250 GR30 Kampana"
+        malzemeAdet: "1"
+      '1':
+        malzemeKodu: "150-50-21-590"
+        malzemeAdi: "M12 x 60 - AKB Civata"
+        malzemeAdet: "4"
+      '2':
+        malzemeKodu: "150-50-23-007"
+        malzemeAdi: "M12 Somun"
+        malzemeAdet: "4"
+      '3':
+        malzemeKodu: "150-50-24-026"
+        malzemeAdi: "M12 Pul"
+        malzemeAdet: "4"
+  '1': #1K 300
+    parts:
+      '0':
+        malzemeKodu: "150-51-06-507"
+        malzemeAdi: "1K-300 GR30 Kampana"
+        malzemeAdet: "1"
+      '1':
+        malzemeKodu: "150-50-21-590"
+        malzemeAdi: "M12 x 60 - AKB Civata"
+        malzemeAdet: "4"
+      '2':
+        malzemeKodu: "150-50-23-007"
+        malzemeAdi: "M12 Somun"
+        malzemeAdet: "4"
+      '3':
+        malzemeKodu: "150-50-24-026"
+        malzemeAdi: "M12 Pul"
+        malzemeAdet: "4"
+  '2': #1K 350
+    parts:
+      '0':
+        malzemeKodu: "150-51-06-508"
+        malzemeAdi: "1K-350 GR30 Kampana"
+        malzemeAdet: "1"
+      '1':
+        malzemeKodu: "150-50-21-639"
+        malzemeAdi: "M16 x 60 - AKB Civata"
+        malzemeAdet: "4"
+      '2':
+        malzemeKodu: "150-50-23-009"
+        malzemeAdi: "M16 Somun"
+        malzemeAdet: "4"
+      '3':
+        malzemeKodu: "150-50-24-008"
+        malzemeAdi: "M16 Pul"
+        malzemeAdet: "4"
+  '3': #1K 400
+    parts:
+      '0':
+        malzemeKodu: "150-51-06-520"
+        malzemeAdi: "1K-400 GR30 Kampana"
+        malzemeAdet: "1"
+      '1':
+        malzemeKodu: "150-50-21-639"
+        malzemeAdi: "M16 x 60 - AKB Civata"
+        malzemeAdet: "4"
+      '2':
+        malzemeKodu: "150-50-23-009"
+        malzemeAdi: "M16 Somun"
+        malzemeAdet: "4"
+      '3':
+        malzemeKodu: "150-50-24-008"
+        malzemeAdi: "M16 Pul"
+        malzemeAdet: "4"
+  '4': #2K 250
+    parts:
+      '0':
+        malzemeKodu: "150-51-06-510"
+        malzemeAdi: "2K-250 GR30 Kampana"
+        malzemeAdet: "1"
+      '1':
+        malzemeKodu: "150-50-21-590"
+        malzemeAdi: "M12 x 60 - AKB Civata"
+        malzemeAdet: "4"
+      '2':
+        malzemeKodu: "150-50-23-007"
+        malzemeAdi: "M12 Somun"
+        malzemeAdet: "4"
+      '3':
+        malzemeKodu: "150-50-24-026"
+        malzemeAdi: "M12 Pul"
+        malzemeAdet: "4"
+  '5': #2K 300
+    parts:
+      '0':
+        malzemeKodu: "150-51-06-511"
+        malzemeAdi: "2K-300 GR30 Kampana"
+        malzemeAdet: "1"
+      '1':
+        malzemeKodu: "150-50-21-590"
+        malzemeAdi: "M12 x 60 - AKB Civata"
+        malzemeAdet: "4"
+      '2':
+        malzemeKodu: "150-50-23-007"
+        malzemeAdi: "M12 Somun"
+        malzemeAdet: "4"
+      '3':
+        malzemeKodu: "150-50-24-026"
+        malzemeAdi: "M12 Pul"
+        malzemeAdet: "4"
+  '6': #2K 350
+    parts:
+      '0':
+        malzemeKodu: "150-51-06-512"
+        malzemeAdi: "2K-350 GR30 Kampana"
+        malzemeAdet: "1"
+      '1':
+        malzemeKodu: "150-50-21-639"
+        malzemeAdi: "M16 x 60 - AKB Civata"
+        malzemeAdet: "4"
+      '2':
+        malzemeKodu: "150-50-23-009"
+        malzemeAdi: "M16 Somun"
+        malzemeAdet: "4"
+      '3':
+        malzemeKodu: "150-50-24-008"
+        malzemeAdi: "M16 Pul"
+        malzemeAdet: "4"
+  '7': #2K 400
+    parts:
+      '0':
+        malzemeKodu: "150-51-06-518"
+        malzemeAdi: "2K-400 GR30 Kampana"
+        malzemeAdet: "1"
+      '1':
+        malzemeKodu: "150-50-21-639"
+        malzemeAdi: "M16 x 60 - AKB Civata"
+        malzemeAdet: "4"
+      '2':
+        malzemeKodu: "150-50-23-009"
+        malzemeAdi: "M16 Somun"
+        malzemeAdet: "4"
+      '3':
+        malzemeKodu: "150-50-24-008"
+        malzemeAdi: "M16 Pul"
+        malzemeAdet: "4"
+kilit_motor:
+  '0': #Genel Kilit Motor Parçaları
+    parts:
+      '0':
+        malzemeKodu: "150-51-05-401"
+        malzemeAdi: "İTHAL-POPETLİ BLOK"
+        malzemeAdet: "1"
+      '1':
+        malzemeKodu: "150-51-06-694"
+        malzemeAdi: "İTHAL KAPLİN"
+        malzemeAdet: "1"
+      '2':
+        malzemeKodu: "150-51-07-050"
+        malzemeAdi: "3/8 EMİŞ FİLTRE"
+        malzemeAdet: "1"
+      '3':
+        malzemeKodu: "150-50-21-065"
+        malzemeAdi: "CIVATA  M6X30 MM İMBUS"
+        malzemeAdet: "4"
+      '4':
+        malzemeKodu: "150-51-05-060"
+        malzemeAdi: "A03 BLOK"
+        malzemeAdet: "1"
+      '5':
+        malzemeKodu: "150-51-04-023"
+        malzemeAdi: "VALF AÇIK MERKEZ NG6 24V"
+        malzemeAdet: "1"
+      '6':
+        malzemeKodu: "150-50-21-101"
+        malzemeAdi: "CİVATA İMBUS M8 60 MM BEYAZ (DIN 912)"
+        malzemeAdet: "2"
+      '7':
+        malzemeKodu: "150-51-09-029"
+        malzemeAdi: 'BSP METRİK NİPEL RK-1710-RMNP-L 3/8"-M16 Ø10L'
+        malzemeAdet: "2"
+      '8':
+        malzemeKodu: "150-51-09-360"
+        malzemeAdi: 'BSP UZUN REDİKSİYON 3/8"-3/8" (ERKEK-DİŞİ) 60MM'
+        malzemeAdet: "2"
+      '9':
+        malzemeKodu: "150-53-08-482"
+        malzemeAdi: 'BSP ALLENBAŞLI KÖR TAPA RK-1319-RAT 1/4"'
+        malzemeAdet: "1"
+      '10':
+        malzemeKodu: "150-51-09-201"
+        malzemeAdi: 'BSP METRİK TERS REKOR PİMLİ RK-1310-RMTR-L 1/4"M16 Ø10L'
+        malzemeAdet: "1"
+      '11':
+        malzemeKodu: "150-51-09-303"
+        malzemeAdi: "METRİK TERS DİRSEK PİMLİ RK-1010-MTD-L M16 Ø10L"
+        malzemeAdet: "1"
+      '12':
+        malzemeKodu: "150-51-09-990"
+        malzemeAdi: "İTHAL-KÖR TAPA 8/2"
+        malzemeAdet: "1"
+      '13':
+        malzemeKodu: "150-51-10-802"
+        malzemeAdi: "Manometre"
+        malzemeAdet: "1"
+      '14':
+        malzemeKodu: "150-51-09-603"
+        malzemeAdi: 'BSP-METRİK MANOMETRE REKORLARI RK-1310-MER-L 1/4" M16 10L'
+        malzemeAdet: "1"
+      '15':
+        malzemeKodu: "150-51-06-390"
+        malzemeAdi: "KAYANKLI TANK BOĞAZI"
+        malzemeAdet: "1"
+pompa:
+  '0': #9.5 cc
+    parts:
+      '0':
+        malzemeKodu: "150-51-01-305"
+        malzemeAdi: "9.5 cc Pompa"
+        malzemeAdet: "1"
+      '1':
+        malzemeKodu: "150-50-21-065"
+        malzemeAdi: "M6 x 30 İmbus Civata"
+        malzemeAdet: "4"
+      '2':
+        malzemeKodu: "150-50-24-003"
+        malzemeAdi: "M6 Pul"
+        malzemeAdet: "4"
+      '3':
+        malzemeKodu: "150-51-06-396"
+        malzemeAdi: "40 x 1/2 Düz Adaptör Emiş"
+        malzemeAdet: "1"
+      '4':
+        malzemeKodu: "150-53-08-651"
+        malzemeAdi: "1/2 Galvanizli Kuyruklu Dirsek"
+        malzemeAdet: "1"
+      '5':
+        malzemeKodu: "150-51-06-413"
+        malzemeAdi: "30 x 1/2 Dirsek Adaptör Pompa"
+        malzemeAdet: "1"
+      '6':
+        malzemeKodu: "150-51-09-055"
+        malzemeAdi: 'BSP METRİK NİPEL RK-2116-RMNP-S 1/2"-M24 Ø16S'
+        malzemeAdet: "1"
+      '7':
+        malzemeKodu: "000-00-00-000"
+        malzemeAdi: "1/2 x 10 cm Boru"
+        malzemeAdet: "1"
+      '8':
+        malzemeKodu: "150-51-07-004"
+        malzemeAdi: "45 Lt Emiş Filtresi"
+        malzemeAdet: "1"
+      '9':
+        malzemeKodu: "150-53-08-011"
+        malzemeAdi: "1 - 1/2 Galvanizli Redüksiyon"
+        malzemeAdet: "1"
+  '1': #11.9 cc
+    parts:
+      '0':
+        malzemeKodu: "150-51-01-306"
+        malzemeAdi: "11.9 cc Pompa"
+        malzemeAdet: "1"
+      '1':
+        malzemeKodu: "150-50-21-065"
+        malzemeAdi: "M6 x 30 İmbus Civata"
+        malzemeAdet: "4"
+      '2':
+        malzemeKodu: "150-50-24-003"
+        malzemeAdi: "M6 Pul"
+        malzemeAdet: "4"
+      '3':
+        malzemeKodu: "150-51-06-396"
+        malzemeAdi: "40 x 1/2 Düz Adaptör Emiş"
+        malzemeAdet: "1"
+      '4':
+        malzemeKodu: "150-53-08-651"
+        malzemeAdi: "1/2 Galvanizli Kuyruklu Dirsek"
+        malzemeAdet: "1"
+      '5':
+        malzemeKodu: "150-51-06-413"
+        malzemeAdi: "30 x 1/2 Dirsek Adaptör Pompa"
+        malzemeAdet: "1"
+      '6':
+        malzemeKodu: "150-51-09-055"
+        malzemeAdi: 'BSP METRİK NİPEL RK-2116-RMNP-S 1/2"-M24 Ø16S'
+        malzemeAdet: "1"
+      '7':
+        malzemeKodu: "000-00-00-000"
+        malzemeAdi: "1/2 x 10 cm Boru"
+        malzemeAdet: "1"
+      '8':
+        malzemeKodu: "150-51-07-004"
+        malzemeAdi: "45 Lt Emiş Filtresi"
+        malzemeAdet: "1"
+      '9':
+        malzemeKodu: "150-53-08-011"
+        malzemeAdi: "1 - 1/2 Galvanizli Redüksiyon"
+        malzemeAdet: "1"
+  '2': #14 cc
+    parts:
+      '0':
+        malzemeKodu: "150-51-01-308"
+        malzemeAdi: "14 cc Pompa"
+        malzemeAdet: "1"
+      '1':
+        malzemeKodu: "150-50-21-065"
+        malzemeAdi: "M6 x 30 İmbus Civata"
+        malzemeAdet: "4"
+      '2':
+        malzemeKodu: "150-50-24-003"
+        malzemeAdi: "M6 Pul"
+        malzemeAdet: "4"
+      '3':
+        malzemeKodu: "150-51-06-396"
+        malzemeAdi: "40 x 1/2 Düz Adaptör Emiş"
+        malzemeAdet: "1"
+      '4':
+        malzemeKodu: "150-53-08-651"
+        malzemeAdi: "1/2 Galvanizli Kuyruklu Dirsek"
+        malzemeAdet: "1"
+      '5':
+        malzemeKodu: "150-51-06-413"
+        malzemeAdi: "30 x 1/2 Dirsek Adaptör Pompa"
+        malzemeAdet: "1"
+      '6':
+        malzemeKodu: "150-51-09-055"
+        malzemeAdi: 'BSP METRİK NİPEL RK-2116-RMNP-S 1/2"-M24 Ø16S'
+        malzemeAdet: "1"
+      '7':
+        malzemeKodu: "000-00-00-000"
+        malzemeAdi: "1/2 x 10 cm Boru"
+        malzemeAdet: "1"
+      '8':
+        malzemeKodu: "150-51-07-004"
+        malzemeAdi: "45 Lt Emiş Filtresi"
+        malzemeAdet: "1"
+      '9':
+        malzemeKodu: "150-53-08-011"
+        malzemeAdi: "1 - 1/2 Galvanizli Redüksiyon"
+        malzemeAdet: "1"
+  '3': #14.6 cc
+    parts:
+      '0':
+        malzemeKodu: "150-51-01-309"
+        malzemeAdi: "14.6 cc Pompa"
+        malzemeAdet: "1"
+      '1':
+        malzemeKodu: "150-50-21-065"
+        malzemeAdi: "M6 x 30 İmbus Civata"
+        malzemeAdet: "4"
+      '2':
+        malzemeKodu: "150-50-24-003"
+        malzemeAdi: "M6 Pul"
+        malzemeAdet: "4"
+      '3':
+        malzemeKodu: "150-51-06-396"
+        malzemeAdi: "40 x 1/2 Düz Adaptör Emiş"
+        malzemeAdet: "1"
+      '4':
+        malzemeKodu: "150-53-08-651"
+        malzemeAdi: "1/2 Galvanizli Kuyruklu Dirsek"
+        malzemeAdet: "1"
+      '5':
+        malzemeKodu: "150-51-06-413"
+        malzemeAdi: "30 x 1/2 Dirsek Adaptör Pompa"
+        malzemeAdet: "1"
+      '6':
+        malzemeKodu: "150-51-09-055"
+        malzemeAdi: 'BSP METRİK NİPEL RK-2116-RMNP-S 1/2"-M24 Ø16S'
+        malzemeAdet: "1"
+      '7':
+        malzemeKodu: "000-00-00-000"
+        malzemeAdi: "1/2 x 10 cm Boru"
+        malzemeAdet: "1"
+      '8':
+        malzemeKodu: "150-51-07-004"
+        malzemeAdi: "45 Lt Emiş Filtresi"
+        malzemeAdet: "1"
+      '9':
+        malzemeKodu: "150-53-08-011"
+        malzemeAdi: "1 - 1/2 Galvanizli Redüksiyon"
+        malzemeAdet: "1"
+  '4': #16.8 cc
+    parts:
+      '0':
+        malzemeKodu: "150-51-01-310"
+        malzemeAdi: "16.8 cc Pompa"
+        malzemeAdet: "1"
+      '1':
+        malzemeKodu: "150-50-21-065"
+        malzemeAdi: "M6 x 30 İmbus Civata"
+        malzemeAdet: "4"
+      '2':
+        malzemeKodu: "150-50-24-003"
+        malzemeAdi: "M6 Pul"
+        malzemeAdet: "4"
+      '3':
+        malzemeKodu: "150-51-06-396"
+        malzemeAdi: "40 x 1/2 Düz Adaptör Emiş"
+        malzemeAdet: "1"
+      '4':
+        malzemeKodu: "150-53-08-651"
+        malzemeAdi: "1/2 Galvanizli Kuyruklu Dirsek"
+        malzemeAdet: "1"
+      '5':
+        malzemeKodu: "150-51-06-433"
+        malzemeAdi: "30 x 1/2 Dirsek Adaptör Pompa"
+        malzemeAdet: "1"
+      '6':
+        malzemeKodu: "150-51-09-055"
+        malzemeAdi: 'BSP METRİK NİPEL RK-2116-RMNP-S 1/2"-M24 Ø16S'
+        malzemeAdet: "1"
+      '7':
+        malzemeKodu: "000-00-00-000"
+        malzemeAdi: "1/2 x 10 cm Boru"
+        malzemeAdet: "1"
+      '8':
+        malzemeKodu: "150-51-07-004"
+        malzemeAdi: "45 Lt Emiş Filtresi"
+        malzemeAdet: "1"
+      '9':
+        malzemeKodu: "150-53-08-011"
+        malzemeAdi: "1 - 1/2 Galvanizli Redüksiyon"
+        malzemeAdet: "1"
+  '5': #19.2 cc
+    parts:
+      '0':
+        malzemeKodu: "150-51-01-311"
+        malzemeAdi: "19.2 cc Pompa"
+        malzemeAdet: "1"
+      '1':
+        malzemeKodu: "150-50-21-065"
+        malzemeAdi: "M6 x 30 İmbus Civata"
+        malzemeAdet: "4"
+      '2':
+        malzemeKodu: "150-50-24-003"
+        malzemeAdi: "M6 Pul"
+        malzemeAdet: "4"
+      '3':
+        malzemeKodu: "150-51-06-399"
+        malzemeAdi: "40 x 3/4 Dirsek Adaptör Emiş"
+        malzemeAdet: "1"
+      '4':
+        malzemeKodu: "150-51-06-413"
+        malzemeAdi: "30 x 1/2 Dirsek Adaptör Pompa"
+        malzemeAdet: "1"
+      '5':
+        malzemeKodu: "150-51-09-055"
+        malzemeAdi: 'BSP METRİK NİPEL RK-2116-RMNP-S 1/2"-M24 Ø16S'
+        malzemeAdet: "1"
+      '6':
+        malzemeKodu: "000-00-00-000"
+        malzemeAdi: "3/4 x 10 cm Boru"
+        malzemeAdet: "1"
+      '7':
+        malzemeKodu: "150-51-07-005"
+        malzemeAdi: "65 Lt Emiş Filtresi"
+        malzemeAdet: "1"
+      '8':
+        malzemeKodu: "150-53-08-014"
+        malzemeAdi: "1 - 1/2 - 3/4 Galvanizli Redüksiyon"
+        malzemeAdet: "1"
+  '6': #22.9 cc
+    parts:
+      '0':
+        malzemeKodu: "150-51-01-312"
+        malzemeAdi: "22.9 cc Pompa"
+        malzemeAdet: "1"
+      '1':
+        malzemeKodu: "150-50-21-065"
+        malzemeAdi: "M6 x 30 İmbus Civata"
+        malzemeAdet: "4"
+      '2':
+        malzemeKodu: "150-50-24-003"
+        malzemeAdi: "M6 Pul"
+        malzemeAdet: "4"
+      '3':
+        malzemeKodu: "150-51-06-399"
+        malzemeAdi: "40 x 3/4 Dirsek Adaptör Emiş"
+        malzemeAdet: "1"
+      '4':
+        malzemeKodu: "150-51-06-413"
+        malzemeAdi: "30 x 1/2 Dirsek Adaptör Pompa"
+        malzemeAdet: "1"
+      '5':
+        malzemeKodu: "150-51-09-056"
+        malzemeAdi: 'BSP METRİK NİPEL RK-2120-RMNP-S 1/2"-M30 Ø20S'
+        malzemeAdet: "1"
+      '6':
+        malzemeKodu: "000-00-00-000"
+        malzemeAdi: "3/4 x 10 cm Boru"
+        malzemeAdet: "1"
+      '7':
+        malzemeKodu: "150-51-07-005"
+        malzemeAdi: "65 Lt Emiş Filtresi"
+        malzemeAdet: "1"
+      '8':
+        malzemeKodu: "150-53-08-014"
+        malzemeAdi: "1 - 1/2 - 3/4 Galvanizli Redüksiyon"
+        malzemeAdet: "1"
+  '7': #28.1 cc
+    parts:
+      '0':
+        malzemeKodu: "150-51-01-313"
+        malzemeAdi: "28.1 cc Pompa"
+        malzemeAdet: "1"
+      '1':
+        malzemeKodu: "150-50-21-065"
+        malzemeAdi: "M6 x 30 İmbus Civata"
+        malzemeAdet: "4"
+      '2':
+        malzemeKodu: "150-50-24-003"
+        malzemeAdi: "M6 Pul"
+        malzemeAdet: "4"
+      '3':
+        malzemeKodu: "150-51-06-399"
+        malzemeAdi: "40 x 3/4 Dirsek Adaptör Emiş"
+        malzemeAdet: "1"
+      '4':
+        malzemeKodu: "150-50-21-063"
+        malzemeAdi: "M6 x 20 İmbus Civata"
+        malzemeAdet: "8"
+      '5':
+        malzemeKodu: "150-50-24-003"
+        malzemeAdi: "M6 Pul"
+        malzemeAdet: "8"
+      '6':
+        malzemeKodu: "150-51-06-413"
+        malzemeAdi: "30 x 1/2 Dirsek Adaptör Pompa"
+        malzemeAdet: "1"
+      '7':
+        malzemeKodu: "150-51-09-055"
+        malzemeAdi: 'BSP METRİK NİPEL RK-2116-RMNP-S 1/2"-M24 Ø16S'
+        malzemeAdet: "1"
+      '8':
+        malzemeKodu: "000-00-00-000"
+        malzemeAdi: "3/4 x 10 cm Boru"
+        malzemeAdet: "1"
+      '9':
+        malzemeKodu: "150-51-07-005"
+        malzemeAdi: "65 Lt Emiş Filtresi"
+        malzemeAdet: "1"
+      '10':
+        malzemeKodu: "150-53-08-014"
+        malzemeAdi: "1 - 1/2 - 3/4 Galvanizli Redüksiyon"
+        malzemeAdet: "1"
+  '8': #28.8 cc
+    parts:
+      '0':
+        malzemeKodu: "000-00-00-000"
+        malzemeAdi: "000-00-00-000"
+        malzemeAdet: "000-00-00-000"
+  '9': #33.3 cc
+    parts:
+      '0':
+        malzemeKodu: "150-51-01-354"
+        malzemeAdi: "33.3 cc Pompa"
+        malzemeAdet: "1"
+      '1':
+        malzemeKodu: "150-50-21-097"
+        malzemeAdi: "M8 x 40 İmbus Civata"
+        malzemeAdet: "4"
+      '2':
+        malzemeKodu: "150-50-24-004"
+        malzemeAdi: "M8 Pul"
+        malzemeAdet: "4"
+      '3':
+        malzemeKodu: "150-51-06-443"
+        malzemeAdi: "51 x 3/4 Düz Adaptör Emiş"
+        malzemeAdet: "1"
+      '4':
+        malzemeKodu: "150-53-08-652"
+        malzemeAdi: "3/4 Galvanizli Kuyruklu Dirsek"
+        malzemeAdet: "1"
+      '5':
+        malzemeKodu: "150-51-06-396"
+        malzemeAdi: "40 x 1/2 Düz Adaptör Pompa"
+        malzemeAdet: "1"
+      '6':
+        malzemeKodu: "150-51-09-056"
+        malzemeAdi: 'BSP METRİK NİPEL RK-2120-RMNP-S 1/2"-M30 Ø20S'
+        malzemeAdet: "1"
+      '7':
+        malzemeKodu: "000-00-00-000"
+        malzemeAdi: "3/4 x 10 cm Boru"
+        malzemeAdet: "1"
+      '8':
+        malzemeKodu: "150-51-07-006"
+        malzemeAdi: "90 Lt Emiş Filtresi"
+        malzemeAdet: "1"
+      '9':
+        malzemeKodu: "150-53-08-014"
+        malzemeAdi: "1 - 1/2 - 3/4 Galvanizli Redüksiyon"
+        malzemeAdet: "1"
+  '10': #37.9 cc
+    parts:
+      '0':
+        malzemeKodu: "150-51-01-355"
+        malzemeAdi: "37.9 cc Pompa"
+        malzemeAdet: "1"
+      '1':
+        malzemeKodu: "150-50-21-097"
+        malzemeAdi: "M8 x 40 İmbus Civata"
+        malzemeAdet: "4"
+      '2':
+        malzemeKodu: "150-50-24-004"
+        malzemeAdi: "M8 Pul"
+        malzemeAdet: "4"
+      '3':
+        malzemeKodu: "150-51-06-443"
+        malzemeAdi: "51 x 3/4 Düz Adaptör Emiş"
+        malzemeAdet: "1"
+      '4':
+        malzemeKodu: "150-53-08-652"
+        malzemeAdi: "3/4 Galvanizli Kuyruklu Dirsek"
+        malzemeAdet: "1"
+      '5':
+        malzemeKodu: "150-51-06-396"
+        malzemeAdi: "40 x 1/2 Düz Adaptör Pompa"
+        malzemeAdet: "1"
+      '6':
+        malzemeKodu: "150-51-09-056"
+        malzemeAdi: 'BSP METRİK NİPEL RK-2120-RMNP-S 1/2"-M30 Ø20S'
+        malzemeAdet: "1"
+      '7':
+        malzemeKodu: "000-00-00-000"
+        malzemeAdi: "3/4 x 10 cm Boru"
+        malzemeAdet: "1"
+      '8':
+        malzemeKodu: "150-51-07-006"
+        malzemeAdi: "90 Lt Emiş Filtresi"
+        malzemeAdet: "1"
+      '9':
+        malzemeKodu: "150-53-08-014"
+        malzemeAdi: "1 - 1/2 - 3/4 Galvanizli Redüksiyon"
+        malzemeAdet: "1"
+  '11': #42.6 cc
+    parts:
+      '0':
+        malzemeKodu: "150-51-01-356"
+        malzemeAdi: "42.6 cc Pompa"
+        malzemeAdet: "1"
+      '1':
+        malzemeKodu: "150-50-21-097"
+        malzemeAdi: "M8 x 40 İmbus Civata"
+        malzemeAdet: "4"
+      '2':
+        malzemeKodu: "150-50-24-004"
+        malzemeAdi: "M8 Pul"
+        malzemeAdet: "4"
+      '3':
+        malzemeKodu: "150-51-06-443"
+        malzemeAdi: "51 x 3/4 Düz Adaptör Emiş"
+        malzemeAdet: "1"
+      '4':
+        malzemeKodu: "150-53-08-660"
+        malzemeAdi: '1" Galvanizli Kuyruklu Dirsek'
+        malzemeAdet: "1"
+      '5':
+        malzemeKodu: "150-51-06-396"
+        malzemeAdi: "40 x 1/2 Düz Adaptör Pompa"
+        malzemeAdet: "1"
+      '6':
+        malzemeKodu: "150-51-09-059"
+        malzemeAdi: 'BSP METRİK NİPEL RK-2620-RMNP-S 3/4"-M30 Ø20S'
+        malzemeAdet: "1"
+      '7':
+        malzemeKodu: "000-00-00-000"
+        malzemeAdi: "3/4 x 10 cm Boru"
+        malzemeAdet: "1"
+      '8':
+        malzemeKodu: "150-51-07-006"
+        malzemeAdi: "90 Lt Emiş Filtresi"
+        malzemeAdet: "1"
+      '9':
+        malzemeKodu: "150-53-08-038"
+        malzemeAdi: "1 - 1/2 - 1 Galvanizli Redüksiyon"
+        malzemeAdet: "1"
+  '12': #45.5 cc
+    parts:
+      '0':
+        malzemeKodu: "150-51-01-357"
+        malzemeAdi: "45.5 cc Pompa"
+        malzemeAdet: "1"
+      '1':
+        malzemeKodu: "150-50-21-097"
+        malzemeAdi: "M8 x 40 İmbus Civata"
+        malzemeAdet: "4"
+      '2':
+        malzemeKodu: "150-50-24-004"
+        malzemeAdi: "M8 Pul"
+        malzemeAdet: "4"
+      '3':
+        malzemeKodu: "150-51-06-443"
+        malzemeAdi: "51 x 3/4 Düz Adaptör Emiş"
+        malzemeAdet: "1"
+      '4':
+        malzemeKodu: "150-53-08-652"
+        malzemeAdi: "3/4 Galvanizli Kuyruklu Dirsek"
+        malzemeAdet: "1"
+      '5':
+        malzemeKodu: "150-51-06-396"
+        malzemeAdi: "40 x 1/2 Düz Adaptör Pompa"
+        malzemeAdet: "1"
+      '6':
+        malzemeKodu: "150-51-09-059"
+        malzemeAdi: 'BSP METRİK NİPEL RK-2620-RMNP-S 3/4"-M30 Ø20S'
+        malzemeAdet: "1"
+      '7':
+        malzemeKodu: "000-00-00-000"
+        malzemeAdi: "3/4 x 10 cm Boru"
+        malzemeAdet: "1"
+      '8':
+        malzemeKodu: "150-51-07-006"
+        malzemeAdi: "90 Lt Emiş Filtresi"
+        malzemeAdet: "1"
+      '9':
+        malzemeKodu: "150-53-08-038"
+        malzemeAdi: "1 - 1/2 - 1 Galvanizli Redüksiyon"
+        malzemeAdet: "1"
+  '13': #49.4 cc
+    parts:
+      '0':
+        malzemeKodu: "150-51-01-358"
+        malzemeAdi: "49.4 cc Pompa"
+        malzemeAdet: "1"
+      '1':
+        malzemeKodu: "150-50-21-097"
+        malzemeAdi: "M8 x 40 İmbus Civata"
+        malzemeAdet: "4"
+      '2':
+        malzemeKodu: "150-50-24-004"
+        malzemeAdi: "M8 Pul"
+        malzemeAdet: "4"
+      '3':
+        malzemeKodu: "150-51-06-443"
+        malzemeAdi: "51 x 3/4 Düz Adaptör Emiş"
+        malzemeAdet: "1"
+      '4':
+        malzemeKodu: "150-53-08-025"
+        malzemeAdi: '1" Galvanizli Kuyruklu Dirsek'
+        malzemeAdet: "1"
+      '5':
+        malzemeKodu: "150-51-06-396"
+        malzemeAdi: "40 x 1/2 Düz Adaptör Pompa"
+        malzemeAdet: "1"
+      '6':
+        malzemeKodu: "150-51-09-059"
+        malzemeAdi: 'BSP METRİK NİPEL RK-2620-RMNP-S 3/4"-M30 Ø20S'
+        malzemeAdet: "1"
+      '7':
+        malzemeKodu: "000-00-00-000"
+        malzemeAdi: "3/4 x 10 cm Boru"
+        malzemeAdet: "1"
+      '8':
+        malzemeKodu: "150-51-07-007"
+        malzemeAdi: "125 Lt Emiş Filtresi"
+        malzemeAdet: "1"
+      '9':
+        malzemeKodu: "150-53-08-038"
+        malzemeAdi: "1 - 1/2 - 1 Galvanizli Redüksiyon"
+        malzemeAdet: "1"
+  '14': #56.1 cc
+    parts:
+      '0':
+        malzemeKodu: "150-51-01-359"
+        malzemeAdi: "56.1 cc Pompa"
+        malzemeAdet: "1"
+      '1':
+        malzemeKodu: "150-50-21-097"
+        malzemeAdi: "M8 x 40 İmbus Civata"
+        malzemeAdet: "4"
+      '2':
+        malzemeKodu: "150-50-24-004"
+        malzemeAdi: "M8 Pul"
+        malzemeAdet: "4"
+      '3':
+        malzemeKodu: "150-51-06-440"
+        malzemeAdi: '62 x 1" Düz Adaptör Emiş'
+        malzemeAdet: "1"
+      '4':
+        malzemeKodu: "150-51-06-443"
+        malzemeAdi: "51 x 3/4 Düz Adaptör pompa"
+        malzemeAdet: "1"
+      '5':
+        malzemeKodu: "150-53-08-660"
+        malzemeAdi: '1" Galvanizli Kuyruklu Dirsek'
+        malzemeAdet: "2"
+      '6':
+        malzemeKodu: "150-51-09-065"
+        malzemeAdi: 'BSP METRİK NİPEL RK-3325-RMNP-S 1"-M36 Ø25S'
+        malzemeAdet: "2"
+      '7':
+        malzemeKodu: "000-00-00-000"
+        malzemeAdi: "3/4 x 10 cm Boru"
+        malzemeAdet: "1"
+      '8':
+        malzemeKodu: "150-51-07-007"
+        malzemeAdi: "125 Lt Emiş Filtresi"
+        malzemeAdet: "1"
+      '9':
+        malzemeKodu: "150-53-08-038"
+        malzemeAdi: "1 - 1/2 - 1 Galvanizli Redüksiyon"
+        malzemeAdet: "1"
+kaplin:
+  '0': #1PN28
+    parts:
+      '0':
+        malzemeKodu: "150-51-06-579"
+        malzemeAdi: "1PN28 İşlenmiş Kaplin Takımı"
+        malzemeAdet: "1"
+  '1': #1PN38
+    parts:
+      '0':
+        malzemeKodu: "150-51-06-576"
+        malzemeAdi: "1PN38 İşlenmiş Kaplin Takımı"
+        malzemeAdet: "1"
+  '2': #1PN42
+    parts:
+      '0':
+        malzemeKodu: "150-51-06-560"
+        malzemeAdi: "1PN42 İşlenmiş Kaplin Takımı"
+        malzemeAdet: "1"
+  '3': #2PN28
+    parts:
+      '0':
+        malzemeKodu: "150-51-06-580"
+        malzemeAdi: "2PN28 İşlenmiş Kaplin Takımı"
+        malzemeAdet: "1"
+  '4': #2PN38
+    parts:
+      '0':
+        malzemeKodu: "150-51-06-575"
+        malzemeAdi: "2PN38 İşlenmiş Kaplin Takımı"
+        malzemeAdet: "1"
+  '5': #2PN42
+    parts:
+      '0':
+        malzemeKodu: "150-51-06-561"
+        malzemeAdi: "2PN42 İşlenmiş Kaplin Takımı"
+        malzemeAdet: "1"
+valf_bloklari:
+  '0': #Tek Hız Blok 1 Grubu
+    parts:
+      '0':
+        malzemeKodu: "150-51-05-053"
+        malzemeAdi: "Tek Hız Blok"
+        malzemeAdet: "1"
+      '1':
+        malzemeKodu: "150-51-09-055"
+        malzemeAdi: 'BSP METRİK NİPEL RK-2116-RMNP-S 1/2"-M24 Ø16S'
+        malzemeAdet: "2"
+      '2':
+        malzemeKodu: "000-00-00-000"
+        malzemeAdi: "3/4 x 20 Cm Boru"
+        malzemeAdet: "1"
+      '3':
+        malzemeKodu: "150-50-21-078"
+        malzemeAdi: "M6 x 100 İmbus Civata"
+        malzemeAdet: "2"
+      '4':
+        malzemeKodu: "150-51-09-603"
+        malzemeAdi: 'BSP-METRİK MANOMETRE REKORLARI RK-1310-MER-L 1/4" M16 10L'
+        malzemeAdet: "1"
+      '5':
+        malzemeKodu: "150-51-10-802"
+        malzemeAdi: "Manometre"
+        malzemeAdet: "1"
+      '6':
+        malzemeKodu: "150-51-09-303"
+        malzemeAdi: "METRİK TERS DİRSEK PİMLİ RK-1010-MTD-L M16 Ø10L"
+        malzemeAdet: "1"
+      '7':
+        malzemeKodu: "150-51-09-025"
+        malzemeAdi: 'BSP METRİK NİPEL RK-1310-RMNP-L 1/4"-M16 Ø10L'
+        malzemeAdet: "1"
+      '8':
+        malzemeKodu: "150-51-09-482"
+        malzemeAdi: 'BBSP ALLENBAŞLI KÖR TAPA RK-1319-RAT 1/4"'
+        malzemeAdet: "2"
+  '1': #Çift Hız Blok 1 Grubu
+    parts:
+      '0':
+        malzemeKodu: "150-51-05-051"
+        malzemeAdi: "Çift Hız Blok"
+        malzemeAdet: "1"
+      '1':
+        malzemeKodu: "150-51-09-055"
+        malzemeAdi: 'BSP METRİK NİPEL RK-2116-RMNP-S 1/2"-M24 Ø16S'
+        malzemeAdet: "2"
+      '2':
+        malzemeKodu: "000-00-00-000"
+        malzemeAdi: "3/4 x 20 Cm Boru"
+        malzemeAdet: "1"
+      '3':
+        malzemeKodu: "150-50-21-078"
+        malzemeAdi: "M6 x 100 İmbus Civata"
+        malzemeAdet: "4"
+      '4':
+        malzemeKodu: "150-51-09-603"
+        malzemeAdi: 'BSP-METRİK MANOMETRE REKORLARI RK-1310-MER-L 1/4" M16 10L'
+        malzemeAdet: "1"
+      '5':
+        malzemeKodu: "150-51-09-303"
+        malzemeAdi: "METRİK TERS DİRSEK PİMLİ RK-1010-MTD-L M16 Ø10L"
+        malzemeAdet: "1"
+      '6':
+        malzemeKodu: "150-51-10-802"
+        malzemeAdi: "Manometre"
+        malzemeAdet: "1"
+      '7':
+        malzemeKodu: "150-51-09-025"
+        malzemeAdi: 'BSP METRİK NİPEL RK-1310-RMNP-L 1/4"-M16 Ø10L'
+        malzemeAdet: "1"
+  '2': #Kilitli Blok ve Çift Hız Blok 1 Grubu
+    parts:
+      '0':
+        malzemeKodu: "150-51-05-069"
+        malzemeAdi: "Kilitli Blok Çift Hız"
+        malzemeAdet: "1"
+      '1':
+        malzemeKodu: "150-51-09-058"
+        malzemeAdi: 'BSP METRİK NİPEL RK-2616-RMNP-S 3/4"-M24 Ø16S'
+        malzemeAdet: "1"
+      '2':
+        malzemeKodu: "150-51-09-055"
+        malzemeAdi: 'BSP METRİK NİPEL RK-2116-RMNP-S 1/2"-M24 Ø16S'
+        malzemeAdet: "1"
+      '3':
+        malzemeKodu: "000-00-00-000"
+        malzemeAdi: "3/4 x 20 Cm Boru"
+        malzemeAdet: "1"
+      '4':
+        malzemeKodu: "150-50-21-082"
+        malzemeAdi: "M6 x 120 İmbus Civata"
+        malzemeAdet: "4"
+      '5':
+        malzemeKodu: "150-51-09-034"
+        malzemeAdi: 'BSP METRİK NİPEL RK-2110-RMNP-L 1/2"-M16 Ø10L'
+        malzemeAdet: "2"
+      '6':
+        malzemeKodu: "150-51-09-025"
+        malzemeAdi: 'BSP METRİK NİPEL RK-1310-RMNP-L 1/4"-M16 Ø10L'
+        malzemeAdet: "2"
+      '7':
+        malzemeKodu: "150-51-09-603"
+        malzemeAdi: 'BSP-METRİK MANOMETRE REKORLARI RK-1310-MER-L 1/4" M16 10L'
+        malzemeAdet: "2"
+      '8':
+        malzemeKodu: "150-51-09-303"
+        malzemeAdi: "METRİK TERS DİRSEK PİMLİ RK-1010-MTD-L M16 Ø10L"
+        malzemeAdet: "2"
+      '9':
+        malzemeKodu: "150-51-10-802"
+        malzemeAdi: "Manometre"
+        malzemeAdet: "2"
+  '3': #Kompanzasyon + Tek Hız 1 Grubu
+    parts:
+      '0':
+        malzemeKodu: "150-51-05-048"
+        malzemeAdi: "İNİŞTE TEK HIZ BLOK ALTTAN BAĞLANTILI 24V POPETLİ 10/2"
+        malzemeAdet: "1"
+      '1':
+        malzemeKodu: "150-51-09-055"
+        malzemeAdi: 'BSP METRİK NİPEL RK-2116-RMNP-S 1/2"-M24 Ø16S'
+        malzemeAdet: "2"
+      '2':
+        malzemeKodu: "000-00-00-000"
+        malzemeAdi: "3/4 x 20 Cm Boru"
+        malzemeAdet: "1"
+      '3':
+        malzemeKodu: "150-50-21-078"
+        malzemeAdi: "M6 x 100 İmbus Civata"
+        malzemeAdet: "2"
+      '4':
+        malzemeKodu: "150-51-09-603"
+        malzemeAdi: 'BSP-METRİK MANOMETRE REKORLARI RK-1310-MER-L 1/4" M16 10L'
+        malzemeAdet: "1"
+      '5':
+        malzemeKodu: "150-51-09-303"
+        malzemeAdi: "METRİK TERS DİRSEK PİMLİ RK-1010-MTD-L M16 Ø10L"
+        malzemeAdet: "1"
+      '6':
+        malzemeKodu: "150-51-09-482"
+        malzemeAdi: 'BSP ALLENBAŞLI KÖR TAPA RK-1319-RAT 1/4"'
+        malzemeAdet: "2"
+      '7':
+        malzemeKodu: "150-51-05-067"
+        malzemeAdi: 'POPET BLOĞU BANGİOSUZ 1/2"'
+        malzemeAdet: "1"
+      '8':
+        malzemeKodu: "150-51-04-051"
+        malzemeAdi: "3/8 Çekli Hız Ayar Valfi"
+        malzemeAdet: "1"
+      '9':
+        malzemeKodu: "150-51-05-302"
+        malzemeAdi: 'POPET VALF NORMALDE KAPALI 24V 1/2" 10/2 VE BOBİN 24V DC ½” 10/2 MANUEL İNDİRMELİ'
+        malzemeAdet: "1"
+      '10':
+        malzemeKodu: "150-51-04-408"
+        malzemeAdi: "24V DC Bobin"
+        malzemeAdet: "1"
+      '11':
+        malzemeKodu: "150-51-09-030"
+        malzemeAdi: 'BSP METRİK NİPEL RK-1712-RMNP-L 3/8"-M18 Ø12L'
+        malzemeAdet: "3"
+      '12':
+        malzemeKodu: "150-51-09-204"
+        malzemeAdi: 'BSP METRİK TERS REKOR PİMLİ RK-1712-RMTR-L 3/8"M18 Ø12L'
+        malzemeAdet: "2"
+      '13':
+        malzemeKodu: "150-51-09-304"
+        malzemeAdi: "METRİK TERS DİRSEK PİMLİ RK-1212-MTD-L M18 Ø12L"
+        malzemeAdet: "1"
+      '14':
+        malzemeKodu: "150-51-04-068"
+        malzemeAdi: "1/2 Kompanzasyonlu Hız Ayar Valfi"
+        malzemeAdet: "1"
+      '15':
+        malzemeKodu: "150-51-09-224"
+        malzemeAdi: 'BSP METRİK TERS REKOR PİMLİ RK-2116-RMTR-S 1/2"M24 Ø16S'
+        malzemeAdet: "1"
+      '16':
+        malzemeKodu: "150-51-09-035"
+        malzemeAdi: 'BSP METRİK NİPEL RK-2112-RMNP-L 1/2"-M18 Ø12L'
+        malzemeAdet: "1"
+      '17':
+        malzemeKodu: "150-51-09-133"
+        malzemeAdi: 'BSP DİŞİ TE RK-2121-DT 1/2"'
+        malzemeAdet: "1"
+      '18':
+        malzemeKodu: "150-51-09-025"
+        malzemeAdi: 'BSP METRİK NİPEL RK-1310-RMNP-L 1/4"-M16 Ø10L'
+        malzemeAdet: "1"
+      '19':
+        malzemeKodu: "150-51-10-802"
+        malzemeAdi: "Manometre"
+        malzemeAdet: "1"
+  '4': #Tek Hız Blok 2 Grubu
+    parts:
+      '0':
+        malzemeKodu: "150-51-05-053"
+        malzemeAdi: "Tek Hız Blok"
+        malzemeAdet: "1"
+      '1':
+        malzemeKodu: "150-51-09-056"
+        malzemeAdi: 'BSP METRİK NİPEL RK-2120-RMNP-S 1/2"-M30 Ø20S'
+        malzemeAdet: "2"
+      '2':
+        malzemeKodu: "000-00-00-000"
+        malzemeAdi: "3/4 x 20 Cm Boru"
+        malzemeAdet: "1"
+      '3':
+        malzemeKodu: "150-50-21-078"
+        malzemeAdi: "M6 x 100 İmbus Civata"
+        malzemeAdet: "2"
+      '4':
+        malzemeKodu: "150-51-09-603"
+        malzemeAdi: 'BSP-METRİK MANOMETRE REKORLARI RK-1310-MER-L 1/4" M16 10L'
+        malzemeAdet: "1"
+      '5':
+        malzemeKodu: "150-51-10-802"
+        malzemeAdi: "Manometre"
+        malzemeAdet: "1"
+      '6':
+        malzemeKodu: "150-51-09-303"
+        malzemeAdi: "METRİK TERS DİRSEK PİMLİ RK-1010-MTD-L M16 Ø10L"
+        malzemeAdet: "1"
+      '7':
+        malzemeKodu: "150-51-09-025"
+        malzemeAdi: 'BSP METRİK NİPEL RK-1310-RMNP-L 1/4"-M16 Ø10L'
+        malzemeAdet: "1"
+      '8':
+        malzemeKodu: "150-51-09-482"
+        malzemeAdi: 'BSP ALLENBAŞLI KÖR TAPA RK-1319-RAT 1/4"'
+        malzemeAdet: "2"
+  '5': #Çift Hız Blok 2 Grubu
+    parts:
+      '0':
+        malzemeKodu: "150-51-05-051"
+        malzemeAdi: "Çift Hız Blok"
+        malzemeAdet: "1"
+      '1':
+        malzemeKodu: "150-51-09-056"
+        malzemeAdi: 'BSP METRİK NİPEL RK-2120-RMNP-S 1/2"-M30 Ø20S'
+        malzemeAdet: "2"
+      '2':
+        malzemeKodu: "000-00-00-000"
+        malzemeAdi: "3/4 x 20 Cm Boru"
+        malzemeAdet: "1"
+      '3':
+        malzemeKodu: "150-50-21-078"
+        malzemeAdi: "M6 x 100 İmbus Civata"
+        malzemeAdet: "4"
+      '4':
+        malzemeKodu: "150-51-09-603"
+        malzemeAdi: 'BSP-METRİK MANOMETRE REKORLARI RK-1310-MER-L 1/4" M16 10L'
+        malzemeAdet: "1"
+      '5':
+        malzemeKodu: "150-51-09-303"
+        malzemeAdi: "METRİK TERS DİRSEK PİMLİ RK-1010-MTD-L M16 Ø10L"
+        malzemeAdet: "1"
+      '6':
+        malzemeKodu: "150-51-10-802"
+        malzemeAdi: "Manometre"
+        malzemeAdet: "1"
+      '7':
+        malzemeKodu: "150-51-09-025"
+        malzemeAdi: 'BSP METRİK NİPEL RK-1310-RMNP-L 1/4"-M16 Ø10L'
+        malzemeAdet: "1"
+  '6': #Kilitli Blok ve Çift Hız Blok 2 Grubu
+    parts:
+      '0':
+        malzemeKodu: "150-51-05-069"
+        malzemeAdi: "Kilitli Blok Çift Hız"
+        malzemeAdet: "1"
+      '1':
+        malzemeKodu: "150-51-09-059"
+        malzemeAdi: 'BSP METRİK NİPEL RK-2620-RMNP-S 3/4"-M30 Ø20S'
+        malzemeAdet: "1"
+      '2':
+        malzemeKodu: "150-51-09-056"
+        malzemeAdi: 'BSP METRİK NİPEL RK-2120-RMNP-S 1/2"-M30 Ø20S'
+        malzemeAdet: "1"
+      '3':
+        malzemeKodu: "000-00-00-000"
+        malzemeAdi: "3/4 x 20 Cm Boru"
+        malzemeAdet: "1"
+      '4':
+        malzemeKodu: "150-50-21-082"
+        malzemeAdi: "M6 x 120 İmbus Civata"
+        malzemeAdet: "4"
+      '5':
+        malzemeKodu: "150-51-09-019"
+        malzemeAdi: "1/2 Ø10 Nipel"
+        malzemeAdet: "2"
+      '6':
+        malzemeKodu: "150-51-09-025"
+        malzemeAdi: 'BSP METRİK NİPEL RK-1310-RMNP-L 1/4"-M16 Ø10L'
+        malzemeAdet: "2"
+      '7':
+        malzemeKodu: "150-51-09-603"
+        malzemeAdi: 'BSP-METRİK MANOMETRE REKORLARI RK-1310-MER-L 1/4" M16 10L'
+        malzemeAdet: "2"
+      '8':
+        malzemeKodu: "150-51-09-303"
+        malzemeAdi: "METRİK TERS DİRSEK PİMLİ RK-1010-MTD-L M16 Ø10L"
+        malzemeAdet: "2"
+      '9':
+        malzemeKodu: "150-51-10-802"
+        malzemeAdi: "Manometre"
+        malzemeAdet: "2"
+  '7': #Kompanzasyon + Tek Hız 2 Grubu
+    parts:
+      '0':
+        malzemeKodu: "150-51-05-100"
+        malzemeAdi: "Kompanzasyon + İnişte Tek Hız"
+        malzemeAdet: "1"
+      '1':
+        malzemeKodu: "150-51-09-056"
+        malzemeAdi: 'BSP METRİK NİPEL RK-2120-RMNP-S 1/2"-M30 Ø20S'
+        malzemeAdet: "2"
+      '2':
+        malzemeKodu: "000-00-00-000"
+        malzemeAdi: "3/4 x 20 Cm Boru"
+        malzemeAdet: "1"
+      '3':
+        malzemeKodu: "150-50-21-078"
+        malzemeAdi: "M6 x 100 İmbus Civata"
+        malzemeAdet: "2"
+      '4':
+        malzemeKodu: "150-51-09-603"
+        malzemeAdi: 'BSP-METRİK MANOMETRE REKORLARI RK-1310-MER-L 1/4" M16 10L'
+        malzemeAdet: "1"
+      '5':
+        malzemeKodu: "150-51-09-303"
+        malzemeAdi: "METRİK TERS DİRSEK PİMLİ RK-1010-MTD-L M16 Ø10L"
+        malzemeAdet: "1"
+      '6':
+        malzemeKodu: "150-51-09-482"
+        malzemeAdi: 'BSP ALLENBAŞLI KÖR TAPA RK-1319-RAT 1/4"'
+        malzemeAdet: "2"
+      '7':
+        malzemeKodu: "150-51-05-067"
+        malzemeAdi: 'POPET BLOĞU BANGİOSUZ 1/2"'
+        malzemeAdet: "1"
+      '8':
+        malzemeKodu: "150-51-04-051"
+        malzemeAdi: "3/8 Çekli Hız Ayar Valfi"
+        malzemeAdet: "1"
+      '9':
+        malzemeKodu: "150-51-05-302"
+        malzemeAdi: 'POPET VALF NORMALDE KAPALI 24V 1/2" 10/2 VE BOBİN 24V DC ½” 10/2 MANUEL İNDİRMELİ'
+        malzemeAdet: "1"
+      '10':
+        malzemeKodu: "150-51-04-408"
+        malzemeAdi: "24V DC Bobin"
+        malzemeAdet: "1"
+      '11':
+        malzemeKodu: "150-51-09-030"
+        malzemeAdi: 'BSP METRİK NİPEL RK-1712-RMNP-L 3/8"-M18 Ø12L'
+        malzemeAdet: "3"
+      '12':
+        malzemeKodu: "150-51-09-204"
+        malzemeAdi: 'BSP METRİK TERS REKOR PİMLİ RK-1712-RMTR-L 3/8"M18 Ø12L'
+        malzemeAdet: "2"
+      '13':
+        malzemeKodu: "150-51-09-304"
+        malzemeAdi: "METRİK TERS DİRSEK PİMLİ RK-1212-MTD-L M18 Ø12L"
+        malzemeAdet: "1"
+      '14':
+        malzemeKodu: "150-51-04-068"
+        malzemeAdi: "1/2 Kompanzasyonlu Hız Ayar Valfi"
+        malzemeAdet: "1"
+      '15':
+        malzemeKodu: "150-51-09-224"
+        malzemeAdi: 'BSP METRİK TERS REKOR PİMLİ RK-2116-RMTR-S 1/2"M24 Ø16S'
+        malzemeAdet: "1"
+      '16':
+        malzemeKodu: "150-51-09-035"
+        malzemeAdi: 'BSP METRİK NİPEL RK-2112-RMNP-L 1/2"-M18 Ø12L'
+        malzemeAdet: "1"
+      '17':
+        malzemeKodu: "150-51-09-133"
+        malzemeAdi: 'BSP DİŞİ TE RK-2121-DT 1/2"'
+        malzemeAdet: "1"
+      '18':
+        malzemeKodu: "150-51-09-025"
+        malzemeAdi: 'BSP METRİK NİPEL RK-1310-RMNP-L 1/4"-M16 Ø10L'
+        malzemeAdet: "1"
+      '19':
+        malzemeKodu: "150-51-10-802"
+        malzemeAdi: "Manometre"
+        malzemeAdet: "1"
+sogutma:
+  '0': #Soğutma Kilit Yok + Tek Hız
+    parts:
+      '0':
+        malzemeKodu: "150-52-13-012"
+        malzemeAdi: "MOTOR  2.2 kw 380v  B5"
+        malzemeAdet: "1"
+      '1':
+        malzemeKodu: "150-51-06-506"
+        malzemeAdi: "1-K 250 KAMPANA "
+        malzemeAdet: "1"
+      '2':
+        malzemeKodu: "150-51-06-579"
+        malzemeAdi: "1PN28 KAPLİN TAKIMI"
+        malzemeAdet: "1"
+      '3':
+        malzemeKodu: "150-50-21-588"
+        malzemeAdi: "CIVATA ANAHTAR BASLI M12 50 MM BEYAZ (DIN 933)"
+        malzemeAdet: "4"
+      '4':
+        malzemeKodu: "150-50-23-007"
+        malzemeAdi: "M12 Somun"
+        malzemeAdet: "4"
+      '5':
+        malzemeKodu: "150-50-24-026"
+        malzemeAdi: "M12 Pul"
+        malzemeAdet: "4"
+      '6':
+        malzemeKodu: "150-51-01-313"
+        malzemeAdi: "POMPA 1PN-281 28.1 CC (HEMA)"
+        malzemeAdet: "1"
+      '7':
+        malzemeKodu: "150-50-21-065"
+        malzemeAdi: "CIVATA IMBUS M6 30 MM BEYAZ (DIN 912)"
+        malzemeAdet: "4"
+      '8':
+        malzemeKodu: "150-51-06-413"
+        malzemeAdi: "30 x 1/2 Dirsek Adaptör Pompa"
+        malzemeAdet: "2"
+      '9':
+        malzemeKodu: "150-51-06-396"
+        malzemeAdi: "40 x 1/2 Düz Adaptör Pompa"
+        malzemeAdet: "2"
+      '10':
+        malzemeKodu: "150-51-07-004"
+        malzemeAdi: "45 Lt Emiş Filtresi"
+        malzemeAdet: "2"
+      '11':
+        malzemeKodu: "150-51-09-055"
+        malzemeAdi: 'BSP METRİK NİPEL RK-2116-RMNP-S 1/2"-M24 Ø16S'
+        malzemeAdet: "1"
+      '12':
+        malzemeKodu: "150-51-09-035"
+        malzemeAdi: 'BSP METRİK NİPEL RK-2112-RMNP-L 1/2"-M18 Ø12L'
+        malzemeAdet: "2"
+      '13':
+        malzemeKodu: "150-51-06-904"
+        malzemeAdi: "BOLC-2024 SOĞUTMA RADYATÖRÜ FANLI 220VAC 50/60 Hz"
+        malzemeAdet: "1"
+      '14':
+        malzemeKodu: "150-51-09-063"
+        malzemeAdi: 'BSP METRİK NİPEL RK-3316-RMNP-S 1"-M24 Ø16S'
+        malzemeAdet: "2"
+      '15':
+        malzemeKodu: "150-51-10-171"
+        malzemeAdi: '3/4" 8 BAR ÇEK VALF FERRO MAX 380 BAR'
+        malzemeAdet: "1"
+      '16':
+        malzemeKodu: "150-51-06-907"
+        malzemeAdi: "0-90 DERECE AYARLI, ½ PASOLU, DALMA BOYU 25CM  ALP MARKA TERMOSTAT"
+        malzemeAdet: "1"
+      '17':
+        malzemeKodu: "150-51-09-227"
+        malzemeAdi: 'BSP METRİK TERS REKOR PİMLİ RK-2620-RMTR-S 3/4"M30x2 Ø20S'
+        malzemeAdet: "1"
+      '18':
+        malzemeKodu: "150-51-09-059"
+        malzemeAdi: 'BSP METRİK NİPEL RK-2620-RMNP-S 3/4"-M30 Ø20S'
+        malzemeAdet: "1"
+      '19':
+        malzemeKodu: "150-51-09-058"
+        malzemeAdi: 'BSP METRİK NİPEL RK-2616-RMNP-S 3/4"-M24 Ø16S'
+        malzemeAdet: "3"
+      '20':
+        malzemeKodu: "150-51-09-134"
+        malzemeAdi: 'BSP DİŞİ TE RK-2626-DT 3/4"'
+        malzemeAdet: "1"
+      '21':
+        malzemeKodu: "150-51-09-099"
+        malzemeAdi: 'BSP KAYNAKLI MANŞON RK-1719-RKM 3/8"'
+        malzemeAdet: "1"
+      '22':
+        malzemeKodu: "150-51-09-106"
+        malzemeAdi: 'BSP KAYNAKLI MANŞON RK-2114-RKM 1/2"'
+        malzemeAdet: "3"
+      '23':
+        malzemeKodu: "150-51-09-484"
+        malzemeAdi: 'BSP ALLENBAŞLI KÖR TAPA RK-2114-RAT 1/2"'
+        malzemeAdet: "1"
+      '24':
+        malzemeKodu: "150-51-09-483"
+        malzemeAdi: 'BSP ALLENBAŞLI KÖR TAPA RK-1719-RAT 3/8"'
+        malzemeAdet: "1"
+      '25':
+        malzemeKodu: "150-51-09-107"
+        malzemeAdi: 'BSP KAYNAKLI MANŞON RK-2614-RKM 3/4"'
+        malzemeAdet: "3"
+  '1': #Soğutma Kilit Yok + Çift Hız
+    parts:
+      '0':
+        malzemeKodu: "150-52-13-012"
+        malzemeAdi: "MOTOR  2.2 kw 380v  B5"
+        malzemeAdet: "1"
+      '1':
+        malzemeKodu: "150-51-06-506"
+        malzemeAdi: "1-K 250 KAMPANA "
+        malzemeAdet: "1"
+      '2':
+        malzemeKodu: "150-51-06-579"
+        malzemeAdi: "1PN28 KAPLİN TAKIMI"
+        malzemeAdet: "1"
+      '3':
+        malzemeKodu: "150-50-21-588"
+        malzemeAdi: "CIVATA ANAHTAR BASLI M12 50 MM BEYAZ (DIN 933 )"
+        malzemeAdet: "4"
+      '4':
+        malzemeKodu: "150-50-23-007"
+        malzemeAdi: "M12 Somun"
+        malzemeAdet: "4"
+      '5':
+        malzemeKodu: "150-50-24-026"
+        malzemeAdi: "M12 Pul"
+        malzemeAdet: "4"
+      '6':
+        malzemeKodu: "150-51-01-313"
+        malzemeAdi: "POMPA 1PN-281 28.1 CC (HEMA)"
+        malzemeAdet: "1"
+      '7':
+        malzemeKodu: "150-50-21-065"
+        malzemeAdi: "CIVATA IMBUS M6 30 MM BEYAZ (DIN 912)"
+        malzemeAdet: "4"
+      '8':
+        malzemeKodu: "150-51-06-413"
+        malzemeAdi: "30 x 1/2 Dirsek Adaptör Pompa"
+        malzemeAdet: "2"
+      '9':
+        malzemeKodu: "150-51-06-396"
+        malzemeAdi: "40 x 1/2 Düz Adaptör Pompa"
+        malzemeAdet: "2"
+      '10':
+        malzemeKodu: "150-51-07-004"
+        malzemeAdi: "45 Lt Emiş Filtresi"
+        malzemeAdet: "2"
+      '11':
+        malzemeKodu: "150-51-09-055"
+        malzemeAdi: 'BSP METRİK NİPEL RK-2116-RMNP-S 1/2"-M24 Ø16S'
+        malzemeAdet: "1"
+      '12':
+        malzemeKodu: "150-51-09-035"
+        malzemeAdi: 'BSP METRİK NİPEL RK-2112-RMNP-L 1/2"-M18 Ø12L'
+        malzemeAdet: "2"
+      '13':
+        malzemeKodu: "150-51-06-904"
+        malzemeAdi: "BOLC-2024 SOĞUTMA RADYATÖRÜ FANLI 220VAC 50/60 Hz"
+        malzemeAdet: "1"
+      '14':
+        malzemeKodu: "150-51-09-063"
+        malzemeAdi: 'BSP METRİK NİPEL RK-3316-RMNP-S 1"-M24 Ø16S'
+        malzemeAdet: "2"
+      '15':
+        malzemeKodu: "150-51-10-171"
+        malzemeAdi: '3/4" 8 BAR ÇEK VALF FERRO MAX 380 BAR'
+        malzemeAdet: "1"
+      '16':
+        malzemeKodu: "150-51-06-907"
+        malzemeAdi: "0-90 DERECE AYARLI, ½ PASOLU, DALMA BOYU 25CM  ALP MARKA TERMOSTAT"
+        malzemeAdet: "1"
+      '17':
+        malzemeKodu: "150-51-09-227"
+        malzemeAdi: 'BSP METRİK TERS REKOR PİMLİ RK-2620-RMTR-S 3/4"M30x2 Ø20S'
+        malzemeAdet: "1"
+      '18':
+        malzemeKodu: "150-51-09-059"
+        malzemeAdi: 'BSP METRİK NİPEL RK-2620-RMNP-S 3/4"-M30 Ø20S'
+        malzemeAdet: "1"
+      '19':
+        malzemeKodu: "150-51-09-058"
+        malzemeAdi: 'BSP METRİK NİPEL RK-2616-RMNP-S 3/4"-M24 Ø16S'
+        malzemeAdet: "3"
+      '20':
+        malzemeKodu: "150-51-09-134"
+        malzemeAdi: 'BSP DİŞİ TE RK-2626-DT 3/4"'
+        malzemeAdet: "1"
+      '21':
+        malzemeKodu: "150-51-09-105"
+        malzemeAdi: 'BSP KAYNAKLI MANŞON RK-1719-RKM 3/8"'
+        malzemeAdet: "1"
+      '22':
+        malzemeKodu: "150-51-09-106"
+        malzemeAdi: 'BSP KAYNAKLI MANŞON RK-2114-RKM 1/2"'
+        malzemeAdet: "3"
+      '23':
+        malzemeKodu: "150-51-09-484"
+        malzemeAdi: 'BSP ALLENBAŞLI KÖR TAPA RK-2114-RAT 1/2"'
+        malzemeAdet: "1"
+      '24':
+        malzemeKodu: "150-51-09-483"
+        malzemeAdi: 'BSP ALLENBAŞLI KÖR TAPA RK-1719-RAT 3/8"'
+        malzemeAdet: "1"
+      '25':
+        malzemeKodu: "150-51-09-107"
+        malzemeAdi: 'BSP KAYNAKLI MANŞON RK-2614-RKM 3/4"'
+        malzemeAdet: "3"
+  '2': #Soğutma Kilit Var + Tek Hız
+    parts:
+      '0':
+        malzemeKodu: "150-52-13-012"
+        malzemeAdi: "MOTOR  2.2 kw 380v  B5"
+        malzemeAdet: "1"
+      '1':
+        malzemeKodu: "150-51-06-506"
+        malzemeAdi: "1-K 250 KAMPANA"
+        malzemeAdet: "1"
+      '2':
+        malzemeKodu: "150-51-06-579"
+        malzemeAdi: "1PN28 KAPLİN TAKIMI"
+        malzemeAdet: "1"
+      '3':
+        malzemeKodu: "150-50-21-588"
+        malzemeAdi: "CIVATA ANAHTAR BASLI M12 50 MM BEYAZ (DIN 933)"
+        malzemeAdet: "4"
+      '4':
+        malzemeKodu: "150-50-23-007"
+        malzemeAdi: "M12 Somun"
+        malzemeAdet: "4"
+      '5':
+        malzemeKodu: "150-50-24-026"
+        malzemeAdi: "M12 Pul"
+        malzemeAdet: "4"
+      '6':
+        malzemeKodu: "150-51-01-708"
+        malzemeAdi: "POMPA TANDEM 28.1+4.5 CC (SAĞ DÖNÜŞLÜ)"
+        malzemeAdet: "1"
+      '7':
+        malzemeKodu: "150-50-21-065"
+        malzemeAdi: "CIVATA IMBUS M6 30 MM BEYAZ (DIN 912)"
+        malzemeAdet: "4"
+      '8':
+        malzemeKodu: "150-51-06-413"
+        malzemeAdi: "30 x 1/2 Dirsek Adaptör Pompa"
+        malzemeAdet: "2"
+      '9':
+        malzemeKodu: "150-51-06-396"
+        malzemeAdi: "40 x 1/2 Düz Adaptör Pompa"
+        malzemeAdet: "2"
+      '10':
+        malzemeKodu: "150-51-07-004"
+        malzemeAdi: "45 Lt Emiş Filtresi"
+        malzemeAdet: "2"
+      '11':
+        malzemeKodu: "150-51-09-055"
+        malzemeAdi: 'BSP METRİK NİPEL RK-2116-RMNP-S 1/2"-M24 Ø16S'
+        malzemeAdet: "1"
+      '12':
+        malzemeKodu: "150-51-09-035"
+        malzemeAdi: 'BSP METRİK NİPEL RK-2112-RMNP-L 1/2"-M18 Ø12L'
+        malzemeAdet: "2"
+      '13':
+        malzemeKodu: "150-51-06-904"
+        malzemeAdi: "BOLC-2024 SOĞUTMA RADYATÖRÜ FANLI 220VAC 50/60 Hz"
+        malzemeAdet: "1"
+      '14':
+        malzemeKodu: "150-51-09-063"
+        malzemeAdi: 'BSP METRİK NİPEL RK-3316-RMNP-S 1"-M24 Ø16S'
+        malzemeAdet: "2"
+      '15':
+        malzemeKodu: "150-51-10-171"
+        malzemeAdi: '3/4" 8 BAR ÇEK VALF FERRO MAX 380 BAR'
+        malzemeAdet: "1"
+      '16':
+        malzemeKodu: "150-51-06-907"
+        malzemeAdi: "0-90 DERECE AYARLI, ½ PASOLU, DALMA BOYU 25CM  ALP MARKA TERMOSTAT"
+        malzemeAdet: "1"
+      '17':
+        malzemeKodu: "150-51-09-227"
+        malzemeAdi: 'BSP METRİK TERS REKOR PİMLİ RK-2620-RMTR-S 3/4"M30x2 Ø20S'
+        malzemeAdet: "1"
+      '18':
+        malzemeKodu: "150-51-09-059"
+        malzemeAdi: 'BSP METRİK NİPEL RK-2620-RMNP-S 3/4"-M30 Ø20S'
+        malzemeAdet: "1"
+      '19':
+        malzemeKodu: "150-51-09-058"
+        malzemeAdi: 'BSP METRİK NİPEL RK-2616-RMNP-S 3/4"-M24 Ø16S'
+        malzemeAdet: "3"
+      '20':
+        malzemeKodu: "150-51-09-134"
+        malzemeAdi: 'BSP DİŞİ TE RK-2626-DT 3/4"'
+        malzemeAdet: "1"
+      '21':
+        malzemeKodu: "150-51-09-099"
+        malzemeAdi: '3/8 KAYNAKLI MANŞON'
+        malzemeAdet: "1"
+      '22':
+        malzemeKodu: "150-51-09-106"
+        malzemeAdi: 'BSP KAYNAKLI MANŞON RK-2114-RKM 1/2"'
+        malzemeAdet: "3"
+      '23':
+        malzemeKodu: "150-51-09-484"
+        malzemeAdi: 'BSP ALLENBAŞLI KÖR TAPA RK-2114-RAT 1/2"'
+        malzemeAdet: "1"
+      '24':
+        malzemeKodu: "150-51-09-483"
+        malzemeAdi: 'BSP ALLENBAŞLI KÖR TAPA RK-1719-RAT 3/8"'
+        malzemeAdet: "1"
+      '25':
+        malzemeKodu: "150-51-09-107"
+        malzemeAdi: 'BSP KAYNAKLI MANŞON RK-2614-RKM 3/4"'
+        malzemeAdet: "3"
+      '26':
+        malzemeKodu: "150-51-04-025"
+        malzemeAdi: "VALF AÇIK MERKEZ NG6 24V RH06021-24V"
+        malzemeAdet: "1"
+      '27':
+        malzemeKodu: "150-51-05-036"
+        malzemeAdi: "NG6 TEKLİ EMNİYETLİ VALF BLOĞU (HİDROS)"
+        malzemeAdet: "1"
+      '28':
+        malzemeKodu: "150-51-09-017"
+        malzemeAdi: 'REKOR Ø10 3/8"'
+        malzemeAdet: "2"
+      '29':
+        malzemeKodu: "150-51-09-025"
+        malzemeAdi: 'BSP METRİK NİPEL RK-1310-RMNP-L 1/4"-M16 Ø10L'
+        malzemeAdet: "1"
+      '30':
+        malzemeKodu: "150-51-09-603"
+        malzemeAdi: 'BSP-METRİK MANOMETRE REKORLARI RK-1310-MER-L 1/4" M16 10L'
+        malzemeAdet: "1"
+      '31':
+        malzemeKodu: "150-51-09-303"
+        malzemeAdi: "METRİK TERS DİRSEK PİMLİ RK-1010-MTD-L M16 Ø10L"
+        malzemeAdet: "1"
+      '32':
+        malzemeKodu: "150-51-10-802"
+        malzemeAdi: "Manometre"
+        malzemeAdet: "1"
+      '33':
+        malzemeKodu: "150-50-21-069"
+        malzemeAdi: "CİVATA İMBUS M6 50 MM BEYAZ (DIN 912)"
+        malzemeAdet: "2"
+  '3': #Soğutma Kilit Var + Çift Hız
+    parts:
+      '0':
+        malzemeKodu: "150-52-13-012"
+        malzemeAdi: "MOTOR  2.2 kw 380v  B5"
+        malzemeAdet: "1"
+      '1':
+        malzemeKodu: "150-51-06-506"
+        malzemeAdi: "1-K 250 KAMPANA "
+        malzemeAdet: "1"
+      '2':
+        malzemeKodu: "150-51-06-579"
+        malzemeAdi: "1PN28 KAPLİN TAKIMI"
+        malzemeAdet: "1"
+      '3':
+        malzemeKodu: "150-50-21-588"
+        malzemeAdi: "CIVATA ANAHTAR BASLI M12 50 MM BEYAZ (DIN 933)"
+        malzemeAdet: "4"
+      '4':
+        malzemeKodu: "150-50-23-007"
+        malzemeAdi: "M12 Somun"
+        malzemeAdet: "4"
+      '5':
+        malzemeKodu: "150-50-24-026"
+        malzemeAdi: "M12 Pul"
+        malzemeAdet: "4"
+      '6':
+        malzemeKodu: "150-51-01-708"
+        malzemeAdi: "POMPA TANDEM 28.1+4.5 CC (SAĞ DÖNÜŞLÜ)"
+        malzemeAdet: "1"
+      '7':
+        malzemeKodu: "150-50-21-065"
+        malzemeAdi: "CIVATA IMBUS M6 30 MM BEYAZ (DIN 912)"
+        malzemeAdet: "4"
+      '8':
+        malzemeKodu: "150-51-06-413"
+        malzemeAdi: "30 x 1/2 Dirsek Adaptör Pompa"
+        malzemeAdet: "2"
+      '9':
+        malzemeKodu: "150-51-06-396"
+        malzemeAdi: "40 x 1/2 Düz Adaptör Pompa"
+        malzemeAdet: "2"
+      '10':
+        malzemeKodu: "150-51-07-004"
+        malzemeAdi: "45 Lt Emiş Filtresi"
+        malzemeAdet: "2"
+      '11':
+        malzemeKodu: "150-51-09-055"
+        malzemeAdi: 'BSP METRİK NİPEL RK-2116-RMNP-S 1/2"-M24 Ø16S'
+        malzemeAdet: "1"
+      '12':
+        malzemeKodu: "150-51-09-035"
+        malzemeAdi: 'BSP METRİK NİPEL RK-2112-RMNP-L 1/2"-M18 Ø12L'
+        malzemeAdet: "2"
+      '13':
+        malzemeKodu: "150-51-06-904"
+        malzemeAdi: "BOLC-2024 SOĞUTMA RADYATÖRÜ FANLI 220VAC 50/60 Hz"
+        malzemeAdet: "1"
+      '14':
+        malzemeKodu: "150-51-09-063"
+        malzemeAdi: 'BSP METRİK NİPEL RK-3316-RMNP-S 1"-M24 Ø16S'
+        malzemeAdet: "2"
+      '15':
+        malzemeKodu: "150-51-10-171"
+        malzemeAdi: '3/4" 8 BAR ÇEK VALF FERRO MAX 380 BAR'
+        malzemeAdet: "1"
+      '16':
+        malzemeKodu: "150-51-06-907"
+        malzemeAdi: "0-90 DERECE AYARLI, ½ PASOLU, DALMA BOYU 25CM  ALP MARKA TERMOSTAT"
+        malzemeAdet: "1"
+      '17':
+        malzemeKodu: "150-51-09-227"
+        malzemeAdi: 'BSP METRİK TERS REKOR PİMLİ RK-2620-RMTR-S 3/4"M30x2 Ø20S'
+        malzemeAdet: "1"
+      '18':
+        malzemeKodu: "150-51-09-059"
+        malzemeAdi: 'BSP METRİK NİPEL RK-2620-RMNP-S 3/4"-M30 Ø20S'
+        malzemeAdet: "1"
+      '19':
+        malzemeKodu: "150-51-09-058"
+        malzemeAdi: 'BSP METRİK NİPEL RK-2616-RMNP-S 3/4"-M24 Ø16S'
+        malzemeAdet: "3"
+      '20':
+        malzemeKodu: "150-51-09-134"
+        malzemeAdi: 'BSP DİŞİ TE RK-2626-DT 3/4"'
+        malzemeAdet: "1"
+      '21':
+        malzemeKodu: "150-51-09-099"
+        malzemeAdi: "3/8 KAYNAKLI MANŞON "
+        malzemeAdet: "1"
+      '22':
+        malzemeKodu: "150-51-09-106"
+        malzemeAdi: "1/2 KAYNAKLI MANŞON "
+        malzemeAdet: "3"
+      '23':
+        malzemeKodu: "150-51-09-484"
+        malzemeAdi: 'BSP ALLENBAŞLI KÖR TAPA RK-2114-RAT 1/2"'
+        malzemeAdet: "1"
+      '24':
+        malzemeKodu: "150-51-09-483"
+        malzemeAdi: 'BSP ALLENBAŞLI KÖR TAPA RK-1719-RAT 3/8"'
+        malzemeAdet: "1"
+      '25':
+        malzemeKodu: "150-51-09-107"
+        malzemeAdi: 'BSP KAYNAKLI MANŞON RK-2614-RKM 3/4"'
+        malzemeAdet: "3"
+      '26':
+        malzemeKodu: "150-51-04-025"
+        malzemeAdi: "VALF AÇIK MERKEZ NG6 24V RH06021-24V"
+        malzemeAdet: "1"
+      '27':
+        malzemeKodu: "150-51-05-036"
+        malzemeAdi: "NG6 TEKLİ EMNİYETLİ VALF BLOĞU (HİDROS)"
+        malzemeAdet: "1"
+      '28':
+        malzemeKodu: "150-51-09-017"
+        malzemeAdi: 'REKOR Ø10 3/8"'
+        malzemeAdet: "2"
+      '29':
+        malzemeKodu: "150-51-09-025"
+        malzemeAdi: 'BSP METRİK NİPEL RK-1310-RMNP-L 1/4"-M16 Ø10L'
+        malzemeAdet: "1"
+      '30':
+        malzemeKodu: "150-51-09-603"
+        malzemeAdi: 'BSP-METRİK MANOMETRE REKORLARI RK-1310-MER-L 1/4" M16 10L'
+        malzemeAdet: "1"
+      '31':
+        malzemeKodu: "150-51-09-303"
+        malzemeAdi: "METRİK TERS DİRSEK PİMLİ RK-1010-MTD-L M16 Ø10L"
+        malzemeAdet: "1"
+      '32':
+        malzemeKodu: "150-51-10-802"
+        malzemeAdi: "Manometre"
+        malzemeAdet: "1"
+      '33':
+        malzemeKodu: "150-50-21-069"
+        malzemeAdi: "CİVATA İMBUS M6 50 MM BEYAZ (DIN 912)"
+        malzemeAdet: "2"
+basinc_salteri:
+  '0': #Basınç Şalteri
+    parts:
+      '0':
+        malzemeKodu: "150-51-10-457"
+        malzemeAdi: "Basınç Şalteri"
+        malzemeAdet: "1"
+      '1':
+        malzemeKodu: "150-51-09-025"
+        malzemeAdi: 'BSP METRİK NİPEL RK-1310-RMNP-L 1/4"-M16 Ø10L'
+        malzemeAdet: "1"
+      '2':
+        malzemeKodu: "150-51-09-201"
+        malzemeAdi: 'BSP METRİK TERS REKOR PİMLİ RK-1310-RMTR-L 1/4"M16 Ø10L'
+        malzemeAdet: "1"
+      '3':
+        malzemeKodu: "150-51-09-303"
+        malzemeAdi: "METRİK TERS DİRSEK PİMLİ RK-1010-MTD-L M16 Ø10L"
+        malzemeAdet: "1"
+standart_malzemeler:
+  '0': #HT 40
+    parts:
+      '0':
+        malzemeKodu: "150-51-07-201"
+        malzemeAdi: "Standart Depo Kapağı"
+        malzemeAdet: "1"
+      '1':
+        malzemeKodu: "150-51-08-001"
+        malzemeAdi: "Ø127 Yağ Göstergesi"
+        malzemeAdet: "1"
+      '2':
+        malzemeKodu: "150-51-09-484"
+        malzemeAdi: 'BSP ALLENBAŞLI KÖR TAPA RK-2114-RAT 1/2"'
+        malzemeAdet: "1"
+      '3':
+        malzemeKodu: "150-50-21-062"
+        malzemeAdi: "M6 x 15 İmbus Civata"
+        malzemeAdet: "10"
+  '1': #HT 70
+    parts:
+      '0':
+        malzemeKodu: "150-51-07-201"
+        malzemeAdi: "Standart Depo Kapağı"
+        malzemeAdet: "1"
+      '1':
+        malzemeKodu: "150-51-08-001"
+        malzemeAdi: "Ø127 Yağ Göstergesi"
+        malzemeAdet: "1"
+      '2':
+        malzemeKodu: "150-51-09-484"
+        malzemeAdi: 'BSP ALLENBAŞLI KÖR TAPA RK-2114-RAT 1/2"'
+        malzemeAdet: "1"
+      '3':
+        malzemeKodu: "150-50-21-062"
+        malzemeAdi: "M6 x 15 İmbus Civata"
+        malzemeAdet: "14"
+  '2': #HT 100
+    parts:
+      '0':
+        malzemeKodu: "150-51-07-201"
+        malzemeAdi: "Standart Depo Kapağı"
+        malzemeAdet: "1"
+      '1':
+        malzemeKodu: "150-51-08-001"
+        malzemeAdi: "Ø127 Yağ Göstergesi"
+        malzemeAdet: "1"
+      '2':
+        malzemeKodu: "150-51-09-484"
+        malzemeAdi: 'BSP ALLENBAŞLI KÖR TAPA RK-2114-RAT 1/2"'
+        malzemeAdet: "1"
+      '3':
+        malzemeKodu: "150-50-21-062"
+        malzemeAdi: "M6 x 15 İmbus Civata"
+        malzemeAdet: "14"
+  '3': #HT 125
+    parts:
+      '0':
+        malzemeKodu: "150-51-07-201"
+        malzemeAdi: "Standart Depo Kapağı"
+        malzemeAdet: "1"
+      '1':
+        malzemeKodu: "150-51-08-001"
+        malzemeAdi: "Ø127 Yağ Göstergesi"
+        malzemeAdet: "1"
+      '2':
+        malzemeKodu: "150-51-09-484"
+        malzemeAdi: 'BSP ALLENBAŞLI KÖR TAPA RK-2114-RAT 1/2"'
+        malzemeAdet: "1"
+      '3':
+        malzemeKodu: "150-50-21-062"
+        malzemeAdi: "M6 x 15 İmbus Civata"
+        malzemeAdet: "14"
+  '4': #HT 160
+    parts:
+      '0':
+        malzemeKodu: "150-51-07-201"
+        malzemeAdi: "Standart Depo Kapağı"
+        malzemeAdet: "1"
+      '1':
+        malzemeKodu: "150-51-08-001"
+        malzemeAdi: "Ø127 Yağ Göstergesi"
+        malzemeAdet: "1"
+      '2':
+        malzemeKodu: "150-51-09-484"
+        malzemeAdi: 'BSP ALLENBAŞLI KÖR TAPA RK-2114-RAT 1/2"'
+        malzemeAdet: "1"
+      '3':
+        malzemeKodu: "150-50-21-062"
+        malzemeAdi: "M6 x 15 İmbus Civata"
+        malzemeAdet: "16"
+  '5': #HT 200
+    parts:
+      '0':
+        malzemeKodu: "150-51-07-201"
+        malzemeAdi: "Standart Depo Kapağı"
+        malzemeAdet: "1"
+      '1':
+        malzemeKodu: "150-51-08-001"
+        malzemeAdi: "Ø127 Yağ Göstergesi"
+        malzemeAdet: "1"
+      '2':
+        malzemeKodu: "150-51-09-484"
+        malzemeAdi: 'BSP ALLENBAŞLI KÖR TAPA RK-2114-RAT 1/2"'
+        malzemeAdet: "1"
+      '3':
+        malzemeKodu: "150-50-21-062"
+        malzemeAdi: "M6 x 15 İmbus Civata"
+        malzemeAdet: "18"
+  '6': #HT 250
+    parts:
+      '0':
+        malzemeKodu: "150-51-07-201"
+        malzemeAdi: "Standart Depo Kapağı"
+        malzemeAdet: "1"
+      '1':
+        malzemeKodu: "150-51-08-001"
+        malzemeAdi: "Ø127 Yağ Göstergesi"
+        malzemeAdet: "1"
+      '2':
+        malzemeKodu: "150-51-09-484"
+        malzemeAdi: 'BSP ALLENBAŞLI KÖR TAPA RK-2114-RAT 1/2"'
+        malzemeAdet: "1"
+      '3':
+        malzemeKodu: "150-50-21-062"
+        malzemeAdi: "M6 x 15 İmbus Civata"
+        malzemeAdet: "18"
+  '7': #HT 300
+    parts:
+      '0':
+        malzemeKodu: "150-51-07-201"
+        malzemeAdi: "Standart Depo Kapağı"
+        malzemeAdet: "1"
+      '1':
+        malzemeKodu: "150-51-08-001"
+        malzemeAdi: "Ø127 Yağ Göstergesi"
+        malzemeAdet: "1"
+      '2':
+        malzemeKodu: "150-51-09-484"
+        malzemeAdi: 'BSP ALLENBAŞLI KÖR TAPA RK-2114-RAT 1/2"'
+        malzemeAdet: "1"
+      '3':
+        malzemeKodu: "150-50-21-062"
+        malzemeAdi: "M6 x 15 İmbus Civata"
+        malzemeAdet: "22"
+  '8': #HT 350
+    parts:
+      '0':
+        malzemeKodu: "150-51-07-201"
+        malzemeAdi: "Standart Depo Kapağı"
+        malzemeAdet: "1"
+      '1':
+        malzemeKodu: "150-51-08-001"
+        malzemeAdi: "Ø127 Yağ Göstergesi"
+        malzemeAdet: "1"
+      '2':
+        malzemeKodu: "150-51-09-484"
+        malzemeAdi: 'BSP ALLENBAŞLI KÖR TAPA RK-2114-RAT 1/2"'
+        malzemeAdet: "1"
+      '3':
+        malzemeKodu: "150-50-21-062"
+        malzemeAdi: "M6 x 15 İmbus Civata"
+        malzemeAdet: "22"
+  '9': #HT 400
+    parts:
+      '0':
+        malzemeKodu: "150-51-07-201"
+        malzemeAdi: "Standart Depo Kapağı"
+        malzemeAdet: "1"
+      '1':
+        malzemeKodu: "150-51-08-001"
+        malzemeAdi: "Ø127 Yağ Göstergesi"
+        malzemeAdet: "1"
+      '2':
+        malzemeKodu: "150-51-09-484"
+        malzemeAdi: 'BSP ALLENBAŞLI KÖR TAPA RK-2114-RAT 1/2"'
+        malzemeAdet: "1"
+      '3':
+        malzemeKodu: "150-50-21-062"
+        malzemeAdi: "M6 x 15 İmbus Civata"
+        malzemeAdet: "22"
+  '10': #HT Soğutma
+    parts:
+      '0':
+        malzemeKodu: "150-51-07-201"
+        malzemeAdi: "Standart Depo Kapağı"
+        malzemeAdet: "1"
+      '1':
+        malzemeKodu: "150-51-08-001"
+        malzemeAdi: "Ø127 Yağ Göstergesi"
+        malzemeAdet: "1"
+      '2':
+        malzemeKodu: "150-51-09-484"
+        malzemeAdi: 'BSP ALLENBAŞLI KÖR TAPA RK-2114-RAT 1/2"'
+        malzemeAdet: "1"
+      '3':
+        malzemeKodu: "150-50-21-062"
+        malzemeAdi: "M6 x 15 İmbus Civata"
+        malzemeAdet: "18"

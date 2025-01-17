@@ -1,0 +1,41 @@
+{
+  "unit_types": {
+    "classic": "Klasik",
+    "power_pack": "PowerPack"
+  },
+  "void_values": {
+    "kampanaTankArasiBoslukX": "30",
+    "kampanaTankArasiBoslukY": "30",
+    "kampanaBoslukYOn": "70",
+    "tekHizTankArasiBoslukX": "100",
+    "tekHizTankArasiBoslukY": "70",
+    "tekHizAraBoslukX": "100",
+    "tekHizYOn": "160",
+    "tekHizBlokX": "70",
+    "tekHizBlokY": "120",
+    "ciftHizTankArasiBoslukX": "50",
+    "ciftHizTankArasiBoslukY": "50",
+    "ciftHizAraBoslukX": "60",
+    "ciftHizYOn": "210",
+    "ciftHizBlokX": "160",
+    "ciftHizBlokY": "90",
+    "kilitliBlokTankArasiBoslukX": "50",
+    "kilitliBlokTankArasiBoslukY": "50",
+    "kilitliBlokAraBoslukX": "100",
+    "kilitliBlokYOn": "110",
+    "kilitliBlokX": "120",
+    "kilitliBlokY": "190",
+    "kilitMotorTankArasiBoslukX": "100",
+    "kilitMotorTankArasiBoslukY": "40",
+    "kilitMotorAraBoslukX": "160",
+    "kilitMotorYOn": "60",
+    "tekHizKilitAyriY": "10",
+    "tekHizKilitAyriYOn": "50",
+    "ciftHizKilitAyriY": "40",
+    "ciftHizKilitAyriYOn": "50",
+    "kilitMotorX": "110",
+    "kilitMotorY": "220",
+    "kayipLitre": "11",
+    "defaultHeight": "300"
+  }
+}

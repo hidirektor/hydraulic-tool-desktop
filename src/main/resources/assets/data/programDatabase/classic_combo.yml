@@ -1,0 +1,175 @@
+motor:
+  '0':
+    '0':
+      name: "2.2 kW"
+      value: "2.2 kW"
+      kampana: "250 mm"
+      yukseklik: "345 mm"
+    '1':
+      name: "3 kW"
+      value: "3 kW"
+      kampana: "250 mm"
+      yukseklik: "345 mm"
+    '2':
+      name: "4 kW"
+      value: "4 kW"
+      kampana: "250 mm"
+      yukseklik: "345 mm"
+    '3':
+      name: "5.5 kW"
+      value: "5.5 kW"
+      kampana: "250 mm"
+      yukseklik: "375 mm"
+    '4':
+      name: "5.5 kW (Kompakt)"
+      value: "5.5 kW"
+      kampana: "250 mm"
+      yukseklik: "365 mm"
+    '5':
+      name: "7.5 kW (Kompakt)"
+      value: "7.5 kW"
+      kampana: "300 mm"
+      yukseklik: "410 mm"
+    '6':
+      name: "11 kW"
+      value: "11 kW"
+      kampana: "350 mm"
+      yukseklik: "500 mm"
+    '7':
+      name: "11 kW (Kompakt)"
+      value: "11 kW"
+      kampana: "300 mm"
+      yukseklik: "470 mm"
+    '8':
+      name: "15 kW"
+      value: "15 kW"
+      kampana: "350 mm"
+      yukseklik: "540 mm"
+    '9':
+      name: "18.5 kW"
+      value: "18.5 kW"
+      kampana: "350 mm"
+      yukseklik: "565 mm"
+    '10':
+      name: "22 kW"
+      value: "22 kW"
+      kampana: "350 mm"
+      yukseklik: "565 mm"
+    '11':
+      name: "37 kW"
+      value: "37 kW"
+      kampana: "400 mm"
+      yukseklik: "600 mm"
+sogutma:
+  '0':
+    options:
+      '0':
+        value: "Var"
+      '1':
+        value: "Yok"
+hidrolik_kilit:
+  '0':
+    options:
+      '0':
+        value: "Var"
+      '1':
+        value: "Yok"
+pompa:
+  '0': # Power Pack pompa listesi
+    type: "powerpack"
+    options:
+      '0':
+        name: "1.1 cc"
+      '1':
+        name: "1.6 cc"
+      '2':
+        name: "2.1 cc"
+      '3':
+        name: "2.7 cc"
+      '4':
+        name: "3.2 cc"
+      '5':
+        name: "3.7 cc"
+      '6':
+        name: "4.2 cc"
+      '7':
+        name: "4.8 cc"
+      '8':
+        name: "5.8 cc"
+      '9':
+        name: "7 cc"
+      '10':
+        name: "8 cc"
+      '11':
+        name: "9 cc"
+  '1': # Klasik ünite pompa listesi
+    type: "klasik"
+    options:
+      '0':
+        name: "9.5 cc"
+      '1':
+        name: "11.9 cc"
+      '2':
+        name: "14 cc"
+      '3':
+        name: "14.6 cc"
+      '4':
+        name: "16.8 cc"
+      '5':
+        name: "19.2 cc"
+      '6':
+        name: "22.9 cc"
+      '7':
+        name: "28.1 cc"
+      '8':
+        name: "28.8 cc"
+      '9':
+        name: "33.3 cc"
+      '10':
+        name: "37.9 cc"
+      '11':
+        name: "42.6 cc"
+      '12':
+        name: "45.5 cc"
+      '13':
+        name: "49.4 cc"
+      '14':
+        name: "56.1 cc"
+kompanzasyon:
+  '0':
+    options:
+      '0':
+        value: "Var"
+      '1':
+        value: "Yok"
+valf_tipi:
+  '0': # Kompanzasyon olmayan durum
+    options:
+      '0':
+        value: "İnişte Tek Hız"
+      '1':
+        value: "İnişte Çift Hız"
+  '1': # Kompanzasyon olan durum
+    options:
+      '0':
+        value: "Kompanzasyon || İnişte Tek Hız"
+  '2': # Soğutma Var, Kilit Yok, Kompanzasyon Yok
+    options:
+      '0':
+        value: "İnişte Çift Hız"
+kilit_motor:
+  '0':
+    options:
+      '0':
+        value: "1.5 kW"
+      '1':
+        value: "2.2 kW"
+kilit_pompa:
+  '0':
+    options:
+      '0':
+        value: "4.2 cc"
+      '1':
+        value: "4.8 cc"
+      '2':
+        value: "5.8 cc"

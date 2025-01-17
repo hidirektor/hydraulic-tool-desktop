@@ -1,6 +1,7 @@
 package com.hidirektor.dashboard.utils;
 
 import com.hidirektor.dashboard.Launcher;
+import com.hidirektor.dashboard.utils.System.SystemDefaults;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Node;

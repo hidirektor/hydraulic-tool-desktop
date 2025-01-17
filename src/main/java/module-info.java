@@ -4,6 +4,11 @@ module com.hidirektor.dashboard {
     requires me.t3sl4.util.os;
     requires java.management;
     requires java.desktop;
+    requires org.yaml.snakeyaml;
+    requires me.t3sl4.util.file;
+    requires org.json;
+    requires itextpdf;
+    requires java.logging;
 
     exports com.hidirektor.dashboard;
     opens com.hidirektor.dashboard to javafx.base, javafx.fxml;
@@ -28,4 +33,6 @@ module com.hidirektor.dashboard {
 
     exports com.hidirektor.dashboard.utils;
     opens com.hidirektor.dashboard.utils to javafx.fxml;
+    exports com.hidirektor.dashboard.utils.System;
+    opens com.hidirektor.dashboard.utils.System to javafx.fxml;
 }

@@ -40,6 +40,26 @@ public class ClassicController implements Initializable  {
 
     boolean orderSectionExpanded = false, unitInfoSectionExpanded = false, calculationResultSectionExpanded = false;
 
+
+    /*
+    Seçilen Değerler:
+     */
+    public static String secilenUniteTipi = "Klasik";
+    public static String girilenSiparisNumarasi = null;
+    public static String secilenMotor = null;
+    public static String kompanzasyonDurumu = null;
+    public static int secilenKampana = 0;
+    public static String secilenPompa = null;
+    public static double secilenPompaVal;
+    public static int girilenTankKapasitesiMiktari = 0;
+    public static String secilenHidrolikKilitDurumu = null;
+    public static String secilenValfTipi = null;
+    public static String secilenKilitMotor = null;
+    public static String secilenKilitPompa = null;
+    public static String secilenSogutmaDurumu = null;
+
+    public static boolean hesaplamaBitti = false;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         Platform.runLater(() -> {

@@ -1,0 +1,1117 @@
+motor_380:
+  '0': # 0.55 kW
+    parts:
+      '0':
+        malzemeKodu: "150-52-13-521"
+        malzemeAdi: "İTHAL-ELEKTRİK MOTORU 0,55 KW 1500 d/dk 380V"
+        malzemeAdet: "1"
+  '1': # 0.75 kW
+    parts:
+      '0':
+        malzemeKodu: "150-52-13-522"
+        malzemeAdi: "İTHAL-ELEKTRİK MOTORU 0,75 KW 1500 d/dk 380V"
+        malzemeAdet: "1"
+  '2': # 1.1 kW
+    parts:
+      '0':
+        malzemeKodu: "150-52-13-523"
+        malzemeAdi: "İTHAL-ELEKTRİK MOTORU 1,1 KW 1500 d/dk 380V"
+        malzemeAdet: "1"
+  '3': # 1.5 kW
+    parts:
+      '0':
+        malzemeKodu: "150-52-13-524"
+        malzemeAdi: "İTHAL-ELEKTRİK MOTORU 1,5 KW 1500 d/dk 380V"
+        malzemeAdet: "1"
+  '4': # 2.2 kW
+    parts:
+      '0':
+        malzemeKodu: "150-52-13-525"
+        malzemeAdi: "İTHAL-ELEKTRİK MOTORU 2,2 KW 1500 d/dk 380V"
+        malzemeAdet: "1"
+  '5': # 3 kW
+    parts:
+      '0':
+        malzemeKodu: "150-52-13-526"
+        malzemeAdi: "İTHAL-ELEKTRİK MOTORU 3 KW 1500 d/dk 380V"
+        malzemeAdet: "1"
+  '6': # 4 kW
+    parts:
+      '0':
+        malzemeKodu: "150-52-13-527"
+        malzemeAdi: "İTHAL-ELEKTRİK MOTORU 4 KW 1500 d/dk 380V"
+        malzemeAdet: "1"
+motor_220:
+  '0': # 0.37 kW
+    parts:
+      '0':
+        malzemeKodu: "150-52-13-501"
+        malzemeAdi: "ELEKTRİK MOTORU 0,37 KW 1500 d/dk 220V İTHAL"
+        malzemeAdet: "1"
+  '1': # 0.55 kW
+    parts:
+      '0':
+        malzemeKodu: "150-52-13-502"
+        malzemeAdi: "İTHAL-ELEKTRİK MOTORU 0,55 KW 1500 d/dk 220V"
+        malzemeAdet: "1"
+  '2': # 0.75 kW
+    parts:
+      '0':
+        malzemeKodu: "150-52-13-503"
+        malzemeAdi: "İTHAL-ELEKTRİK MOTORU 0,75 KW 1500 d/dk 220V"
+        malzemeAdet: "1"
+  '3': # 1.1 kW
+    parts:
+      '0':
+        malzemeKodu: "150-52-13-503"
+        malzemeAdi: "İTHAL-ELEKTRİK MOTORU 1,1 KW 1500 d/dk 220V"
+        malzemeAdet: "1"
+  '4': # 1.5 kW
+    parts:
+      '0':
+        malzemeKodu: "150-52-13-504"
+        malzemeAdi: "İTHAL-ELEKTRİK MOTORU 1,5 KW 1500 d/dk 220V"
+        malzemeAdet: "1"
+  '5': # 2.2 kW
+    parts:
+      '0':
+        malzemeKodu: "150-52-13-505"
+        malzemeAdi: "İTHAL-ELEKTRİK MOTORU 2,2 KW 1500 d/dk 220V"
+        malzemeAdet: "1"
+  '6': # 3 kW
+    parts:
+      '0':
+        malzemeKodu: "150-52-13-506"
+        malzemeAdi: "İTHAL-ELEKTRİK MOTORU 3 KW 1500 d/dk 220V"
+        malzemeAdet: "1"
+pompa:
+  '0': # 0.8 cc
+    parts:
+      '0':
+        malzemeKodu: "150-51-01-901"
+        malzemeAdi: "İTHAL-POMPA 0.8 CC"
+        malzemeAdet: "1"
+      '1':
+        malzemeKodu: "150-50-21-105"
+        malzemeAdi: "CİVATA İMBUS M8 80 MM BEYAZ (DIN 912 )"
+        malzemeAdet: "2"
+  '1': # 1.1 cc
+    parts:
+      '0':
+        malzemeKodu: "150-51-01-902"
+        malzemeAdi: "İTHAL-POMPA 1.1 CC"
+        malzemeAdet: "1"
+      '1':
+        malzemeKodu: "150-50-21-105"
+        malzemeAdi: "CİVATA İMBUS M8 80 MM BEYAZ (DIN 912 )"
+        malzemeAdet: "2"
+  '2': # 1.3 cc
+    parts:
+      '0':
+        malzemeKodu: "150-51-01-903"
+        malzemeAdi: "İTHAL-POMPA 1.3 CC"
+        malzemeAdet: "1"
+      '1':
+        malzemeKodu: "150-50-21-105"
+        malzemeAdi: "CİVATA İMBUS M8 80 MM BEYAZ (DIN 912 )"
+        malzemeAdet: "2"
+  '3': # 1.8 cc
+    parts:
+      '0':
+        malzemeKodu: "150-51-01-904"
+        malzemeAdi: "İTHAL-POMPA 1.8 CC"
+        malzemeAdet: "1"
+      '1':
+        malzemeKodu: "150-50-21-105"
+        malzemeAdi: "CİVATA İMBUS M8 80 MM BEYAZ (DIN 912 )"
+        malzemeAdet: "2"
+  '4': # 2.1 cc
+    parts:
+      '0':
+        malzemeKodu: "150-51-01-905"
+        malzemeAdi: "İTHAL-POMPA 2.1 CC"
+        malzemeAdet: "1"
+      '1':
+        malzemeKodu: "150-50-21-105"
+        malzemeAdi: "CİVATA İMBUS M8 80 MM BEYAZ (DIN 912 )"
+        malzemeAdet: "2"
+  '5': # 2.7 cc
+    parts:
+      '0':
+        malzemeKodu: "150-51-01-906"
+        malzemeAdi: "İTHAL-POMPA 2.7 CC"
+        malzemeAdet: "1"
+      '1':
+        malzemeKodu: "150-50-21-105"
+        malzemeAdi: "CİVATA İMBUS M8 80 MM BEYAZ (DIN 912 )"
+        malzemeAdet: "2"
+  '6': # 3.2 cc
+    parts:
+      '0':
+        malzemeKodu: "150-51-01-907"
+        malzemeAdi: "İTHAL-POMPA 3.2 CC"
+        malzemeAdet: "1"
+      '1':
+        malzemeKodu: "150-50-21-105"
+        malzemeAdi: "CİVATA İMBUS M8 80 MM BEYAZ (DIN 912 )"
+        malzemeAdet: "2"
+  '7': # 3.7 cc
+    parts:
+      '0':
+        malzemeKodu: "150-51-01-908"
+        malzemeAdi: "İTHAL-POMPA 3.7 CC"
+        malzemeAdet: "1"
+      '1':
+        malzemeKodu: "150-50-21-107"
+        malzemeAdi: "CİVATA İMBUS M8 90 MM BEYAZ (DIN 912)"
+        malzemeAdet: "2"
+  '8': # 4.2 cc
+    parts:
+      '0':
+        malzemeKodu: "150-51-01-909"
+        malzemeAdi: "İTHAL-POMPA 4.2 CC"
+        malzemeAdet: "1"
+      '1':
+        malzemeKodu: "150-50-21-107"
+        malzemeAdi: "CİVATA İMBUS M8 90 MM BEYAZ (DIN 912)"
+        malzemeAdet: "2"
+  '9': # 4.8 cc
+    parts:
+      '0':
+        malzemeKodu: "150-51-01-910"
+        malzemeAdi: "İTHAL-POMPA 4.8 CC"
+        malzemeAdet: "1"
+      '1':
+        malzemeKodu: "150-50-21-107"
+        malzemeAdi: "CİVATA İMBUS M8 90 MM BEYAZ (DIN 912)"
+        malzemeAdet: "2"
+  '10': # 5.8 cc
+    parts:
+      '0':
+        malzemeKodu: "150-51-01-911"
+        malzemeAdi: "İTHAL-POMPA 5.8 CC"
+        malzemeAdet: "1"
+      '1':
+        malzemeKodu: "150-50-21-109"
+        malzemeAdi: "CİVATA İMBUS M8 100 MM BEYAZ (DIN 912)"
+        malzemeAdet: "2"
+  '11': # 7 cc
+    parts:
+      '0':
+        malzemeKodu: "150-51-01-912"
+        malzemeAdi: "İTHAL-POMPA 7 CC"
+        malzemeAdet: "1"
+      '1':
+        malzemeKodu: "150-50-21-109"
+        malzemeAdi: "CİVATA İMBUS M8 100 MM BEYAZ (DIN 912)"
+        malzemeAdet: "2"
+  '12': # 8 cc
+    parts:
+      '0':
+        malzemeKodu: "150-51-01-913"
+        malzemeAdi: "İTHAL-POMPA 8 CC"
+        malzemeAdet: "1"
+      '1':
+        malzemeKodu: "150-50-21-111"
+        malzemeAdi: "CİVATA İMBUS M8 110 MM BEYAZ (DIN 912)"
+        malzemeAdet: "2"
+  '13': # 9 cc
+    parts:
+      '0':
+        malzemeKodu: "150-51-01-914"
+        malzemeAdi: "İTHAL-POMPA 9 CC"
+        malzemeAdet: "1"
+      '1':
+        malzemeKodu: "150-50-21-111"
+        malzemeAdi: "CİVATA İMBUS M8 110 MM BEYAZ (DIN 912)"
+        malzemeAdet: "2"
+  '14': # 9.8 cc
+    parts:
+      '0':
+        malzemeKodu: "150-51-01-915"
+        malzemeAdi: "İTHAL-POMPA 9.8 CC"
+        malzemeAdet: "1"
+      '1':
+        malzemeKodu: "150-50-21-111"
+        malzemeAdi: "CİVATA İMBUS M8 110 MM BEYAZ (DIN 912)"
+        malzemeAdet: "2"
+tank_dikey:
+  '0': # 2.5 Lt
+    parts:
+      '0':
+        malzemeKodu: "150-51-06-100"
+        malzemeAdi: "İTHAL-YAĞ TANKI 2,5 LT YATAY-DİKEY"
+        malzemeAdet: "1"
+      '1':
+        malzemeKodu: "150-51-07-215"
+        malzemeAdi: "İTHAL-HAVALANDIRMA KAPAĞI 3/4"
+        malzemeAdet: "1"
+      '2':
+        malzemeKodu: "150-50-21-501"
+        malzemeAdi: "CİVATA ANAHTAR BAŞLI M6 10 MM BEYAZ (DIN 933 )"
+        malzemeAdet: "4"
+      '3':
+        malzemeKodu: "150-50-21-121"
+        malzemeAdi: "CIVATA IMBUS M10 16 MM BEYAZ (DIN 912)"
+        malzemeAdet: "2"
+      '4':
+        malzemeKodu: "150-50-24-005"
+        malzemeAdi: "PUL M10 BEYAZ"
+        malzemeAdet: "2"
+      '5':
+        malzemeKodu: "150-50-24-911"
+        malzemeAdi: "PUL M8 BEYAZ"
+        malzemeAdet: "4"
+      '6':
+        malzemeKodu: "150-50-23-005"
+        malzemeAdi: "SOMUN M8 DÜZ BEYAZ"
+        malzemeAdet: "4"
+  '1': # 3.8 Lt
+    parts:
+      '0':
+        malzemeKodu: "150-51-06-101"
+        malzemeAdi: "İTHAL-YAĞ TANKI 3.8 LT YATAY-DİKEY"
+        malzemeAdet: "1"
+      '1':
+        malzemeKodu: "150-51-07-215"
+        malzemeAdi: "İTHAL-HAVALANDIRMA KAPAĞI 3/4"
+        malzemeAdet: "1"
+      '2':
+        malzemeKodu: "150-50-21-501"
+        malzemeAdi: "CİVATA ANAHTAR BAŞLI M6 10 MM BEYAZ (DIN 933 )"
+        malzemeAdet: "4"
+      '3':
+        malzemeKodu: "150-50-21-121"
+        malzemeAdi: "CIVATA IMBUS M10 16 MM BEYAZ (DIN 912)"
+        malzemeAdet: "2"
+      '4':
+        malzemeKodu: "150-50-24-005"
+        malzemeAdi: "PUL M10 BEYAZ"
+        malzemeAdet: "2"
+      '5':
+        malzemeKodu: "150-50-24-911"
+        malzemeAdi: "PUL M8 BEYAZ"
+        malzemeAdet: "4"
+      '6':
+        malzemeKodu: "150-50-23-005"
+        malzemeAdi: "SOMUN M8 DÜZ BEYAZ"
+        malzemeAdet: "4"
+  '2': # 7 Lt
+    parts:
+      '0':
+        malzemeKodu: "150-51-06-105"
+        malzemeAdi: "İTHAL-YAĞ TANKI 7 LT YATAY-DİKEY"
+        malzemeAdet: "1"
+      '1':
+        malzemeKodu: "150-51-07-215"
+        malzemeAdi: "İTHAL-HAVALANDIRMA KAPAĞI 3/4"
+        malzemeAdet: "1"
+      '2':
+        malzemeKodu: "150-50-21-501"
+        malzemeAdi: "CİVATA ANAHTAR BAŞLI M6 10 MM BEYAZ (DIN 933 )"
+        malzemeAdet: "4"
+      '3':
+        malzemeKodu: "150-50-21-121"
+        malzemeAdi: "CIVATA IMBUS M10 16 MM BEYAZ (DIN 912)"
+        malzemeAdet: "2"
+      '4':
+        malzemeKodu: "150-50-24-005"
+        malzemeAdi: "PUL M10 BEYAZ"
+        malzemeAdet: "2"
+      '5':
+        malzemeKodu: "150-50-24-911"
+        malzemeAdi: "PUL M8 BEYAZ"
+        malzemeAdet: "4"
+      '6':
+        malzemeKodu: "150-50-23-005"
+        malzemeAdi: "SOMUN M8 DÜZ BEYAZ"
+        malzemeAdet: "4"
+  '3': # 10 Lt
+    parts:
+      '0':
+        malzemeKodu: "150-51-06-107"
+        malzemeAdi: "İTHAL-YAĞ TANKI 10 LT YATAY-DİKEY"
+        malzemeAdet: "1"
+      '1':
+        malzemeKodu: "150-51-07-215"
+        malzemeAdi: "İTHAL-HAVALANDIRMA KAPAĞI 3/4"
+        malzemeAdet: "1"
+      '2':
+        malzemeKodu: "150-50-21-501"
+        malzemeAdi: "CİVATA ANAHTAR BAŞLI M6 10 MM BEYAZ (DIN 933 )"
+        malzemeAdet: "4"
+      '3':
+        malzemeKodu: "150-50-21-121"
+        malzemeAdi: "CIVATA IMBUS M10 16 MM BEYAZ (DIN 912)"
+        malzemeAdet: "2"
+      '4':
+        malzemeKodu: "150-50-24-005"
+        malzemeAdi: "PUL M10 BEYAZ"
+        malzemeAdet: "2"
+      '5':
+        malzemeKodu: "150-50-24-911"
+        malzemeAdi: "PUL M8 BEYAZ"
+        malzemeAdet: "4"
+      '6':
+        malzemeKodu: "150-50-23-005"
+        malzemeAdi: "SOMUN M8 DÜZ BEYAZ"
+        malzemeAdet: "4"
+  '4': # 12 Lt
+    parts:
+      '0':
+        malzemeKodu: "150-51-06-108"
+        malzemeAdi: "İTHAL-YAĞ TANKI 12 LT DİKEY"
+        malzemeAdet: "1"
+      '1':
+        malzemeKodu: "150-51-07-215"
+        malzemeAdi: "İTHAL-HAVALANDIRMA KAPAĞI 3/4"
+        malzemeAdet: "1"
+      '2':
+        malzemeKodu: "150-50-21-501"
+        malzemeAdi: "CİVATA ANAHTAR BAŞLI M6 10 MM BEYAZ (DIN 933 )"
+        malzemeAdet: "4"
+  '5': # 15 Lt
+    parts:
+      '0':
+        malzemeKodu: "150-51-06-114"
+        malzemeAdi: "İTHAL-YAĞ TANKI 15 LT DİKEY"
+        malzemeAdet: "1"
+      '1':
+        malzemeKodu: "150-51-07-215"
+        malzemeAdi: "İTHAL-HAVALANDIRMA KAPAĞI 3/4"
+        malzemeAdet: "1"
+      '2':
+        malzemeKodu: "150-50-21-501"
+        malzemeAdi: "CİVATA ANAHTAR BAŞLI M6 10 MM BEYAZ (DIN 933 )"
+        malzemeAdet: "4"
+  '6': # 20 Lt
+    parts:
+      '0':
+        malzemeKodu: "150-51-06-110"
+        malzemeAdi: "İTHAL-YAĞ TANKI 20 LT DİKEY"
+        malzemeAdet: "1"
+      '1':
+        malzemeKodu: "150-51-07-215"
+        malzemeAdi: "İTHAL-HAVALANDIRMA KAPAĞI 3/4"
+        malzemeAdet: "1"
+      '2':
+        malzemeKodu: "150-50-21-501"
+        malzemeAdi: "CİVATA ANAHTAR BAŞLI M6 10 MM BEYAZ (DIN 933 )"
+        malzemeAdet: "4"
+  '7': # 30 Lt
+    parts:
+      '0':
+        malzemeKodu: "150-51-06-112"
+        malzemeAdi: "İTHAL-YAĞ TANKI 30 LT DİKEY"
+        malzemeAdet: "1"
+      '1':
+        malzemeKodu: "150-51-07-215"
+        malzemeAdi: "İTHAL-HAVALANDIRMA KAPAĞI 3/4"
+        malzemeAdet: "1"
+      '2':
+        malzemeKodu: "150-50-21-501"
+        malzemeAdi: "CİVATA ANAHTAR BAŞLI M6 10 MM BEYAZ (DIN 933 )"
+        malzemeAdet: "4"
+tank_yatay:
+  '0': # 2.5 Lt
+    parts:
+      '0':
+        malzemeKodu: "150-51-06-100"
+        malzemeAdi: "İTHAL-YAĞ TANKI 2,5 LT YATAY-DİKEY"
+        malzemeAdet: "1"
+      '1':
+        malzemeKodu: "150-51-07-215"
+        malzemeAdi: "İTHAL-HAVALANDIRMA KAPAĞI 3/4"
+        malzemeAdet: "1"
+      '2':
+        malzemeKodu: "150-50-21-501"
+        malzemeAdi: "CİVATA ANAHTAR BAŞLI M6 10 MM BEYAZ (DIN 933 )"
+        malzemeAdet: "4"
+      '3':
+        malzemeKodu: "150-50-21-335"
+        malzemeAdi: "CIVATA HAVSA BASLI IMBUS M8 30 MM BEYAZ"
+        malzemeAdet: "4"
+      '4':
+        malzemeKodu: "150-50-24-911"
+        malzemeAdi: "PUL M8 BEYAZ"
+        malzemeAdet: "4"
+      '5':
+        malzemeKodu: "150-50-23-005"
+        malzemeAdi: "SOMUN M8 DÜZ BEYAZ"
+        malzemeAdet: "4"
+      '6':
+        malzemeKodu: "150-51-09-902"
+        malzemeAdi: '3/8" EMİŞ BORUSU 90 LIK KISA PLASTİK BİR TARAFI UZUN BİR TARAFI KISA'
+        malzemeAdet: "1"
+  '1': # 3.8 Lt
+    parts:
+      '0':
+        malzemeKodu: "150-51-06-101"
+        malzemeAdi: "İTHAL-YAĞ TANKI 3.8 LT YATAY-DİKEY"
+        malzemeAdet: "1"
+      '1':
+        malzemeKodu: "150-51-07-215"
+        malzemeAdi: "İTHAL-HAVALANDIRMA KAPAĞI 3/4"
+        malzemeAdet: "1"
+      '2':
+        malzemeKodu: "150-50-21-501"
+        malzemeAdi: "CİVATA ANAHTAR BAŞLI M6 10 MM BEYAZ (DIN 933 )"
+        malzemeAdet: "4"
+      '3':
+        malzemeKodu: "150-50-21-335"
+        malzemeAdi: "CIVATA HAVSA BASLI IMBUS M8 30 MM BEYAZ"
+        malzemeAdet: "4"
+      '4':
+        malzemeKodu: "150-50-24-911"
+        malzemeAdi: "PUL M8 BEYAZ"
+        malzemeAdet: "4"
+      '5':
+        malzemeKodu: "150-50-23-005"
+        malzemeAdi: "SOMUN M8 DÜZ BEYAZ"
+        malzemeAdet: "4"
+      '6':
+        malzemeKodu: "150-51-09-902"
+        malzemeAdi: '3/8" EMİŞ BORUSU 90 LIK KISA PLASTİK BİR TARAFI UZUN BİR TARAFI KISA'
+        malzemeAdet: "1"
+  '2': # 7 Lt
+    parts:
+      '0':
+        malzemeKodu: "150-51-06-105"
+        malzemeAdi: "İTHAL-YAĞ TANKI 7 LT YATAY-DİKEY"
+        malzemeAdet: "1"
+      '1':
+        malzemeKodu: "150-51-07-215"
+        malzemeAdi: "İTHAL-HAVALANDIRMA KAPAĞI 3/4"
+        malzemeAdet: "1"
+      '2':
+        malzemeKodu: "150-50-21-501"
+        malzemeAdi: "CİVATA ANAHTAR BAŞLI M6 10 MM BEYAZ (DIN 933 )"
+        malzemeAdet: "4"
+      '3':
+        malzemeKodu: "150-50-21-335"
+        malzemeAdi: "CIVATA HAVSA BASLI IMBUS M8 30 MM BEYAZ"
+        malzemeAdet: "4"
+      '4':
+        malzemeKodu: "150-50-24-911"
+        malzemeAdi: "PUL M8 BEYAZ"
+        malzemeAdet: "4"
+      '5':
+        malzemeKodu: "150-50-23-005"
+        malzemeAdi: "SOMUN M8 DÜZ BEYAZ"
+        malzemeAdet: "4"
+      '6':
+        malzemeKodu: "150-51-09-902"
+        malzemeAdi: '3/8" EMİŞ BORUSU 90 LIK KISA PLASTİK BİR TARAFI UZUN BİR TARAFI KISA'
+        malzemeAdet: "1"
+  '3': # 10 Lt
+    parts:
+      '0':
+        malzemeKodu: "150-51-06-107"
+        malzemeAdi: "İTHAL-YAĞ TANKI 10 LT YATAY-DİKEY"
+        malzemeAdet: "1"
+      '1':
+        malzemeKodu: "150-51-07-215"
+        malzemeAdi: "İTHAL-HAVALANDIRMA KAPAĞI 3/4"
+        malzemeAdet: "1"
+      '2':
+        malzemeKodu: "150-50-21-501"
+        malzemeAdi: "CİVATA ANAHTAR BAŞLI M6 10 MM BEYAZ (DIN 933 )"
+        malzemeAdet: "4"
+      '3':
+        malzemeKodu: "150-50-21-335"
+        malzemeAdi: "CIVATA HAVSA BASLI IMBUS M8 30 MM BEYAZ"
+        malzemeAdet: "4"
+      '4':
+        malzemeKodu: "150-50-24-911"
+        malzemeAdi: "PUL M8 BEYAZ"
+        malzemeAdet: "4"
+      '5':
+        malzemeKodu: "150-50-23-005"
+        malzemeAdi: "SOMUN M8 DÜZ BEYAZ"
+        malzemeAdet: "4"
+      '6':
+        malzemeKodu: "150-51-09-902"
+        malzemeAdi: '3/8" EMİŞ BORUSU 90 LIK KISA PLASTİK BİR TARAFI UZUN BİR TARAFI KISA'
+        malzemeAdet: "1"
+esp_default:
+  '0':
+    parts:
+      '0':
+        malzemeKodu: "000-00-00-000"
+        malzemeAdi: "İTHAL BLOK"
+        malzemeAdet: "1"
+      '1':
+        malzemeKodu: "000-00-00-000"
+        malzemeAdi: "İTHAL KAPLİN"
+        malzemeAdet: "1"
+      '2':
+        malzemeKodu: "150-51-07-050"
+        malzemeAdi: "3/8 EMİŞ FİLTRE"
+        malzemeAdet: "1"
+      '3':
+        malzemeKodu: "150-51-09-017"
+        malzemeAdi: 'REKOR Ø10 3/8"'
+        malzemeAdet: "1"
+      '4':
+        malzemeKodu: "150-50-21-065"
+        malzemeAdi: "CIVATA  M6X30 MM İMBUS"
+        malzemeAdet: "4"
+esp_custom:
+  '0': # Dikey - ESP - Çift Hız
+    parts:
+      '0':
+        malzemeKodu: "150-51-04-042"
+        malzemeAdi: "VALF 8/2-24 NORMALDE KAPALI POPET VALF"
+        malzemeAdet: "1"
+      '1':
+        malzemeKodu: "150-51-04-048"
+        malzemeAdi: "VALF BOBİN 24VDC 18W"
+        malzemeAdet: "1"
+      '2':
+        malzemeKodu: "150-51-04-051"
+        malzemeAdi: "3/8 ÇEKLİ HIZ AYAR VALFİ"
+        malzemeAdet: "1"
+      '3':
+        malzemeKodu: "150-51-05-054"
+        malzemeAdi: 'POPET BLOĞU 3/8" BANGİOSUZ'
+        malzemeAdet: "1"
+      '4':
+        malzemeKodu: "150-51-09-817"
+        malzemeAdi: "TERS DİRSEK PİMLİ Ø10"
+        malzemeAdet: "1"
+      '5':
+        malzemeKodu: "150-51-09-710"
+        malzemeAdi: "YAN BACAK Ø10"
+        malzemeAdet: "1"
+      '6':
+        malzemeKodu: "150-51-09-932"
+        malzemeAdi: "TERS REKOR PİMLİ Ø10 3/8"
+        malzemeAdet: "2"
+      '7':
+        malzemeKodu: "150-51-15-007"
+        malzemeAdi: 'HİDROLİK HORTUM 5/16" R2 M16 30CM DÜZ-90'
+        malzemeAdet: "1"
+devirmeli_yuruyus:
+  '0':
+    parts:
+      '0':
+        malzemeKodu: "150-51-05-001"
+        malzemeAdi: "İTHAL A01 BLOK"
+        malzemeAdet: "1"
+      '1':
+        malzemeKodu: "150-51-05-002"
+        malzemeAdi: "İTHAL A03 BLOK"
+        malzemeAdet: "2"
+      '2':
+        malzemeKodu: "150-51-04-034"
+        malzemeAdi: "İTHAL VALF A.B.T MERKEZ NG6 24V"
+        malzemeAdet: "1"
+      '3':
+        malzemeKodu: "150-51-04-016"
+        malzemeAdi: "İTHAL VALF KAPALI MERKEZ NG6 24V"
+        malzemeAdet: "1"
+      '4':
+        malzemeKodu: "150-51-04-051"
+        malzemeAdi: "3/8 ÇEKLİ HIZ AYAR VALFİ"
+        malzemeAdet: "1"
+      '5':
+        malzemeKodu: "000-00-00-000"
+        malzemeAdi: "İTHAL BLOK "
+        malzemeAdet: "1"
+      '6':
+        malzemeKodu: "000-00-00-000"
+        malzemeAdi: "İTHAL KAPLİN"
+        malzemeAdet: "1"
+      '7':
+        malzemeKodu: "150-51-07-050"
+        malzemeAdi: "3/8 EMİŞ FİLTRE"
+        malzemeAdet: "1"
+      '8':
+        malzemeKodu: "150-51-05-027"
+        malzemeAdi: "NG6 MODÜLER İKİZ YÜK TUTMA (LUEN) 001.226.0Y0"
+        malzemeAdet: "1"
+      '9':
+        malzemeKodu: "150-50-21-114"
+        malzemeAdi: "CİVATA İMBUS M6 130 MM BEYAZ (DIN 912)"
+        malzemeAdet: "3"
+      '10':
+        malzemeKodu: "150-53-08-501"
+        malzemeAdi: "3/8 KÖR TAPA ALLEN BAŞLI"
+        malzemeAdet: "1"
+      '11':
+        malzemeKodu: "150-51-09-419"
+        malzemeAdi: "NİPEL 3/8 Ø10"
+        malzemeAdet: "4"
+      '12':
+        malzemeKodu: "150-51-09-817"
+        malzemeAdi: "TERS DİRSEK PİMLİ Ø10"
+        malzemeAdet: "1"
+      '13':
+        malzemeKodu: "150-51-09-932"
+        malzemeAdi: "TERS REKOR PİMLİ Ø10 3/8"
+        malzemeAdet: "1"
+      '14':
+        malzemeKodu: "150-53-08-503"
+        malzemeAdi: "1/4 KÖR TAPA ALLEN BAŞLI"
+        malzemeAdet: "2"
+      '15':
+        malzemeKodu: "150-50-21-065"
+        malzemeAdi: "CIVATA  M6X30 MM İMBUS"
+        malzemeAdet: "4"
+      '16':
+        malzemeKodu: "000-00-00-000"
+        malzemeAdi: "8/2 KÖR TAPA ALLEN BAŞLI"
+        malzemeAdet: "4"
+standart_malzemeler:
+  '0':
+    parts:
+      '0':
+        malzemeKodu: "150-53-04-002"
+        malzemeAdi: "HİDROLİK YAĞ S2 M46"
+        malzemeAdet: "1"
+ozel_dikey:
+  '0':
+    parts:
+      '0':
+        malzemeKodu: "150-50-21-501"
+        malzemeAdi: "CİVATA ANAHTAR BAŞLI M6 10 MM BEYAZ (DIN 933 )"
+        malzemeAdet: "4"
+      '1':
+        malzemeKodu: "150-51-06-390"
+        malzemeAdi: "KAYNAKLI TANK BOĞAZI"
+        malzemeAdet: "1"
+      '2':
+        malzemeKodu: "150-51-07-208"
+        malzemeAdi: "HAVALANDIRMA KAPAĞI 1/2"
+        malzemeAdet: "1"
+      '3':
+        malzemeKodu: "150-51-09-106"
+        malzemeAdi: "1/2 Kaynaklı Manşon"
+        malzemeAdet: "1"
+ozel_yatay:
+  '0':
+    parts:
+      '0':
+        malzemeKodu: "150-50-21-501"
+        malzemeAdi: "CİVATA ANAHTAR BAŞLI M6 10 MM BEYAZ (DIN 933 )"
+        malzemeAdet: "4"
+      '1':
+        malzemeKodu: "150-51-06-390"
+        malzemeAdi: "KAYNAKLI TANK BOĞAZI"
+        malzemeAdet: "1"
+      '2':
+        malzemeKodu: "150-51-07-208"
+        malzemeAdi: "HAVALANDIRMA KAPAĞI 1/2"
+        malzemeAdet: "1"
+      '3':
+        malzemeKodu: "150-51-09-106"
+        malzemeAdi: "1/2 Kaynaklı Manşon"
+        malzemeAdet: "1"
+      '4':
+        malzemeKodu: "150-50-21-335"
+        malzemeAdi: "CIVATA HAVSA BASLI IMBUS M8 30 MM BEYAZ"
+        malzemeAdet: "4"
+      '5':
+        malzemeKodu: "150-50-24-911"
+        malzemeAdi: "PUL M8 BEYAZ"
+        malzemeAdet: "4"
+      '6':
+        malzemeKodu: "150-50-23-005"
+        malzemeAdi: "SOMUN M8 DÜZ BEYAZ"
+        malzemeAdet: "4"
+valf_types:
+  '0': # Açık Merkez Genel
+    parts:
+      '0':
+        malzemeKodu: "000-00-00-000"
+        malzemeAdi: "İTHAL BLOK"
+        malzemeAdet: "1"
+      '1':
+        malzemeKodu: "000-00-00-000"
+        malzemeAdi: "İTHAL KAPLİN"
+        malzemeAdet: "1"
+      '2':
+        malzemeKodu: "150-51-07-050"
+        malzemeAdi: "3/8 EMİŞ FİLTRE"
+        malzemeAdet: "1"
+      '3':
+        malzemeKodu: "150-50-21-065"
+        malzemeAdi: "CIVATA  M6X30 MM İMBUS"
+        malzemeAdet: "4"
+      '4':
+        malzemeKodu: "150-51-05-002"
+        malzemeAdi: "İTHAL A03 BLOK "
+        malzemeAdet: "1"
+      '5':
+        malzemeKodu: "150-51-04-023"
+        malzemeAdi: "İTHAL VALF AÇIK MERKEZ NG6 24V"
+        malzemeAdet: "1"
+      '6':
+        malzemeKodu: "150-50-21-101"
+        malzemeAdi: "CİVATA İMBUS M8 60 MM BEYAZ (DIN 912)"
+        malzemeAdet: "2"
+      '7':
+        malzemeKodu: "150-51-09-419"
+        malzemeAdi: "NİPEL 3/8 Ø10"
+        malzemeAdet: "2"
+      '8':
+        malzemeKodu: "150-53-08-501"
+        malzemeAdi: "3/8 KÖR TAPA ALLEN BAŞLI"
+        malzemeAdet: "1"
+      '9':
+        malzemeKodu: "150-51-04-051"
+        malzemeAdi: "3/8 ÇEKLİ HIZ AYAR VALFİ"
+        malzemeAdet: "1"
+      '10':
+        malzemeKodu: "150-51-09-932"
+        malzemeAdi: "TERS REKOR PİMLİ Ø10 3/8"
+        malzemeAdet: "1"
+      '11':
+        malzemeKodu: "150-51-09-817"
+        malzemeAdi: "TERS DİRSEK PİMLİ Ø10"
+        malzemeAdet: "1"
+      '12':
+        malzemeKodu: "000-00-00-000"
+        malzemeAdi: "8/2 KÖR TAPA ALLEN BAŞLI"
+        malzemeAdet: "1"
+  '1': # Açık Merkez 12 V
+    parts:
+      '0':
+        malzemeKodu: "000-00-00-000"
+        malzemeAdi: "İTHAL BLOK"
+        malzemeAdet: "1"
+      '1':
+        malzemeKodu: "000-00-00-000"
+        malzemeAdi: "İTHAL KAPLİN"
+        malzemeAdet: "1"
+      '2':
+        malzemeKodu: "150-51-07-050"
+        malzemeAdi: "3/8 EMİŞ FİLTRE"
+        malzemeAdet: "1"
+      '3':
+        malzemeKodu: "150-50-21-065"
+        malzemeAdi: "CIVATA  M6X30 MM İMBUS"
+        malzemeAdet: "4"
+      '4':
+        malzemeKodu: "150-51-05-002"
+        malzemeAdi: "İTHAL A03 BLOK "
+        malzemeAdet: "1"
+      '5':
+        malzemeKodu: "000-00-00-000"
+        malzemeAdi: "İTHAL VALF AÇIK MERKEZ NG6 12V"
+        malzemeAdet: "1"
+      '6':
+        malzemeKodu: "150-50-21-101"
+        malzemeAdi: "CİVATA İMBUS M8 60 MM BEYAZ (DIN 912)"
+        malzemeAdet: "2"
+      '7':
+        malzemeKodu: "150-51-09-419"
+        malzemeAdi: "NİPEL 3/8 Ø10"
+        malzemeAdet: "2"
+      '8':
+        malzemeKodu: "150-53-08-501"
+        malzemeAdi: "3/8 KÖR TAPA ALLEN BAŞLI"
+        malzemeAdet: "1"
+      '9':
+        malzemeKodu: "150-51-04-051"
+        malzemeAdi: "3/8 ÇEKLİ HIZ AYAR VALFİ"
+        malzemeAdet: "1"
+      '10':
+        malzemeKodu: "150-51-09-932"
+        malzemeAdi: "TERS REKOR PİMLİ Ø10 3/8"
+        malzemeAdet: "1"
+      '11':
+        malzemeKodu: "150-51-09-817"
+        malzemeAdi: "TERS DİRSEK PİMLİ Ø10"
+        malzemeAdet: "1"
+      '12':
+        malzemeKodu: "000-00-00-000"
+        malzemeAdi: "8/2 KÖR TAPA ALLEN BAŞLI"
+        malzemeAdet: "1"
+  '2': # J Merkez Genel
+    parts:
+      '0':
+        malzemeKodu: "000-00-00-000"
+        malzemeAdi: "İTHAL BLOK "
+        malzemeAdet: "1"
+      '1':
+        malzemeKodu: "000-00-00-000"
+        malzemeAdi: "İTHAL KAPLİN BLOK"
+        malzemeAdet: "1"
+      '2':
+        malzemeKodu: "150-51-07-050"
+        malzemeAdi: "3/8 EMİŞ FİLTRE"
+        malzemeAdet: "1"
+      '3':
+        malzemeKodu: "150-50-21-065"
+        malzemeAdi: "CIVATA  M6X30 MM İMBUS"
+        malzemeAdet: "4"
+      '4':
+        malzemeKodu: "150-51-05-002"
+        malzemeAdi: "İTHAL A03 BLOK "
+        malzemeAdet: "1"
+      '5':
+        malzemeKodu: "150-51-04-034"
+        malzemeAdi: "İTHAL VALF A.B.T MERKEZ NG6 24V"
+        malzemeAdet: "1"
+      '6':
+        malzemeKodu: "150-50-21-107"
+        malzemeAdi: "CİVATA İMBUS M8 90 MM BEYAZ (DIN 912)"
+        malzemeAdet: "2"
+      '7':
+        malzemeKodu: "150-51-09-419"
+        malzemeAdi: "NİPEL 3/8 Ø10"
+        malzemeAdet: "2"
+      '8':
+        malzemeKodu: "150-51-05-027"
+        malzemeAdi: "NG6 MODÜLER İKİZ YÜK TUTMA (LUEN) 001.226.0Y0"
+        malzemeAdet: "1"
+      '9':
+        malzemeKodu: "150-53-08-503"
+        malzemeAdi: "1/4 KÖR TAPA ALLEN BAŞLI"
+        malzemeAdet: "2"
+      '10':
+        malzemeKodu: "150-50-21-059"
+        malzemeAdi: "CİVATA İMBUS M5 120 MM BEYAZ"
+        malzemeAdet: "4"
+      '11':
+        malzemeKodu: "150-51-05-001"
+        malzemeAdi: "İTHAL A01 BLOK"
+        malzemeAdet: "1"
+      '12':
+        malzemeKodu: "000-00-00-000"
+        malzemeAdi: "8/2 KÖR TAPA ALLEN BAŞLI"
+        malzemeAdet: "1"
+  '3': # J Merkez 12 V
+    parts:
+      '0':
+        malzemeKodu: "000-00-00-000"
+        malzemeAdi: "İTHAL BLOK "
+        malzemeAdet: "1"
+      '1':
+        malzemeKodu: "000-00-00-000"
+        malzemeAdi: "İTHAL KAPLİN BLOK"
+        malzemeAdet: "1"
+      '2':
+        malzemeKodu: "150-51-07-050"
+        malzemeAdi: "3/8 EMİŞ FİLTRE"
+        malzemeAdet: "1"
+      '3':
+        malzemeKodu: "150-50-21-065"
+        malzemeAdi: "CIVATA  M6X30 MM İMBUS"
+        malzemeAdet: "4"
+      '4':
+        malzemeKodu: "150-51-05-002"
+        malzemeAdi: "İTHAL A03 BLOK "
+        malzemeAdet: "1"
+      '5':
+        malzemeKodu: "000-00-00-000"
+        malzemeAdi: "İTHAL VALF A.B.T MERKEZ NG6 12V"
+        malzemeAdet: "1"
+      '6':
+        malzemeKodu: "150-50-21-107"
+        malzemeAdi: "CİVATA İMBUS M8 90 MM BEYAZ (DIN 912)"
+        malzemeAdet: "2"
+      '7':
+        malzemeKodu: "150-51-09-419"
+        malzemeAdi: "NİPEL 3/8 Ø10"
+        malzemeAdet: "2"
+      '8':
+        malzemeKodu: "150-51-05-027"
+        malzemeAdi: "NG6 MODÜLER İKİZ YÜK TUTMA (LUEN) 001.226.0Y0"
+        malzemeAdet: "1"
+      '9':
+        malzemeKodu: "150-53-08-503"
+        malzemeAdi: "1/4 KÖR TAPA ALLEN BAŞLI"
+        malzemeAdet: "2"
+      '10':
+        malzemeKodu: "150-50-21-059"
+        malzemeAdi: "CİVATA İMBUS M5 120 MM BEYAZ"
+        malzemeAdet: "4"
+      '11':
+        malzemeKodu: "150-51-05-001"
+        malzemeAdi: "İTHAL A01 BLOK"
+        malzemeAdet: "1"
+      '12':
+        malzemeKodu: "000-00-00-000"
+        malzemeAdi: "8/2 KÖR TAPA ALLEN BAŞLI"
+        malzemeAdet: "1"
+  '4': # H Merkez Genel
+    parts:
+      '0':
+        malzemeKodu: "000-00-00-000"
+        malzemeAdi: "İTHAL BLOK "
+        malzemeAdet: "1"
+      '1':
+        malzemeKodu: "000-00-00-000"
+        malzemeAdi: "İTHAL KAPLİN BLOK"
+        malzemeAdet: "1"
+      '2':
+        malzemeKodu: "150-51-07-050"
+        malzemeAdi: "3/8 EMİŞ FİLTRE"
+        malzemeAdet: "1"
+      '3':
+        malzemeKodu: "150-50-21-065"
+        malzemeAdi: "CIVATA  M6X30 MM İMBUS"
+        malzemeAdet: "4"
+      '4':
+        malzemeKodu: "150-51-05-002"
+        malzemeAdi: "İTHAL A03 BLOK "
+        malzemeAdet: "1"
+      '5':
+        malzemeKodu: "150-51-04-033"
+        malzemeAdi: "İTHAL VALF H MERKEZ NG6 (NG6-3C3-24V)"
+        malzemeAdet: "1"
+      '6':
+        malzemeKodu: "150-50-21-107"
+        malzemeAdi: "CİVATA İMBUS M8 90 MM BEYAZ (DIN 912)"
+        malzemeAdet: "2"
+      '7':
+        malzemeKodu: "150-51-09-419"
+        malzemeAdi: "NİPEL 3/8 Ø10"
+        malzemeAdet: "2"
+      '8':
+        malzemeKodu: "150-51-05-027"
+        malzemeAdi: "NG6 MODÜLER İKİZ YÜK TUTMA (LUEN) 001.226.0Y0"
+        malzemeAdet: "1"
+      '9':
+        malzemeKodu: "150-53-08-503"
+        malzemeAdi: "1/4 KÖR TAPA ALLEN BAŞLI"
+        malzemeAdet: "2"
+      '10':
+        malzemeKodu: "150-50-21-059"
+        malzemeAdi: "CİVATA İMBUS M5 120 MM BEYAZ"
+        malzemeAdet: "4"
+      '11':
+        malzemeKodu: "150-51-05-001"
+        malzemeAdi: "İTHAL A01 BLOK"
+        malzemeAdet: "1"
+      '12':
+        malzemeKodu: "000-00-00-000"
+        malzemeAdi: "8/2 KÖR TAPA ALLEN BAŞLI"
+        malzemeAdet: "1"
+  '5': # H Merkez 12 V
+    parts:
+      '0':
+        malzemeKodu: "000-00-00-000"
+        malzemeAdi: "İTHAL BLOK "
+        malzemeAdet: "1"
+      '1':
+        malzemeKodu: "000-00-00-000"
+        malzemeAdi: "İTHAL KAPLİN BLOK"
+        malzemeAdet: "1"
+      '2':
+        malzemeKodu: "150-51-07-050"
+        malzemeAdi: "3/8 EMİŞ FİLTRE"
+        malzemeAdet: "1"
+      '3':
+        malzemeKodu: "150-50-21-065"
+        malzemeAdi: "CIVATA  M6X30 MM İMBUS"
+        malzemeAdet: "4"
+      '4':
+        malzemeKodu: "150-51-05-002"
+        malzemeAdi: "İTHAL A03 BLOK "
+        malzemeAdet: "1"
+      '5':
+        malzemeKodu: "000-00-00-000"
+        malzemeAdi: "İTHAL VALF H MERKEZ NG6 12V"
+        malzemeAdet: "1"
+      '6':
+        malzemeKodu: "150-50-21-107"
+        malzemeAdi: "CİVATA İMBUS M8 90 MM BEYAZ (DIN 912)"
+        malzemeAdet: "2"
+      '7':
+        malzemeKodu: "150-51-09-419"
+        malzemeAdi: "NİPEL 3/8 Ø10"
+        malzemeAdet: "2"
+      '8':
+        malzemeKodu: "150-51-05-027"
+        malzemeAdi: "NG6 MODÜLER İKİZ YÜK TUTMA (LUEN) 001.226.0Y0"
+        malzemeAdet: "1"
+      '9':
+        malzemeKodu: "150-53-08-503"
+        malzemeAdi: "1/4 KÖR TAPA ALLEN BAŞLI"
+        malzemeAdet: "2"
+      '10':
+        malzemeKodu: "150-50-21-059"
+        malzemeAdi: "CİVATA İMBUS M5 120 MM BEYAZ"
+        malzemeAdet: "4"
+      '11':
+        malzemeKodu: "150-51-05-001"
+        malzemeAdi: "İTHAL A01 BLOK"
+        malzemeAdet: "1"
+      '12':
+        malzemeKodu: "000-00-00-000"
+        malzemeAdi: "8/2 KÖR TAPA ALLEN BAŞLI"
+        malzemeAdet: "1"
+ozel_cift_valf:
+  '0':
+    parts:
+      '0':
+        malzemeKodu: "000-00-00-000"
+        malzemeAdi: "İTHAL BLOK"
+        malzemeAdet: "1"
+      '1':
+        malzemeKodu: "000-00-00-000"
+        malzemeAdi: "İTHAL KAPLİN"
+        malzemeAdet: "1"
+      '2':
+        malzemeKodu: "150-51-07-050"
+        malzemeAdi: "3/8 EMİŞ FİLTRE"
+        malzemeAdet: "1"
+      '3':
+        malzemeKodu: "150-50-21-065"
+        malzemeAdi: "CIVATA  M6X30 MM İMBUS"
+        malzemeAdet: "4"
+      '4':
+        malzemeKodu: "150-51-05-002"
+        malzemeAdi: "İTHAL A03 BLOK"
+        malzemeAdet: "2"
+      '5':
+        malzemeKodu: "150-51-04-034"
+        malzemeAdi: "İTHAL VALF A.B.T MERKEZ NG6 24V"
+        malzemeAdet: "1"
+      '6':
+        malzemeKodu: "150-51-04-016"
+        malzemeAdi: "İTHAL VALF KAPALI MERKEZ NG6 24V"
+        malzemeAdet: "1"
+      '7':
+        malzemeKodu: "150-50-21-114"
+        malzemeAdi: "CİVATA İMBUS M8 130 MM BEYAZ (DIN 912)"
+        malzemeAdet: "2"
+      '8':
+        malzemeKodu: "150-51-09-419"
+        malzemeAdi: "NİPEL 3/8 Ø10"
+        malzemeAdet: "4"
+      '9':
+        malzemeKodu: "150-51-05-027"
+        malzemeAdi: "NG6 MODÜLER İKİZ YÜK TUTMA (LUEN) 001.226.0Y0"
+        malzemeAdet: "1"
+      '10':
+        malzemeKodu: "150-53-08-503"
+        malzemeAdi: "1/4 KÖR TAPA ALLEN BAŞLI"
+        malzemeAdet: "2"
+      '11':
+        malzemeKodu: "150-50-21-059"
+        malzemeAdi: "CİVATA İMBUS M5 120 MM BEYAZ"
+        malzemeAdet: "4"
+      '12':
+        malzemeKodu: "150-53-08-501"
+        malzemeAdi: "3/8 KÖR TAPA ALLEN BAŞLI"
+        malzemeAdet: "1"
+      '13':
+        malzemeKodu: "150-51-04-051"
+        malzemeAdi: "3/8 ÇEKLİ HIZ AYAR VALFİ"
+        malzemeAdet: "1"
+      '14':
+        malzemeKodu: "150-51-09-932"
+        malzemeAdi: "TERS REKOR PİMLİ Ø10 3/8"
+        malzemeAdet: "1"
+      '15':
+        malzemeKodu: "150-51-09-817"
+        malzemeAdi: "TERS DİRSEK PİMLİ Ø10"
+        malzemeAdet: "1"
+      '16':
+        malzemeKodu: "150-51-05-001"
+        malzemeAdi: "İTHAL A01 BLOK"
+        malzemeAdet: "1"

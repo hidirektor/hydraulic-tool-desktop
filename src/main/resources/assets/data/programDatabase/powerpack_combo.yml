@@ -1,0 +1,360 @@
+motor:
+  '0':
+    options:
+      '0':
+        value: "380 V (AC)"
+      '1':
+        value: "220 V (AC)"
+      '2':
+        value: "24 V (DC)"
+      '3':
+        value: "12 V (DC)"
+unite_tipi:
+  '0':
+    options:
+      '0':
+        value: "Hidros"
+      '1':
+        value: "İthal"
+motor_gucu:
+  '0': #Hidros 380 V
+    options:
+      '0':
+        name: "0.37 kW"
+        value: "0.37 kW"
+        motorYukseklik: "0 mm"
+      '1':
+        name: "0.55 kW"
+        value: "0.55 kW"
+        motorYukseklik: "0 mm"
+      '2':
+        name: "0.75 kW"
+        value: "0.75 kW"
+        motorYukseklik: "235 mm"
+      '3':
+        name: "1.1 kW"
+        value: "1.1 kW"
+        motorYukseklik: "270 mm"
+      '4':
+        name: "1.5 kW"
+        value: "1.5 kW"
+        motorYukseklik: "0 mm"
+      '5':
+        name: "2.2 kW"
+        value: "2.2 kW"
+        motorYukseklik: "300 mm"
+      '6':
+        name: "3 kW"
+        value: "3 kW"
+        motorYukseklik: "0 mm"
+      '7':
+        name: "4 kW"
+        value: "4 kW"
+        motorYukseklik: "325 mm"
+  '1': #İthal 380 V
+    options:
+      '0':
+        name: "0.55 kW"
+        value: "0.55 kW"
+        motorYukseklik: "215 mm"
+      '1':
+        name: "0.75 kW"
+        value: "0.75 kW"
+        motorYukseklik: "255 mm"
+      '2':
+        name: "1.1 kW"
+        value: "1.1 kW"
+        motorYukseklik: "255 mm"
+      '3':
+        name: "1.5 kW"
+        value: "1.5 kW"
+        motorYukseklik: "260 mm"
+      '4':
+        name: "2.2 kW"
+        value: "2.2 kW"
+        motorYukseklik: "285 mm"
+      '5':
+        name: "3 kW"
+        value: "3 kW"
+        motorYukseklik: "315 mm"
+      '6':
+        name: "4 kW"
+        value: "4 kW"
+        motorYukseklik: "315 mm"
+  '2': #Hidros 220 V
+    options:
+      '0':
+        name: "0.37 kW"
+        value: "0.37 kW"
+        motorYukseklik: "0 mm"
+      '1':
+        name: "0.55 kW"
+        value: "0.55 kW"
+        motorYukseklik: "230 mm"
+      '2':
+        name: "0.75 kW"
+        value: "0.75 kW"
+        motorYukseklik: "0 mm"
+      '3':
+        name: "1.1 kW"
+        value: "1.1 kW"
+        motorYukseklik: "270 mm"
+      '4':
+        name: "1.5 kW"
+        value: "1.5 kW"
+        motorYukseklik: "285 mm"
+      '5':
+        name: "2.2 kW"
+        value: "2.2 kW"
+        motorYukseklik: "315 mm"
+      '6':
+        name: "3 kW"
+        value: "3 kW"
+        motorYukseklik: "0 mm"
+      '7':
+        name: "4 kW"
+        value: "4 kW"
+        motorYukseklik: "0 mm"
+  '3': #İthal 220 V
+    options:
+      '0':
+        name: "0.37 kW"
+        value: "0.37 kW"
+        motorYukseklik: "0 mm"
+      '1':
+        name: "0.55 kW"
+        value: "0.55 kW"
+        motorYukseklik: "255 mm"
+      '2':
+        name: "0.75 kW"
+        value: "0.75 kW"
+        motorYukseklik: "255 mm"
+      '3':
+        name: "1.1 kW"
+        value: "1.1 kW"
+        motorYukseklik: "265 mm"
+      '4':
+        name: "1.5 kW"
+        value: "1.5 kW"
+        motorYukseklik: "270 mm"
+      '5':
+        name: "2.2 kW"
+        value: "2.2 kW"
+        motorYukseklik: "295 mm"
+      '6':
+        name: "3 kW"
+        value: "3 kW"
+        motorYukseklik: "0 mm"
+      '7':
+        name: "3 kW"
+        value: "3 kW"
+        motorYukseklik: "0 mm"
+  '4': #Hidros 12 V
+    options:
+      '0':
+        name: "0.8 kW"
+        value: "0.8 kW"
+        motorYukseklik: "0 mm"
+      '1':
+        name: "1.6 kW"
+        value: "1.6 kW"
+        motorYukseklik: "0 mm"
+      '2':
+        name: "2.2 kW"
+        value: "2.2 kW"
+        motorYukseklik: "0 mm"
+  '5': #Hidros 24 V
+    options:
+      '0':
+        name: "0.8 kW"
+        value: "0.8 kW"
+        motorYukseklik: "0 mm"
+      '1':
+        name: "1.6 kW"
+        value: "1.6 kW"
+        motorYukseklik: "0 mm"
+      '2':
+        name: "2.2 kW"
+        value: "2.2 kW"
+        motorYukseklik: "0 mm"
+  '6': #İthal 12 V
+    options:
+      '0':
+        name: "0.8 kW"
+        value: "0.8 kW"
+        motorYukseklik: "0 mm"
+      '1':
+        name: "1.6 kW"
+        value: "1.6 kW"
+        motorYukseklik: "0 mm"
+      '2':
+        name: "2.2 kW"
+        value: "2.2 kW"
+        motorYukseklik: "0 mm"
+  '7': #İthal 24 V
+    options:
+      '0':
+        name: "0.8 kW"
+        value: "0.8 kW"
+        motorYukseklik: "0 mm"
+      '1':
+        name: "1.6 kW"
+        value: "1.6 kW"
+        motorYukseklik: "0 mm"
+      '2':
+        name: "2.2 kW"
+        value: "2.2 kW"
+        motorYukseklik: "0 mm"
+pompa:
+  '0': #Hidros Pompa
+    options:
+      '0':
+        value: "0.8 cc"
+      '1':
+        value: "1.1 cc"
+      '2':
+        value: "1.3 cc"
+      '3':
+        value: "1.8 cc"
+      '4':
+        value: "2.1 cc"
+      '5':
+        value: "2.7 cc"
+      '6':
+        value: "3.2 cc"
+      '7':
+        value: "3.7 cc"
+      '8':
+        value: "4.2 cc"
+      '9':
+        value: "4.8 cc"
+      '10':
+        value: "5.8 cc"
+      '11':
+        value: "7 cc"
+      '12':
+        value: "8 cc"
+      '13':
+        value: "9 cc"
+  '1': #İthal Pompa
+    options:
+      '0':
+        value: "0.8 cc"
+      '1':
+        value: "1.1 cc"
+      '2':
+        value: "1.3 cc"
+      '3':
+        value: "1.8 cc"
+      '4':
+        value: "2.1 cc"
+      '5':
+        value: "2.7 cc"
+      '6':
+        value: "3.2 cc"
+      '7':
+        value: "3.7 cc"
+      '8':
+        value: "4.2 cc"
+      '9':
+        value: "4.8 cc"
+      '10':
+        value: "5.8 cc"
+      '11':
+        value: "7 cc"
+      '12':
+        value: "8 cc"
+      '13':
+        value: "9 cc"
+      '14':
+        value: "9.8 cc"
+tank_tipi:
+  '0':
+    options:
+      '0':
+        value: "Dikey"
+      '1':
+        value: "Yatay"
+      '2':
+        value: "Özel - Dikey"
+      '3':
+        value: "Özel - Yatay"
+tank_kapasitesi:
+  '0': #Hidros Dikey Tank
+    options:
+      '0':
+        value: "4 Lt"
+      '1':
+        value: "6 Lt"
+      '2':
+        value: "8 Lt"
+      '3':
+        value: "10 Lt"
+      '4':
+        value: "12 Lt"
+      '5':
+        value: "20 Lt"
+  '1': #İthal Dikey Tank
+    options:
+      '0':
+        value: "2.5 Lt"
+      '1':
+        value: "3.8 Lt"
+      '2':
+        value: "7 Lt"
+      '3':
+        value: "10 Lt"
+      '4':
+        value: "12 Lt"
+      '5':
+        value: "15 Lt"
+      '6':
+        value: "20 Lt"
+      '7':
+        value: "30 Lt"
+  '2': #Hidros Yatay Tank
+    options:
+      '0':
+        value: "2 Lt"
+      '1':
+        value: "4 Lt"
+      '2':
+        value: "6 Lt"
+      '3':
+        value: "8 Lt"
+      '4':
+        value: "10 Lt"
+      '5':
+        value: "12 Lt"
+      '6':
+        value: "20 Lt"
+  '3': #İthal Yatay Tank
+    options:
+      '0':
+        value: "2.5 Lt"
+      '1':
+        value: "3.8 Lt"
+      '2':
+        value: "7 Lt"
+      '3':
+        value: "10 Lt"
+platform_tipi:
+  '0':
+    options:
+      '0':
+        value: "ESP"
+      '1':
+        value: "Devirmeli + Yürüyüş"
+      '2':
+        value: "Özel"
+valf_tipleri:
+  '0':
+    options:
+      '0':
+        value: "Açık Merkez"
+      '1':
+        value: "Kapalı Merkez"
+      '2':
+        value: "H Merkez"
+      '3':
+        value: "J Merkez"
