@@ -11,7 +11,7 @@
 
     <properties>
         <app.filename>Dashboard</app.filename>
-        <app.mainClass>com.hidirektor.dashboard.Launcher</app.mainClass>
+        <app.mainClass>com.hidirektor.hydraulic.Launcher</app.mainClass>
         <app.vendor>Halil İbrahim Direktör</app.vendor>
         <app.version>1.0.0</app.version>
         <app.url>https://github.com/hidirektor</app.url>
@@ -154,7 +154,7 @@
                         <id>default-cli</id>
                         <configuration>
                             <mainClass>
-                                com.hidirektor.dashboard.Launcher
+                                com.hidirektor.hydraulic.Launcher
                             </mainClass>
                             <launcher>app</launcher>
                             <jlinkZipName>app</jlinkZipName>
