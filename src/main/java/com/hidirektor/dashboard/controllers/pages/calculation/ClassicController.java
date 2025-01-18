@@ -1,15 +1,19 @@
 package com.hidirektor.dashboard.controllers.pages.calculation;
 
+import com.google.common.collect.LinkedListMultimap;
+import com.google.common.collect.Multimap;
 import com.hidirektor.dashboard.Launcher;
 import com.hidirektor.dashboard.controllers.notification.NotificationController;
 import com.hidirektor.dashboard.utils.Model.Hydraulic.Kabin;
 import com.hidirektor.dashboard.utils.Model.Table.DataControlTable;
+import com.hidirektor.dashboard.utils.Model.Table.PartListTable;
 import com.hidirektor.dashboard.utils.Notification.NotificationUtil;
 import com.hidirektor.dashboard.utils.Process.UIProcess;
 import com.hidirektor.dashboard.utils.System.SystemDefaults;
 import com.hidirektor.dashboard.utils.Utils;
 import com.hidirektor.dashboard.utils.Validation.ValidationUtil;
 import javafx.application.Platform;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -17,20 +21,28 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.Clipboard;
+import javafx.scene.input.ClipboardContent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Region;
+import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 import javafx.util.Duration;
+import me.t3sl4.util.os.desktop.DesktopUtil;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.jetbrains.annotations.Nullable;
+import org.json.JSONObject;
 
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.Objects;
-import java.util.ResourceBundle;
+import java.util.*;
 
 public class ClassicController implements Initializable  {
 
@@ -38,13 +50,13 @@ public class ClassicController implements Initializable  {
     public Label classicCaclulationTitle;
 
     @FXML
-    public AnchorPane orderSection, unitInfoSection, calculationResultSection, calculationControlSection;
+    public AnchorPane orderSection, unitInfoSection, calculationResultSection, partListSection, calculationControlSection;
 
     @FXML
-    public Button orderSectionButton, unitInfoSectionButton, calculationResultSectionButton, calculationControlSectionButton;
+    public Button orderSectionButton, unitInfoSectionButton, calculationResultSectionButton, partListSectionButton, calculationControlSectionButton;
 
     @FXML
-    public ImageView orderSectionButtonImage, unitInfoSectionButtonImage, calculationResultSectionButtonImage, calculationControlSectionButtonImage;
+    public ImageView orderSectionButtonImage, unitInfoSectionButtonImage, calculationResultSectionButtonImage, partListSectionButtonImage, calculationControlSectionButtonImage;
 
     //Hesaplama alanları:
     @FXML
@@ -56,7 +68,7 @@ public class ClassicController implements Initializable  {
     @FXML
     public TextField gerekenYagMiktariField;
 
-    boolean isOrderSectionExpanded = false, isUnitInfoSectionExpanded = false, isCalculationResultSectionExpanded = false, isCalculationControlSectionExpanded = false;
+    boolean isOrderSectionExpanded = false, isUnitInfoSectionExpanded = false, isCalculationResultSectionExpanded = false, isPartListSectionExpanded = false, isCalculationControlSectionExpanded = false;
 
     /*
     Sonuç için label ve imagelar
@@ -70,6 +82,30 @@ public class ClassicController implements Initializable  {
 
     @FXML
     public AnchorPane hydraulicUnitSchemePane;
+
+    /*
+    Parça listesi componentleri
+     */
+    @FXML
+    public StackPane dataTablePane;
+
+    @FXML
+    public ComboBox basincSalteriCombo, elPompasiCombo;
+
+    @FXML
+    private TableView<PartListTable> partListTable;
+
+    @FXML
+    private TableColumn<PartListTable, String> malzemeKodu;
+
+    @FXML
+    private TableColumn<PartListTable, String> secilenMalzeme;
+
+    @FXML
+    private TableColumn<PartListTable, String> adet;
+
+    private String basincSalteriDurumu = null;
+    private String elPompasiDurumu = null;
 
 
     /*
@@ -119,6 +155,10 @@ public class ClassicController implements Initializable  {
             dataKeyLine.setCellValueFactory(new PropertyValueFactory<>("programParameter"));
             dataValueLine.setCellValueFactory(new PropertyValueFactory<>("selectedParameterValue"));
 
+            malzemeKodu.setCellValueFactory(new PropertyValueFactory<>("malzemeKoduProperty"));
+            secilenMalzeme.setCellValueFactory(new PropertyValueFactory<>("malzemeAdiProperty"));
+            adet.setCellValueFactory(new PropertyValueFactory<>("malzemeAdetProperty"));
+
             collapseAndExpandSection(orderSection, isOrderSectionExpanded, orderSectionButtonImage, true);
         });
     }
@@ -134,11 +174,186 @@ public class ClassicController implements Initializable  {
         } else if(actionEvent.getSource().equals(calculationResultSectionButton)) {
             collapseAndExpandSection(calculationResultSection, isCalculationResultSectionExpanded, calculationResultSectionButtonImage, false);
             isCalculationResultSectionExpanded = !isCalculationResultSectionExpanded;
+        } else if(actionEvent.getSource().equals(partListSectionButton)) {
+            collapseAndExpandSection(partListSection, isPartListSectionExpanded, partListSectionButtonImage, false);
+            isPartListSectionExpanded = !isPartListSectionExpanded;
+
+            basincSalteriCombo.setDisable(false);
+            basincSalteriCombo.getItems().clear();
+            basincSalteriCombo.getItems().addAll("Var", "Yok");
         } else if(actionEvent.getSource().equals(calculationControlSectionButton)) {
             collapseAndExpandSection(calculationControlSection, isCalculationControlSectionExpanded, calculationControlSectionButtonImage, false);
             isCalculationControlSectionExpanded = !isCalculationControlSectionExpanded;
         } else {
             NotificationUtil.showNotification(orderSectionButton.getScene().getWindow(), NotificationController.NotificationType.ALERT, "Buton Hatası", "Buton hatası meydana geldi. Lütfen yaptığınız işlemle birlikte hatayı bize bildirin.");
+        }
+    }
+
+    @FXML
+    public void copyToClipboard() {
+        StringBuilder clipboardString = new StringBuilder();
+
+        ObservableList<PartListTable> veriler = partListTable.getItems();
+
+        for (PartListTable veri : veriler) {
+            clipboardString.append(veri.getMalzemeKoduProperty()).append(" ");
+            clipboardString.append(veri.getMalzemeAdiProperty()).append(" ");
+            clipboardString.append(veri.getMalzemeAdetProperty()).append("\n");
+        }
+
+        ClipboardContent content = new ClipboardContent();
+        content.putString(clipboardString.toString());
+        Clipboard.getSystemClipboard().setContent(content);
+    }
+
+    @FXML
+    public void exportAsExcel() {
+        ObservableList<PartListTable> veriler = partListTable.getItems();
+        String excelFileName = SystemDefaults.userDataExcelFolderPath + ClassicController.girilenSiparisNumarasi + ".xlsx";
+
+        Multimap<String, PartListTable> malzemeMultimap = LinkedListMultimap.create();
+        Multimap<String, PartListTable> filteredMultimap = LinkedListMultimap.create();
+        Multimap<String, PartListTable> duplicateMultimap = LinkedListMultimap.create();
+
+        for (PartListTable rowData : veriler) {
+            if (!(rowData.getMalzemeKoduProperty().equals("----") && rowData.getMalzemeAdetProperty().equals("----"))) {
+                String malzemeKey = rowData.getMalzemeKoduProperty();
+                String mapKey = rowData.getMalzemeKoduProperty() + " " + rowData.getMalzemeAdiProperty();
+
+                filteredMultimap.put(malzemeKey, new PartListTable(
+                        rowData.getMalzemeKoduProperty(),
+                        rowData.getMalzemeAdiProperty(),
+                        rowData.getMalzemeAdetProperty()
+                ));
+            }
+        }
+
+        List<String> keysToRemove = new ArrayList<>();
+        Iterator<String> iterator = filteredMultimap.keySet().iterator();
+
+        while (iterator.hasNext()) {
+            String key = iterator.next();
+
+            // "000-00-00-000" ve "Veri Yok" olmayan key'ler için işlem yap
+            if (!key.equals("000-00-00-000") && !key.equals("Veri Yok")) {
+                int toplamAdet = 0;
+                String currentAdet = "";
+                String malzemeKodu = null;
+                String malzemeAdi = null;
+
+                // Aynı key'e sahip öğeleri topla
+                for (PartListTable data : filteredMultimap.get(key)) {
+                    if (data.getMalzemeAdetProperty() != null && !data.getMalzemeAdetProperty().isEmpty() && !data.getMalzemeAdetProperty().contains("Lt")) {
+                        toplamAdet += Integer.parseInt(data.getMalzemeAdetProperty());
+                    } else {
+                        currentAdet = data.getMalzemeAdetProperty();
+                    }
+                    if (malzemeKodu == null) {
+                        malzemeKodu = data.getMalzemeKoduProperty();
+                    }
+                    if (malzemeAdi == null) {
+                        malzemeAdi = data.getMalzemeAdiProperty();
+                    }
+                }
+
+                // duplicateMultimap'e, key ve toplam adet bilgisi ile veri ekle
+                PartListTable duplicateData;
+                if(toplamAdet > 0) {
+                    duplicateData = new PartListTable(malzemeKodu, malzemeAdi, String.valueOf(toplamAdet));
+                } else {
+                    duplicateData = new PartListTable(malzemeKodu, malzemeAdi, currentAdet);
+                }
+                duplicateMultimap.put(key, duplicateData);
+
+                // Konsola duplicate verileri yazdır
+                System.out.println("Key: " + key + ", Malzeme Kodu: " + malzemeKodu +
+                        ", Malzeme Adı: " + malzemeAdi + ", Toplam Adet: " + toplamAdet);
+
+                // Silinecek anahtarı işaretle
+                keysToRemove.add(key);
+            }
+        }
+
+        for (String key : keysToRemove) {
+            filteredMultimap.removeAll(key);
+        }
+
+        // filteredMultimap'teki elemanları sırayla ekle
+        for (String key : filteredMultimap.keySet()) {
+            for (PartListTable data : filteredMultimap.get(key)) {
+                malzemeMultimap.put(key, data);
+            }
+        }
+
+        // duplicateMultimap'teki elemanları sırayla ekle
+        for (String key : duplicateMultimap.keySet()) {
+            for (PartListTable data : duplicateMultimap.get(key)) {
+                malzemeMultimap.put(key, data);
+            }
+        }
+
+        try (Workbook workbook = new XSSFWorkbook()) {
+            Sheet sheet = workbook.createSheet("Malzeme Listesi");
+
+            Row headerRow = sheet.createRow(0);
+            headerRow.createCell(0).setCellValue("Malzeme Kodu");
+            headerRow.createCell(1).setCellValue("Seçilen Malzeme");
+            headerRow.createCell(2).setCellValue("Adet");
+
+            int excelRowIndex = 1;
+            for (PartListTable rowData : malzemeMultimap.values()) {
+                Row row = sheet.createRow(excelRowIndex++);
+                row.createCell(0).setCellValue(rowData.getMalzemeKoduProperty());
+                row.createCell(1).setCellValue(rowData.getMalzemeAdiProperty());
+                row.createCell(2).setCellValue(rowData.getMalzemeAdetProperty());
+            }
+
+            try (FileOutputStream fileOut = new FileOutputStream(excelFileName)) {
+                workbook.write(fileOut);
+                System.out.println("Excel dosyası başarıyla oluşturuldu: " + excelFileName);
+
+                JSONObject jsonObject = new JSONObject();
+                jsonObject.put("Ünite Tipi", ClassicController.secilenUniteTipi);
+                jsonObject.put("Sipariş Numarası", ClassicController.girilenSiparisNumarasi);
+                jsonObject.put("Motor", ClassicController.secilenMotor);
+                jsonObject.put("Soğutma", ClassicController.secilenSogutmaDurumu);
+                jsonObject.put("Hidrolik Kilit", ClassicController.secilenHidrolikKilitDurumu);
+                jsonObject.put("Pompa", ClassicController.secilenPompa);
+                jsonObject.put("Gerekli Yağ Miktarı", ClassicController.girilenTankKapasitesiMiktari);
+                jsonObject.put("Kompanzasyon", ClassicController.kompanzasyonDurumu);
+                jsonObject.put("Valf Tipi", ClassicController.secilenValfTipi);
+                jsonObject.put("Kilit Motor", ClassicController.secilenKilitMotor);
+                jsonObject.put("Kilit Pompa", ClassicController.secilenKilitPompa);
+                jsonObject.put("Seçilen Kampana", ClassicController.secilenKampana);
+                jsonObject.put("Seçilen Pompa Val", ClassicController.secilenPompaVal);
+
+                if(SystemDefaults.loggedInUser != null) {
+                    Utils.createLocalUnitData(SystemDefaults.userLocalUnitDataFilePath,
+                            ClassicController.girilenSiparisNumarasi,
+                            Utils.getCurrentUnixTime(),
+                            ClassicController.secilenUniteTipi,
+                            null,
+                            excelFileName,
+                            "no",
+                            SystemDefaults.loggedInUser.getUserID(),
+                            jsonObject);
+                } else {
+                    Utils.createLocalUnitData(SystemDefaults.userLocalUnitDataFilePath,
+                            ClassicController.girilenSiparisNumarasi,
+                            Utils.getCurrentUnixTime(),
+                            ClassicController.secilenUniteTipi,
+                            null,
+                            excelFileName,
+                            "yes",
+                            System.getProperty("user.name"),
+                            jsonObject);
+                }
+
+                DesktopUtil.startExternalApplicationAsync(excelFileName);
+            }
+
+        } catch (IOException e) {
+            System.err.println("Excel dosyası oluşturulurken bir hata oluştu: " + e.getMessage());
         }
     }
 
@@ -247,6 +462,20 @@ public class ClassicController implements Initializable  {
 
             tabloGuncelle();
         }, () -> imageTextDisable());
+
+        UIProcess.changeInputDataForComboBox(basincSalteriCombo, newValue -> {
+            basincSalteriDurumu = String.valueOf(basincSalteriCombo.getValue());
+
+            elPompasiCombo.setDisable(false);
+            elPompasiCombo.getItems().clear();
+            elPompasiCombo.getItems().addAll("Var", "Yok");
+        }, null);
+
+        UIProcess.changeInputDataForComboBox(elPompasiCombo, newValue -> {
+            elPompasiDurumu = String.valueOf(elPompasiCombo.getValue());
+
+            createAndLoadPartListTable();
+        }, null);
     }
 
     private boolean checkComboBox() {
@@ -1127,6 +1356,327 @@ public class ClassicController implements Initializable  {
         System.out.println("Kullanmanız Gereken Kabin: " + atananKabin);
         System.out.println("Geçiş Ölçüleri: " + gecisOlculeri);
         System.out.println("-------------------------------");
+    }
+
+    private void createAndLoadPartListTable() {
+        if(secilenSogutmaDurumu.equals("Yok")) {
+            loadStockCodes();
+        }
+
+        loadMotorParca();
+        loadKampanaParca();
+        loadPompaParca();
+        loadKaplinParca();
+        loadValfBlokParca();
+
+        if(ClassicController.secilenKilitMotor != null) {
+            loadKilitMotorParca();
+        }
+
+        loadStandartParca();
+        if(secilenSogutmaDurumu.contains("Var")) {
+            loadSogutucuParca();
+        }
+
+        if(basincSalteriDurumu.equals("Var")) {
+            loadBasincSalteriParca();
+        }
+
+        if(elPompasiDurumu.equals("Var")) {
+            loadElPompasiParca();
+        }
+
+        loadYagMiktari();
+    }
+
+    private void generalLoadFunc(LinkedList<String> parcaListesi, String seperatorText) {
+        PartListTable separatorData = new PartListTable("----", seperatorText, "----");
+        partListTable.getItems().add(separatorData);
+
+        for (String veri : parcaListesi) {
+            String[] veriParcalari = veri.split(";");
+
+            String malzemeKodu = veriParcalari[0];
+            String secilenMalzeme = veriParcalari[1];
+            String adet = veriParcalari[2];
+
+            PartListTable data = new PartListTable(malzemeKodu, secilenMalzeme, adet);
+            partListTable.getItems().add(data);
+        }
+
+        partListTable.setRowFactory(tv -> new TableRow<PartListTable>() {
+            @Override
+            protected void updateItem(PartListTable item, boolean empty) {
+                super.updateItem(item, empty);
+                if (item == null || empty) {
+                    setStyle("");
+                } else {
+                    if (item.getMalzemeKoduProperty().equals("----") && item.getMalzemeAdetProperty().equals("----")) {
+                        setStyle("-fx-background-color: #F9F871; -fx-text-fill: black;");
+                    } else {
+                        setStyle("");
+                    }
+                }
+            }
+        });
+    }
+
+    private void loadStockCodes() {
+        String adet = "1";
+
+        Kabin foundedTank = Utils.findClassicTankByKabinName(ClassicController.atananKabinFinal);
+        List<PartListTable> dataList = Arrays.asList(
+                new PartListTable("----", "Kabin Genel Bilgisi", "----"),
+                new PartListTable(foundedTank.getKabinKodu(), foundedTank.getMalzemeAdi(), adet),
+                new PartListTable(foundedTank.getYagTankiKodu(), foundedTank.getTankName(), adet)
+        );
+
+        partListTable.getItems().addAll(dataList);
+    }
+
+    private void loadKampanaParca() {
+        if(ClassicController.secilenPompaVal >= 33.3) {
+            if(ClassicController.secilenKampana == 250) {
+                generalLoadFunc(SystemDefaults.getLocalHydraulicData().classicParcaKampana.get("4"), "Kampana Parçaları");
+            } else if(ClassicController.secilenKampana == 300) {
+                generalLoadFunc(SystemDefaults.getLocalHydraulicData().classicParcaKampana.get("5"), "Kampana Parçaları");
+            } else if(ClassicController.secilenKampana == 350) {
+                generalLoadFunc(SystemDefaults.getLocalHydraulicData().classicParcaKampana.get("6"), "Kampana Parçaları");
+            } else if(ClassicController.secilenKampana == 400) {
+                generalLoadFunc(SystemDefaults.getLocalHydraulicData().classicParcaKampana.get("7"), "Kampana Parçaları");
+            }
+        } else {
+            if(ClassicController.secilenKampana == 250) {
+                generalLoadFunc(SystemDefaults.getLocalHydraulicData().classicParcaKampana.get("0"), "Kampana Parçaları");
+            } else if(ClassicController.secilenKampana == 300) {
+                generalLoadFunc(SystemDefaults.getLocalHydraulicData().classicParcaKampana.get("1"), "Kampana Parçaları");
+            } else if(ClassicController.secilenKampana == 350) {
+                generalLoadFunc(SystemDefaults.getLocalHydraulicData().classicParcaKampana.get("2"), "Kampana Parçaları");
+            } else if(ClassicController.secilenKampana == 400) {
+                generalLoadFunc(SystemDefaults.getLocalHydraulicData().classicParcaKampana.get("3"), "Kampana Parçaları");
+            }
+        }
+    }
+
+    private void loadPompaParca() {
+        if(Objects.equals(secilenPompa, "9.5 cc")) {
+            generalLoadFunc(SystemDefaults.getLocalHydraulicData().classicParcaPompa.get("0"), "Pompa Parçaları");
+        } else if(Objects.equals(secilenPompa, "11.9 cc")) {
+            generalLoadFunc(SystemDefaults.getLocalHydraulicData().classicParcaPompa.get("1"), "Pompa Parçaları");
+        } else if(Objects.equals(secilenPompa, "14 cc")) {
+            generalLoadFunc(SystemDefaults.getLocalHydraulicData().classicParcaPompa.get("2"), "Pompa Parçaları");
+        } else if(Objects.equals(secilenPompa, "14.6 cc")) {
+            generalLoadFunc(SystemDefaults.getLocalHydraulicData().classicParcaPompa.get("3"), "Pompa Parçaları");
+        } else if(Objects.equals(secilenPompa, "16.8 cc")) {
+            generalLoadFunc(SystemDefaults.getLocalHydraulicData().classicParcaPompa.get("4"), "Pompa Parçaları");
+        } else if(Objects.equals(secilenPompa, "19.2 cc")) {
+            generalLoadFunc(SystemDefaults.getLocalHydraulicData().classicParcaPompa.get("5"), "Pompa Parçaları");
+        } else if(Objects.equals(secilenPompa, "22.9 cc")) {
+            generalLoadFunc(SystemDefaults.getLocalHydraulicData().classicParcaPompa.get("6"), "Pompa Parçaları");
+        } else if(Objects.equals(secilenPompa, "28.1 cc")) {
+            generalLoadFunc(SystemDefaults.getLocalHydraulicData().classicParcaPompa.get("7"), "Pompa Parçaları");
+        } else if(Objects.equals(secilenPompa, "28.8 cc")) {
+            generalLoadFunc(SystemDefaults.getLocalHydraulicData().classicParcaPompa.get("8"), "Pompa Parçaları");
+        } else if(Objects.equals(secilenPompa, "33.3 cc")) {
+            generalLoadFunc(SystemDefaults.getLocalHydraulicData().classicParcaPompa.get("9"), "Pompa Parçaları");
+        } else if(Objects.equals(secilenPompa, "37.9 cc")) {
+            generalLoadFunc(SystemDefaults.getLocalHydraulicData().classicParcaPompa.get("10"), "Pompa Parçaları");
+        } else if(Objects.equals(secilenPompa, "42.6 cc")) {
+            generalLoadFunc(SystemDefaults.getLocalHydraulicData().classicParcaPompa.get("11"), "Pompa Parçaları");
+        } else if(Objects.equals(secilenPompa, "45.5 cc")) {
+            generalLoadFunc(SystemDefaults.getLocalHydraulicData().classicParcaPompa.get("12"), "Pompa Parçaları");
+        } else if(Objects.equals(secilenPompa, "49.4 cc")) {
+            generalLoadFunc(SystemDefaults.getLocalHydraulicData().classicParcaPompa.get("13"), "Pompa Parçaları");
+        } else if(Objects.equals(secilenPompa, "56.1 cc")) {
+            generalLoadFunc(SystemDefaults.getLocalHydraulicData().classicParcaPompa.get("14"), "Pompa Parçaları");
+        }
+    }
+
+    private void loadMotorParca() {
+        if(Objects.equals(secilenMotor, "2.2 kW")) {
+            generalLoadFunc(SystemDefaults.getLocalHydraulicData().classicParcaMotor.get("0"), "Motor Parçaları");
+        } else if(Objects.equals(secilenMotor, "3 kW")) {
+            generalLoadFunc(SystemDefaults.getLocalHydraulicData().classicParcaMotor.get("1"), "Motor Parçaları");
+        } else if(Objects.equals(secilenMotor, "4 kW")) {
+            generalLoadFunc(SystemDefaults.getLocalHydraulicData().classicParcaMotor.get("2"), "Motor Parçaları");
+        } else if(Objects.equals(secilenMotor, "5.5 kW")) {
+            generalLoadFunc(SystemDefaults.getLocalHydraulicData().classicParcaMotor.get("3"), "Motor Parçaları");
+        } else if(Objects.equals(secilenMotor, "5.5 kW (Kompakt)")) {
+            generalLoadFunc(SystemDefaults.getLocalHydraulicData().classicParcaMotor.get("4"), "Motor Parçaları");
+        } else if(Objects.equals(secilenMotor, "7.5 kW (Kompakt)")) {
+            generalLoadFunc(SystemDefaults.getLocalHydraulicData().classicParcaMotor.get("5"), "Motor Parçaları");
+        } else if(Objects.equals(secilenMotor, "11 kW")) {
+            generalLoadFunc(SystemDefaults.getLocalHydraulicData().classicParcaMotor.get("6"), "Motor Parçaları");
+        } else if(Objects.equals(secilenMotor, "11 kW (Kompakt)")) {
+            generalLoadFunc(SystemDefaults.getLocalHydraulicData().classicParcaMotor.get("7"), "Motor Parçaları");
+        } else if(Objects.equals(secilenMotor, "15 kW")) {
+            generalLoadFunc(SystemDefaults.getLocalHydraulicData().classicParcaMotor.get("8"), "Motor Parçaları");
+        } else if(Objects.equals(secilenMotor, "18.5 kW")) {
+            generalLoadFunc(SystemDefaults.getLocalHydraulicData().classicParcaMotor.get("9"), "Motor Parçaları");
+        } else if(Objects.equals(secilenMotor, "22 kW")) {
+            generalLoadFunc(SystemDefaults.getLocalHydraulicData().classicParcaMotor.get("10"), "Motor Parçaları");
+        } else if(Objects.equals(secilenMotor, "37 kW")) {
+            generalLoadFunc(SystemDefaults.getLocalHydraulicData().classicParcaMotor.get("11"), "Motor Parçaları");
+        }
+    }
+
+    private void loadKaplinParca() {
+        String[] secPmp = ClassicController.secilenPompa.split(" cc");
+        float secilenPompaVal = Float.parseFloat(secPmp[0]);
+
+        if(secilenPompaVal < 33.3) {
+            if(Objects.equals(secilenMotor, "2.2 kW") || Objects.equals(secilenMotor, "3 kW") || Objects.equals(secilenMotor, "4 kW") || Objects.equals(secilenMotor, "5.5 kW") || Objects.equals(secilenMotor, "5.5 kW (Kompakt)")) {
+                generalLoadFunc(SystemDefaults.getLocalHydraulicData().classicParcaKaplin.get("0"), "Kaplin Parçaları");
+            } else if(Objects.equals(secilenMotor, "7.5 kW (Kompakt)") || Objects.equals(secilenMotor, "11 kW") || Objects.equals(secilenMotor, "11 kW (Kompakt)")) {
+                generalLoadFunc(SystemDefaults.getLocalHydraulicData().classicParcaKaplin.get("1"), "Kaplin Parçaları");
+            } else if(Objects.equals(secilenMotor, "15 kW") || Objects.equals(secilenMotor, "18.5 kW") || Objects.equals(secilenMotor, "22 kW") || Objects.equals(secilenMotor, "37 kW")) {
+                generalLoadFunc(SystemDefaults.getLocalHydraulicData().classicParcaKaplin.get("2"), "Kaplin Parçaları");
+            }
+        } else {
+            if(Objects.equals(secilenMotor, "2.2 kW") || Objects.equals(secilenMotor, "3 kW") || Objects.equals(secilenMotor, "4 kW") || Objects.equals(secilenMotor, "5.5 kW") || Objects.equals(secilenMotor, "5.5 kW (Kompakt)")) {
+                generalLoadFunc(SystemDefaults.getLocalHydraulicData().classicParcaKaplin.get("3"), "Kaplin Parçaları");
+            } else if(Objects.equals(secilenMotor, "7.5 kW (Kompakt)") || Objects.equals(secilenMotor, "11 kW") || Objects.equals(secilenMotor, "11 kW (Kompakt)")) {
+                generalLoadFunc(SystemDefaults.getLocalHydraulicData().classicParcaKaplin.get("4"), "Kaplin Parçaları");
+            } else if(Objects.equals(secilenMotor, "15 kW") || Objects.equals(secilenMotor, "18.5 kW") || Objects.equals(secilenMotor, "22 kW") || Objects.equals(secilenMotor, "37 kW")) {
+                generalLoadFunc(SystemDefaults.getLocalHydraulicData().classicParcaKaplin.get("5"), "Kaplin Parçaları");
+            }
+        }
+    }
+
+    private void loadValfBlokParca() {
+        if(ClassicController.secilenPompaVal < 33.3) {
+            //1 Grubu
+            if(Objects.equals(secilenValfTipi, "İnişte Tek Hız")) {
+                generalLoadFunc(SystemDefaults.getLocalHydraulicData().classicParcaValfBloklari.get("0"), "Valf Blok Parçaları");
+            } else if(Objects.equals(secilenValfTipi, "İnişte Çift Hız")) {
+                generalLoadFunc(SystemDefaults.getLocalHydraulicData().classicParcaValfBloklari.get("1"), "Valf Blok Parçaları");
+            } else if(Objects.equals(secilenValfTipi, "Kilitli Blok")) {
+                generalLoadFunc(SystemDefaults.getLocalHydraulicData().classicParcaValfBloklari.get("2"), "Valf Blok Parçaları");
+            } else if(Objects.equals(secilenValfTipi, "Kompanzasyon || İnişte Tek Hız")) {
+                generalLoadFunc(SystemDefaults.getLocalHydraulicData().classicParcaValfBloklari.get("3"), "Valf Blok Parçaları");
+            }
+        } else {
+            //2 Grubu
+            if(Objects.equals(secilenValfTipi, "İnişte Tek Hız")) {
+                generalLoadFunc(SystemDefaults.getLocalHydraulicData().classicParcaValfBloklari.get("4"), "Valf Blok Parçaları");
+            } else if(Objects.equals(secilenValfTipi, "İnişte Çift Hız")) {
+                generalLoadFunc(SystemDefaults.getLocalHydraulicData().classicParcaValfBloklari.get("5"), "Valf Blok Parçaları");
+            } else if(Objects.equals(secilenValfTipi, "Kilitli Blok")) {
+                generalLoadFunc(SystemDefaults.getLocalHydraulicData().classicParcaValfBloklari.get("6"), "Valf Blok Parçaları");
+            } else if(Objects.equals(secilenValfTipi, "Kompanzasyon || İnişte Tek Hız")) {
+                generalLoadFunc(SystemDefaults.getLocalHydraulicData().classicParcaValfBloklari.get("7"), "Valf Blok Parçaları");
+            }
+        }
+    }
+
+    private void loadBasincSalteriParca() {
+        if(Objects.equals(basincSalteriDurumu, "Var")) {
+            generalLoadFunc(SystemDefaults.getLocalHydraulicData().classicParcaBasincSalteri.get("0"), "Basınç Şalteri Parçaları");
+        }
+    }
+
+    private void loadElPompasiParca() {
+        PartListTable separatorData = new PartListTable("----", "El Pompası Parçaları", "----");
+        partListTable.getItems().add(separatorData);
+
+        if(Objects.equals(elPompasiDurumu, "Var")) {
+            String malzemeKodu = "150-51-10-086";
+            String secilenMalzeme = "Oleocon Hidrolik El Pompası OHP Serisi 501-t";
+            String adet = "1";
+
+            PartListTable data = new PartListTable(malzemeKodu, secilenMalzeme, adet);
+            partListTable.getItems().add(data);
+        }
+    }
+
+    private void loadStandartParca() {
+        if(Objects.equals(atananHT, "HT 40")) {
+            generalLoadFunc(SystemDefaults.getLocalHydraulicData().classicParcaDefault.get("0"), "Standart Parçalar");
+        } else if(Objects.equals(atananHT, "HT 70")) {
+            generalLoadFunc(SystemDefaults.getLocalHydraulicData().classicParcaDefault.get("1"), "Standart Parçalar");
+        } else if(Objects.equals(atananHT, "HT 100")) {
+            generalLoadFunc(SystemDefaults.getLocalHydraulicData().classicParcaDefault.get("2"), "Standart Parçalar");
+        } else if(Objects.equals(atananHT, "HT 125")) {
+            generalLoadFunc(SystemDefaults.getLocalHydraulicData().classicParcaDefault.get("3"), "Standart Parçalar");
+        } else if(Objects.equals(atananHT, "HT 160")) {
+            generalLoadFunc(SystemDefaults.getLocalHydraulicData().classicParcaDefault.get("4"), "Standart Parçalar");
+        } else if(Objects.equals(atananHT, "HT 200")) {
+            generalLoadFunc(SystemDefaults.getLocalHydraulicData().classicParcaDefault.get("5"), "Standart Parçalar");
+        } else if(Objects.equals(atananHT, "HT 250")) {
+            generalLoadFunc(SystemDefaults.getLocalHydraulicData().classicParcaDefault.get("6"), "Standart Parçalar");
+        } else if(Objects.equals(atananHT, "HT 300")) {
+            generalLoadFunc(SystemDefaults.getLocalHydraulicData().classicParcaDefault.get("7"), "Standart Parçalar");
+        } else if(Objects.equals(atananHT, "HT 350")) {
+            generalLoadFunc(SystemDefaults.getLocalHydraulicData().classicParcaDefault.get("8"), "Standart Parçalar");
+        } else if(Objects.equals(atananHT, "HT 400")) {
+            generalLoadFunc(SystemDefaults.getLocalHydraulicData().classicParcaDefault.get("9"), "Standart Parçalar");
+        } else if(Objects.equals(atananHT, "HT SOĞUTMA")) {
+            generalLoadFunc(SystemDefaults.getLocalHydraulicData().classicParcaDefault.get("10"), "Standart Parçalar");
+        }
+    }
+
+    private void loadSogutucuParca() {
+        if(secilenHidrolikKilitDurumu.equals("Var")) {
+            //Hidrolik Kilit Var
+            if(secilenValfTipi.equals("İnişte Tek Hız") || secilenValfTipi.equals("Kompanzasyon || İnişte Tek Hız")) {
+                generalLoadFunc(SystemDefaults.getLocalHydraulicData().classicParcaSogutma.get("2"), "Soğutucu Parçaları");
+            } else if(secilenValfTipi.equals("İnişte Çift Hız") || secilenValfTipi.equals("Kilitli Blok")) {
+                generalLoadFunc(SystemDefaults.getLocalHydraulicData().classicParcaSogutma.get("3"), "Soğutucu Parçaları");
+            }
+        } else {
+            //Hidrolik Kilit Yok
+            if(secilenValfTipi.equals("İnişte Tek Hız") || secilenValfTipi.equals("Kompanzasyon || İnişte Tek Hız")) {
+                generalLoadFunc(SystemDefaults.getLocalHydraulicData().classicParcaSogutma.get("0"), "Soğutucu Parçaları");
+            } else if(secilenValfTipi.equals("İnişte Çift Hız") || secilenValfTipi.equals("Kilitli Blok")) {
+                generalLoadFunc(SystemDefaults.getLocalHydraulicData().classicParcaSogutma.get("1"), "Soğutucu Parçaları");
+            }
+        }
+    }
+
+    private void loadKilitMotorParca() {
+        String kilitMotorVal = secilenKilitMotor;
+        String kilitPompaVal = secilenKilitPompa;
+        generalLoadFunc(SystemDefaults.getLocalHydraulicData().classicParcaKilitMotor.get("0"), "Kilit Motor Parçaları");
+
+        if(kilitMotorVal.equals("1.5 kW")) {
+            PartListTable data1 = new PartListTable("Veri Yok", kilitMotorVal + " Kilit Motor", "1");
+            partListTable.getItems().add(data1);
+        } else if(kilitMotorVal.equals("2.2 kW")) {
+            PartListTable data1 = new PartListTable("Veri Yok", kilitMotorVal + " Kilit Motor", "1");
+            partListTable.getItems().add(data1);
+        }
+
+        if(kilitPompaVal.equals("4.2 cc")) {
+            PartListTable data1 = new PartListTable("Veri Yok", kilitPompaVal + " Pompa", "1");
+            partListTable.getItems().add(data1);
+
+            PartListTable data = new PartListTable("150-50-21-107", "CİVATA İMBUS M8 90 MM BEYAZ (DIN 912)", "2");
+            partListTable.getItems().add(data);
+        } else if(kilitPompaVal.equals("4.8 cc")) {
+            PartListTable data1 = new PartListTable("Veri Yok", kilitPompaVal + " Pompa", "1");
+            partListTable.getItems().add(data1);
+
+            PartListTable data = new PartListTable("150-50-21-107", "CİVATA İMBUS M8 90 MM BEYAZ (DIN 912)", "2");
+            partListTable.getItems().add(data);
+        } else if(kilitPompaVal.equals("5.8 cc")) {
+            PartListTable data1 = new PartListTable("Veri Yok", kilitPompaVal + " Pompa", "1");
+            partListTable.getItems().add(data1);
+
+            PartListTable data = new PartListTable("150-50-21-109", "CİVATA İMBUS M8 100 MM BEYAZ (DIN 912)", "2");
+            partListTable.getItems().add(data);
+        }
+    }
+
+    private void loadYagMiktari() {
+        PartListTable separatorData = new PartListTable("----", "Hidrolik Yağ Parçaları", "----");
+        partListTable.getItems().add(separatorData);
+
+        String malzemeKodu = "150-53-04-002";
+        String malzemeAdi = "HİDROLİK YAĞ SHELL TELLUS S2 M46";
+        String adet = ClassicController.girilenTankKapasitesiMiktari + " Lt";
+
+        PartListTable data = new PartListTable(malzemeKodu, malzemeAdi, adet);
+        partListTable.getItems().add(data);
     }
 
     private void collapseAndExpandSection(AnchorPane targetPane, boolean isExpanded, ImageView targetImageView, boolean forceToOpen) {

@@ -3,13 +3,15 @@ module com.hidirektor.dashboard {
     requires javafx.controls;
     requires me.t3sl4.util.os;
     requires java.management;
-    requires java.desktop;
     requires org.yaml.snakeyaml;
     requires me.t3sl4.util.file;
     requires org.json;
     requires itextpdf;
-    requires java.logging;
     requires annotations;
+    requires com.google.common;
+    requires org.apache.poi.poi;
+    requires org.apache.poi.ooxml;
+    requires java.desktop;
 
     exports com.hidirektor.dashboard;
     opens com.hidirektor.dashboard to javafx.base, javafx.fxml;

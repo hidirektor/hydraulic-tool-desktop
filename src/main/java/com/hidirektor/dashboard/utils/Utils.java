@@ -1,5 +1,7 @@
 package com.hidirektor.dashboard.utils;
 
+import com.hidirektor.dashboard.utils.Model.Hydraulic.Kabin;
+import com.hidirektor.dashboard.utils.System.SystemDefaults;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
@@ -31,6 +33,15 @@ public class Utils {
         String[] secPmp = inputVal.split(" cc");
 
         return Double.parseDouble(secPmp[0]);
+    }
+
+    public static Kabin findClassicTankByKabinName(String kabinName) {
+        for (Kabin tank : SystemDefaults.getLocalHydraulicData().classicCabins) {
+            if (tank.getKabinName().equals(kabinName)) {
+                return tank;
+            }
+        }
+        return null;
     }
 
     @SuppressWarnings("unchecked")
