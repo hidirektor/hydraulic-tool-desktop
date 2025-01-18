@@ -9,12 +9,17 @@ import com.itextpdf.text.Font;
 import com.itextpdf.text.Image;
 import com.itextpdf.text.*;
 import com.itextpdf.text.pdf.*;
+import javafx.embed.swing.SwingFXUtils;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.SnapshotParameters;
 import javafx.scene.control.Button;
+import javafx.scene.image.ImageView;
 import javafx.scene.image.PixelReader;
 import javafx.scene.image.WritableImage;
 import javafx.scene.image.WritablePixelFormat;
+import javafx.scene.layout.AnchorPane;
+import org.apache.pdfbox.pdmodel.PDDocument;
+import org.apache.pdfbox.rendering.PDFRenderer;
 import org.json.JSONObject;
 
 import javax.imageio.ImageIO;
@@ -29,8 +34,8 @@ import java.util.Objects;
 public class PDFUtil {
 
     public static void pdfGenerator(String pngFilePath1,
-                                    String pngFilePath2,
-                                    String pngFilePath3,
+                                    AnchorPane tankImage,
+                                    AnchorPane schemeImage,
                                     String pdfFilePath,
                                     String girilenSiparisNumarasi,
                                     String kullanilacakKabin,
@@ -59,42 +64,27 @@ public class PDFUtil {
             document.add(image1);
 
             // Türkçe karakter destekleyen fontu yükle
-            BaseFont baseFont = BaseFont.createFont(String.valueOf(Launcher.class.getResource("/assets/fonts/Roboto/Roboto-Bold.ttf")), BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
+            BaseFont baseFont = BaseFont.createFont(String.valueOf(Launcher.class.getResource("/assets/fonts/TextaAltBold.ttf")), BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
             Font unicodeFont = new Font(baseFont, 22, Font.BOLD);
 
             // Girilen Sipariş Numarasını ve metni ekle
-            Paragraph paragraph = new Paragraph(girilenSiparisNumarasi + " Numaralı Sipariş", unicodeFont);
+            Paragraph paragraph = new Paragraph(girilenSiparisNumarasi + " Numaralı Siparis", unicodeFont);
             paragraph.setAlignment(Element.ALIGN_CENTER);
             paragraph.setSpacingBefore(15);  // 15dp üst boşluk
             document.add(paragraph);
 
             // İkinci resmi ekle ve boyutunu ayarla (yükseklik küçültüldü)
-            Image image2 = Image.getInstance(pngFilePath2);
+            /*Image image2 = Image.getInstance(pngFilePath2);
             float targetWidth2 = document.getPageSize().getWidth() * 0.8f;  // Genişliği %80'e ayarla
             float targetHeight2 = (image2.getHeight() / (float) image2.getWidth()) * targetWidth2 * 0.7f; // Yüksekliği %70'e küçült
             image2.scaleToFit(targetWidth2, targetHeight2);
             image2.setAlignment(Image.ALIGN_CENTER);
             image2.setSpacingBefore(10);  // 10dp üst boşluk
-            document.add(image2);
+            document.add(image2);*/
 
-            if(pngFilePath3 != null) {
-                // Üçüncü resmi yükleyip beyaz alanlarını siyaha çevirelim
-                BufferedImage originalImage = ImageIO.read(new File(pngFilePath3));
-                //BufferedImage processedImage = convertWhiteToBlack(originalImage);
+            addAnchorPaneToPDF(tankImage, document, "tankImage");
 
-                // İşlenmiş görüntüyü geçici bir dosyaya kaydet
-                File tempFile = new File("processed_image.png");
-                ImageIO.write(originalImage, "png", tempFile);
-
-                // Üçüncü resmi ekle ve boyutunu ayarla (yükseklik küçültüldü)
-                Image image3 = Image.getInstance(tempFile.getAbsolutePath());
-                float targetWidth3 = document.getPageSize().getWidth() * 0.8f;  // Genişliği %80'e ayarla
-                float targetHeight3 = (image3.getHeight() / (float) image3.getWidth()) * targetWidth3 * 0.7f; // Yüksekliği %70'e küçült
-                image3.scaleToFit(targetWidth3, targetHeight3);
-                image3.setAlignment(Image.ALIGN_CENTER);
-                image3.setSpacingBefore(10);  // 10dp üst boşluk
-                document.add(image3);
-            }
+            addAnchorPaneToPDF(schemeImage, document, "schemeImage");
 
             // "HALİL" metnini sayfanın en altına yerleştir
             Paragraph halilParagraph = new Paragraph(kullanilacakKabin, unicodeFont);
@@ -233,12 +223,6 @@ public class PDFUtil {
                         jsonObject);
             }
 
-            File pngFile2 = new File(pngFilePath2);
-            if(pngFilePath3 != null) {
-                File pngFile3 = new File(pngFilePath3);
-                pngFile3.delete();
-            }
-            pngFile2.delete();
             new File("processed_image.png").delete();
 
             if (Desktop.isDesktopSupported()) {
@@ -251,6 +235,32 @@ public class PDFUtil {
             }
         } catch (DocumentException | IOException e) {
             System.out.println(e.getMessage());
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public static void addAnchorPaneToPDF(AnchorPane calculationResultSection, Document document, String pngFilePath2) throws Exception {
+        WritableImage snapshot = calculationResultSection.snapshot(new SnapshotParameters(), null);
+
+        File pngFile = new File(pngFilePath2);
+        ImageIO.write(SwingFXUtils.fromFXImage(snapshot, null), "png", pngFile);
+
+        Image image2 = Image.getInstance(pngFilePath2);
+
+        float targetWidth2 = document.getPageSize().getWidth() * 0.8f;
+
+        float targetHeight2 = (image2.getHeight() / (float) image2.getWidth()) * targetWidth2 * 0.55f;
+
+        image2.scaleToFit(targetWidth2, targetHeight2);
+
+        image2.setAlignment(Image.ALIGN_CENTER);
+        image2.setSpacingBefore(10);
+
+        document.add(image2);
+
+        if (pngFile.exists() && pngFile.delete()) {
+            System.out.println("Geçici PNG dosyası silindi: " + pngFilePath2);
         }
     }
 
@@ -325,5 +335,41 @@ public class PDFUtil {
             }
         }
         return newImage;
+    }
+
+    public static void loadPDFPagesToImageViews(String pdfPath, ImageView schemePageOne, ImageView schemePageTwo) {
+        try {
+            // PDF dosyasını yükle
+            PDDocument document = PDDocument.load(new File(pdfPath));
+
+            // PDF Renderer oluştur
+            PDFRenderer renderer = new PDFRenderer(document);
+
+            // İlk sayfayı görüntü olarak al
+            if (document.getNumberOfPages() > 0) {
+                BufferedImage pageOneImage = renderer.renderImageWithDPI(0, 150); // 150 DPI çözünürlük
+                schemePageOne.setImage(convertToJavaFXImage(pageOneImage));
+            }
+
+            // İkinci sayfayı görüntü olarak al
+            if (document.getNumberOfPages() > 1) {
+                BufferedImage pageTwoImage = renderer.renderImageWithDPI(1, 150);
+                schemePageTwo.setImage(convertToJavaFXImage(pageTwoImage));
+            }
+
+            // PDF dosyasını kapat
+            document.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.err.println("PDF dosyasını işlerken bir hata oluştu: " + e.getMessage());
+        }
+    }
+
+    // BufferedImage -> JavaFX Image dönüşümü
+    private static WritableImage convertToJavaFXImage(BufferedImage bufferedImage) {
+        javafx.embed.swing.SwingFXUtils.fromFXImage(
+                javafx.embed.swing.SwingFXUtils.toFXImage(bufferedImage, null), null
+        );
+        return javafx.embed.swing.SwingFXUtils.toFXImage(bufferedImage, null);
     }
 }

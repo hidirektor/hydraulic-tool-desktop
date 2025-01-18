@@ -4,6 +4,7 @@ import com.google.common.collect.LinkedListMultimap;
 import com.google.common.collect.Multimap;
 import com.hidirektor.dashboard.Launcher;
 import com.hidirektor.dashboard.controllers.notification.NotificationController;
+import com.hidirektor.dashboard.utils.File.PDF.PDFUtil;
 import com.hidirektor.dashboard.utils.Model.Hydraulic.Kabin;
 import com.hidirektor.dashboard.utils.Model.Table.DataControlTable;
 import com.hidirektor.dashboard.utils.Model.Table.PartListTable;
@@ -14,6 +15,7 @@ import com.hidirektor.dashboard.utils.Utils;
 import com.hidirektor.dashboard.utils.Validation.ValidationUtil;
 import javafx.application.Platform;
 import javafx.collections.ObservableList;
+import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -50,13 +52,13 @@ public class ClassicController implements Initializable  {
     public Label classicCaclulationTitle;
 
     @FXML
-    public AnchorPane orderSection, unitInfoSection, calculationResultSection, partListSection, calculationControlSection;
+    public AnchorPane orderSection, unitInfoSection, calculationResultSection, partListSection, unitSchemeSection, calculationControlSection;
 
     @FXML
-    public Button orderSectionButton, unitInfoSectionButton, calculationResultSectionButton, partListSectionButton, calculationControlSectionButton;
+    public Button orderSectionButton, unitInfoSectionButton, calculationResultSectionButton, partListSectionButton, unitSchemeSectionButton, calculationControlSectionButton;
 
     @FXML
-    public ImageView orderSectionButtonImage, unitInfoSectionButtonImage, calculationResultSectionButtonImage, partListSectionButtonImage, calculationControlSectionButtonImage;
+    public ImageView orderSectionButtonImage, unitInfoSectionButtonImage, calculationResultSectionButtonImage, partListSectionButtonImage, unitSchemeSectionButtonImage, calculationControlSectionButtonImage;
 
     //Hesaplama alanları:
     @FXML
@@ -68,7 +70,7 @@ public class ClassicController implements Initializable  {
     @FXML
     public TextField gerekenYagMiktariField;
 
-    boolean isOrderSectionExpanded = false, isUnitInfoSectionExpanded = false, isCalculationResultSectionExpanded = false, isPartListSectionExpanded = false, isCalculationControlSectionExpanded = false;
+    boolean isOrderSectionExpanded = false, isUnitInfoSectionExpanded = false, isCalculationResultSectionExpanded = false, isPartListSectionExpanded = false, isUnitSchemeSectionExpanded = false, isCalculationControlSectionExpanded = false;
 
     /*
     Sonuç için label ve imagelar
@@ -81,7 +83,7 @@ public class ClassicController implements Initializable  {
     public ImageView tankImage, schemeImage;
 
     @FXML
-    public AnchorPane hydraulicUnitSchemePane;
+    public AnchorPane tankImagePaneSection, hydraulicUnitSchemePane;
 
     /*
     Parça listesi componentleri
@@ -106,6 +108,18 @@ public class ClassicController implements Initializable  {
 
     private String basincSalteriDurumu = null;
     private String elPompasiDurumu = null;
+
+    /*
+    Ünite Şeması Componentleri
+     */
+    @FXML
+    public ComboBox<String> basincSalteriSchemeCombo, silindirSayisiCombo;
+
+    @FXML
+    public ImageView schemePageOne, schemePageTwo;
+
+    private String basincSalteriSchemeDurumu = null;
+    private String silindirSayisi = null;
 
 
     /*
@@ -181,6 +195,13 @@ public class ClassicController implements Initializable  {
             basincSalteriCombo.setDisable(false);
             basincSalteriCombo.getItems().clear();
             basincSalteriCombo.getItems().addAll("Var", "Yok");
+        } else if(actionEvent.getSource().equals(unitSchemeSectionButton)) {
+            collapseAndExpandSection(unitSchemeSection, isUnitSchemeSectionExpanded, unitSchemeSectionButtonImage, false);
+            isUnitSchemeSectionExpanded = !isUnitSchemeSectionExpanded;
+
+            basincSalteriSchemeCombo.setDisable(false);
+            basincSalteriSchemeCombo.getItems().clear();
+            basincSalteriSchemeCombo.getItems().addAll("Var", "Yok");
         } else if(actionEvent.getSource().equals(calculationControlSectionButton)) {
             collapseAndExpandSection(calculationControlSection, isCalculationControlSectionExpanded, calculationControlSectionButtonImage, false);
             isCalculationControlSectionExpanded = !isCalculationControlSectionExpanded;
@@ -434,14 +455,12 @@ public class ClassicController implements Initializable  {
         UIProcess.changeInputDataForComboBox(valfTipiComboBox, newValue -> {
             secilenValfTipi = newValue;
 
-            if(secilenSogutmaDurumu.equals("Yok")) {
-                if(Objects.equals(secilenHidrolikKilitDurumu, "Var") && secilenPompaVal > 28.1) {
-                    dataInit("kilitMotor", null);
-                } else if(secilenHidrolikKilitDurumu.equals("Var") && kompanzasyonDurumu.equals("Var")) {
-                    dataInit("kilitMotor", 0);
-                } else {
-                    hesaplaFunc();
-                }
+            if(secilenSogutmaDurumu.equals("Yok") && Objects.equals(secilenHidrolikKilitDurumu, "Var") && secilenPompaVal > 28.1) {
+                dataInit("kilitMotor", null);
+            } else if(secilenSogutmaDurumu.equals("Yok") && secilenHidrolikKilitDurumu.equals("Var") && kompanzasyonDurumu.equals("Var")) {
+                dataInit("kilitMotor", 0);
+            } else {
+                hesaplaFunc();
             }
 
             tabloGuncelle();
@@ -475,6 +494,18 @@ public class ClassicController implements Initializable  {
             elPompasiDurumu = String.valueOf(elPompasiCombo.getValue());
 
             createAndLoadPartListTable();
+        }, null);
+
+        UIProcess.changeInputDataForComboBox(basincSalteriSchemeCombo, newValue -> {
+            basincSalteriSchemeDurumu = String.valueOf(basincSalteriSchemeCombo.getValue());
+
+            silindirSayisiCombo.setDisable(false);
+            silindirSayisiCombo.getItems().clear();
+            silindirSayisiCombo.getItems().addAll("1 Silindir", "2 Silindir", "3 Silindir", "4 Silindir");
+        }, null);
+
+        UIProcess.changeInputDataForComboBox(silindirSayisiCombo, newValue -> {
+            exportSchemeProcess();
         }, null);
     }
 
@@ -1356,6 +1387,133 @@ public class ClassicController implements Initializable  {
         System.out.println("Kullanmanız Gereken Kabin: " + atananKabin);
         System.out.println("Geçiş Ölçüleri: " + gecisOlculeri);
         System.out.println("-------------------------------");
+    }
+
+    public void exportSchemeProcess() {
+        if(hesaplamaBitti) {
+            String generalCyclinderString = silindirSayisiCombo.getSelectionModel().getSelectedItem().toString();
+            String numberPart = "";
+            String stringPart = "";
+            if(generalCyclinderString != null) {
+                numberPart = generalCyclinderString.replaceAll("[^0-9]", "");
+                stringPart = generalCyclinderString.replaceAll("[0-9]", "");
+            } else {
+                NotificationUtil.showNotification(orderSectionButton.getScene().getWindow(), NotificationController.NotificationType.ALERT, "Şema Hatası", "Lütfen silindir sayısı seçin.");
+                return;
+            }
+
+            int selectedCylinders = Integer.parseInt(numberPart);
+            String isPressureValf = stringPart;
+            if (selectedCylinders == -1 && isPressureValf.isEmpty()) {
+                NotificationUtil.showNotification(orderSectionButton.getScene().getWindow(), NotificationController.NotificationType.ALERT, "Şema Hatası", "Lütfen silindir sayısı seçin.");
+                return;
+            }
+
+            String pdfPath = hydraulicSchemaSelection(selectedCylinders, isPressureValf);
+            System.out.println("PDF Şema Yolu: " + pdfPath);
+
+            PDFUtil.pdfGenerator("/assets/images/logos/onderlift-logo.png", tankImagePaneSection, hydraulicUnitSchemePane, "/assets/data/hydraulicUnitData/schematicPDF/classic/" + pdfPath, girilenSiparisNumarasi, kabinTitle.getText().toString(), secilenMotor, secilenPompa, secilenUniteTipi, true);
+            Task<Void> task = new Task<>() {
+                @Override
+                protected Void call() {
+                    PDFUtil.loadPDFPagesToImageViews(SystemDefaults.userDataPDFFolderPath + girilenSiparisNumarasi + ".pdf", schemePageOne, schemePageTwo);
+                    return null;
+                }
+            };
+
+            task.setOnFailed(event -> {
+                Throwable exception = task.getException();
+                exception.printStackTrace();
+            });
+
+            task.setOnSucceeded(event -> {
+                schemePageOne.setVisible(true);
+                schemePageOne.setFitHeight(600.0);
+                schemePageTwo.setVisible(true);
+                schemePageTwo.setFitHeight(600.0);
+                System.out.println("PDF sayfaları başarıyla yüklendi.");
+            });
+
+            Thread thread = new Thread(task);
+            thread.setDaemon(true);
+            thread.start();
+        } else {
+            NotificationUtil.showNotification(orderSectionButton.getScene().getWindow(), NotificationController.NotificationType.ALERT, "Şema Hatası", "Lütfen hesaplama işlemini tamamlayıp tekrar deneyin.");
+        }
+    }
+
+    private String hydraulicSchemaSelection(int selectedCylinders, String isPressureValf) {
+        boolean isSogutmaVar = secilenSogutmaDurumu.equals("Var");
+        boolean isKilitVar = secilenHidrolikKilitDurumu != null;
+        boolean isKompanzasyonVar = kompanzasyonDurumu.equals("Var");
+        boolean isKilitMotorVar = secilenKilitMotor != null;
+
+        if(isSogutmaVar) {
+            if(isKilitVar && isKilitMotorVar) {
+                if(isKompanzasyonVar) {
+                    if(secilenValfTipi.equals("Kompanzasyon || İnişte Tek Hız")) {
+                        return getCylinderImage(selectedCylinders, isPressureValf, 13, 14, 15, 16);
+                    }
+                } else {
+                    if(secilenValfTipi.equals("İnişte Çift Hız")) {
+                        return getCylinderImage(selectedCylinders, isPressureValf, 5, 6, 7, 8);
+                    }
+                }
+            } else {
+                if(isKompanzasyonVar) {
+                    if(secilenValfTipi.equals("Kompanzasyon || İnişte Tek Hız")) {
+                        return getCylinderImage(selectedCylinders, isPressureValf, 9, 10, 11, 12);
+                    }
+                } else {
+                    if(secilenValfTipi.equals("İnişte Çift Hız")) {
+                        return getCylinderImage(selectedCylinders, isPressureValf, 1, 2, 3, 4);
+                    }
+                }
+            }
+        } else {
+            if(isKilitVar && isKilitMotorVar) {
+                if(isKompanzasyonVar) {
+                    if(secilenValfTipi.equals("Kompanzasyon || İnişte Tek Hız")) {
+                        return getCylinderImage(selectedCylinders, isPressureValf, 33, 34, 35, 36);
+                    }
+                } else {
+                    if(secilenValfTipi.equals("İnişte Tek Hız")) {
+                        return getCylinderImage(selectedCylinders, isPressureValf, 17, 18, 19, 20);
+                    } else if(secilenValfTipi.equals("İnişte Çift Hız")) {
+                        return getCylinderImage(selectedCylinders, isPressureValf, 21, 22, 23, 24);
+                    }
+                }
+            } else {
+                if(isKompanzasyonVar) {
+                    if(secilenValfTipi.equals("Kompanzasyon || İnişte Tek Hız")) {
+                        return getCylinderImage(selectedCylinders, isPressureValf, 29, 30, 31, 32);
+                    }
+                } else {
+                    if(secilenValfTipi.equals("İnişte Tek Hız")) {
+                        return getCylinderImage(selectedCylinders, isPressureValf, 41, 42, 43, 44);
+                    } else if(secilenValfTipi.equals("İnişte Çift Hız")) {
+                        return getCylinderImage(selectedCylinders, isPressureValf, 37, 38, 39, 40);
+                    } else if(secilenValfTipi.equals("Kilitli Blok")) {
+                        return getCylinderImage(selectedCylinders, isPressureValf, 25, 26, 27, 28);
+                    }
+                }
+            }
+        }
+        return null;
+    }
+
+    private String getCylinderImage(int selectedCylinders, String isPressureValf, int one, int two, int three, int other) {
+        String suffix = isPressureValf.equals("Var") ? "B" : "";
+        switch (selectedCylinders) {
+            case 1:
+                return one + suffix + ".pdf";
+            case 2:
+                return two + suffix + ".pdf";
+            case 3:
+                return three + suffix + ".pdf";
+            default:
+                return other + suffix + ".pdf";
+        }
     }
 
     private void createAndLoadPartListTable() {

@@ -11,7 +11,8 @@ module com.hidirektor.dashboard {
     requires com.google.common;
     requires org.apache.poi.poi;
     requires org.apache.poi.ooxml;
-    requires java.desktop;
+    requires org.apache.pdfbox;
+    requires javafx.swing;
 
     exports com.hidirektor.dashboard;
     opens com.hidirektor.dashboard to javafx.base, javafx.fxml;
