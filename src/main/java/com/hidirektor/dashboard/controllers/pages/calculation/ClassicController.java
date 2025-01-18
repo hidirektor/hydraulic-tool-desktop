@@ -27,7 +27,6 @@ import javafx.scene.input.Clipboard;
 import javafx.scene.input.ClipboardContent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Region;
-import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
@@ -88,9 +87,6 @@ public class ClassicController implements Initializable  {
     /*
     Parça listesi componentleri
      */
-    @FXML
-    public StackPane dataTablePane;
-
     @FXML
     public ComboBox basincSalteriCombo, elPompasiCombo;
 

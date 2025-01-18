@@ -44,6 +44,15 @@ public class Utils {
         return null;
     }
 
+    public static Kabin findPowerPackTankByKabinName(String kabinName) {
+        for (Kabin tank : SystemDefaults.getLocalHydraulicData().powerPackCabins) {
+            if (tank.getKabinName().equals(kabinName)) {
+                return tank;
+            }
+        }
+        return null;
+    }
+
     @SuppressWarnings("unchecked")
     public static void createLocalUnitData(String yamlFilePath, String orderNumber, String createdDate, String unitType,
                                            String pdfPath, String excelPath, String isOffline, String createdBy, JSONObject unitParameters) {
