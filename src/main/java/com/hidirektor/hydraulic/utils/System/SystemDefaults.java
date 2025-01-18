@@ -5,10 +5,11 @@ import com.hidirektor.hydraulic.utils.Model.User.User;
 
 public class SystemDefaults {
 
-    public static String CURRENT_VERSION = "v1.0.0";
+    public static String CURRENT_VERSION = "v1.0.1";
 
-    public static final String PREF_NODE_NAME = "hidirektor";
+    public static final String PREF_NODE_NAME = "ondergrup";
     public static final String DEFAULT_DISPLAY_PREF_KEY = "default_display";
+    public static final String PREF_UPDATER_KEY = "hydraulic_tool";
 
     //Klasör Yolları Yolları
     public static String basePath;
