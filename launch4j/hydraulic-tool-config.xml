@@ -13,7 +13,7 @@
   <stayAlive>false</stayAlive>
   <restartOnCrash>true</restartOnCrash>
   <manifest>app.manifest</manifest>
-  <icon>src\main\resources\assets\images\logos\logo.ico</icon>
+  <icon>src\main\resources\assets\images\logos\onderlift-hydraulic-logo.ico</icon>
   <singleInstance>
     <mutexName>hydraulic_tool</mutexName>
     <windowTitle>Hydraulic Tool</windowTitle>
