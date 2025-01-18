@@ -22,8 +22,8 @@ jobs:
           CURRENT_VERSION=$(grep 'CURRENT_VERSION' src/main/java/com/hidirektor/hydraulic/utils/System/SystemDefaults.java | grep -oP 'v\K[0-9]+\.[0-9]+\.[0-9]+')
           # Validate the extracted version
           if [[ -z "$CURRENT_VERSION" ]]; then
-            echo "Error: CURRENT_VERSION not found!"
-            exit 1
+          echo "Error: CURRENT_VERSION not found!"
+          exit 1
           fi
           echo "Extracted CURRENT_VERSION: $CURRENT_VERSION"
           echo "version=$CURRENT_VERSION" >> $GITHUB_OUTPUT
@@ -33,11 +33,13 @@ jobs:
         run: |
           # Fetch the latest release version from GitHub API
           LATEST_VERSION=$(curl -s https://api.github.com/repos/hidirektor/hydraulic-tool-desktop/releases/latest | jq -r '.tag_name' | sed 's/v//')
-          # Validate the fetched version
+        
+          # Check if a release exists
           if [[ -z "$LATEST_VERSION" || "$LATEST_VERSION" == "null" ]]; then
-            echo "Error: LATEST_VERSION not found!"
-            exit 1
+          echo "No releases found. Setting LATEST_VERSION to 0.0.0"
+          LATEST_VERSION="0.0.0"
           fi
+        
           echo "Latest release version: $LATEST_VERSION"
           echo "latest=$LATEST_VERSION" >> $GITHUB_OUTPUT
 
@@ -48,16 +50,12 @@ jobs:
           LATEST_VERSION="${{ steps.get_latest.outputs.latest }}"
           # Compare versions and set output
           if [ "$LATEST_VERSION" != "$CURRENT_VERSION" ]; then
-            echo "Version changed! Triggering build..."
-            echo "changed=true" >> $GITHUB_OUTPUT
+          echo "Version changed! Triggering build..."
+          echo "changed=true" >> $GITHUB_OUTPUT
           else
-            echo "Version unchanged. Skipping build."
-            echo "changed=false" >> $GITHUB_OUTPUT
+          echo "Version unchanged. Skipping build."
+          echo "changed=false" >> $GITHUB_OUTPUT
           fi
-
-
-
-
 
   macos-build:
     needs: check-version
@@ -86,7 +84,6 @@ jobs:
         with:
           name: macos_Hydraulic
           path: macos_Hydraulic.jar
-
   unix-build:
     needs: macos-build
     runs-on: ubuntu-20.04
@@ -113,7 +110,6 @@ jobs:
         with:
           name: unix_Hydraulic
           path: unix_Hydraulic.jar
-
   windows-build:
     needs: unix-build
     runs-on: windows-latest
@@ -163,7 +159,6 @@ jobs:
         with:
           name: windows_Hydraulic
           path: windows_Hydraulic.exe
-
   release:
     needs: [ macos-build, unix-build, windows-build ]
     runs-on: ubuntu-20.04
