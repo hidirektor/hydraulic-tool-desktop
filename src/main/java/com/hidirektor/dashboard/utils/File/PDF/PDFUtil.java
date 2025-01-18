@@ -64,27 +64,20 @@ public class PDFUtil {
             document.add(image1);
 
             // Türkçe karakter destekleyen fontu yükle
-            BaseFont baseFont = BaseFont.createFont(String.valueOf(Launcher.class.getResource("/assets/fonts/TextaAltBold.ttf")), BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
+            BaseFont baseFont = BaseFont.createFont(String.valueOf(Launcher.class.getResource("/assets/fonts/Quicksand-Medium.ttf")), BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
             Font unicodeFont = new Font(baseFont, 22, Font.BOLD);
 
             // Girilen Sipariş Numarasını ve metni ekle
-            Paragraph paragraph = new Paragraph(girilenSiparisNumarasi + " Numaralı Siparis", unicodeFont);
+            Paragraph paragraph = new Paragraph(girilenSiparisNumarasi + " Numaralı Sipariş", unicodeFont);
             paragraph.setAlignment(Element.ALIGN_CENTER);
             paragraph.setSpacingBefore(15);  // 15dp üst boşluk
             document.add(paragraph);
 
-            // İkinci resmi ekle ve boyutunu ayarla (yükseklik küçültüldü)
-            /*Image image2 = Image.getInstance(pngFilePath2);
-            float targetWidth2 = document.getPageSize().getWidth() * 0.8f;  // Genişliği %80'e ayarla
-            float targetHeight2 = (image2.getHeight() / (float) image2.getWidth()) * targetWidth2 * 0.7f; // Yüksekliği %70'e küçült
-            image2.scaleToFit(targetWidth2, targetHeight2);
-            image2.setAlignment(Image.ALIGN_CENTER);
-            image2.setSpacingBefore(10);  // 10dp üst boşluk
-            document.add(image2);*/
-
             addAnchorPaneToPDF(tankImage, document, "tankImage");
 
-            addAnchorPaneToPDF(schemeImage, document, "schemeImage");
+            if(schemeImage != null) {
+                addAnchorPaneToPDF(schemeImage, document, "schemeImage");
+            }
 
             // "HALİL" metnini sayfanın en altına yerleştir
             Paragraph halilParagraph = new Paragraph(kullanilacakKabin, unicodeFont);

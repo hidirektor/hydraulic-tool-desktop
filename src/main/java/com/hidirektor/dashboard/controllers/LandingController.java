@@ -224,6 +224,7 @@ public class LandingController implements Initializable {
             SceneUtil.loadFXMLIntoPane(currentPagePane, "fxml/ClassicCalculation.fxml");
         } else if(actionEvent.getSource().equals(createPowerPackUnit) || actionEvent.getSource().equals(createPowerPackUnitImageButton)) {
             //PowerPack Ünite Oluştur
+            SceneUtil.loadFXMLIntoPane(currentPagePane, "fxml/PowerPackCalculation.fxml");
         } else if(actionEvent.getSource().equals(contactUsButton) || actionEvent.getSource().equals(contactUsMiniButton)) {
             //Destek Butonu
         } else {
