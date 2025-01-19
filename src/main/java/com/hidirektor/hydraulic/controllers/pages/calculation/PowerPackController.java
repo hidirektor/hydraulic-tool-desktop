@@ -22,6 +22,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.effect.ColorAdjust;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.Clipboard;
@@ -144,6 +145,15 @@ public class PowerPackController implements Initializable  {
     private String elPompasiDurumu = null;
 
     /*
+    Clear Section
+     */
+    @FXML
+    public Button clearButton;
+
+    @FXML
+    public ImageView clearButtonImage;
+
+    /*
     Ünite Şeması Componentleri
      */
     @FXML
@@ -173,38 +183,58 @@ public class PowerPackController implements Initializable  {
             secilenMalzeme.setCellValueFactory(new PropertyValueFactory<>("malzemeAdiProperty"));
             adet.setCellValueFactory(new PropertyValueFactory<>("malzemeAdetProperty"));
 
-            collapseAndExpandSection(orderSection, isOrderSectionExpanded, orderSectionButtonImage, true);
+            addHoverEffectToButtons(clearButton);
+
+            collapseAndExpandSection(orderSection, isOrderSectionExpanded, orderSectionButtonImage, true, false);
         });
     }
 
     @FXML
     public void handleClick(ActionEvent actionEvent) {
         if(actionEvent.getSource().equals(orderSectionButton)) {
-            collapseAndExpandSection(orderSection, isOrderSectionExpanded, orderSectionButtonImage, false);
+            collapseAndExpandSection(orderSection, isOrderSectionExpanded, orderSectionButtonImage, false, false);
             isOrderSectionExpanded = !isOrderSectionExpanded;
         } else if(actionEvent.getSource().equals(unitInfoSectionButton)) {
-            collapseAndExpandSection(unitInfoSection, isUnitInfoSectionExpanded, unitInfoSectionButtonImage, false);
+            collapseAndExpandSection(unitInfoSection, isUnitInfoSectionExpanded, unitInfoSectionButtonImage, false, false);
             isUnitInfoSectionExpanded = !isUnitInfoSectionExpanded;
         } else if(actionEvent.getSource().equals(calculationResultSectionButton)) {
-            collapseAndExpandSection(calculationResultSection, isCalculationResultSectionExpanded, calculationResultSectionButtonImage, false);
-            isCalculationResultSectionExpanded = !isCalculationResultSectionExpanded;
+            if(hesaplamaBitti) {
+                collapseAndExpandSection(calculationResultSection, isCalculationResultSectionExpanded, calculationResultSectionButtonImage, false, false);
+                isCalculationResultSectionExpanded = !isCalculationResultSectionExpanded;
+            } else {
+                NotificationUtil.showNotification(orderSectionButton.getScene().getWindow(), NotificationController.NotificationType.ALERT, "Şema Hatası", "Hesaplama sonucunu görüntüleyebilmeniz için önce hesaplamayı bitirmeniz gerek.");
+            }
         } else if(actionEvent.getSource().equals(partListSectionButton)) {
-            collapseAndExpandSection(partListSection, isPartListSectionExpanded, partListSectionButtonImage, false);
-            isPartListSectionExpanded = !isPartListSectionExpanded;
+            if(hesaplamaBitti) {
+                collapseAndExpandSection(partListSection, isPartListSectionExpanded, partListSectionButtonImage, false, false);
+                isPartListSectionExpanded = !isPartListSectionExpanded;
 
-            manometreCombo.setDisable(false);
-            manometreCombo.getItems().clear();
-            manometreCombo.getItems().addAll("Var", "Yok");
+                manometreCombo.setDisable(false);
+                manometreCombo.getItems().clear();
+                manometreCombo.getItems().addAll("Var", "Yok");
+            } else {
+                NotificationUtil.showNotification(orderSectionButton.getScene().getWindow(), NotificationController.NotificationType.ALERT, "Şema Hatası", "Parça listesini görüntüleyebilmeniz için önce hesaplamayı bitirmeniz gerek.");
+            }
         } else if(actionEvent.getSource().equals(unitSchemeSectionButton)) {
-            collapseAndExpandSection(unitSchemeSection, isUnitSchemeSectionExpanded, unitSchemeSectionButtonImage, false);
-            isUnitSchemeSectionExpanded = !isUnitSchemeSectionExpanded;
+            if(hesaplamaBitti) {
+                collapseAndExpandSection(unitSchemeSection, isUnitSchemeSectionExpanded, unitSchemeSectionButtonImage, false, false);
+                isUnitSchemeSectionExpanded = !isUnitSchemeSectionExpanded;
 
-            basincSalteriSchemeCombo.setDisable(false);
-            basincSalteriSchemeCombo.getItems().clear();
-            basincSalteriSchemeCombo.getItems().addAll("Var", "Yok");
+                basincSalteriSchemeCombo.setDisable(false);
+                basincSalteriSchemeCombo.getItems().clear();
+                basincSalteriSchemeCombo.getItems().addAll("Var", "Yok");
+            } else {
+                NotificationUtil.showNotification(orderSectionButton.getScene().getWindow(), NotificationController.NotificationType.ALERT, "Şema Hatası", "Ünite şemasını görüntüleyebilmeniz için önce hesaplamayı bitirmeniz gerek.");
+            }
         } else if(actionEvent.getSource().equals(calculationControlSectionButton)) {
-            collapseAndExpandSection(calculationControlSection, isCalculationControlSectionExpanded, calculationControlSectionButtonImage, false);
+            collapseAndExpandSection(calculationControlSection, isCalculationControlSectionExpanded, calculationControlSectionButtonImage, false, false);
             isCalculationControlSectionExpanded = !isCalculationControlSectionExpanded;
+        } else if(actionEvent.getSource().equals(clearButton)) {
+            if(hesaplamaBitti) {
+                clearWholeSelections();
+            } else {
+                NotificationUtil.showNotification(orderSectionButton.getScene().getWindow(), NotificationController.NotificationType.ALERT, "Temizleme Hatası", "Temizlik işlemi sadece hesaplama bittikten sonra gerçekleştirilebilir.");
+            }
         } else {
             NotificationUtil.showNotification(orderSectionButton.getScene().getWindow(), NotificationController.NotificationType.ALERT, "Buton Hatası", "Buton hatası meydana geldi. Lütfen yaptığınız işlemle birlikte hatayı bize bildirin.");
         }
@@ -377,6 +407,90 @@ public class PowerPackController implements Initializable  {
         }
     }
 
+    private void clearWholeSelections() {
+        collapseAndExpandSection(orderSection, isOrderSectionExpanded, orderSectionButtonImage, true, false);
+        collapseAndExpandSection(unitInfoSection, isUnitInfoSectionExpanded, unitInfoSectionButtonImage, false, true);
+        collapseAndExpandSection(calculationResultSection, isCalculationResultSectionExpanded, calculationResultSectionButtonImage, false, true);
+        collapseAndExpandSection(partListSection, isPartListSectionExpanded, partListSectionButtonImage, false, true);
+        collapseAndExpandSection(unitSchemeSection, isUnitSchemeSectionExpanded, unitSchemeSectionButtonImage, false, true);
+        collapseAndExpandSection(calculationControlSection, isCalculationControlSectionExpanded, calculationControlSectionButtonImage, false, true);
+
+        siparisNumarasiField.clear();
+
+        clearComboBoxSelection(motorVoltajComboBox);
+        secilenMotorTipi = null;
+
+        clearComboBoxSelection(uniteTipiComboBox);
+        secilenUniteTipi = null;
+
+        clearComboBoxSelection(motorGucuComboBox);
+        secilenMotorGucu = null;
+
+        clearComboBoxSelection(pompaComboBox);
+        secilenPompa = null;
+
+        clearComboBoxSelection(tankTipiComboBox);
+        secilenTankTipi = null;
+
+        clearComboBoxSelection(tankKapasitesiComboBox);
+        secilenTankKapasitesi = null;
+
+        genislikTextField.clear();
+        genislikTextField.setPromptText("Genişlik");
+        secilenOzelTankGenislik = null;
+
+        yukseklikTextField.clear();
+        yukseklikTextField.setPromptText("Yükseklik");
+        secilenOzelTankYukseklik = null;
+
+        derinlikTextField.clear();
+        derinlikTextField.setPromptText("Derinlik");
+        secilenOzelTankDerinlik = null;
+
+        clearComboBoxSelection(platformTipiComboBox);
+        secilenPlatformTipi = null;
+
+        clearComboBoxSelection(birinciValfComboBox);
+        secilenBirinciValf = null;
+
+        clearComboBoxSelection(inisMetoduComboBox);
+        secilenInisTipi = null;
+
+        clearComboBoxSelection(ikinciValfComboBox);
+        secilenIkinciValf = null;
+
+        sonucTablo.getItems().clear();
+        tankTitle.setText("Lütfen önce hesaplama işlemini tamamlayın.");
+        tankOlculeriText.setText("Lütfen önce hesaplama işlemini tamamlayın.");
+        tankImage.setImage(null);
+
+        clearComboBoxSelection(manometreCombo);
+        manometreDurumu = null;
+
+        clearComboBoxSelection(basincSalteriCombo);
+        basincSalteriDurumu = null;
+
+        clearComboBoxSelection(elPompasiCombo);
+        elPompasiDurumu = null;
+
+        partListTable.getItems().clear();
+
+        clearComboBoxSelection(basincSalteriSchemeCombo);
+        basincSalteriSchemeDurumu = null;
+
+        clearComboBoxSelection(silindirSayisiCombo);
+        silindirSayisi = null;
+
+        schemePageOne.setImage(null);
+        schemePageOne.setVisible(false);
+        schemePageOne.setFitHeight(0);
+        schemePageTwo.setImage(null);
+        schemePageTwo.setVisible(false);
+        schemePageTwo.setFitHeight(0);
+
+        hesaplamaBitti = false;
+    }
+
     private void comboBoxListener() {
         UIProcess.changeInputDataForTextField(siparisNumarasiField, newValue -> {
             girilenSiparisNumarasi = newValue;
@@ -385,7 +499,7 @@ public class PowerPackController implements Initializable  {
 
             tabloGuncelle();
 
-            collapseAndExpandSection(unitInfoSection, isUnitInfoSectionExpanded, unitInfoSectionButtonImage, true);
+            collapseAndExpandSection(unitInfoSection, isUnitInfoSectionExpanded, unitInfoSectionButtonImage, true, false);
         });
 
         UIProcess.changeInputDataForComboBox(motorVoltajComboBox, newValue -> {
@@ -799,6 +913,7 @@ public class PowerPackController implements Initializable  {
             NotificationUtil.showNotification(orderSectionButton.getScene().getWindow(), NotificationController.NotificationType.ALERT, "Hesaplama Hatası", "Lütfen tüm girdileri kontrol edin.");
         } else {
             enableSonucSection();
+            collapseAndExpandSection(calculationResultSection, isCalculationResultSectionExpanded, calculationResultSectionButtonImage, true, false);
             hesaplamaBitti = true;
         }
     }
@@ -1576,9 +1691,11 @@ public class PowerPackController implements Initializable  {
                 System.out.println("PDF sayfaları başarıyla yüklendi.");
             });
 
-            Thread thread = new Thread(task);
-            thread.setDaemon(true);
-            thread.start();
+            Platform.runLater(() -> {
+                Thread thread = new Thread(task);
+                thread.setDaemon(true);
+                thread.start();
+            });
         } else {
             NotificationUtil.showNotification(orderSectionButton.getScene().getWindow(), NotificationController.NotificationType.ALERT, "Şema Hatası", "Lütfen hesaplama işlemini tamamlayıp tekrar deneyin.");
         }
@@ -1654,7 +1771,24 @@ public class PowerPackController implements Initializable  {
         });
     }
 
-    private void collapseAndExpandSection(AnchorPane targetPane, boolean isExpanded, ImageView targetImageView, boolean forceToOpen) {
+    private void clearComboBoxSelection(ComboBox targetCombo) {
+        if(targetCombo.getSelectionModel().getSelectedItem() != null) {
+            targetCombo.setDisable(true);
+            targetCombo.getItems().set(targetCombo.getSelectionModel().getSelectedIndex(), targetCombo.getPromptText());
+        }
+    }
+
+    private void addHoverEffectToButtons(Button... buttons) {
+        ColorAdjust darkenEffect = new ColorAdjust();
+        darkenEffect.setBrightness(-0.5);
+
+        for (Button button : buttons) {
+            button.setOnMouseEntered(event -> button.setEffect(darkenEffect));
+            button.setOnMouseExited(event -> button.setEffect(null));
+        }
+    }
+
+    private void collapseAndExpandSection(AnchorPane targetPane, boolean isExpanded, ImageView targetImageView, boolean forceToOpen, boolean forceToClose) {
         Image arrowDown = new Image(Objects.requireNonNull(Launcher.class.getResourceAsStream("/assets/images/icons/icon_arrow_down.png")));
         Image arrowUp = new Image(Objects.requireNonNull(Launcher.class.getResourceAsStream("/assets/images/icons/icon_arrow_up.png")));
 
@@ -1664,14 +1798,21 @@ public class PowerPackController implements Initializable  {
             targetPane.setVisible(true);
             targetImageView.setImage(arrowUp);
         } else {
-            if(isExpanded) {
+            if(forceToClose) {
+                isExpanded = false;
                 targetPane.setPrefHeight(0);
                 targetPane.setVisible(false);
                 targetImageView.setImage(arrowDown);
             } else {
-                targetPane.setPrefHeight(Region.USE_COMPUTED_SIZE);
-                targetPane.setVisible(true);
-                targetImageView.setImage(arrowUp);
+                if(isExpanded) {
+                    targetPane.setPrefHeight(0);
+                    targetPane.setVisible(false);
+                    targetImageView.setImage(arrowDown);
+                } else {
+                    targetPane.setPrefHeight(Region.USE_COMPUTED_SIZE);
+                    targetPane.setVisible(true);
+                    targetImageView.setImage(arrowUp);
+                }
             }
         }
     }
