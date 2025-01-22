@@ -5,6 +5,7 @@ import com.hidirektor.hydraulic.controllers.notification.NotificationController;
 import com.hidirektor.hydraulic.utils.Notification.NotificationUtil;
 import com.hidirektor.hydraulic.utils.SceneUtil;
 import com.hidirektor.hydraulic.utils.Utils;
+import javafx.animation.FadeTransition;
 import javafx.animation.TranslateTransition;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -12,6 +13,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.effect.ColorAdjust;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -61,6 +63,9 @@ public class LandingController implements Initializable {
     @FXML
     public VBox collapsedVBox, expandedVBox;
 
+    @FXML
+    public Label trialLabel;
+
     private static final Map<Button, String> buttonPromptTextMap = new HashMap<>();
 
     private boolean isMenuVisible = true;
@@ -76,6 +81,7 @@ public class LandingController implements Initializable {
 
             addHoverEffect(closeIcon, minimizeIcon, expandIcon, contactUsButton, collapseMenuIcon, createClassicUnitImageButton, createPowerPackUnitImageButton, contactUsMiniButton);
             addHoverEffectToButtons(createClassicUnit, createPowerPackUnit);
+            startBlinkingEffect();
 
             homeButton.fire();
             Utils.clickButton(homeButton, 1);
@@ -249,6 +255,19 @@ public class LandingController implements Initializable {
         for (Button button : buttons) {
             button.setOnMouseEntered(event -> button.setEffect(darkenEffect));
             button.setOnMouseExited(event -> button.setEffect(null));
+        }
+    }
+
+    private void startBlinkingEffect() {
+        if (trialLabel != null) {
+            FadeTransition fadeTransition = new FadeTransition(Duration.seconds(0.5), trialLabel);
+            fadeTransition.setFromValue(1.0);
+            fadeTransition.setToValue(0.0);
+            fadeTransition.setCycleCount(FadeTransition.INDEFINITE);
+            fadeTransition.setAutoReverse(true);
+            fadeTransition.play();
+        } else {
+            System.err.println("mainLogo is null.");
         }
     }
 

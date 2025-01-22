@@ -46,6 +46,11 @@
                         <Glow level="0.3" />
                      </effect>
                   </ImageView>
+                  <Label fx:id="trialLabel" alignment="CENTER" contentDisplay="CENTER" text="Deneme sürümündesiniz. Lütfen programı yükseltin." textAlignment="CENTER" textFill="#ff4242">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
                </children>
             </HBox>
          </top>
