@@ -22,6 +22,7 @@ import javafx.scene.layout.*;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
@@ -216,6 +217,7 @@ public class LandingController implements Initializable {
             //Kullanıcılar
         } else if(actionEvent.getSource().equals(debugButton)) {
             //Debug Modu
+            Utils.showPopup(SceneUtil.getScreenOfNode(trialLabel), "fxml/DebugMode.fxml", "Hydraulic Tool || Konsol", Modality.NONE, null);
         } else if(actionEvent.getSource().equals(licenseButton)) {
             //Lisans Yönetimi
         } else if(actionEvent.getSource().equals(sourceUsageButton)) {

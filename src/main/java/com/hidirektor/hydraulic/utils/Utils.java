@@ -1,10 +1,20 @@
 package com.hidirektor.hydraulic.utils;
 
+import com.hidirektor.hydraulic.Launcher;
 import com.hidirektor.hydraulic.utils.Model.Hydraulic.Kabin;
 import com.hidirektor.hydraulic.utils.System.SystemDefaults;
+import javafx.fxml.FXMLLoader;
+import javafx.geometry.Rectangle2D;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.VBox;
+import javafx.stage.Modality;
+import javafx.stage.Screen;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import org.json.JSONObject;
 import org.yaml.snakeyaml.DumperOptions;
 import org.yaml.snakeyaml.LoaderOptions;
@@ -15,6 +25,8 @@ import java.time.Instant;
 import java.util.Base64;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
+import java.util.concurrent.atomic.AtomicReference;
 import java.util.zip.GZIPOutputStream;
 
 public class Utils {
@@ -22,6 +34,53 @@ public class Utils {
     public static void clickButton(Button actionButton, int clickCount) {
         MouseEvent mousePressedEvent = new MouseEvent(MouseEvent.MOUSE_PRESSED, 0, 0, 0, 0, MouseButton.PRIMARY, clickCount, false, false, false, false, false, false, false, false, false, false, null);
         actionButton.fireEvent(mousePressedEvent);
+    }
+
+    public static void showPopup(Screen currentScreen, String fxmlPath, String title, Modality popupModality, StageStyle popupStyle) {
+        Image icon = new Image(Objects.requireNonNull(Launcher.class.getResourceAsStream("/assets/images/logos/onderlift-hydraulic-logo.png")));
+
+        AtomicReference<Double> screenX = new AtomicReference<>((double) 0);
+        AtomicReference<Double> screenY = new AtomicReference<>((double) 0);
+
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(Launcher.class.getResource(fxmlPath));
+            VBox root = fxmlLoader.load();
+
+            Stage popupStage = new Stage();
+            Rectangle2D bounds = currentScreen.getVisualBounds();
+            popupStage.setOnShown(event -> {
+                double stageWidth = popupStage.getWidth();
+                double stageHeight = popupStage.getHeight();
+
+                double centerX = bounds.getMinX() + (bounds.getWidth() - stageWidth) / 2;
+                double centerY = bounds.getMinY() + (bounds.getHeight() - stageHeight) / 2;
+
+                popupStage.setX(centerX);
+                popupStage.setY(centerY);
+            });
+
+            popupStage.initModality(popupModality);
+            if(popupStyle != null) {
+                popupStage.initStyle(popupStyle);
+            }
+            popupStage.setTitle(title);
+            popupStage.setScene(new Scene(root));
+            popupStage.getIcons().add(icon);
+
+            root.setOnMousePressed(event -> {
+                screenX.set(event.getSceneX());
+                screenY.set(event.getSceneY());
+            });
+            root.setOnMouseDragged(event -> {
+
+                popupStage.setX(event.getScreenX() - screenX.get());
+                popupStage.setY(event.getScreenY() - screenY.get());
+
+            });
+            popupStage.showAndWait();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public static String getCurrentUnixTime() {
