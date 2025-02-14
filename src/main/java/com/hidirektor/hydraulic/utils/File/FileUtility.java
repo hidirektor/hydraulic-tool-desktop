@@ -1,5 +1,6 @@
 package com.hidirektor.hydraulic.utils.File;
 
+import com.hidirektor.hydraulic.Launcher;
 import com.hidirektor.hydraulic.utils.File.JSON.JSONUtil;
 import com.hidirektor.hydraulic.utils.File.Yaml.YamlUtil;
 import com.hidirektor.hydraulic.utils.System.SystemDefaults;
@@ -9,10 +10,11 @@ import me.t3sl4.util.file.FileUtil;
 import org.yaml.snakeyaml.DumperOptions;
 import org.yaml.snakeyaml.Yaml;
 
-import java.io.FileInputStream;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
@@ -34,14 +36,15 @@ public class FileUtility {
         // Dosya yollarını belirle
         SystemDefaults.baseFolderPath = SystemDefaults.basePath + "OnderGrup/";
         SystemDefaults.userDataFolderPath = SystemDefaults.baseFolderPath + "userData/";
+        SystemDefaults.hydraulicFileDataFolderPath = SystemDefaults.userDataFolderPath + "HydraulicUnits/";
         SystemDefaults.programDataPath = SystemDefaults.baseFolderPath + "data/";
 
-        SystemDefaults.userDataPDFFolderPath = SystemDefaults.userDataFolderPath + "HydraulicUnits/schematicFiles/";
-        SystemDefaults.userDataExcelFolderPath = SystemDefaults.userDataFolderPath + "HydraulicUnits/excelFiles/";
+        SystemDefaults.userDataPDFFolderPath = SystemDefaults.hydraulicFileDataFolderPath + "schematicFiles/";
+        SystemDefaults.userDataExcelFolderPath = SystemDefaults.hydraulicFileDataFolderPath + "excelFiles/";
 
         SystemDefaults.accountDataFilePath = SystemDefaults.userDataFolderPath + "auth.txt";
         SystemDefaults.accountLicenseFilePath = SystemDefaults.userDataFolderPath + "license.txt";
-        SystemDefaults.userLocalUnitDataFilePath = SystemDefaults.userDataFolderPath + "HydraulicUnits/local_units.yml";
+        SystemDefaults.userLocalUnitDataFilePath = SystemDefaults.hydraulicFileDataFolderPath + "local_units.yml";
 
         SystemDefaults.generalDBPath = SystemDefaults.programDataPath + "general.json";
         SystemDefaults.cabinsDBPath = SystemDefaults.programDataPath + "cabins.json";
@@ -57,25 +60,26 @@ public class FileUtility {
         try {
             DirectoryUtil.createDirectory(SystemDefaults.baseFolderPath);
             DirectoryUtil.createDirectory(SystemDefaults.userDataFolderPath);
+            DirectoryUtil.createDirectory(SystemDefaults.hydraulicFileDataFolderPath);
             DirectoryUtil.createDirectory(SystemDefaults.programDataPath);
 
-            FileUtil.createFile(SystemDefaults.userDataPDFFolderPath);
-            FileUtil.createFile(SystemDefaults.userDataExcelFolderPath);
+            DirectoryUtil.createDirectory(SystemDefaults.userDataPDFFolderPath);
+            DirectoryUtil.createDirectory(SystemDefaults.userDataExcelFolderPath);
 
             FileUtil.createFile(SystemDefaults.accountDataFilePath);
             FileUtil.createFile(SystemDefaults.accountLicenseFilePath);
             FileUtil.createFile(SystemDefaults.userLocalUnitDataFilePath);
 
-            FileUtil.copyFile("/assets/data/programDatabase/general.json", SystemDefaults.generalDBPath, false);
-            FileUtil.copyFile("/assets/data/programDatabase/cabins.json", SystemDefaults.cabinsDBPath, false);
-            FileUtil.copyFile("/assets/data/programDatabase/classic_combo.yml", SystemDefaults.classicComboDBPath, false);
-            FileUtil.copyFile("/assets/data/programDatabase/powerpack_combo.yml", SystemDefaults.powerPackComboDBPath, false);
-            FileUtil.copyFile("/assets/data/programDatabase/classic_parts.yml", SystemDefaults.classicPartsDBPath, false);
-            FileUtil.copyFile("/assets/data/programDatabase/powerpack_parts_hidros.yml", SystemDefaults.powerPackPartsHidrosDBPath, false);
-            FileUtil.copyFile("/assets/data/programDatabase/powerpack_parts_ithal.yml", SystemDefaults.powerPackPartsIthalDBPath, false);
-            FileUtil.copyFile("/assets/data/programDatabase/schematic_texts.yml", SystemDefaults.schematicTextsDBPath, false);
-            FileUtil.copyFile("/assets/data/programDatabase/part_origins_classic.yml", SystemDefaults.partOriginsClassicDBPath, false);
-            FileUtil.copyFile("/assets/data/programDatabase/part_origins_powerpack.yml", SystemDefaults.partOriginsPowerPackDBPath, false);
+            copyResourceFile("/assets/data/programDatabase/general.json", SystemDefaults.generalDBPath, false);
+            copyResourceFile("/assets/data/programDatabase/cabins.json", SystemDefaults.cabinsDBPath, false);
+            copyResourceFile("/assets/data/programDatabase/classic_combo.yml", SystemDefaults.classicComboDBPath, false);
+            copyResourceFile("/assets/data/programDatabase/powerpack_combo.yml", SystemDefaults.powerPackComboDBPath, false);
+            copyResourceFile("/assets/data/programDatabase/classic_parts.yml", SystemDefaults.classicPartsDBPath, false);
+            copyResourceFile("/assets/data/programDatabase/powerpack_parts_hidros.yml", SystemDefaults.powerPackPartsHidrosDBPath, false);
+            copyResourceFile("/assets/data/programDatabase/powerpack_parts_ithal.yml", SystemDefaults.powerPackPartsIthalDBPath, false);
+            copyResourceFile("/assets/data/programDatabase/schematic_texts.yml", SystemDefaults.schematicTextsDBPath, false);
+            copyResourceFile("/assets/data/programDatabase/part_origins_classic.yml", SystemDefaults.partOriginsClassicDBPath, false);
+            copyResourceFile("/assets/data/programDatabase/part_origins_powerpack.yml", SystemDefaults.partOriginsPowerPackDBPath, false);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -235,5 +239,23 @@ public class FileUtility {
         try (FileWriter writer = new FileWriter(filePath)) {
             yaml.dump(data, writer);
         }
+    }
+
+    public static boolean copyResourceFile(String resourcePath, String destPath, boolean isOverwrite) throws IOException {
+        // Kaynak dosyayı stream olarak al
+        InputStream inputStream = Launcher.class.getResourceAsStream(resourcePath);
+        if (inputStream == null) {
+            throw new FileNotFoundException("Resource not found: " + resourcePath);
+        }
+
+        Path destination = Paths.get(destPath);
+        if (!isOverwrite && Files.exists(destination)) {
+            return false;
+        }
+
+        // Hedef dosyaya yaz
+        Files.copy(inputStream, destination, StandardCopyOption.REPLACE_EXISTING);
+        inputStream.close();
+        return true;
     }
 }

@@ -507,6 +507,8 @@ public class ClassicController implements Initializable  {
             secilenMotor = newValue;
             secilenKampana = Integer.parseInt(SystemDefaults.getLocalHydraulicData().motorKampanaMap.get(motorComboBox.getSelectionModel().getSelectedItem().toString()).replace(" mm", ""));
 
+            collapseAndExpandSection(orderSection, isOrderSectionExpanded, orderSectionButtonImage, false, true);
+
             dataInit("sogutma", null);
 
             tabloGuncelle();

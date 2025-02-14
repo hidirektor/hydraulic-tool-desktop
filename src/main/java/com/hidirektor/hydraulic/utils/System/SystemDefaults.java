@@ -15,6 +15,7 @@ public class SystemDefaults {
     public static String basePath;
     public static String baseFolderPath;
     public static String userDataFolderPath;
+    public static String hydraulicFileDataFolderPath;
     public static String programDataPath;
 
     public static String userDataPDFFolderPath;
