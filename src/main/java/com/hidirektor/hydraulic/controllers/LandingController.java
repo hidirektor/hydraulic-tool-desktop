@@ -71,6 +71,7 @@ public class LandingController implements Initializable {
 
     private boolean isMenuVisible = true;
     private Stage currentStage = null;
+    public static boolean isDebugOpened = false;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -217,6 +218,9 @@ public class LandingController implements Initializable {
             //Kullanıcılar
         } else if(actionEvent.getSource().equals(debugButton)) {
             //Debug Modu
+            /*if(!isDebugOpened) {
+                isDebugOpened = true;
+            }*/
             Utils.showPopup(SceneUtil.getScreenOfNode(trialLabel), "fxml/DebugMode.fxml", "Hydraulic Tool || Konsol", Modality.NONE, null);
         } else if(actionEvent.getSource().equals(licenseButton)) {
             //Lisans Yönetimi

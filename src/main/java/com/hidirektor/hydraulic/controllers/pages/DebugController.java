@@ -1,8 +1,13 @@
 package com.hidirektor.hydraulic.controllers.pages;
 
+import com.hidirektor.hydraulic.controllers.LandingController;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.TextArea;
+import javafx.scene.shape.Rectangle;
+import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 
 import java.io.*;
 
@@ -12,12 +17,51 @@ public class DebugController {
     @FXML
     private TextArea consoleOutput;
 
+    Stage currentStage;
+
     @FXML
     public void initialize() {
         redirectStandardOutput(consoleOutput);
         redirectStandardError(consoleOutput);
 
+        Platform.runLater(() -> {
+            currentStage = (Stage) consoleOutput.getScene().getWindow();
+        });
+
         System.out.println("Debug Tool v1.0");
+    }
+
+    @FXML
+    public void closeProgram() {
+        LandingController.isDebugOpened = false;
+        currentStage.close();
+    }
+
+    @FXML
+    public void minimizeProgram() {
+        boolean isMaximized = currentStage.isMaximized();
+
+        if(isMaximized) {
+            currentStage.setMaximized(false);
+            applyClipToRoot();
+        }
+
+        currentStage.setIconified(true);
+    }
+
+    @FXML
+    public void expandProgram() {
+        boolean isMaximized = currentStage.isMaximized();
+
+        Node root = consoleOutput.getScene().getRoot();
+
+        if (isMaximized) {
+            applyClipToRoot();
+        } else {
+            root.setClip(null);
+        }
+
+        currentStage.setMaximized(!isMaximized);
     }
 
     private void redirectStandardOutput(TextArea area) {
@@ -84,5 +128,15 @@ public class DebugController {
                 notify = true;
             }
         }
+    }
+
+    private void applyClipToRoot() {
+        Node root = consoleOutput.getScene().getRoot();
+        Rectangle clip = new Rectangle();
+        clip.setWidth(1280);
+        clip.setHeight(720);
+        clip.setArcWidth(30);
+        clip.setArcHeight(30);
+        root.setClip(clip);
     }
 }

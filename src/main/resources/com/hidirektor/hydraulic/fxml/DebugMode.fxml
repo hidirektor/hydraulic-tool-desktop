@@ -1,11 +1,59 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.TextArea?>
-<?import javafx.scene.layout.*?>
-<VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="500.0" style="-fx-background-color: #02030A;" xmlns="http://javafx.com/javafx/17.0.6" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.hidirektor.hydraulic.controllers.pages.DebugController">
-    <AnchorPane minHeight="-Infinity" minWidth="-Infinity" VBox.vgrow="ALWAYS">
-        <children>
-            <TextArea fx:id="consoleOutput" editable="false" style="-fx-control-inner-background: #02030A; -fx-font-family: 'Consolas'; -fx-text-fill: #FFFFFF;" wrapText="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" VBox.vgrow="ALWAYS" />
-        </children>
-    </AnchorPane>
-</VBox>
+<?import javafx.scene.effect.Glow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+
+<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.hidirektor.hydraulic.controllers.pages.DebugController">
+    <children>
+        <BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="500.0" style="-fx-background-color: #02030A;">
+            <top>
+                <HBox fx:id="programControlBar" alignment="CENTER_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="30.0" style="-fx-background-color: #060606;" BorderPane.alignment="CENTER">
+                    <children>
+                        <ImageView fx:id="closeIcon" fitHeight="12.0" fitWidth="12.0" onMouseClicked="#closeProgram" pickOnBounds="true" preserveRatio="true" styleClass="window-button">
+                            <HBox.margin>
+                                <Insets left="14.0" right="8.0" />
+                            </HBox.margin>
+                            <image>
+                                <Image url="@../../../../assets/images/icons/icon_close.png" />
+                            </image>
+                            <effect>
+                                <Glow level="0.3" />
+                            </effect>
+                        </ImageView>
+                        <ImageView fx:id="minimizeIcon" fitHeight="12.0" fitWidth="12.0" onMouseClicked="#minimizeProgram" pickOnBounds="true" preserveRatio="true" styleClass="window-button">
+                            <HBox.margin>
+                                <Insets right="8.0" />
+                            </HBox.margin>
+                            <image>
+                                <Image url="@../../../../assets/images/icons/icon_minimize.png" />
+                            </image>
+                            <effect>
+                                <Glow level="0.3" />
+                            </effect>
+                        </ImageView>
+                        <ImageView fx:id="expandIcon" fitHeight="12.0" fitWidth="12.0" onMouseClicked="#expandProgram" pickOnBounds="true" preserveRatio="true" styleClass="window-button">
+                            <HBox.margin>
+                                <Insets right="8.0" />
+                            </HBox.margin>
+                            <image>
+                                <Image url="@../../../../assets/images/icons/icon_expand.png" />
+                            </image>
+                            <effect>
+                                <Glow level="0.3" />
+                            </effect>
+                        </ImageView>
+                    </children>
+                </HBox>
+            </top>
+         <center>
+                <TextArea fx:id="consoleOutput" editable="false" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="370.0" prefWidth="476.0" style="-fx-control-inner-background: #02030A; -fx-font-family: 'Consolas'; -fx-text-fill: #FFFFFF;" wrapText="true" BorderPane.alignment="CENTER" />
+         </center>
+        </BorderPane>
+    </children>
+</AnchorPane>
