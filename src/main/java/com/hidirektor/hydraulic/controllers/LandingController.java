@@ -47,7 +47,7 @@ public class LandingController implements Initializable {
     public StackPane currentPagePane;
 
     @FXML
-    public Button homeButton, hydraulicUnitsButton, ticketButton, usersButton, debugButton, licenseButton, sourceUsageButton, schemeButton, settingsButton;
+    public Button homeButton, debugButton, sourceUsageButton, settingsButton;
 
     @FXML
     public Button createClassicUnit, createPowerPackUnit;
@@ -134,8 +134,6 @@ public class LandingController implements Initializable {
             Utils.showPopup(SceneUtil.getScreenOfNode(sectionNameLabel), "fxml/DebugMode.fxml", "Hydraulic Tool || Konsol", Modality.NONE, null);
         } else if(actionEvent.getSource().equals(sourceUsageButton)) {
             //Kaynak Kullanımı
-        } else if(actionEvent.getSource().equals(schemeButton)) {
-            //2 Boyutlu Şema Alt Programı
         } else if(actionEvent.getSource().equals(settingsButton)) {
             //Ayarlar
             SceneUtil.loadFXMLIntoPane(currentPagePane, "fxml/Settings.fxml");
