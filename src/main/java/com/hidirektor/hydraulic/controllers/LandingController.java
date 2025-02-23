@@ -128,20 +128,10 @@ public class LandingController implements Initializable {
     public void handleClick(ActionEvent actionEvent) {
         if(actionEvent.getSource().equals(homeButton)) {
             SceneUtil.loadFXMLIntoPane(currentPagePane, "fxml/Dashboard.fxml");
-        } else if(actionEvent.getSource().equals(hydraulicUnitsButton)) {
-            //Hidrolik Üniteleri
-        } else if(actionEvent.getSource().equals(ticketButton)) {
-            //Destek Talepleri
-        } else if(actionEvent.getSource().equals(usersButton)) {
-            //Kullanıcılar
+            sectionNameLabel.setText("Anasayfa");
         } else if(actionEvent.getSource().equals(debugButton)) {
             //Debug Modu
-            /*if(!isDebugOpened) {
-                isDebugOpened = true;
-            }*/
             Utils.showPopup(SceneUtil.getScreenOfNode(sectionNameLabel), "fxml/DebugMode.fxml", "Hydraulic Tool || Konsol", Modality.NONE, null);
-        } else if(actionEvent.getSource().equals(licenseButton)) {
-            //Lisans Yönetimi
         } else if(actionEvent.getSource().equals(sourceUsageButton)) {
             //Kaynak Kullanımı
         } else if(actionEvent.getSource().equals(schemeButton)) {
@@ -149,14 +139,15 @@ public class LandingController implements Initializable {
         } else if(actionEvent.getSource().equals(settingsButton)) {
             //Ayarlar
             SceneUtil.loadFXMLIntoPane(currentPagePane, "fxml/Settings.fxml");
+            sectionNameLabel.setText("Ayarlar");
         } else if(actionEvent.getSource().equals(createClassicUnit)) {
             //Klasik Ünite Oluştur
             SceneUtil.loadFXMLIntoPane(currentPagePane, "fxml/ClassicCalculation.fxml");
+            sectionNameLabel.setText("Hydraulic - Hesaplama");
         } else if(actionEvent.getSource().equals(createPowerPackUnit)) {
             //PowerPack Ünite Oluştur
             SceneUtil.loadFXMLIntoPane(currentPagePane, "fxml/PowerPackCalculation.fxml");
-        } else if(actionEvent.getSource().equals(contactUsButton)) {
-            //Destek Butonu
+            sectionNameLabel.setText("Hydraulic - Hesaplama");
         } else {
             NotificationUtil.showNotification(sectionNameLabel.getScene().getWindow(), NotificationController.NotificationType.ALERT, "Buton Hatası", "Buton hatası meydana geldi. Lütfen yaptığınız işlemle birlikte hatayı bize bildirin.");
         }
