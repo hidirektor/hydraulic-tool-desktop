@@ -135,7 +135,7 @@ public class FileUtility {
                 }
             }
 
-            System.out.println("Güncelleme tamamlandı.");
+            //System.out.println("Güncelleme tamamlandı.");
         } catch (IOException e) {
             e.printStackTrace();
             System.err.println("Dosya işlemleri sırasında bir hata oluştu.");
@@ -172,10 +172,10 @@ public class FileUtility {
 
                             if (targetPart != null) {
                                 // motor formatındaki dosyalar için
-                                System.out.println(targetPart);
+                                //System.out.println(targetPart);
                                 for (Object outerKey : targetPart.keySet()) {
                                     Map<String, Object> outerPart = (Map<String, Object>) targetPart.get(outerKey);
-                                    System.out.println("Dış Anahtar: " + outerKey + ", Değer: " + outerPart);
+                                    //System.out.println("Dış Anahtar: " + outerKey + ", Değer: " + outerPart);
 
                                     if (outerPart != null && outerPart.containsKey("parts")) {
                                         Map<String, Object> targetParts = (Map<String, Object>) outerPart.get("parts");
@@ -183,14 +183,14 @@ public class FileUtility {
                                         // "parts" içindeki her bir sayı key'ini kontrol et
                                         for (Object innerKey : targetParts.keySet()) {
                                             Map<String, Object> currentPart = (Map<String, Object>) targetParts.get(innerKey);
-                                            System.out.println("parts içindeki Anahtar: " + innerKey + ", Değer: " + currentPart);
+                                            //System.out.println("parts içindeki Anahtar: " + innerKey + ", Değer: " + currentPart);
 
                                             if (currentPart != null && currentPart.containsKey("malzemeKodu") && currentPart.containsKey("malzemeAdi")) {
                                                 String targetName = (String) currentPart.get("malzemeAdi");
                                                 String targetCode = (String) currentPart.get("malzemeKodu");
 
-                                                System.out.println("Hedef İsim: " + targetName);
-                                                System.out.println("Hedef Kod: " + targetCode);
+                                                //System.out.println("Hedef İsim: " + targetName);
+                                                //System.out.println("Hedef Kod: " + targetCode);
 
                                                 if (targetName == null || targetCode == null) {
                                                     System.err.println("Hata: Hedef dosyada eksik veri var. targetName veya targetCode null.");
@@ -223,8 +223,8 @@ public class FileUtility {
         Yaml yaml = new Yaml();
         try (InputStream inputStream = new FileInputStream(filePath)) {
             Map<String, Object> yamlData = yaml.load(inputStream);
-            System.out.println("YAML Dosyası İçeriği:");
-            System.out.println(yamlData);  // Bu şekilde dosya içeriğini yazdırabilirsiniz
+            //System.out.println("YAML Dosyası İçeriği:");
+            //System.out.println(yamlData);  // Bu şekilde dosya içeriğini yazdırabilirsiniz
             return yamlData;
         }
     }

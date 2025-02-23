@@ -32,13 +32,10 @@ import java.util.*;
 public class LandingController implements Initializable {
 
     @FXML
-    public AnchorPane hamburgerMenu, collapsedPane, expandedPane;
+    public AnchorPane hamburgerMenu;
 
     @FXML
     public HBox programControlBar;
-
-    @FXML
-    public Circle profilePhoto;
 
     @FXML
     public ImageView mainLogo;
@@ -56,34 +53,21 @@ public class LandingController implements Initializable {
     public Button createClassicUnit, createPowerPackUnit;
 
     @FXML
-    public ImageView contactUsButton, contactUsMiniButton, createClassicUnitImageButton, createPowerPackUnitImageButton;
+    public ImageView contactUsButton;
 
     @FXML
-    public ImageView collapseMenuIcon;
+    public Label sectionNameLabel;
 
-    @FXML
-    public VBox collapsedVBox, expandedVBox;
-
-    @FXML
-    public Label trialLabel;
-
-    private static final Map<Button, String> buttonPromptTextMap = new HashMap<>();
-
-    private boolean isMenuVisible = true;
     private Stage currentStage = null;
     public static boolean isDebugOpened = false;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        Image templateProfilePhoto = new Image(Objects.requireNonNull(Launcher.class.getResourceAsStream("/assets/images/template/profile-photo.jpg")));
-        profilePhoto.setFill(new ImagePattern(templateProfilePhoto, 0, 0, 0, 0, false));
-
         Platform.runLater(() -> {
-            currentStage = (Stage) profilePhoto.getScene().getWindow();
+            currentStage = (Stage) sectionNameLabel.getScene().getWindow();
 
-            addHoverEffect(closeIcon, minimizeIcon, expandIcon, contactUsButton, collapseMenuIcon, createClassicUnitImageButton, createPowerPackUnitImageButton, contactUsMiniButton);
+            addHoverEffect(closeIcon, minimizeIcon, expandIcon, contactUsButton);
             addHoverEffectToButtons(createClassicUnit, createPowerPackUnit);
-            startBlinkingEffect();
 
             homeButton.fire();
             Utils.clickButton(homeButton, 1);
@@ -96,7 +80,7 @@ public class LandingController implements Initializable {
                 }
             });
 
-            profilePhoto.getScene().setOnKeyPressed(event -> {
+            sectionNameLabel.getScene().setOnKeyPressed(event -> {
                 if (event.getCode() == KeyCode.ESCAPE) {
                     if(currentStage.isMaximized()) {
                         expandProgram();
@@ -108,13 +92,13 @@ public class LandingController implements Initializable {
 
     @FXML
     public void closeProgram() {
-        Stage stage = (Stage) (profilePhoto.getScene().getWindow());
+        Stage stage = (Stage) (sectionNameLabel.getScene().getWindow());
         stage.close();
     }
 
     @FXML
     public void minimizeProgram() {
-        Stage stage = (Stage) (profilePhoto.getScene().getWindow());
+        Stage stage = (Stage) (sectionNameLabel.getScene().getWindow());
         boolean isMaximized = stage.isMaximized();
 
         if(isMaximized) {
@@ -129,7 +113,7 @@ public class LandingController implements Initializable {
     public void expandProgram() {
         boolean isMaximized = currentStage.isMaximized();
 
-        Node root = profilePhoto.getScene().getRoot();
+        Node root = sectionNameLabel.getScene().getRoot();
 
         if (isMaximized) {
             applyClipToRoot();
@@ -138,72 +122,6 @@ public class LandingController implements Initializable {
         }
 
         currentStage.setMaximized(!isMaximized);
-    }
-
-    @FXML
-    private void collapseMenu() {
-        TranslateTransition transition = new TranslateTransition(Duration.millis(300), hamburgerMenu);
-
-        Image collapsedIcon = new Image(Objects.requireNonNull(Launcher.class.getResourceAsStream("/assets/images/icons/icon_expand_menu.png")));
-        Image expandedIcon = new Image(Objects.requireNonNull(Launcher.class.getResourceAsStream("/assets/images/icons/icon_collapse_menu.png")));
-
-        if (isMenuVisible) {
-            hamburgerMenu.setPrefWidth(80.0);
-            hamburgerMenu.setMinWidth(hamburgerMenu.getPrefWidth());
-
-            isMenuVisible = false;
-
-            expandedPane.setVisible(false);
-            collapsedPane.setVisible(true);
-
-            AnchorPane.setLeftAnchor(collapseMenuIcon, 68.0);
-            AnchorPane.setTopAnchor(collapseMenuIcon, 48.0);
-
-            collapseMenuIcon.setImage(collapsedIcon);
-
-            LinkedList<Button> buttonsToMove = new LinkedList<>();
-            for (Node node : expandedVBox.getChildren()) {
-                if (node instanceof Button) {
-                    Button button = (Button) node;
-                    buttonPromptTextMap.put(button, button.getText());
-                    button.setText("");
-                    buttonsToMove.add(button);
-                }
-            }
-
-            collapsedVBox.getChildren().addAll(buttonsToMove);
-            expandedVBox.getChildren().removeAll(buttonsToMove);
-        } else {
-            hamburgerMenu.setMinWidth(Region.USE_COMPUTED_SIZE);
-            hamburgerMenu.setPrefWidth(Region.USE_COMPUTED_SIZE);
-
-            isMenuVisible = true;
-
-            expandedPane.setVisible(true);
-            collapsedPane.setVisible(false);
-
-            AnchorPane.setLeftAnchor(collapseMenuIcon, 208.0);
-            AnchorPane.setTopAnchor(collapseMenuIcon, 40.0);
-
-            collapseMenuIcon.setImage(expandedIcon);
-
-            LinkedList<Button> buttonsToMoveBack = new LinkedList<>();
-            for (Node node : collapsedVBox.getChildren()) {
-                if (node instanceof Button) {
-                    Button button = (Button) node;
-                    String originalPromptText = buttonPromptTextMap.get(button);
-                    if (originalPromptText != null) {
-                        button.setText(originalPromptText);
-                    }
-                    buttonsToMoveBack.add(button);
-                }
-            }
-
-            expandedVBox.getChildren().addAll(buttonsToMoveBack);
-            collapsedVBox.getChildren().removeAll(buttonsToMoveBack);
-        }
-
-        transition.play();
     }
 
     @FXML
@@ -221,7 +139,7 @@ public class LandingController implements Initializable {
             /*if(!isDebugOpened) {
                 isDebugOpened = true;
             }*/
-            Utils.showPopup(SceneUtil.getScreenOfNode(trialLabel), "fxml/DebugMode.fxml", "Hydraulic Tool || Konsol", Modality.NONE, null);
+            Utils.showPopup(SceneUtil.getScreenOfNode(sectionNameLabel), "fxml/DebugMode.fxml", "Hydraulic Tool || Konsol", Modality.NONE, null);
         } else if(actionEvent.getSource().equals(licenseButton)) {
             //Lisans Yönetimi
         } else if(actionEvent.getSource().equals(sourceUsageButton)) {
@@ -231,16 +149,16 @@ public class LandingController implements Initializable {
         } else if(actionEvent.getSource().equals(settingsButton)) {
             //Ayarlar
             SceneUtil.loadFXMLIntoPane(currentPagePane, "fxml/Settings.fxml");
-        } else if(actionEvent.getSource().equals(createClassicUnit) || actionEvent.getSource().equals(createClassicUnitImageButton)) {
+        } else if(actionEvent.getSource().equals(createClassicUnit)) {
             //Klasik Ünite Oluştur
             SceneUtil.loadFXMLIntoPane(currentPagePane, "fxml/ClassicCalculation.fxml");
-        } else if(actionEvent.getSource().equals(createPowerPackUnit) || actionEvent.getSource().equals(createPowerPackUnitImageButton)) {
+        } else if(actionEvent.getSource().equals(createPowerPackUnit)) {
             //PowerPack Ünite Oluştur
             SceneUtil.loadFXMLIntoPane(currentPagePane, "fxml/PowerPackCalculation.fxml");
-        } else if(actionEvent.getSource().equals(contactUsButton) || actionEvent.getSource().equals(contactUsMiniButton)) {
+        } else if(actionEvent.getSource().equals(contactUsButton)) {
             //Destek Butonu
         } else {
-            NotificationUtil.showNotification(collapseMenuIcon.getScene().getWindow(), NotificationController.NotificationType.ALERT, "Buton Hatası", "Buton hatası meydana geldi. Lütfen yaptığınız işlemle birlikte hatayı bize bildirin.");
+            NotificationUtil.showNotification(sectionNameLabel.getScene().getWindow(), NotificationController.NotificationType.ALERT, "Buton Hatası", "Buton hatası meydana geldi. Lütfen yaptığınız işlemle birlikte hatayı bize bildirin.");
         }
     }
 
@@ -264,21 +182,8 @@ public class LandingController implements Initializable {
         }
     }
 
-    private void startBlinkingEffect() {
-        if (trialLabel != null) {
-            FadeTransition fadeTransition = new FadeTransition(Duration.seconds(0.5), trialLabel);
-            fadeTransition.setFromValue(1.0);
-            fadeTransition.setToValue(0.0);
-            fadeTransition.setCycleCount(FadeTransition.INDEFINITE);
-            fadeTransition.setAutoReverse(true);
-            fadeTransition.play();
-        } else {
-            System.err.println("mainLogo is null.");
-        }
-    }
-
     private void applyClipToRoot() {
-        Node root = profilePhoto.getScene().getRoot();
+        Node root = sectionNameLabel.getScene().getRoot();
         Rectangle clip = new Rectangle();
         clip.setWidth(1280);
         clip.setHeight(720);
