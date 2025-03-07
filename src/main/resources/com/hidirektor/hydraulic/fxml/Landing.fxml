@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.hidirektor.hydraulic.controllers.LandingController">
+<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/17.0.6" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.hidirektor.hydraulic.controllers.LandingController">
    <children>
       <BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <top>
@@ -213,7 +213,7 @@
                         </VBox>
                         <VBox alignment="BOTTOM_LEFT" spacing="6.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                            <children>
-                              <ImageView fx:id="contactUsButton" fitHeight="32.0" fitWidth="32.0" onMouseClicked="#handleClick" pickOnBounds="true" preserveRatio="true" visible="false">
+                              <ImageView fx:id="contactUsButton" fitHeight="32.0" fitWidth="32.0" onMouseClicked="#handleClick" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../../../../assets/images/icons/icon_support.png" />
                                  </image>
@@ -236,53 +236,53 @@
                <children>
                   <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
-                        <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity">
-                           <children>
-                              <HBox alignment="CENTER_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" spacing="16.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                 <children>
-                                    <Label fx:id="sectionNameLabel" stylesheets="@../styling/dark-theme.css" text="Anasayfa" textAlignment="CENTER" textFill="#060606">
-                                       <font>
-                                          <Font name="TextaAlt-Bold" size="26.0" />
-                                       </font>
-                                       <padding>
-                                          <Insets bottom="6.0" left="6.0" right="6.0" top="6.0" />
-                                       </padding>
-                                       <HBox.margin>
-                                          <Insets left="12.0" />
-                                       </HBox.margin>
-                                    </Label>
-                                 </children>
-                              </HBox>
-                              <HBox alignment="CENTER_RIGHT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" spacing="12.0" stylesheets="@../styling/dark-theme.css" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                 <children>
-                                    <StackPane prefHeight="32.0" prefWidth="32.0" styleClass="dashboard-header-profile">
-                                       <children>
-                                          <ImageView cache="true" fitHeight="16.0" fitWidth="16.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@../../../../assets/images/icons/icon_adjust.png" />
-                                             </image>
-                                          </ImageView>
-                                       </children>
-                                    </StackPane>
-                                    <StackPane prefHeight="32.0" prefWidth="32.0" styleClass="dashboard-header-profile">
-                                       <children>
-                                          <ImageView cache="true" fitHeight="16.0" fitWidth="16.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@../../../../assets/images/icons/icon_info.png" />
-                                             </image>
-                                          </ImageView>
-                                       </children>
-                                    </StackPane>
-                                 </children>
-                              </HBox>
-                           </children>
-                           <padding>
-                              <Insets left="10.0" right="10.0" top="10.0" />
-                           </padding>
-                        </AnchorPane>
-                        <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" VBox.vgrow="ALWAYS">
+                        <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefWidth="1060.0" VBox.vgrow="ALWAYS">
                            <children>
                               <StackPane fx:id="currentPagePane" alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                              <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="55.0" prefWidth="1060.0" visible="false">
+                                 <children>
+                                    <HBox alignment="CENTER_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" spacing="16.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                       <children>
+                                          <Label fx:id="sectionNameLabel" stylesheets="@../styling/dark-theme.css" text="Anasayfa" textAlignment="CENTER" textFill="#060606">
+                                             <font>
+                                                <Font name="TextaAlt-Bold" size="26.0" />
+                                             </font>
+                                             <padding>
+                                                <Insets bottom="6.0" left="6.0" right="6.0" top="6.0" />
+                                             </padding>
+                                             <HBox.margin>
+                                                <Insets left="12.0" />
+                                             </HBox.margin>
+                                          </Label>
+                                       </children>
+                                    </HBox>
+                                    <HBox alignment="CENTER_RIGHT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" spacing="12.0" stylesheets="@../styling/dark-theme.css" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                       <children>
+                                          <StackPane prefHeight="32.0" prefWidth="32.0" styleClass="dashboard-header-profile">
+                                             <children>
+                                                <ImageView cache="true" fitHeight="16.0" fitWidth="16.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@../../../../assets/images/icons/icon_adjust.png" />
+                                                   </image>
+                                                </ImageView>
+                                             </children>
+                                          </StackPane>
+                                          <StackPane prefHeight="32.0" prefWidth="32.0" styleClass="dashboard-header-profile">
+                                             <children>
+                                                <ImageView cache="true" fitHeight="16.0" fitWidth="16.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@../../../../assets/images/icons/icon_info.png" />
+                                                   </image>
+                                                </ImageView>
+                                             </children>
+                                          </StackPane>
+                                       </children>
+                                    </HBox>
+                                 </children>
+                                 <padding>
+                                    <Insets left="10.0" right="10.0" top="10.0" />
+                                 </padding>
+                              </AnchorPane>
                            </children>
                         </AnchorPane>
                      </children>

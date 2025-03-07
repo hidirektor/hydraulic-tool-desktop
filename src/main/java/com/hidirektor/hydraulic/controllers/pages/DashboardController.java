@@ -1,6 +1,8 @@
 package com.hidirektor.hydraulic.controllers.pages;
 
 import com.hidirektor.hydraulic.Launcher;
+import com.hidirektor.hydraulic.controllers.LandingController;
+import com.hidirektor.hydraulic.utils.SceneUtil;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.fxml.FXML;
@@ -40,9 +42,7 @@ public class DashboardController {
     @FXML
     private Label descriptionLabel;
     @FXML
-    private Button prevButton;
-    @FXML
-    private Button nextButton;
+    private Button startCalculationButton;
 
     private Timeline timeline;
 
@@ -51,8 +51,7 @@ public class DashboardController {
         updateSlider();
 
         // Önceki ve sonraki butonların event'leri
-        prevButton.setOnAction(e -> showPreviousImage());
-        nextButton.setOnAction(e -> showNextImage());
+        startCalculationButton.setOnAction(e -> startCalculation());
 
         // Otomatik kaydırma için Timeline
         timeline = new Timeline(new KeyFrame(Duration.seconds(3), e -> showNextImage()));
@@ -66,13 +65,24 @@ public class DashboardController {
         descriptionLabel.setText(descriptions[currentIndex]);
     }
 
-    private void showNextImage() {
-        currentIndex = (currentIndex + 1) % imagePaths.length;
-        updateSlider();
+    private void startCalculation() {
+        if(currentIndex == 0) {
+            /*
+            add start method for calculation methods
+             */
+        } else if(currentIndex == 1) {
+            /*
+            add start method for calculation methods
+             */
+        } else {
+            /*
+            add start method for calculation methods
+             */
+        }
     }
 
-    private void showPreviousImage() {
-        currentIndex = (currentIndex - 1 + imagePaths.length) % imagePaths.length;
+    private void showNextImage() {
+        currentIndex = (currentIndex + 1) % imagePaths.length;
         updateSlider();
     }
 }
