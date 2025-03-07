@@ -28,9 +28,9 @@ public class DashboardController {
     };
 
     private final String[] descriptions = {
-            "Açıklama 1: Bu hesaplama türü A yöntemi ile çalışır.",
-            "Açıklama 2: Bu hesaplama türü B yöntemi ile çalışır.",
-            "Açıklama 3: Bu hesaplama türü C yöntemi ile çalışır."
+            "Önder Grup bünyesinde standartlaştırılmış kabin hesaplaması için tasarlanan hesaplama yöntemidir.",
+            "Önder Grup bünyesinde powerpack türünde ki siparişlerin hidrolik seçimi için tasarlanan hesaplama yöntemidir.",
+            "Önder Grup bünyesinde blain türünde ki siparişlerin hidrolik seçimi için tasarlanan hesaplama yöntemidir."
     };
 
     @FXML
