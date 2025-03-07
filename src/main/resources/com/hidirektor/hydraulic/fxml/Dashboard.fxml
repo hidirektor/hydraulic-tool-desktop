@@ -8,18 +8,18 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="610.0" prefWidth="1040.0" style="-fx-background-color: #EBDFD7;" stylesheets="@../styling/dark-theme.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.hidirektor.hydraulic.controllers.pages.DashboardController">
+<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="637.0" prefWidth="1060.0" style="-fx-background-color: #EBDFD7;" stylesheets="@../styling/dark-theme.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.hidirektor.hydraulic.controllers.pages.DashboardController">
 
    <children>
-      <VBox prefHeight="200.0" prefWidth="100.0" spacing="8.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <VBox prefHeight="200.0" prefWidth="100.0" spacing="8.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
 
             <!-- Slider İçin StackPane -->
-            <StackPane fx:id="sliderPane" prefHeight="400.0" prefWidth="800.0" style="-fx-border-radius: 30;">
+            <StackPane fx:id="sliderPane" minHeight="-Infinity" minWidth="-Infinity" prefHeight="637.0" prefWidth="1060.0" style="-fx-border-radius: 30;" VBox.vgrow="NEVER">
                <children>
                   <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity">
                      <children>
-                        <ImageView fx:id="imageView" fitHeight="300.0" fitWidth="1040.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                        <ImageView fx:id="imageView" fitHeight="610.0" fitWidth="1040.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                      </children>
                   </AnchorPane>
 

@@ -50,7 +50,7 @@ public class LandingController implements Initializable {
     public Button homeButton, debugButton, sourceUsageButton, settingsButton;
 
     @FXML
-    public Button createClassicUnit, createPowerPackUnit;
+    public Button createClassicUnit, createPowerPackUnit, createBlainUnit;
 
     @FXML
     public ImageView contactUsButton;
@@ -131,7 +131,7 @@ public class LandingController implements Initializable {
             sectionNameLabel.setText("Anasayfa");
         } else if(actionEvent.getSource().equals(debugButton)) {
             //Debug Modu
-            Utils.showPopup(SceneUtil.getScreenOfNode(sectionNameLabel), "fxml/DebugMode.fxml", "Hydraulic Tool || Konsol", Modality.NONE, null);
+            Utils.showPopup(SceneUtil.getScreenOfNode(sectionNameLabel), "fxml/DebugMode.fxml", "Hydraulic Tool || Konsol", Modality.WINDOW_MODAL, null);
         } else if(actionEvent.getSource().equals(sourceUsageButton)) {
             //Kaynak Kullanımı
         } else if(actionEvent.getSource().equals(settingsButton)) {
@@ -145,6 +145,9 @@ public class LandingController implements Initializable {
         } else if(actionEvent.getSource().equals(createPowerPackUnit)) {
             //PowerPack Ünite Oluştur
             SceneUtil.loadFXMLIntoPane(currentPagePane, "fxml/PowerPackCalculation.fxml");
+            sectionNameLabel.setText("Hydraulic - Hesaplama");
+        } else if(actionEvent.getSource().equals(createBlainUnit)) {
+            SceneUtil.loadFXMLIntoPane(currentPagePane, "fxml/BlainCalc.fxml");
             sectionNameLabel.setText("Hydraulic - Hesaplama");
         } else {
             NotificationUtil.showNotification(sectionNameLabel.getScene().getWindow(), NotificationController.NotificationType.ALERT, "Buton Hatası", "Buton hatası meydana geldi. Lütfen yaptığınız işlemle birlikte hatayı bize bildirin.");

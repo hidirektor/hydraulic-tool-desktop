@@ -16,15 +16,15 @@ public class DashboardController {
 
     private int currentIndex = 0;
     private final String[] imagePaths = {
-            "/assets/images/template/carousel/carousel-1.jpg",
-            "/assets/images/template/carousel/carousel-2.jpg",
-            "/assets/images/template/carousel/carousel-3.jpg"
+            "/assets/images/template/carousel/carousel-1.png",
+            "/assets/images/template/carousel/carousel-2.png",
+            "/assets/images/template/carousel/carousel-3.png"
     };
 
     private final String[] titles = {
-            "Hesaplama Türü 1",
-            "Hesaplama Türü 2",
-            "Hesaplama Türü 3"
+            "Klasik Hesaplama",
+            "PowerPack Hesaplama",
+            "Blain Hesaplama"
     };
 
     private final String[] descriptions = {
