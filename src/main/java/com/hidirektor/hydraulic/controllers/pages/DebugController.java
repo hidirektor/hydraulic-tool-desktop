@@ -26,6 +26,9 @@ public class DebugController {
 
         Platform.runLater(() -> {
             currentStage = (Stage) consoleOutput.getScene().getWindow();
+            currentStage.setOnCloseRequest(event -> {
+                LandingController.isDebugOpened = false;
+            });
         });
 
         System.out.println("Debug Tool v1.0");

@@ -24,6 +24,7 @@ import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import javafx.util.Duration;
 
 import java.net.URL;
@@ -131,7 +132,12 @@ public class LandingController implements Initializable {
             sectionNameLabel.setText("Anasayfa");
         } else if(actionEvent.getSource().equals(debugButton)) {
             //Debug Modu
-            Utils.showPopup(SceneUtil.getScreenOfNode(sectionNameLabel), "fxml/DebugMode.fxml", "Hydraulic Tool || Konsol", Modality.WINDOW_MODAL, null);
+            if(!isDebugOpened) {
+                Utils.showPopup(SceneUtil.getScreenOfNode(sectionNameLabel), "fxml/DebugMode.fxml", "Hydraulic Tool || Konsol", Modality.NONE, StageStyle.UNDECORATED);
+                LandingController.isDebugOpened = true;
+            } else {
+                NotificationUtil.showNotification(sectionNameLabel.getScene().getWindow(), NotificationController.NotificationType.ALERT, "UI Hatası", "Debug ekranı zaten açık.");
+            }
         } else if(actionEvent.getSource().equals(sourceUsageButton)) {
             //Kaynak Kullanımı
         } else if(actionEvent.getSource().equals(settingsButton)) {
@@ -147,8 +153,9 @@ public class LandingController implements Initializable {
             SceneUtil.loadFXMLIntoPane(currentPagePane, "fxml/PowerPackCalculation.fxml");
             sectionNameLabel.setText("Hydraulic - Hesaplama");
         } else if(actionEvent.getSource().equals(createBlainUnit)) {
-            SceneUtil.loadFXMLIntoPane(currentPagePane, "fxml/BlainCalc.fxml");
-            sectionNameLabel.setText("Hydraulic - Hesaplama");
+            NotificationUtil.showNotification(sectionNameLabel.getScene().getWindow(), NotificationController.NotificationType.WARNING, "Hesaplama Hatası", "Blain hesaplama henüz yayında değil.");
+            //SceneUtil.loadFXMLIntoPane(currentPagePane, "fxml/BlainCalc.fxml");
+            //sectionNameLabel.setText("Hydraulic - Hesaplama");
         } else {
             NotificationUtil.showNotification(sectionNameLabel.getScene().getWindow(), NotificationController.NotificationType.ALERT, "Buton Hatası", "Buton hatası meydana geldi. Lütfen yaptığınız işlemle birlikte hatayı bize bildirin.");
         }

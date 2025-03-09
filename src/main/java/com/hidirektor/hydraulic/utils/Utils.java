@@ -10,6 +10,7 @@ import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Screen;
@@ -44,7 +45,7 @@ public class Utils {
 
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(Launcher.class.getResource(fxmlPath));
-            VBox root = fxmlLoader.load();
+            AnchorPane root = fxmlLoader.load();
 
             Stage popupStage = new Stage();
             Rectangle2D bounds = currentScreen.getVisualBounds();
