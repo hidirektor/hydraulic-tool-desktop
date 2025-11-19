@@ -505,6 +505,7 @@ public class PowerPackController implements Initializable  {
         // "Dosyada Göster" butonunu gizle
         if(openPDFInExplorerButton != null) {
             openPDFInExplorerButton.setVisible(false);
+            openPDFInExplorerButton.setManaged(false);
         }
 
         hesaplamaBitti = false;
@@ -523,6 +524,12 @@ public class PowerPackController implements Initializable  {
 
         UIProcess.changeInputDataForComboBox(motorVoltajComboBox, newValue -> {
             secilenMotorTipi = newValue.toString();
+
+            // Motor voltajı seçildiğinde Sipariş Bilgileri bölümünü kapat
+            if(isOrderSectionExpanded) {
+                collapseAndExpandSection(orderSection, isOrderSectionExpanded, orderSectionButtonImage, false, true);
+                isOrderSectionExpanded = false;
+            }
 
             initUniteTipi();
 
@@ -1714,6 +1721,7 @@ public class PowerPackController implements Initializable  {
             // PDF üretildikten sonra "Dosyada Göster" butonunu görünür yap
             if(openPDFInExplorerButton != null) {
                 openPDFInExplorerButton.setVisible(true);
+                openPDFInExplorerButton.setManaged(true);
             }
             Task<Void> task = new Task<>() {
                 @Override

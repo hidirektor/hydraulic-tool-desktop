@@ -501,6 +501,7 @@ public class ClassicController implements Initializable  {
         // "Dosyada Göster" butonunu gizle
         if(openPDFInExplorerButton != null) {
             openPDFInExplorerButton.setVisible(false);
+            openPDFInExplorerButton.setManaged(false);
         }
 
         hesaplamaBitti = false;
@@ -1575,6 +1576,7 @@ public class ClassicController implements Initializable  {
             // PDF üretildikten sonra "Dosyada Göster" butonunu görünür yap
             if(openPDFInExplorerButton != null) {
                 openPDFInExplorerButton.setVisible(true);
+                openPDFInExplorerButton.setManaged(true);
             }
             Task<Void> task = new Task<>() {
                 @Override
