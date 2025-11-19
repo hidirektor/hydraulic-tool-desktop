@@ -531,7 +531,7 @@
                                                       <StackPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#handleSchemePageOneClick" onMouseEntered="#handleSchemePageOneEnter" onMouseExited="#handleSchemePageOneExit">
                                                          <children>
                                                             <ImageView fx:id="schemePageOne" fitHeight="0.0" fitWidth="400.0" pickOnBounds="true" preserveRatio="true" visible="false" />
-                                                            <AnchorPane fx:id="schemePageOneOverlay" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" opacity="0.0" style="-fx-background-color: rgba(0, 0, 0, 0.7);" visible="false">
+                                                            <AnchorPane fx:id="schemePageOneOverlay" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" opacity="0.0" style="-fx-background-color: rgba(0, 0, 0, 0.7);" visible="false">
                                                                <children>
                                                                   <VBox alignment="CENTER" spacing="8.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                                                      <children>
@@ -554,7 +554,7 @@
                                                       <StackPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#handleSchemePageTwoClick" onMouseEntered="#handleSchemePageTwoEnter" onMouseExited="#handleSchemePageTwoExit">
                                                          <children>
                                                             <ImageView fx:id="schemePageTwo" fitHeight="0.0" fitWidth="400.0" pickOnBounds="true" preserveRatio="true" visible="false" />
-                                                            <AnchorPane fx:id="schemePageTwoOverlay" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" opacity="0.0" style="-fx-background-color: rgba(0, 0, 0, 0.7);" visible="false">
+                                                            <AnchorPane fx:id="schemePageTwoOverlay" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" opacity="0.0" style="-fx-background-color: rgba(0, 0, 0, 0.7);" visible="false">
                                                                <children>
                                                                   <VBox alignment="CENTER" spacing="8.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                                                      <children>
