@@ -118,6 +118,42 @@ public class BlainController implements Initializable {
     }
 
     private void comboBoxListener() {
+        UIProcess.changeInputDataForTextField(siparisNumarasiField, newValue -> {
+            // Sipariş numarası girildiğinde Ünite Bilgileri bölümünü otomatik aç
+            if(!isUnitInfoSectionExpanded) {
+                collapseAndExpandSection(unitInfoSection, isUnitInfoSectionExpanded, unitInfoSectionButtonImage, true, false);
+                isUnitInfoSectionExpanded = true;
+                
+                // Ünite bilgileri açıldığında dropdown'ları aktif et ve değerleri ekle
+                motorComboBox.setDisable(false);
+                motorComboBox.getItems().clear();
+                if(SystemDefaults.getLocalHydraulicData().blainMotorMap.containsKey("0")) {
+                    motorComboBox.getItems().addAll(SystemDefaults.getLocalHydraulicData().blainMotorMap.get("0"));
+                }
+                
+                sogutmaComboBox.setDisable(false);
+                sogutmaComboBox.getItems().clear();
+                sogutmaComboBox.getItems().addAll("Var", "Yok");
+                
+                tablaKilitComboBox.setDisable(false);
+                tablaKilitComboBox.getItems().clear();
+                tablaKilitComboBox.getItems().addAll("Var", "Yok");
+                
+                pompaComboBox.setDisable(false);
+                pompaComboBox.getItems().clear();
+                if(SystemDefaults.getLocalHydraulicData().blainPompaMap.containsKey("0")) {
+                    pompaComboBox.getItems().addAll(SystemDefaults.getLocalHydraulicData().blainPompaMap.get("0"));
+                }
+                
+                valfTipiComboBox.setDisable(false);
+                updateValfTipiOptions();
+                
+                yagTankiComboBox.setDisable(false);
+                yagTankiComboBox.getItems().clear();
+                yagTankiComboBox.getItems().addAll("BTH 75", "BTH 150", "BTH 250", "BTH 400", "BTH 600", "BTH 1000");
+            }
+        });
+        
         UIProcess.changeInputDataForComboBox(sogutmaComboBox, newValue -> {
             secilenSogutma = newValue.toString();
             updateValfTipiOptions();
