@@ -13,6 +13,7 @@ module com.hidirektor.hydraulic {
     requires org.apache.poi.ooxml;
     requires org.apache.pdfbox;
     requires javafx.swing;
+    requires jdk.management;
 
     exports com.hidirektor.hydraulic;
     opens com.hidirektor.hydraulic to javafx.base, javafx.fxml;

@@ -140,6 +140,7 @@ public class LandingController implements Initializable {
             }
         } else if(actionEvent.getSource().equals(sourceUsageButton)) {
             //Kaynak Kullanımı
+            Utils.showPopup(SceneUtil.getScreenOfNode(sectionNameLabel), "fxml/ResourceUsageModal.fxml", "Kaynak Kullanımı", Modality.NONE, StageStyle.UNDECORATED);
         } else if(actionEvent.getSource().equals(settingsButton)) {
             //Ayarlar
             SceneUtil.loadFXMLIntoPane(currentPagePane, "fxml/Settings.fxml");

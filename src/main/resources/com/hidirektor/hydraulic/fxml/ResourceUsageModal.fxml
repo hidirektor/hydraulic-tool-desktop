@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.chart.XYChart?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+<AnchorPane fx:id="resourceUsagePane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: #EBDFD7; -fx-border-color: #C0F8E3; -fx-border-width: 2;" xmlns="http://javafx.com/javafx/17.0.6" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.hidirektor.hydraulic.controllers.ResourceUsageController">
+   <children>
+      <VBox spacing="16.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <HBox alignment="CENTER_LEFT" spacing="12.0" style="-fx-background-color: rgba(255, 255, 255, 0.34);">
+               <children>
+                  <Label text="Kaynak Kullanımı">
+                     <font>
+                        <Font name="TextaAlt-Bold" size="20.0" />
+                     </font>
+                     <padding>
+                        <Insets bottom="8.0" left="16.0" right="8.0" top="8.0" />
+                     </padding>
+                  </Label>
+                  <Region HBox.hgrow="ALWAYS" />
+                  <ImageView fx:id="closeButton" fitHeight="24.0" fitWidth="24.0" onMouseClicked="#handleClose" pickOnBounds="true" preserveRatio="true" style="-fx-cursor: hand;">
+                     <image>
+                        <Image url="@../../../../assets/images/icons/icon_close.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets right="16.0" />
+                     </HBox.margin>
+                  </ImageView>
+               </children>
+            </HBox>
+            <VBox spacing="20.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <padding>
+                  <Insets bottom="16.0" left="16.0" right="16.0" top="16.0" />
+               </padding>
+               <children>
+                  <!-- RAM Kullanımı -->
+                  <VBox spacing="8.0">
+                     <children>
+                        <HBox alignment="CENTER_LEFT" spacing="8.0">
+                           <children>
+                              <Label fx:id="ramLabel" text="RAM Kullanımı: 0 MB / 0 MB (0%)">
+                                 <font>
+                                    <Font name="TextaAlt-Bold" size="16.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </HBox>
+                        <LineChart fx:id="ramChart" animated="false" createSymbols="false" legendVisible="false" prefHeight="150.0" maxWidth="1.7976931348623157E308" minWidth="-Infinity" VBox.vgrow="NEVER">
+                           <xAxis>
+                              <NumberAxis fx:id="ramTimeAxis" label="Zaman (saniye)" lowerBound="0" upperBound="60" />
+                           </xAxis>
+                           <yAxis>
+                              <NumberAxis fx:id="ramUsageAxis" label="Kullanım (MB)" lowerBound="0" />
+                           </yAxis>
+                        </LineChart>
+                     </children>
+                  </VBox>
+                  
+                  <!-- CPU Kullanımı -->
+                  <VBox spacing="8.0">
+                     <children>
+                        <HBox alignment="CENTER_LEFT" spacing="8.0">
+                           <children>
+                              <Label fx:id="cpuLabel" text="CPU Kullanımı: 0%">
+                                 <font>
+                                    <Font name="TextaAlt-Bold" size="16.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </HBox>
+                        <LineChart fx:id="cpuChart" animated="false" createSymbols="false" legendVisible="false" prefHeight="150.0" maxWidth="1.7976931348623157E308" minWidth="-Infinity" VBox.vgrow="NEVER">
+                           <xAxis>
+                              <NumberAxis fx:id="cpuTimeAxis" label="Zaman (saniye)" lowerBound="0" upperBound="60" />
+                           </xAxis>
+                           <yAxis>
+                              <NumberAxis fx:id="cpuUsageAxis" label="Kullanım (%)" lowerBound="0" upperBound="100" />
+                           </yAxis>
+                        </LineChart>
+                     </children>
+                  </VBox>
+                  
+                  <!-- Disk Kullanımı -->
+                  <VBox spacing="8.0">
+                     <children>
+                        <HBox alignment="CENTER_LEFT" spacing="8.0">
+                           <children>
+                              <Label fx:id="diskLabel" text="Disk Kullanımı: 0 GB / 0 GB (0%)">
+                                 <font>
+                                    <Font name="TextaAlt-Bold" size="16.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </HBox>
+                        <LineChart fx:id="diskChart" animated="false" createSymbols="false" legendVisible="false" prefHeight="150.0" maxWidth="1.7976931348623157E308" minWidth="-Infinity" VBox.vgrow="NEVER">
+                           <xAxis>
+                              <NumberAxis fx:id="diskTimeAxis" label="Zaman (saniye)" lowerBound="0" upperBound="60" />
+                           </xAxis>
+                           <yAxis>
+                              <NumberAxis fx:id="diskUsageAxis" label="Kullanım (GB)" lowerBound="0" />
+                           </yAxis>
+                        </LineChart>
+                     </children>
+                  </VBox>
+               </children>
+            </VBox>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>
+
