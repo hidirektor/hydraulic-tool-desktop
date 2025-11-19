@@ -1746,6 +1746,15 @@ public class PowerPackController implements Initializable  {
                 schemePageOne.setFitHeight(600.0);
                 schemePageTwo.setVisible(true);
                 schemePageTwo.setFitHeight(600.0);
+                // Overlay'lerin boyutunu ImageView'lara göre ayarla
+                if(schemePageOneOverlay != null) {
+                    schemePageOneOverlay.setPrefWidth(schemePageOne.getFitWidth());
+                    schemePageOneOverlay.setPrefHeight(schemePageOne.getFitHeight());
+                }
+                if(schemePageTwoOverlay != null) {
+                    schemePageTwoOverlay.setPrefWidth(schemePageTwo.getFitWidth());
+                    schemePageTwoOverlay.setPrefHeight(schemePageTwo.getFitHeight());
+                }
                 System.out.println("PDF sayfaları başarıyla yüklendi.");
             });
 
