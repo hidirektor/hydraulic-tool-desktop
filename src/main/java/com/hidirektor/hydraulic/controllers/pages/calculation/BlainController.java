@@ -28,7 +28,7 @@ public class BlainController implements Initializable {
     public Label blainCalculationTitle;
 
     @FXML
-    public AnchorPane orderSection, unitInfoSection, unitInfoSectionContainer;
+    public AnchorPane orderSection, unitInfoSection, unitInfoSectionContainer, orderSectionContainer;
 
     @FXML
     public Button orderSectionButton, unitInfoSectionButton, clearButton;
@@ -87,6 +87,17 @@ public class BlainController implements Initializable {
         } else if(actionEvent.getSource().equals(clearButton)) {
             // Temizle butonu - şimdilik boş, sonra implement edilecek
         }
+    }
+    
+    @FXML
+    public void handleOrderSectionClick(MouseEvent event) {
+        // Sadece ana AnchorPane'e tıklandığında (buton veya içerik dışında) collapse/expand yap
+        if(event.getTarget() instanceof Button || event.getTarget() instanceof ImageView) {
+            return; // Buton veya ImageView'e tıklandıysa işlem yapma
+        }
+        // Ana AnchorPane'e tıklandığında collapse/expand yap
+        collapseAndExpandSection(orderSection, isOrderSectionExpanded, orderSectionButtonImage, false, false);
+        isOrderSectionExpanded = !isOrderSectionExpanded;
     }
     
     @FXML

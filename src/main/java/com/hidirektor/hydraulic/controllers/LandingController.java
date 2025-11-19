@@ -4,6 +4,7 @@ import com.hidirektor.hydraulic.Launcher;
 import com.hidirektor.hydraulic.controllers.notification.NotificationController;
 import com.hidirektor.hydraulic.utils.Notification.NotificationUtil;
 import com.hidirektor.hydraulic.utils.SceneUtil;
+import com.hidirektor.hydraulic.utils.System.SystemDefaults;
 import com.hidirektor.hydraulic.utils.Utils;
 import javafx.animation.FadeTransition;
 import javafx.animation.TranslateTransition;
@@ -62,6 +63,9 @@ public class LandingController implements Initializable {
     @FXML
     public Label sectionNameLabel;
 
+    @FXML
+    public Label buildVersionLabel;
+
     private Stage currentStage = null;
     public static boolean isDebugOpened = false;
 
@@ -75,6 +79,11 @@ public class LandingController implements Initializable {
             
             // LinkedIn linkini aç
             contactUsButton.setOnMouseClicked(this::openLinkedIn);
+
+            // Build version'ı ayarla
+            if (buildVersionLabel != null) {
+                buildVersionLabel.setText("Build: " + SystemDefaults.getCurrentVersion());
+            }
 
             homeButton.fire();
             Utils.clickButton(homeButton, 1);

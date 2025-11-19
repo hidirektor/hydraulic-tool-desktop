@@ -35,7 +35,7 @@
                               <Insets bottom="12.0" left="12.0" right="12.0" top="12.0" />
                            </padding>
                         </AnchorPane>
-                        <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" styleClass="accordion-section">
+                        <AnchorPane fx:id="orderSectionContainer" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#handleOrderSectionClick" styleClass="accordion-section">
                            <children>
                               <Label styleClass="description-label" text="Sipariş Bilgileri" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
                                  <font>
@@ -57,7 +57,7 @@
                                     </ImageView>
                                  </graphic>
                               </Button>
-                              <AnchorPane fx:id="orderSection" minHeight="-Infinity" minWidth="-Infinity" prefHeight="0.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="40.0">
+                              <AnchorPane fx:id="orderSection" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#stopEventPropagation" prefHeight="0.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="40.0">
                                  <children>
                                     <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="24.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                        <children>

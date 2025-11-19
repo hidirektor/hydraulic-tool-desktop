@@ -27,6 +27,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.Clipboard;
 import javafx.scene.input.ClipboardContent;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
@@ -49,7 +50,9 @@ public class PowerPackController implements Initializable  {
     public Label powerPackCaclulationTitle;
 
     @FXML
-    public AnchorPane orderSection, unitInfoSection, calculationResultSection, partListSection, unitSchemeSection, calculationControlSection;
+    public AnchorPane orderSection, unitInfoSection, calculationResultSection, partListSection, unitSchemeSection, calculationControlSection,
+                      orderSectionContainer, unitInfoSectionContainer, calculationResultSectionContainer, partListSectionContainer, 
+                      unitSchemeSectionContainer, calculationControlSectionContainer;
 
     @FXML
     public Button orderSectionButton, unitInfoSectionButton, calculationResultSectionButton, partListSectionButton, unitSchemeSectionButton, calculationControlSectionButton;
@@ -1815,5 +1818,88 @@ public class PowerPackController implements Initializable  {
                 }
             }
         }
+    }
+    
+    @FXML
+    public void handleOrderSectionClick(MouseEvent event) {
+        if(event.getTarget() instanceof Button || event.getTarget() instanceof ImageView) {
+            return;
+        }
+        collapseAndExpandSection(orderSection, isOrderSectionExpanded, orderSectionButtonImage, false, false);
+        isOrderSectionExpanded = !isOrderSectionExpanded;
+    }
+    
+    @FXML
+    public void handleUnitInfoSectionClick(MouseEvent event) {
+        if(event.getTarget() instanceof Button || event.getTarget() instanceof ImageView) {
+            return;
+        }
+        collapseAndExpandSection(unitInfoSection, isUnitInfoSectionExpanded, unitInfoSectionButtonImage, false, false);
+        isUnitInfoSectionExpanded = !isUnitInfoSectionExpanded;
+    }
+    
+    @FXML
+    public void handleCalculationResultSectionClick(MouseEvent event) {
+        if(event.getTarget() instanceof Button || event.getTarget() instanceof ImageView) {
+            return;
+        }
+        if(hesaplamaBitti) {
+            collapseAndExpandSection(calculationResultSection, isCalculationResultSectionExpanded, calculationResultSectionButtonImage, false, false);
+            isCalculationResultSectionExpanded = !isCalculationResultSectionExpanded;
+        } else {
+            NotificationUtil.showNotification(orderSectionButton.getScene().getWindow(), NotificationController.NotificationType.ALERT, "Şema Hatası", "Hesaplama sonucunu görüntüleyebilmeniz için önce hesaplamayı bitirmeniz gerek.");
+        }
+    }
+    
+    @FXML
+    public void handlePartListSectionClick(MouseEvent event) {
+        if(event.getTarget() instanceof Button || event.getTarget() instanceof ImageView) {
+            return;
+        }
+        if(hesaplamaBitti) {
+            collapseAndExpandSection(partListSection, isPartListSectionExpanded, partListSectionButtonImage, false, false);
+            isPartListSectionExpanded = !isPartListSectionExpanded;
+            
+            if(!isPartListSectionExpanded) {
+                basincSalteriCombo.setDisable(false);
+                basincSalteriCombo.getItems().clear();
+                basincSalteriCombo.getItems().addAll("Var", "Yok");
+            }
+        } else {
+            NotificationUtil.showNotification(orderSectionButton.getScene().getWindow(), NotificationController.NotificationType.ALERT, "Şema Hatası", "Parça listesini görüntüleyebilmeniz için önce hesaplamayı bitirmeniz gerek.");
+        }
+    }
+    
+    @FXML
+    public void handleUnitSchemeSectionClick(MouseEvent event) {
+        if(event.getTarget() instanceof Button || event.getTarget() instanceof ImageView) {
+            return;
+        }
+        if(hesaplamaBitti) {
+            collapseAndExpandSection(unitSchemeSection, isUnitSchemeSectionExpanded, unitSchemeSectionButtonImage, false, false);
+            isUnitSchemeSectionExpanded = !isUnitSchemeSectionExpanded;
+            
+            if(!isUnitSchemeSectionExpanded) {
+                basincSalteriSchemeCombo.setDisable(false);
+                basincSalteriSchemeCombo.getItems().clear();
+                basincSalteriSchemeCombo.getItems().addAll("Var", "Yok");
+            }
+        } else {
+            NotificationUtil.showNotification(orderSectionButton.getScene().getWindow(), NotificationController.NotificationType.ALERT, "Şema Hatası", "Ünite şemasını görüntüleyebilmeniz için önce hesaplamayı bitirmeniz gerek.");
+        }
+    }
+    
+    @FXML
+    public void handleCalculationControlSectionClick(MouseEvent event) {
+        if(event.getTarget() instanceof Button || event.getTarget() instanceof ImageView) {
+            return;
+        }
+        collapseAndExpandSection(calculationControlSection, isCalculationControlSectionExpanded, calculationControlSectionButtonImage, false, false);
+        isCalculationControlSectionExpanded = !isCalculationControlSectionExpanded;
+    }
+    
+    @FXML
+    public void stopEventPropagation(MouseEvent event) {
+        event.consume();
     }
 }

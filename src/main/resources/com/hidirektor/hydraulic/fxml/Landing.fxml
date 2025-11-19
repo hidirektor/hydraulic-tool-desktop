@@ -213,14 +213,23 @@
                         </VBox>
                         <VBox alignment="BOTTOM_LEFT" spacing="6.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                            <children>
-                              <ImageView fx:id="contactUsButton" fitHeight="32.0" fitWidth="32.0" onMouseClicked="#openLinkedIn" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../../../../assets/images/icons/icon_support.png" />
-                                 </image>
+                              <HBox alignment="CENTER_LEFT" spacing="8.0">
+                                 <children>
+                                    <ImageView fx:id="contactUsButton" fitHeight="32.0" fitWidth="32.0" onMouseClicked="#openLinkedIn" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../../../../assets/images/icons/icon_support.png" />
+                                       </image>
+                                    </ImageView>
+                                    <Label fx:id="buildVersionLabel" text="Build: v2.0.0" textFill="#f1f1f1">
+                                       <font>
+                                          <Font size="12.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
                                  <VBox.margin>
                                     <Insets bottom="12.0" left="12.0" right="12.0" />
                                  </VBox.margin>
-                              </ImageView>
+                              </HBox>
                            </children>
                            <padding>
                               <Insets bottom="6.0" left="6.0" right="6.0" top="6.0" />

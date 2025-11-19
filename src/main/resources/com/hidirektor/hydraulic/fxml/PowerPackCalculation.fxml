@@ -35,7 +35,7 @@
                                         <Insets bottom="12.0" left="12.0" right="12.0" top="12.0" />
                                     </padding>
                                 </AnchorPane>
-                                <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" styleClass="accordion-section">
+                                <AnchorPane fx:id="orderSectionContainer" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#handleOrderSectionClick" styleClass="accordion-section">
                                     <children>
                                         <Label styleClass="description-label" text="Sipariş Bilgileri" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
                                             <font>
@@ -57,7 +57,7 @@
                                                 </ImageView>
                                             </graphic>
                                         </Button>
-                                        <AnchorPane fx:id="orderSection" minHeight="-Infinity" minWidth="-Infinity" prefHeight="0.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="40.0">
+                                        <AnchorPane fx:id="orderSection" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#stopEventPropagation" prefHeight="0.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="40.0">
                                             <children>
                                                 <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="24.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                                     <children>
@@ -108,7 +108,7 @@
                                         <Insets left="16.0" right="16.0" />
                                     </VBox.margin>
                                 </AnchorPane>
-                                <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" styleClass="accordion-section">
+                                <AnchorPane fx:id="unitInfoSectionContainer" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#handleUnitInfoSectionClick" styleClass="accordion-section">
                                     <children>
                                         <Label styleClass="description-label" text="Ünite Bilgileri" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
                                             <font>
@@ -130,7 +130,7 @@
                                                 </ImageView>
                                             </graphic>
                                         </Button>
-                                        <AnchorPane fx:id="unitInfoSection" minHeight="-Infinity" minWidth="-Infinity" prefHeight="0.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="40.0">
+                                        <AnchorPane fx:id="unitInfoSection" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#stopEventPropagation" prefHeight="0.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="40.0">
                                             <children>
                                                 <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="8.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                                     <children>
@@ -303,7 +303,7 @@
                                         <Insets left="16.0" right="16.0" />
                                     </VBox.margin>
                                 </AnchorPane>
-                                <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" styleClass="accordion-section">
+                                <AnchorPane fx:id="calculationResultSectionContainer" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#handleCalculationResultSectionClick" styleClass="accordion-section">
                                     <children>
                                         <Label styleClass="description-label" text="Hesaplama Sonucu" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
                                             <font>
@@ -325,7 +325,7 @@
                                                 </ImageView>
                                             </graphic>
                                         </Button>
-                                        <AnchorPane fx:id="calculationResultSection" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="0.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="40.0">
+                                        <AnchorPane fx:id="calculationResultSection" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#stopEventPropagation" prefHeight="0.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="40.0">
                                             <padding>
                                                 <Insets bottom="12.0" left="12.0" right="12.0" top="12.0" />
                                             </padding>
@@ -373,7 +373,7 @@
                                         <Insets left="16.0" right="16.0" />
                                     </VBox.margin>
                                 </AnchorPane>
-                                <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" styleClass="accordion-section">
+                                <AnchorPane fx:id="partListSectionContainer" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#handlePartListSectionClick" styleClass="accordion-section">
                                     <children>
                                         <Label styleClass="description-label" text="Parça Listesi" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
                                             <font>
@@ -395,7 +395,7 @@
                                                 </ImageView>
                                             </graphic>
                                         </Button>
-                                        <AnchorPane fx:id="partListSection" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="0.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="40.0">
+                                        <AnchorPane fx:id="partListSection" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#stopEventPropagation" prefHeight="0.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="40.0">
                                             <padding>
                                                 <Insets bottom="12.0" left="12.0" right="12.0" top="12.0" />
                                             </padding>
@@ -477,7 +477,7 @@
                                         <Insets left="16.0" right="16.0" />
                                     </VBox.margin>
                                 </AnchorPane>
-                                <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" styleClass="accordion-section">
+                                <AnchorPane fx:id="unitSchemeSectionContainer" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#handleUnitSchemeSectionClick" styleClass="accordion-section">
                                     <children>
                                         <Label styleClass="description-label" text="Ünite Şeması" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
                                             <font>
@@ -499,7 +499,7 @@
                                                 </ImageView>
                                             </graphic>
                                         </Button>
-                                        <AnchorPane fx:id="unitSchemeSection" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="0.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="40.0">
+                                        <AnchorPane fx:id="unitSchemeSection" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#stopEventPropagation" prefHeight="0.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="40.0">
                                             <padding>
                                                 <Insets bottom="12.0" left="12.0" right="12.0" top="12.0" />
                                             </padding>
@@ -555,7 +555,7 @@
                                         <Insets left="16.0" right="16.0" />
                                     </VBox.margin>
                                 </AnchorPane>
-                                <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" styleClass="accordion-section">
+                                <AnchorPane fx:id="calculationControlSectionContainer" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#handleCalculationControlSectionClick" styleClass="accordion-section">
                                     <children>
                                         <Label styleClass="description-label" text="Hata Kontrol" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
                                             <font>
@@ -577,7 +577,7 @@
                                                 </ImageView>
                                             </graphic>
                                         </Button>
-                                        <AnchorPane fx:id="calculationControlSection" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="0.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="42.0">
+                                        <AnchorPane fx:id="calculationControlSection" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#stopEventPropagation" prefHeight="0.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="42.0">
                                             <padding>
                                                 <Insets bottom="12.0" left="12.0" right="12.0" top="12.0" />
                                             </padding>
