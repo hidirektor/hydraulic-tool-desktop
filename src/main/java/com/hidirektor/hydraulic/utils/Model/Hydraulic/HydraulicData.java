@@ -75,6 +75,12 @@ public class HydraulicData {
     public Map<String, LinkedList<String>> valfTipiMap = new HashMap<>();
 
     /*
+    Blain Side
+     */
+    public Map<String, LinkedList<String>> blainMotorMap = new HashMap<>();
+    public Map<String, LinkedList<String>> blainPompaMap = new HashMap<>();
+
+    /*
     Parça Listesi
      */
 

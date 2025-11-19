@@ -32,6 +32,7 @@ public class SystemDefaults {
 
     public static String classicComboDBPath;
     public static String powerPackComboDBPath;
+    public static String blainComboDBPath;
     public static String classicPartsDBPath;
     public static String powerPackPartsHidrosDBPath;
     public static String powerPackPartsIthalDBPath;

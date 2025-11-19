@@ -1,6 +1,7 @@
 package com.hidirektor.hydraulic.controllers.pages.calculation;
 
 import com.hidirektor.hydraulic.Launcher;
+import com.hidirektor.hydraulic.utils.System.SystemDefaults;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -62,7 +63,12 @@ public class BlainController implements Initializable {
             
             // Ünite bilgileri açıldığında dropdown'ları aktif et ve değerleri ekle
             if(!wasExpanded && isUnitInfoSectionExpanded) {
+                // Motor - blain_combo.yml'den yükle
                 motorComboBox.setDisable(false);
+                motorComboBox.getItems().clear();
+                if(SystemDefaults.getLocalHydraulicData().blainMotorMap.containsKey("0")) {
+                    motorComboBox.getItems().addAll(SystemDefaults.getLocalHydraulicData().blainMotorMap.get("0"));
+                }
                 
                 // Soğutma - Var ya da Yok
                 sogutmaComboBox.setDisable(false);
@@ -74,7 +80,12 @@ public class BlainController implements Initializable {
                 tablaKilitComboBox.getItems().clear();
                 tablaKilitComboBox.getItems().addAll("Var", "Yok");
                 
+                // Pompa - blain_combo.yml'den yükle
                 pompaComboBox.setDisable(false);
+                pompaComboBox.getItems().clear();
+                if(SystemDefaults.getLocalHydraulicData().blainPompaMap.containsKey("0")) {
+                    pompaComboBox.getItems().addAll(SystemDefaults.getLocalHydraulicData().blainPompaMap.get("0"));
+                }
                 
                 // Valf Tipi
                 valfTipiComboBox.setDisable(false);

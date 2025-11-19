@@ -50,6 +50,7 @@ public class FileUtility {
         SystemDefaults.cabinsDBPath = SystemDefaults.programDataPath + "cabins.json";
         SystemDefaults.classicComboDBPath = SystemDefaults.programDataPath + "classic_combo.yml";
         SystemDefaults.powerPackComboDBPath = SystemDefaults.programDataPath + "powerpack_combo.yml";
+        SystemDefaults.blainComboDBPath = SystemDefaults.programDataPath + "blain_combo.yml";
         SystemDefaults.classicPartsDBPath = SystemDefaults.programDataPath + "classic_parts.yml";
         SystemDefaults.powerPackPartsHidrosDBPath = SystemDefaults.programDataPath + "powerpack_parts_hidros.yml";
         SystemDefaults.powerPackPartsIthalDBPath = SystemDefaults.programDataPath + "powerpack_parts_ithal.yml";
@@ -74,6 +75,7 @@ public class FileUtility {
             copyResourceFile("/assets/data/programDatabase/cabins.json", SystemDefaults.cabinsDBPath, false);
             copyResourceFile("/assets/data/programDatabase/classic_combo.yml", SystemDefaults.classicComboDBPath, false);
             copyResourceFile("/assets/data/programDatabase/powerpack_combo.yml", SystemDefaults.powerPackComboDBPath, false);
+            copyResourceFile("/assets/data/programDatabase/blain_combo.yml", SystemDefaults.blainComboDBPath, false);
             copyResourceFile("/assets/data/programDatabase/classic_parts.yml", SystemDefaults.classicPartsDBPath, false);
             copyResourceFile("/assets/data/programDatabase/powerpack_parts_hidros.yml", SystemDefaults.powerPackPartsHidrosDBPath, false);
             copyResourceFile("/assets/data/programDatabase/powerpack_parts_ithal.yml", SystemDefaults.powerPackPartsIthalDBPath, false);
@@ -87,7 +89,7 @@ public class FileUtility {
 
     public static void setupLocalData() {
         JSONUtil.loadJSONData();
-        new YamlUtil(SystemDefaults.classicComboDBPath, SystemDefaults.powerPackComboDBPath, SystemDefaults.classicPartsDBPath, SystemDefaults.powerPackPartsHidrosDBPath, SystemDefaults.powerPackPartsIthalDBPath, SystemDefaults.schematicTextsDBPath);
+        new YamlUtil(SystemDefaults.classicComboDBPath, SystemDefaults.powerPackComboDBPath, SystemDefaults.blainComboDBPath, SystemDefaults.classicPartsDBPath, SystemDefaults.powerPackPartsHidrosDBPath, SystemDefaults.powerPackPartsIthalDBPath, SystemDefaults.schematicTextsDBPath);
         new Thread(() -> {
             try {
                 Thread.sleep(500);

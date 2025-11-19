@@ -13,9 +13,10 @@ import java.util.Objects;
 
 public class YamlUtil {
 
-    public YamlUtil(String classicComboPath, String powerPackComboPath, String classicPartPath, String powerpackPartHidrosPath, String powerpackPartIthalPath, String schematicTextsPath) {
+    public YamlUtil(String classicComboPath, String powerPackComboPath, String blainComboPath, String classicPartPath, String powerpackPartHidrosPath, String powerpackPartIthalPath, String schematicTextsPath) {
         loadClassicCombo(classicComboPath);
         loadPowerPackCombo(powerPackComboPath);
+        loadBlainCombo(blainComboPath);
         loadClassicPartList(classicPartPath);
         loadPowerPackHidrosPartList(powerpackPartHidrosPath);
         loadPowerPackIthalPartList(powerpackPartIthalPath);
@@ -47,6 +48,15 @@ public class YamlUtil {
             loadTankKapasitesi(filePath);
             loadPlatformTipi(filePath);
             loadPowerPackValfTipi(filePath);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void loadBlainCombo(String filePath) {
+        try {
+            loadBlainMotor(filePath);
+            loadBlainPompa(filePath);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -1433,6 +1443,50 @@ public class YamlUtil {
                 SystemDefaults.getLocalHydraulicData().schematicSogutmaKilitliTekHizTexts.put(key, combinedValue);
             }
         }
+        input.close();
+    }
+
+    public void loadBlainMotor(String filePath) throws IOException {
+        InputStream input = new FileInputStream(filePath);
+        Yaml yaml = new Yaml();
+        Map<String, Object> yamlData = yaml.load(input);
+
+        Map<String, Map<String, Object>> motorData = (Map<String, Map<String, Object>>) yamlData.get("motor");
+
+        motorData.forEach((key, value) -> {
+            LinkedList<String> motorList = new LinkedList<>();
+
+            Map<String, Map<String, String>> options = (Map<String, Map<String, String>>) value.get("options");
+
+            options.forEach((innerKey, motorDetails) -> {
+                String motorName = motorDetails.get("value");
+                motorList.add(motorName);
+            });
+
+            SystemDefaults.getLocalHydraulicData().blainMotorMap.put(key, motorList);
+        });
+        input.close();
+    }
+
+    public void loadBlainPompa(String filePath) throws IOException {
+        InputStream input = new FileInputStream(filePath);
+        Yaml yaml = new Yaml();
+        Map<String, Object> yamlData = yaml.load(input);
+
+        Map<String, Map<String, Object>> pompaData = (Map<String, Map<String, Object>>) yamlData.get("pompa");
+
+        pompaData.forEach((key, value) -> {
+            LinkedList<String> pompaList = new LinkedList<>();
+
+            Map<String, Map<String, String>> options = (Map<String, Map<String, String>>) value.get("options");
+
+            options.forEach((innerKey, pompaDetails) -> {
+                String pompaName = pompaDetails.get("value");
+                pompaList.add(pompaName);
+            });
+
+            SystemDefaults.getLocalHydraulicData().blainPompaMap.put(key, pompaList);
+        });
         input.close();
     }
 }
