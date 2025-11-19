@@ -146,7 +146,7 @@
                                                             <Font name="TextaAlt-Regular" size="14.0" />
                                                          </font>
                                                       </Label>
-                                                      <ComboBox fx:id="motorComboBox" disable="true" minWidth="-Infinity" prefWidth="250.0" promptText="Motor seçimini yapın." styleClass="combo-box" />
+                                                      <ComboBox fx:id="motorComboBox" disable="true" minWidth="-Infinity" prefWidth="250.0" promptText="Motor seçimini yapın." />
                                                    </children>
                                                 </VBox>
                                                 <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
@@ -156,7 +156,7 @@
                                                             <Font name="TextaAlt-Regular" size="14.0" />
                                                          </font>
                                                       </Label>
-                                                      <ComboBox fx:id="sogutmaComboBox" disable="true" minWidth="-Infinity" prefWidth="250.0" promptText="Soğutma seçimini yapın." styleClass="combo-box" />
+                                                      <ComboBox fx:id="sogutmaComboBox" disable="true" minWidth="-Infinity" prefWidth="250.0" promptText="Soğutma seçimini yapın." />
                                                    </children>
                                                 </VBox>
                                                 <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
@@ -166,7 +166,7 @@
                                                             <Font name="TextaAlt-Regular" size="14.0" />
                                                          </font>
                                                       </Label>
-                                                      <ComboBox fx:id="tablaKilitComboBox" disable="true" minWidth="-Infinity" prefWidth="250.0" promptText="Tabla kilit seçimini yapın." styleClass="combo-box" />
+                                                      <ComboBox fx:id="tablaKilitComboBox" disable="true" minWidth="-Infinity" prefWidth="250.0" promptText="Tabla kilit seçimini yapın." />
                                                    </children>
                                                 </VBox>
                                              </children>
@@ -183,7 +183,7 @@
                                                             <Font name="TextaAlt-Regular" size="14.0" />
                                                          </font>
                                                       </Label>
-                                                      <ComboBox fx:id="pompaComboBox" disable="true" minWidth="-Infinity" prefWidth="250.0" promptText="Pompa seçimini yapın." styleClass="combo-box" />
+                                                      <ComboBox fx:id="pompaComboBox" disable="true" minWidth="-Infinity" prefWidth="250.0" promptText="Pompa seçimini yapın." />
                                                    </children>
                                                 </VBox>
                                                 <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
@@ -193,7 +193,7 @@
                                                             <Font name="TextaAlt-Regular" size="14.0" />
                                                          </font>
                                                       </Label>
-                                                      <ComboBox fx:id="valfTipiComboBox" disable="true" minWidth="-Infinity" prefWidth="250.0" promptText="Valf tipi seçimini yapın." styleClass="combo-box" />
+                                                      <ComboBox fx:id="valfTipiComboBox" disable="true" minWidth="-Infinity" prefWidth="250.0" promptText="Valf tipi seçimini yapın." />
                                                    </children>
                                                 </VBox>
                                              </children>
@@ -210,7 +210,7 @@
                                                             <Font name="TextaAlt-Regular" size="14.0" />
                                                          </font>
                                                       </Label>
-                                                      <ComboBox fx:id="yagTankiComboBox" disable="true" minWidth="-Infinity" prefWidth="250.0" promptText="Yağ tankı seçimini yapın." styleClass="combo-box" />
+                                                      <ComboBox fx:id="yagTankiComboBox" disable="true" minWidth="-Infinity" prefWidth="250.0" promptText="Yağ tankı seçimini yapın." />
                                                    </children>
                                                 </VBox>
                                              </children>
@@ -239,6 +239,13 @@
           </AnchorPane>
         </content>
       </ScrollPane>
+         <padding>
+            <Insets bottom="16.0" left="16.0" right="16.0" top="16.0" />
+         </padding>
    </children>
+   <stylesheets>
+      <URL value="@../styling/dark-theme.css" />
+      <URL value="@../styling/calculation-page.css" />
+   </stylesheets>
 </AnchorPane>
 
