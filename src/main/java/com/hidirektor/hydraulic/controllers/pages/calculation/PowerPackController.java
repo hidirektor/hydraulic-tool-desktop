@@ -526,10 +526,8 @@ public class PowerPackController implements Initializable  {
             secilenMotorTipi = newValue.toString();
 
             // Motor voltajı seçildiğinde Sipariş Bilgileri bölümünü kapat
-            if(isOrderSectionExpanded) {
-                collapseAndExpandSection(orderSection, isOrderSectionExpanded, orderSectionButtonImage, false, true);
-                isOrderSectionExpanded = false;
-            }
+            collapseAndExpandSection(orderSection, isOrderSectionExpanded, orderSectionButtonImage, false, true);
+            isOrderSectionExpanded = false;
 
             initUniteTipi();
 
@@ -943,10 +941,8 @@ public class PowerPackController implements Initializable  {
             hesaplamaBitti = true;
             
             // Ünite bilgileri bölümünü kapat
-            if(isUnitInfoSectionExpanded) {
-                collapseAndExpandSection(unitInfoSection, isUnitInfoSectionExpanded, unitInfoSectionButtonImage, false, true);
-                isUnitInfoSectionExpanded = false;
-            }
+            collapseAndExpandSection(unitInfoSection, isUnitInfoSectionExpanded, unitInfoSectionButtonImage, false, true);
+            isUnitInfoSectionExpanded = false;
             
             // Hesaplama sonucu bölümüne scroll yap
             Platform.runLater(() -> {

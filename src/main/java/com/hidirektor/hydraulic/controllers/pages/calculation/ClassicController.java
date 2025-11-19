@@ -765,10 +765,8 @@ public class ClassicController implements Initializable  {
                 hesaplamaBitti = true;
                 
                 // Ünite bilgileri bölümünü kapat
-                if(isUnitInfoSectionExpanded) {
-                    collapseAndExpandSection(unitInfoSection, isUnitInfoSectionExpanded, unitInfoSectionButtonImage, false, true);
-                    isUnitInfoSectionExpanded = false;
-                }
+                collapseAndExpandSection(unitInfoSection, isUnitInfoSectionExpanded, unitInfoSectionButtonImage, false, true);
+                isUnitInfoSectionExpanded = false;
                 
                 // Hesaplama sonucu bölümüne scroll yap
                 Platform.runLater(() -> {
