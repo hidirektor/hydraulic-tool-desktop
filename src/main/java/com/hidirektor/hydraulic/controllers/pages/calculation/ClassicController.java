@@ -19,6 +19,7 @@ import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.effect.ColorAdjust;
@@ -39,7 +40,6 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
-import javafx.util.Duration;
 import me.t3sl4.util.os.desktop.DesktopUtil;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
@@ -2202,16 +2202,27 @@ public class ClassicController implements Initializable  {
         Stage fullscreenStage = new Stage();
         fullscreenStage.initStyle(StageStyle.UNDECORATED);
         fullscreenStage.setFullScreen(true);
-        fullscreenStage.setFullScreenExitHint("ESC tuşuna basarak çıkış yapabilirsiniz");
         
         ImageView fullscreenImageView = new ImageView(image);
         fullscreenImageView.setPreserveRatio(true);
         fullscreenImageView.setFitWidth(fullscreenStage.getWidth());
         fullscreenImageView.setFitHeight(fullscreenStage.getHeight());
         
+        Label exitHintLabel = new Label("ESC tuşuna basarak çıkış yapabilirsiniz");
+        exitHintLabel.setStyle("-fx-background-color: rgba(0, 0, 0, 0.7); -fx-text-fill: white; -fx-padding: 8 16 8 16; -fx-font-size: 14px;");
+        exitHintLabel.setAlignment(Pos.CENTER);
+        StackPane.setAlignment(exitHintLabel, Pos.TOP_CENTER);
+        
         StackPane root = new StackPane();
         root.setStyle("-fx-background-color: black;");
-        root.getChildren().add(fullscreenImageView);
+        root.getChildren().addAll(fullscreenImageView, exitHintLabel);
+        
+        // ImageView'ın gerçek genişliğini takip et ve Label genişliğini ayarla
+        fullscreenImageView.boundsInLocalProperty().addListener((obs, oldVal, newVal) -> {
+            if(newVal.getWidth() > 0) {
+                exitHintLabel.setPrefWidth(newVal.getWidth());
+            }
+        });
         
         fullscreenStage.widthProperty().addListener((obs, oldVal, newVal) -> {
             fullscreenImageView.setFitWidth(newVal.doubleValue());

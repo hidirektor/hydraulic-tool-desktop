@@ -537,10 +537,10 @@
                                                                      <children>
                                                                         <ImageView fitHeight="48.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true">
                                                                            <image>
-                                                                              <Image url="@../../../../assets/images/icons/icon_expand.png" />
+                                                                              <Image url="@../../../../assets/images/icons/icon_fullscreen.svg" />
                                                                            </image>
                                                                         </ImageView>
-                                                                        <Label text="Tam ekran görüntülemek için tıklayın" textFill="WHITE" wrapText="true">
+                                                                        <Label text="Tıklayarak tam ekranda görüntüleyebilirsiniz" textFill="WHITE" wrapText="true">
                                                                            <font>
                                                                               <Font name="TextaAlt-Regular" size="14.0" />
                                                                            </font>
@@ -560,10 +560,10 @@
                                                                      <children>
                                                                         <ImageView fitHeight="48.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true">
                                                                            <image>
-                                                                              <Image url="@../../../../assets/images/icons/icon_expand.png" />
+                                                                              <Image url="@../../../../assets/images/icons/icon_fullscreen.svg" />
                                                                            </image>
                                                                         </ImageView>
-                                                                        <Label text="Tam ekran görüntülemek için tıklayın" textFill="WHITE" wrapText="true">
+                                                                        <Label text="Tıklayarak tam ekranda görüntüleyebilirsiniz" textFill="WHITE" wrapText="true">
                                                                            <font>
                                                                               <Font name="TextaAlt-Regular" size="14.0" />
                                                                            </font>
