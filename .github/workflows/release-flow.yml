@@ -188,26 +188,9 @@ jobs:
         uses: softprops/action-gh-release@v1
         with:
           tag_name: v${{ env.version }}
-          name: v${{ env.version }} - Yeniliklerle Dolu Bir Deneyim! 🚀
+          name: The "Jerry-Proof" Protocol v${{ env.version }}
           body: |
-            Sevgili kullanıcılarımız,
-            
-              Bu güncelleme ile uygulamamızı daha güçlü, daha hızlı ve daha kullanıcı dostu hale getirdik. İşte sizler için sunduğumuz yenilikler:
-            
-              ✨ Yeni Özellikler:
-              - Performans Artışı: Daha hızlı yüklenme süreleri ve optimize edilmiş işlem kapasitesi.
-              - Yeni Arayüz Tasarımı: Modern ve minimalist tasarım ile daha sezgisel bir kullanıcı deneyimi.
-              - Gelişmiş Bildirim Sistemi: Önemli güncellemelerden anında haberdar olun.
-            
-              🔧 Hata Düzeltmeleri ve İyileştirmeler:
-              - Küçük hatalar giderildi ve genel sistem kararlılığı artırıldı.
-              - Geri bildirimlerinizi dikkate alarak kullanıcı deneyimini geliştirdik.
-            
-              💡 Yeni Eklenen Özellikler:
-              - Karanlık Mod: Göz dostu bir deneyim için karanlık tema seçeneği eklendi.
-              - Çoklu Dil Desteği: Artık birden fazla dilde hizmet sunuyoruz!
-            
-              Bize destek olduğunuz için teşekkür ederiz. Sizlerin geri bildirimleriyle her geçen gün daha iyiye gidiyoruz. Yeni sürümümüzü hemen keşfedin!
+            Wubba Lubba Dub Dub! Calculations Faster Than a... Burp... Portal Gun!
           files: artifacts/*
         env:
           GITHUB_TOKEN: ${{ secrets.SETUP_TOKEN }}

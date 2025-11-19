@@ -1991,7 +1991,7 @@ public class PowerPackController implements Initializable  {
     @FXML
     public void handleSchemePageOneClick(MouseEvent event) {
         if(schemePageOne.isVisible() && schemePageOne.getImage() != null) {
-            showFullscreenImage(schemePageOne.getImage());
+            showFullscreenImages(0);
         }
     }
     
@@ -2020,16 +2020,37 @@ public class PowerPackController implements Initializable  {
     @FXML
     public void handleSchemePageTwoClick(MouseEvent event) {
         if(schemePageTwo.isVisible() && schemePageTwo.getImage() != null) {
-            showFullscreenImage(schemePageTwo.getImage());
+            showFullscreenImages(1);
         }
     }
     
-    private void showFullscreenImage(Image image) {
+    private void showFullscreenImages(int startIndex) {
+        // Mevcut görselleri topla
+        java.util.List<Image> images = new java.util.ArrayList<>();
+        if(schemePageOne.isVisible() && schemePageOne.getImage() != null) {
+            images.add(schemePageOne.getImage());
+        }
+        if(schemePageTwo.isVisible() && schemePageTwo.getImage() != null) {
+            images.add(schemePageTwo.getImage());
+        }
+        
+        if(images.isEmpty()) {
+            return;
+        }
+        
+        // Başlangıç indeksini kontrol et
+        if(startIndex < 0 || startIndex >= images.size()) {
+            startIndex = 0;
+        }
+        
+        final int[] currentIndex = {startIndex};
+        
         Stage fullscreenStage = new Stage();
         fullscreenStage.initStyle(StageStyle.UNDECORATED);
         fullscreenStage.setFullScreen(true);
+        fullscreenStage.setFullScreenExitHint(""); // Varsayılan hint'i kaldır
         
-        ImageView fullscreenImageView = new ImageView(image);
+        ImageView fullscreenImageView = new ImageView(images.get(currentIndex[0]));
         fullscreenImageView.setPreserveRatio(true);
         fullscreenImageView.setFitWidth(fullscreenStage.getWidth());
         fullscreenImageView.setFitHeight(fullscreenStage.getHeight());
@@ -2042,6 +2063,14 @@ public class PowerPackController implements Initializable  {
         StackPane root = new StackPane();
         root.setStyle("-fx-background-color: black;");
         root.getChildren().addAll(fullscreenImageView, exitHintLabel);
+        
+        // Görsel değiştirme fonksiyonu
+        java.util.function.Consumer<Integer> changeImage = (newIndex) -> {
+            if(newIndex >= 0 && newIndex < images.size()) {
+                currentIndex[0] = newIndex;
+                fullscreenImageView.setImage(images.get(currentIndex[0]));
+            }
+        };
         
         // ImageView'ın gerçek genişliğini takip et ve Label genişliğini ayarla
         fullscreenImageView.boundsInLocalProperty().addListener((obs, oldVal, newVal) -> {
@@ -2057,13 +2086,24 @@ public class PowerPackController implements Initializable  {
             fullscreenImageView.setFitHeight(newVal.doubleValue());
         });
         
-        fullscreenStage.setScene(new javafx.scene.Scene(root));
+        javafx.scene.Scene scene = new javafx.scene.Scene(root);
+        fullscreenStage.setScene(scene);
         fullscreenStage.show();
         
-        // ESC tuşu ile kapatma
+        // Root'u focusable yap ve focus al
+        root.setFocusTraversable(true);
+        root.requestFocus();
+        
+        // Klavye kontrolleri
         root.setOnKeyPressed(e -> {
             if(e.getCode() == javafx.scene.input.KeyCode.ESCAPE) {
                 fullscreenStage.close();
+            } else if(e.getCode() == javafx.scene.input.KeyCode.LEFT || e.getCode() == javafx.scene.input.KeyCode.UP) {
+                // Önceki görsel
+                changeImage.accept((currentIndex[0] - 1 + images.size()) % images.size());
+            } else if(e.getCode() == javafx.scene.input.KeyCode.RIGHT || e.getCode() == javafx.scene.input.KeyCode.DOWN) {
+                // Sonraki görsel
+                changeImage.accept((currentIndex[0] + 1) % images.size());
             }
         });
         
