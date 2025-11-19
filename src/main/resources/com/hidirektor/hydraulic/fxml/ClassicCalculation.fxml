@@ -528,8 +528,52 @@
                                                       <Insets bottom="12.0" left="12.0" right="12.0" top="12.0" />
                                                    </padding>
                                                    <children>
-                                                      <ImageView fx:id="schemePageOne" fitHeight="0.0" fitWidth="400.0" pickOnBounds="true" preserveRatio="true" visible="false" />
-                                                      <ImageView fx:id="schemePageTwo" fitHeight="0.0" fitWidth="400.0" pickOnBounds="true" preserveRatio="true" visible="false" />
+                                                      <StackPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#handleSchemePageOneClick" onMouseEntered="#handleSchemePageOneEnter" onMouseExited="#handleSchemePageOneExit">
+                                                         <children>
+                                                            <ImageView fx:id="schemePageOne" fitHeight="0.0" fitWidth="400.0" pickOnBounds="true" preserveRatio="true" visible="false" />
+                                                            <AnchorPane fx:id="schemePageOneOverlay" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" opacity="0.0" style="-fx-background-color: rgba(0, 0, 0, 0.7);" visible="false">
+                                                               <children>
+                                                                  <VBox alignment="CENTER" spacing="8.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                                     <children>
+                                                                        <ImageView fitHeight="48.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true">
+                                                                           <image>
+                                                                              <Image url="@../../../../assets/images/icons/icon_expand.png" />
+                                                                           </image>
+                                                                        </ImageView>
+                                                                        <Label text="Tam ekran görüntülemek için tıklayın" textFill="WHITE" wrapText="true">
+                                                                           <font>
+                                                                              <Font name="TextaAlt-Regular" size="14.0" />
+                                                                           </font>
+                                                                        </Label>
+                                                                     </children>
+                                                                  </VBox>
+                                                               </children>
+                                                            </AnchorPane>
+                                                         </children>
+                                                      </StackPane>
+                                                      <StackPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#handleSchemePageTwoClick" onMouseEntered="#handleSchemePageTwoEnter" onMouseExited="#handleSchemePageTwoExit">
+                                                         <children>
+                                                            <ImageView fx:id="schemePageTwo" fitHeight="0.0" fitWidth="400.0" pickOnBounds="true" preserveRatio="true" visible="false" />
+                                                            <AnchorPane fx:id="schemePageTwoOverlay" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" opacity="0.0" style="-fx-background-color: rgba(0, 0, 0, 0.7);" visible="false">
+                                                               <children>
+                                                                  <VBox alignment="CENTER" spacing="8.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                                     <children>
+                                                                        <ImageView fitHeight="48.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true">
+                                                                           <image>
+                                                                              <Image url="@../../../../assets/images/icons/icon_expand.png" />
+                                                                           </image>
+                                                                        </ImageView>
+                                                                        <Label text="Tam ekran görüntülemek için tıklayın" textFill="WHITE" wrapText="true">
+                                                                           <font>
+                                                                              <Font name="TextaAlt-Regular" size="14.0" />
+                                                                           </font>
+                                                                        </Label>
+                                                                     </children>
+                                                                  </VBox>
+                                                               </children>
+                                                            </AnchorPane>
+                                                         </children>
+                                                      </StackPane>
                                                    </children>
                                                 </HBox>
                                              </children>

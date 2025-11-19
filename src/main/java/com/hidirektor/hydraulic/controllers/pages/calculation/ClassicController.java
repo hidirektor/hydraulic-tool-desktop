@@ -24,11 +24,16 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.effect.ColorAdjust;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.animation.FadeTransition;
 import javafx.scene.input.Clipboard;
 import javafx.scene.input.ClipboardContent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.StackPane;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
+import javafx.util.Duration;
 import javafx.scene.layout.Region;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
@@ -121,6 +126,9 @@ public class ClassicController implements Initializable  {
 
     @FXML
     public ImageView schemePageOne, schemePageTwo;
+    
+    @FXML
+    public AnchorPane schemePageOneOverlay, schemePageTwoOverlay;
 
     private String basincSalteriSchemeDurumu = null;
     private String silindirSayisi = null;
@@ -2130,5 +2138,99 @@ public class ClassicController implements Initializable  {
             NotificationController.NotificationType.WARNING, 
             "Ana sunucuya bağlanılamadı", 
             "Lütfen geliştirici ile iletişime geçin.\nhidirektor@gmail.com");
+    }
+    
+    @FXML
+    public void handleSchemePageOneEnter(MouseEvent event) {
+        if(schemePageOne.isVisible() && schemePageOneOverlay != null) {
+            schemePageOneOverlay.setVisible(true);
+            FadeTransition fadeIn = new FadeTransition(Duration.millis(200), schemePageOneOverlay);
+            fadeIn.setFromValue(0.0);
+            fadeIn.setToValue(1.0);
+            fadeIn.play();
+        }
+    }
+    
+    @FXML
+    public void handleSchemePageOneExit(MouseEvent event) {
+        if(schemePageOneOverlay != null) {
+            FadeTransition fadeOut = new FadeTransition(Duration.millis(200), schemePageOneOverlay);
+            fadeOut.setFromValue(1.0);
+            fadeOut.setToValue(0.0);
+            fadeOut.setOnFinished(e -> schemePageOneOverlay.setVisible(false));
+            fadeOut.play();
+        }
+    }
+    
+    @FXML
+    public void handleSchemePageOneClick(MouseEvent event) {
+        if(schemePageOne.isVisible() && schemePageOne.getImage() != null) {
+            showFullscreenImage(schemePageOne.getImage());
+        }
+    }
+    
+    @FXML
+    public void handleSchemePageTwoEnter(MouseEvent event) {
+        if(schemePageTwo.isVisible() && schemePageTwoOverlay != null) {
+            schemePageTwoOverlay.setVisible(true);
+            FadeTransition fadeIn = new FadeTransition(Duration.millis(200), schemePageTwoOverlay);
+            fadeIn.setFromValue(0.0);
+            fadeIn.setToValue(1.0);
+            fadeIn.play();
+        }
+    }
+    
+    @FXML
+    public void handleSchemePageTwoExit(MouseEvent event) {
+        if(schemePageTwoOverlay != null) {
+            FadeTransition fadeOut = new FadeTransition(Duration.millis(200), schemePageTwoOverlay);
+            fadeOut.setFromValue(1.0);
+            fadeOut.setToValue(0.0);
+            fadeOut.setOnFinished(e -> schemePageTwoOverlay.setVisible(false));
+            fadeOut.play();
+        }
+    }
+    
+    @FXML
+    public void handleSchemePageTwoClick(MouseEvent event) {
+        if(schemePageTwo.isVisible() && schemePageTwo.getImage() != null) {
+            showFullscreenImage(schemePageTwo.getImage());
+        }
+    }
+    
+    private void showFullscreenImage(Image image) {
+        Stage fullscreenStage = new Stage();
+        fullscreenStage.initStyle(StageStyle.UNDECORATED);
+        fullscreenStage.setFullScreen(true);
+        fullscreenStage.setFullScreenExitHint("ESC tuşuna basarak çıkış yapabilirsiniz");
+        
+        ImageView fullscreenImageView = new ImageView(image);
+        fullscreenImageView.setPreserveRatio(true);
+        fullscreenImageView.setFitWidth(fullscreenStage.getWidth());
+        fullscreenImageView.setFitHeight(fullscreenStage.getHeight());
+        
+        StackPane root = new StackPane();
+        root.setStyle("-fx-background-color: black;");
+        root.getChildren().add(fullscreenImageView);
+        
+        fullscreenStage.widthProperty().addListener((obs, oldVal, newVal) -> {
+            fullscreenImageView.setFitWidth(newVal.doubleValue());
+        });
+        fullscreenStage.heightProperty().addListener((obs, oldVal, newVal) -> {
+            fullscreenImageView.setFitHeight(newVal.doubleValue());
+        });
+        
+        fullscreenStage.setScene(new javafx.scene.Scene(root));
+        fullscreenStage.show();
+        
+        // ESC tuşu ile kapatma
+        root.setOnKeyPressed(e -> {
+            if(e.getCode() == javafx.scene.input.KeyCode.ESCAPE) {
+                fullscreenStage.close();
+            }
+        });
+        
+        // Tıklayınca kapatma
+        root.setOnMouseClicked(e -> fullscreenStage.close());
     }
 }
