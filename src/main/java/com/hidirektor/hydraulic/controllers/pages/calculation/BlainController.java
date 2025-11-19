@@ -129,8 +129,8 @@ public class BlainController implements Initializable {
     public void handleInviteUserClick(MouseEvent event) {
         NotificationUtil.showNotification(orderSectionButton.getScene().getWindow(), 
             NotificationController.NotificationType.WARNING, 
-            "Ana sunucuya bağlanılamadı lütfen geliştirici ile iletişime geçin.", 
-            "hidirektor@gmail.com");
+            "Ana sunucuya bağlanılamadı", 
+            "Lütfen geliştirici ile iletişime geçin.\nhidirektor@gmail.com");
     }
 
     private void addHoverEffectToButtons(Button... buttons) {

@@ -33,14 +33,14 @@ public class NotificationUtil {
             notificationStage.setOpacity(0.8);
 
             Rectangle clip = new Rectangle();
-            clip.setWidth(480);
-            clip.setHeight(160);
+            clip.setWidth(520);
+            clip.setHeight(180);
             clip.setArcWidth(16);
             clip.setArcHeight(16);
             notificationPane.setClip(clip);
 
-            notificationStage.setWidth(480);
-            notificationStage.setHeight(160);
+            notificationStage.setWidth(520);
+            notificationStage.setHeight(180);
             notificationStage.setX(owner.getX() + (owner.getWidth() - notificationStage.getWidth()) / 2);
             notificationStage.setY(owner.getY() + owner.getHeight() - notificationStage.getHeight() - 10);
 

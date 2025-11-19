@@ -6,7 +6,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Font?>
-<AnchorPane fx:id="notificationPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="160.0" prefWidth="480.0" style="-fx-background-color: #EEFBF6; -fx-border-color: #C0F8E3; -fx-border-width: 3;" xmlns="http://javafx.com/javafx/17.0.6" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.hidirektor.hydraulic.controllers.notification.NotificationController">
+<AnchorPane fx:id="notificationPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="180.0" prefWidth="520.0" style="-fx-background-color: #EEFBF6; -fx-border-color: #C0F8E3; -fx-border-width: 3;" xmlns="http://javafx.com/javafx/17.0.6" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.hidirektor.hydraulic.controllers.notification.NotificationController">
    <children>
       <HBox prefHeight="100.0" prefWidth="200.0" spacing="6.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -16,12 +16,12 @@
                </image></ImageView>
             <VBox prefHeight="128.0" prefWidth="399.0">
                <children>
-                  <Label fx:id="notificationTitle" text="Modal Window" wrapText="true">
+                  <Label fx:id="notificationTitle" maxWidth="1.7976931348623157E308" text="Modal Window" wrapText="true">
                      <font>
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <Label fx:id="notificationDescription" prefHeight="94.0" prefWidth="364.0" text="The biggest risk is not taking any risk. In a world that's changing really quickly, the only strategy that is guaranteed to fail is not taking risks. " wrapText="true">
+                  <Label fx:id="notificationDescription" maxWidth="1.7976931348623157E308" prefHeight="94.0" prefWidth="364.0" text="The biggest risk is not taking any risk. In a world that's changing really quickly, the only strategy that is guaranteed to fail is not taking risks. " wrapText="true">
                      <font>
                         <Font size="16.0" />
                      </font>
