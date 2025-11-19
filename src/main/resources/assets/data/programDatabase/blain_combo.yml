@@ -1,0 +1,60 @@
+motor:
+  '0':
+    options:
+      '0':
+        value: "1.5 Kw 230V 50Hz"
+      '1':
+        value: "SBBL010 1,5KW Ø14"
+      '2':
+        value: "SBBL100 2,9KW Ø14"
+      '3':
+        value: "SBBL153 4,7KW Ø19"
+      '4':
+        value: "SBBL163 5,8 KW Ø19"
+      '5':
+        value: "SBBL173 7,7 KW Ø19 "
+      '6':
+        value: "SBBL183 9,5 KW Ø19"
+      '7':
+        value: "SBBL193 11 KW Ø19"
+      '8':
+        value: "SBBL203 12,5 KW Ø19"
+      '9':
+        value: "SBBL212 24KW Ø19"
+      '10':
+        value: "SBBL253 14,7 KW Ø19"
+      '11':
+        value: "SBBL263 18,4 KW Ø19"
+      '12':
+        value: "SBBL275 22 KW Ø19"
+      '13':
+        value: "SBBL926 14.7KW Ø32"
+      '14':
+        value: "SBBL934 18.4 KW Ø32"
+pompa:
+  '0':
+    options:
+      '0':
+        value: "PAVE025#4A 21,7 LT"
+      '1':
+        value: "PA025#6C 33,4 LT"
+      '2':
+        value: "PA029#6A 38 LT"
+      '3':
+        value: "PA029#6B 45,6 LT"
+      '4':
+        value: "PA032#4A 53,7 LT"
+      '5':
+        value: "PA032#4B 71,6 LT"
+      '6':
+        value: "PA40#4A 98,9 LT"
+      '7':
+        value: "PA40#4B 121 LT"
+      '8':
+        value: "PA40#4C 145 LT"
+      '9':
+        value: "PAP045#4A 177,9 LT"
+      '10':
+        value: "PAP045#4B 210,5 LT"
+      '11':
+        value: "PAP055#4A 247,4 LT"

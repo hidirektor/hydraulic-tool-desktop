@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import java.net.URL?>
+<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="610.0" prefWidth="1040.0" styleClass="main-component" xmlns="http://javafx.com/javafx/17.0.6" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.hidirektor.hydraulic.controllers.pages.calculation.BlainController">
+   <children>
+      <ScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" vbarPolicy="NEVER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <content>
+          <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity">
+               
+                  <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" spacing="12.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity">
+                           <children>
+                              <Label fx:id="blainCalculationTitle" styleClass="main-label" text="Blain Hesaplama" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <font>
+                                    <Font name="TextaAlt-Bold" size="20.0" />
+                                 </font>
+                              </Label>
+                              <Button fx:id="clearButton" mnemonicParsing="false" onAction="#handleClick" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <graphic>
+                                    <ImageView fx:id="clearButtonImage" fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../../../../assets/images/icons/icon_refresh.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </Button>
+                           </children>
+                           <padding>
+                              <Insets bottom="12.0" left="12.0" right="12.0" top="12.0" />
+                           </padding>
+                        </AnchorPane>
+                        <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" styleClass="accordion-section">
+                           <children>
+                              <Label styleClass="description-label" text="Sipariş Bilgileri" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <font>
+                                    <Font name="TextaAlt-Regular" size="20.0" />
+                                 </font>
+                                 <padding>
+                                    <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+                                 </padding>
+                              </Label>
+                              <Button fx:id="orderSectionButton" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#handleClick" styleClass="main-button" text="Ayarla" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <padding>
+                                    <Insets bottom="12.0" left="16.0" right="16.0" top="12.0" />
+                                 </padding>
+                                 <graphic>
+                                    <ImageView fx:id="orderSectionButtonImage" fitHeight="14.0" fitWidth="14.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../../../../assets/images/icons/icon_arrow_down.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </Button>
+                              <AnchorPane fx:id="orderSection" minHeight="-Infinity" minWidth="-Infinity" prefHeight="0.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="40.0">
+                                 <children>
+                                    <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="24.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                       <children>
+                                          <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                                             <children>
+                                                <Label styleClass="component-title" text="Sipariş Numarası">
+                                                   <font>
+                                                      <Font name="TextaAlt-Regular" size="14.0" />
+                                                   </font>
+                                                </Label>
+                                                <TextField fx:id="siparisNumarasiField" minWidth="-Infinity" prefHeight="30.0" prefWidth="240.0" promptText="Sipariş numarasını girin..." styleClass="order-field" />
+                                             </children>
+                                          </VBox>
+                                          <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                                             <children>
+                                                <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                                                   <children>
+                                                      <Label styleClass="component-title" text="Projeye Davet Et">
+                                                         <font>
+                                                            <Font name="TextaAlt-Regular" size="14.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <TextField fx:id="inviteUserTextField" minWidth="-Infinity" prefHeight="30.0" prefWidth="240.0" promptText="E-posta ya da kullanıcı adını girin..." styleClass="order-field" />
+                                                   </children>
+                                                </VBox>
+                                                <ImageView fitHeight="28.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@../../../../assets/images/icons/icon_invite.png" />
+                                                   </image>
+                                                   <HBox.margin>
+                                                      <Insets left="8.0" top="22.0" />
+                                                   </HBox.margin>
+                                                </ImageView>
+                                             </children>
+                                          </HBox>
+                                       </children>
+                                    </HBox>
+                                 </children>
+                                 <padding>
+                                    <Insets bottom="12.0" left="12.0" right="12.0" top="12.0" />
+                                 </padding>
+                              </AnchorPane>
+                           </children>
+                           <padding>
+                              <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+                           </padding>
+                           <VBox.margin>
+                              <Insets left="16.0" right="16.0" />
+                           </VBox.margin>
+                        </AnchorPane>
+                        <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" styleClass="accordion-section">
+                           <children>
+                              <Label styleClass="description-label" text="Ünite Bilgileri" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <font>
+                                    <Font name="TextaAlt-Regular" size="20.0" />
+                                 </font>
+                                 <padding>
+                                    <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+                                 </padding>
+                              </Label>
+                              <Button fx:id="unitInfoSectionButton" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#handleClick" styleClass="main-button" text="Ayarla" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <padding>
+                                    <Insets bottom="12.0" left="16.0" right="16.0" top="12.0" />
+                                 </padding>
+                                 <graphic>
+                                    <ImageView fx:id="unitInfoSectionButtonImage" fitHeight="14.0" fitWidth="14.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../../../../assets/images/icons/icon_arrow_down.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </Button>
+                              <AnchorPane fx:id="unitInfoSection" minHeight="-Infinity" minWidth="-Infinity" prefHeight="0.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="40.0">
+                                 <children>
+                                    <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="8.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                       <children>
+                                          <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="8.0">
+                                             <padding>
+                                                <Insets bottom="12.0" left="12.0" right="12.0" top="12.0" />
+                                             </padding>
+                                             <children>
+                                                <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                                                   <children>
+                                                      <Label styleClass="component-title" text="Motor">
+                                                         <font>
+                                                            <Font name="TextaAlt-Regular" size="14.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <ComboBox fx:id="motorComboBox" disable="true" minWidth="-Infinity" prefWidth="250.0" promptText="Motor seçimini yapın." styleClass="combo-box" />
+                                                   </children>
+                                                </VBox>
+                                                <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                                                   <children>
+                                                      <Label styleClass="component-title" text="Soğutma">
+                                                         <font>
+                                                            <Font name="TextaAlt-Regular" size="14.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <ComboBox fx:id="sogutmaComboBox" disable="true" minWidth="-Infinity" prefWidth="250.0" promptText="Soğutma seçimini yapın." styleClass="combo-box" />
+                                                   </children>
+                                                </VBox>
+                                                <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                                                   <children>
+                                                      <Label styleClass="component-title" text="Tabla Kilit">
+                                                         <font>
+                                                            <Font name="TextaAlt-Regular" size="14.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <ComboBox fx:id="tablaKilitComboBox" disable="true" minWidth="-Infinity" prefWidth="250.0" promptText="Tabla kilit seçimini yapın." styleClass="combo-box" />
+                                                   </children>
+                                                </VBox>
+                                             </children>
+                                          </HBox>
+                                          <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="8.0">
+                                             <padding>
+                                                <Insets bottom="12.0" left="12.0" right="12.0" top="12.0" />
+                                             </padding>
+                                             <children>
+                                                <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                                                   <children>
+                                                      <Label styleClass="component-title" text="Pompa">
+                                                         <font>
+                                                            <Font name="TextaAlt-Regular" size="14.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <ComboBox fx:id="pompaComboBox" disable="true" minWidth="-Infinity" prefWidth="250.0" promptText="Pompa seçimini yapın." styleClass="combo-box" />
+                                                   </children>
+                                                </VBox>
+                                                <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                                                   <children>
+                                                      <Label styleClass="component-title" text="Valf Tipi">
+                                                         <font>
+                                                            <Font name="TextaAlt-Regular" size="14.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <ComboBox fx:id="valfTipiComboBox" disable="true" minWidth="-Infinity" prefWidth="250.0" promptText="Valf tipi seçimini yapın." styleClass="combo-box" />
+                                                   </children>
+                                                </VBox>
+                                             </children>
+                                          </HBox>
+                                          <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="8.0">
+                                             <padding>
+                                                <Insets bottom="12.0" left="12.0" right="12.0" top="12.0" />
+                                             </padding>
+                                             <children>
+                                                <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                                                   <children>
+                                                      <Label styleClass="component-title" text="Yağ Tankı">
+                                                         <font>
+                                                            <Font name="TextaAlt-Regular" size="14.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <ComboBox fx:id="yagTankiComboBox" disable="true" minWidth="-Infinity" prefWidth="250.0" promptText="Yağ tankı seçimini yapın." styleClass="combo-box" />
+                                                   </children>
+                                                </VBox>
+                                             </children>
+                                          </HBox>
+                                       </children>
+                                       <padding>
+                                          <Insets bottom="12.0" left="12.0" right="12.0" top="12.0" />
+                                       </padding>
+                                    </VBox>
+                                 </children>
+                                 <padding>
+                                    <Insets bottom="12.0" left="12.0" right="12.0" top="12.0" />
+                                 </padding>
+                              </AnchorPane>
+                           </children>
+                           <padding>
+                              <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+                           </padding>
+                           <VBox.margin>
+                              <Insets left="16.0" right="16.0" />
+                           </VBox.margin>
+                        </AnchorPane>
+                     </children>
+                  </VBox>
+               
+          </AnchorPane>
+        </content>
+      </ScrollPane>
+   </children>
+</AnchorPane>
+

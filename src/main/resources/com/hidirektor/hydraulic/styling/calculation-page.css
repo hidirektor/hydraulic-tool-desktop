@@ -9,24 +9,24 @@
 }
 
 .main-component {
-    -fx-background-color:  #F5F7FA;
+    -fx-background-color:  #E5E7EB;
 }
 
 .main-label {
-    -fx-text-fill: #1F2937;
+    -fx-text-fill: #111827;
     -fx-font-family: 'TextaAltBold';
     -fx-font-size: 20;
     -fx-font-weight: bold;
 }
 
 .description-label {
-    -fx-text-fill: #1F2937;
+    -fx-text-fill: #111827;
     -fx-font-family: 'TextaAltRegular';
     -fx-font-size: 20;
 }
 
 .component-title {
-    -fx-text-fill: #1F2937;
+    -fx-text-fill: #111827;
     -fx-font-family: 'TextaAltRegular';
     -fx-font-size: 16;
 }
@@ -38,8 +38,8 @@
 
 .order-field {
     -fx-background-color: #FFFFFF;
-    -fx-text-fill: #1F2937;
-    -fx-text-color: #1F2937;
+    -fx-text-fill: #111827;
+    -fx-text-color: #111827;
     -fx-prompt-text-fill: #6B7280;
     -fx-background-radius: 100em;
     -fx-padding: 0 0 0 26px;
@@ -48,7 +48,7 @@
 
 .order-field .content {
     -fx-alignment: center-left;
-    -fx-text-color: #1F2937;
+    -fx-text-color: #111827;
     -fx-font-family: 'TextaAltBold';
 }
 

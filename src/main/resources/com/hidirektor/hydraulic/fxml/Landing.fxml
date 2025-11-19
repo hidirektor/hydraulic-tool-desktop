@@ -232,7 +232,7 @@
             </AnchorPane>
          </left>
          <center>
-            <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" style="-fx-background-color: #F5F7FA;" BorderPane.alignment="CENTER">
+            <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" style="-fx-background-color: #E5E7EB;" BorderPane.alignment="CENTER">
                <children>
                   <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
@@ -243,7 +243,7 @@
                                  <children>
                                     <HBox alignment="CENTER_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" spacing="16.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
                                        <children>
-                                          <Label fx:id="sectionNameLabel" stylesheets="@../styling/dark-theme.css" text="Anasayfa" textAlignment="CENTER" textFill="#1F2937">
+                                          <Label fx:id="sectionNameLabel" stylesheets="@../styling/dark-theme.css" text="Anasayfa" textAlignment="CENTER" textFill="#111827">
                                              <font>
                                                 <Font name="TextaAlt-Bold" size="26.0" />
                                              </font>

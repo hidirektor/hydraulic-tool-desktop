@@ -5,17 +5,18 @@
 <?import javafx.scene.chart.NumberAxis?>
 <?import javafx.scene.chart.XYChart?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Font?>
-<AnchorPane fx:id="resourceUsagePane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: #F5F7FA; -fx-border-color: #2563EB; -fx-border-width: 2;" xmlns="http://javafx.com/javafx/17.0.6" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.hidirektor.hydraulic.controllers.ResourceUsageController">
+<AnchorPane fx:id="resourceUsagePane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: #E5E7EB; -fx-border-color: #1E3A5F; -fx-border-width: 2;" stylesheets="@../styling/dark-theme.css" xmlns="http://javafx.com/javafx/17.0.6" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.hidirektor.hydraulic.controllers.ResourceUsageController">
    <children>
       <VBox spacing="16.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <HBox alignment="CENTER_LEFT" spacing="12.0" style="-fx-background-color: rgba(255, 255, 255, 0.34);">
+            <HBox alignment="CENTER_LEFT" spacing="12.0" style="-fx-background-color: #1E3A5F;">
                <children>
-                  <Label text="Kaynak Kullanımı">
+                  <Label style="-fx-text-fill: #FFFFFF;" text="Kaynak Kullanımı">
                      <font>
                         <Font name="TextaAlt-Bold" size="20.0" />
                      </font>
@@ -34,81 +35,85 @@
                   </ImageView>
                </children>
             </HBox>
-            <VBox spacing="20.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-               <padding>
-                  <Insets bottom="16.0" left="16.0" right="16.0" top="16.0" />
-               </padding>
-               <children>
-                  <!-- RAM Kullanımı -->
-                  <VBox spacing="8.0">
+            <ScrollPane fitToWidth="true" hbarPolicy="NEVER" vbarPolicy="AS_NEEDED" styleClass="resource-scroll-pane" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <content>
+                  <VBox spacing="20.0">
+                     <padding>
+                        <Insets bottom="16.0" left="16.0" right="16.0" top="16.0" />
+                     </padding>
                      <children>
-                        <HBox alignment="CENTER_LEFT" spacing="8.0">
+                        <!-- RAM Kullanımı -->
+                        <VBox spacing="8.0">
                            <children>
-                              <Label fx:id="ramLabel" text="RAM Kullanımı: 0 MB / 0 MB (0%)">
+                              <HBox alignment="CENTER_LEFT" spacing="8.0">
+                                 <children>
+                              <Label fx:id="ramLabel" style="-fx-text-fill: #111827;" text="RAM Kullanımı: 0 MB / 0 MB (0%)">
                                  <font>
                                     <Font name="TextaAlt-Bold" size="16.0" />
                                  </font>
                               </Label>
+                                 </children>
+                              </HBox>
+                              <LineChart fx:id="ramChart" animated="false" createSymbols="false" legendVisible="false" prefHeight="150.0" maxWidth="1.7976931348623157E308" minWidth="-Infinity" VBox.vgrow="NEVER">
+                                 <xAxis>
+                                    <NumberAxis fx:id="ramTimeAxis" label="Zaman (saniye)" lowerBound="0" upperBound="60" />
+                                 </xAxis>
+                                 <yAxis>
+                                    <NumberAxis fx:id="ramUsageAxis" label="Kullanım (MB)" lowerBound="0" />
+                                 </yAxis>
+                              </LineChart>
                            </children>
-                        </HBox>
-                        <LineChart fx:id="ramChart" animated="false" createSymbols="false" legendVisible="false" prefHeight="150.0" maxWidth="1.7976931348623157E308" minWidth="-Infinity" VBox.vgrow="NEVER">
-                           <xAxis>
-                              <NumberAxis fx:id="ramTimeAxis" label="Zaman (saniye)" lowerBound="0" upperBound="60" />
-                           </xAxis>
-                           <yAxis>
-                              <NumberAxis fx:id="ramUsageAxis" label="Kullanım (MB)" lowerBound="0" />
-                           </yAxis>
-                        </LineChart>
-                     </children>
-                  </VBox>
-                  
-                  <!-- CPU Kullanımı -->
-                  <VBox spacing="8.0">
-                     <children>
-                        <HBox alignment="CENTER_LEFT" spacing="8.0">
+                        </VBox>
+                        
+                        <!-- CPU Kullanımı -->
+                        <VBox spacing="8.0">
                            <children>
-                              <Label fx:id="cpuLabel" text="CPU Kullanımı: 0%">
+                              <HBox alignment="CENTER_LEFT" spacing="8.0">
+                                 <children>
+                              <Label fx:id="cpuLabel" style="-fx-text-fill: #111827;" text="CPU Kullanımı: 0%">
                                  <font>
                                     <Font name="TextaAlt-Bold" size="16.0" />
                                  </font>
                               </Label>
+                                 </children>
+                              </HBox>
+                              <LineChart fx:id="cpuChart" animated="false" createSymbols="false" legendVisible="false" prefHeight="150.0" maxWidth="1.7976931348623157E308" minWidth="-Infinity" VBox.vgrow="NEVER">
+                                 <xAxis>
+                                    <NumberAxis fx:id="cpuTimeAxis" label="Zaman (saniye)" lowerBound="0" upperBound="60" />
+                                 </xAxis>
+                                 <yAxis>
+                                    <NumberAxis fx:id="cpuUsageAxis" label="Kullanım (%)" lowerBound="0" upperBound="100" />
+                                 </yAxis>
+                              </LineChart>
                            </children>
-                        </HBox>
-                        <LineChart fx:id="cpuChart" animated="false" createSymbols="false" legendVisible="false" prefHeight="150.0" maxWidth="1.7976931348623157E308" minWidth="-Infinity" VBox.vgrow="NEVER">
-                           <xAxis>
-                              <NumberAxis fx:id="cpuTimeAxis" label="Zaman (saniye)" lowerBound="0" upperBound="60" />
-                           </xAxis>
-                           <yAxis>
-                              <NumberAxis fx:id="cpuUsageAxis" label="Kullanım (%)" lowerBound="0" upperBound="100" />
-                           </yAxis>
-                        </LineChart>
-                     </children>
-                  </VBox>
-                  
-                  <!-- Disk Kullanımı -->
-                  <VBox spacing="8.0">
-                     <children>
-                        <HBox alignment="CENTER_LEFT" spacing="8.0">
+                        </VBox>
+                        
+                        <!-- Disk Kullanımı -->
+                        <VBox spacing="8.0">
                            <children>
-                              <Label fx:id="diskLabel" text="Disk Kullanımı: 0 GB / 0 GB (0%)">
+                              <HBox alignment="CENTER_LEFT" spacing="8.0">
+                                 <children>
+                              <Label fx:id="diskLabel" style="-fx-text-fill: #111827;" text="Disk Kullanımı: 0 GB / 0 GB (0%)">
                                  <font>
                                     <Font name="TextaAlt-Bold" size="16.0" />
                                  </font>
                               </Label>
+                                 </children>
+                              </HBox>
+                              <LineChart fx:id="diskChart" animated="false" createSymbols="false" legendVisible="false" prefHeight="150.0" maxWidth="1.7976931348623157E308" minWidth="-Infinity" VBox.vgrow="NEVER">
+                                 <xAxis>
+                                    <NumberAxis fx:id="diskTimeAxis" label="Zaman (saniye)" lowerBound="0" upperBound="60" />
+                                 </xAxis>
+                                 <yAxis>
+                                    <NumberAxis fx:id="diskUsageAxis" label="Kullanım (GB)" lowerBound="0" />
+                                 </yAxis>
+                              </LineChart>
                            </children>
-                        </HBox>
-                        <LineChart fx:id="diskChart" animated="false" createSymbols="false" legendVisible="false" prefHeight="150.0" maxWidth="1.7976931348623157E308" minWidth="-Infinity" VBox.vgrow="NEVER">
-                           <xAxis>
-                              <NumberAxis fx:id="diskTimeAxis" label="Zaman (saniye)" lowerBound="0" upperBound="60" />
-                           </xAxis>
-                           <yAxis>
-                              <NumberAxis fx:id="diskUsageAxis" label="Kullanım (GB)" lowerBound="0" />
-                           </yAxis>
-                        </LineChart>
+                        </VBox>
                      </children>
                   </VBox>
-               </children>
-            </VBox>
+               </content>
+            </ScrollPane>
          </children>
       </VBox>
    </children>

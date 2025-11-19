@@ -28,21 +28,21 @@
 }
 
 .colored-button:hover {
-    -fx-background-color: #E8ECF0;
+    -fx-background-color: #D1D5DB;
     -fx-background-radius: 8em;
-    -fx-text-fill: #1E3A5F; /* Metin rengi */
+    -fx-text-fill: #111827; /* Metin rengi */
 }
 
 .colored-button:pressed {
-    -fx-background-color: #E8ECF0;
-    -fx-text-fill: #1E3A5F;
+    -fx-background-color: #D1D5DB;
+    -fx-text-fill: #111827;
 }
 
 .colored-button:focused {
-    -fx-background-color: #E8ECF0;
+    -fx-background-color: #D1D5DB;
     -fx-border-color: transparent;
     -fx-background-radius: 8em;
-    -fx-text-fill: #1E3A5F;
+    -fx-text-fill: #111827;
 }
 
 .colored-button:hover .image-view {
@@ -59,8 +59,8 @@
 
 .search-field {
     -fx-background-color: #FFFFFF;
-    -fx-text-fill: #1F2937;
-    -fx-text-color: #1F2937;
+    -fx-text-fill: #111827;
+    -fx-text-color: #111827;
     -fx-prompt-text-fill: #6B7280;
     -fx-background-radius: 100em;
     -fx-padding: 0 0 0 26px;
@@ -73,7 +73,7 @@
 
 .search-field .content {
     -fx-alignment: center-left;
-    -fx-text-color: #1F2937;
+    -fx-text-color: #111827;
     -fx-font-family: 'TextaAltBold';
 }
 
@@ -117,7 +117,7 @@
 
 .label {
     -fx-font-family: 'TextaAltBold';
-    -fx-text-fill: #1F2937;
+    -fx-text-fill: #111827;
 }
 
 .scroll-pane {
@@ -140,4 +140,32 @@
     -fx-border-width: 0 0 1 0;
     -fx-background-color: transparent;
     -fx-padding: 0;
+}
+
+.resource-scroll-pane {
+    -fx-background-color: transparent;
+    -fx-background: transparent;
+}
+
+.resource-scroll-pane .viewport {
+    -fx-background-color: transparent;
+}
+
+.resource-scroll-pane .scroll-bar:vertical {
+    -fx-background-color: transparent;
+    -fx-background: transparent;
+}
+
+.resource-scroll-pane .scroll-bar:vertical .track {
+    -fx-background-color: #D1D5DB;
+    -fx-background-radius: 5px;
+}
+
+.resource-scroll-pane .scroll-bar:vertical .thumb {
+    -fx-background-color: #6B7280;
+    -fx-background-radius: 5px;
+}
+
+.resource-scroll-pane .scroll-bar:vertical .thumb:hover {
+    -fx-background-color: #4B5563;
 }

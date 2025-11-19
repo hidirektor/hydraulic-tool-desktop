@@ -160,9 +160,9 @@ public class LandingController implements Initializable {
             SceneUtil.loadFXMLIntoPane(currentPagePane, "fxml/PowerPackCalculation.fxml");
             sectionNameLabel.setText("Hydraulic - Hesaplama");
         } else if(actionEvent.getSource().equals(createBlainUnit)) {
-            NotificationUtil.showNotification(sectionNameLabel.getScene().getWindow(), NotificationController.NotificationType.WARNING, "Hesaplama Hatası", "Blain hesaplama henüz yayında değil.");
-            //SceneUtil.loadFXMLIntoPane(currentPagePane, "fxml/BlainCalc.fxml");
-            //sectionNameLabel.setText("Hydraulic - Hesaplama");
+            //Blain Ünite Oluştur
+            SceneUtil.loadFXMLIntoPane(currentPagePane, "fxml/BlainCalculation.fxml");
+            sectionNameLabel.setText("Hydraulic - Hesaplama");
         } else {
             NotificationUtil.showNotification(sectionNameLabel.getScene().getWindow(), NotificationController.NotificationType.ALERT, "Buton Hatası", "Buton hatası meydana geldi. Lütfen yaptığınız işlemle birlikte hatayı bize bildirin.");
         }
