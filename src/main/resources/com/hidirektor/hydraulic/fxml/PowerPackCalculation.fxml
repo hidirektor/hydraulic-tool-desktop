@@ -337,7 +337,7 @@
                                        <children>
                                                       <HBox alignment="TOP_CENTER" fillHeight="false" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" spacing="12.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                                                           <children>
-                                                              <AnchorPane fx:id="tankImagePaneSection" minHeight="-Infinity" minWidth="-Infinity">
+                                                              <AnchorPane minHeight="-Infinity" minWidth="-Infinity">
                                                                   <padding>
                                                                       <Insets bottom="12.0" left="12.0" right="12.0" top="12.0" />
                                                                   </padding>
