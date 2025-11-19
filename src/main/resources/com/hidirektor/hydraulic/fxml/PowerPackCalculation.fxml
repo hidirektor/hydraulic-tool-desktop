@@ -558,9 +558,9 @@
                                                                                 <ImageView fx:id="schemePageOne" fitHeight="0.0" fitWidth="400.0" pickOnBounds="true" preserveRatio="true" visible="false" />
                                                                                 <AnchorPane fx:id="schemePageOneOverlay" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" mouseTransparent="false" opacity="0.0" prefHeight="600.0" prefWidth="400.0" style="-fx-background-color: rgba(0, 0, 0, 0.7);" visible="false" StackPane.alignment="CENTER">
                                                                                     <children>
-                                                                                        <VBox alignment="CENTER" spacing="8.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                                                        <VBox alignment="CENTER" spacing="16.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                                                                             <children>
-                                                                                                <Group fx:id="schemePageOneIconGroup">
+                                                                                                <Group fx:id="schemePageOneIconGroup" prefHeight="48.0" prefWidth="48.0">
                                                                                                     <children>
                                                                                                        <SVGPath fill="WHITE">
                                                                                                           <content>
@@ -585,9 +585,9 @@
                                                                                 <ImageView fx:id="schemePageTwo" fitHeight="0.0" fitWidth="400.0" pickOnBounds="true" preserveRatio="true" visible="false" />
                                                                                 <AnchorPane fx:id="schemePageTwoOverlay" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" mouseTransparent="false" opacity="0.0" prefHeight="600.0" prefWidth="400.0" style="-fx-background-color: rgba(0, 0, 0, 0.7);" visible="false" StackPane.alignment="CENTER">
                                                                                     <children>
-                                                                                        <VBox alignment="CENTER" spacing="8.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                                                        <VBox alignment="CENTER" spacing="16.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                                                                             <children>
-                                                                                                <Group fx:id="schemePageTwoIconGroup">
+                                                                                                <Group fx:id="schemePageTwoIconGroup" prefHeight="48.0" prefWidth="48.0">
                                                                                                     <children>
                                                                                                        <SVGPath fill="WHITE">
                                                                                                           <content>
