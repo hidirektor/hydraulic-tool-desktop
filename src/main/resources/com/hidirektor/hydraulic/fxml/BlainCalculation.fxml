@@ -238,10 +238,10 @@
                
           </AnchorPane>
         </content>
-      </ScrollPane>
          <padding>
             <Insets bottom="16.0" left="16.0" right="16.0" top="16.0" />
          </padding>
+      </ScrollPane>
    </children>
    <stylesheets>
       <URL value="@../styling/dark-theme.css" />
