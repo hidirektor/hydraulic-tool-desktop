@@ -46,15 +46,27 @@ public class BlainController implements Initializable {
     
     private String secilenSogutma = null;
     private String secilenTablaKilit = null;
-    private String secilenYagTanki = null;
+    private String secilenPompa = null;
+    private String secilenValfTipi = null;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         Platform.runLater(() -> {
             addHoverEffectToButtons(clearButton);
             collapseAndExpandSection(orderSection, isOrderSectionExpanded, orderSectionButtonImage, true, false);
+            // Tüm dropdown'ları başlangıçta disabled yap
+            disableAllDropdowns();
             comboBoxListener();
         });
+    }
+    
+    private void disableAllDropdowns() {
+        motorComboBox.setDisable(true);
+        sogutmaComboBox.setDisable(true);
+        tablaKilitComboBox.setDisable(true);
+        pompaComboBox.setDisable(true);
+        valfTipiComboBox.setDisable(true);
+        yagTankiComboBox.setDisable(true);
     }
 
     @FXML
@@ -67,40 +79,9 @@ public class BlainController implements Initializable {
             collapseAndExpandSection(unitInfoSection, isUnitInfoSectionExpanded, unitInfoSectionButtonImage, false, false);
             isUnitInfoSectionExpanded = !isUnitInfoSectionExpanded;
             
-            // Ünite bilgileri açıldığında dropdown'ları aktif et ve değerleri ekle
+            // Ünite bilgileri açıldığında dropdown'ları disabled bırak (sıralı aktif olacaklar)
             if(!wasExpanded && isUnitInfoSectionExpanded) {
-                // Motor - blain_combo.yml'den yükle
-                motorComboBox.setDisable(false);
-                motorComboBox.getItems().clear();
-                if(SystemDefaults.getLocalHydraulicData().blainMotorMap.containsKey("0")) {
-                    motorComboBox.getItems().addAll(SystemDefaults.getLocalHydraulicData().blainMotorMap.get("0"));
-                }
-                
-                // Soğutma - Var ya da Yok
-                sogutmaComboBox.setDisable(false);
-                sogutmaComboBox.getItems().clear();
-                sogutmaComboBox.getItems().addAll("Var", "Yok");
-                
-                // Tabla Kilit - Var ya da Yok
-                tablaKilitComboBox.setDisable(false);
-                tablaKilitComboBox.getItems().clear();
-                tablaKilitComboBox.getItems().addAll("Var", "Yok");
-                
-                // Pompa - blain_combo.yml'den yükle
-                pompaComboBox.setDisable(false);
-                pompaComboBox.getItems().clear();
-                if(SystemDefaults.getLocalHydraulicData().blainPompaMap.containsKey("0")) {
-                    pompaComboBox.getItems().addAll(SystemDefaults.getLocalHydraulicData().blainPompaMap.get("0"));
-                }
-                
-                // Valf Tipi - başlangıçta tüm seçenekler
-                valfTipiComboBox.setDisable(false);
-                updateValfTipiOptions();
-                
-                // Yağ Tankı
-                yagTankiComboBox.setDisable(false);
-                yagTankiComboBox.getItems().clear();
-                yagTankiComboBox.getItems().addAll("BTH 75", "BTH 150", "BTH 250", "BTH 400", "BTH 600", "BTH 1000");
+                disableAllDropdowns();
             }
         } else if(actionEvent.getSource().equals(clearButton)) {
             // Temizle butonu - şimdilik boş, sonra implement edilecek
@@ -123,50 +104,68 @@ public class BlainController implements Initializable {
             if(!isUnitInfoSectionExpanded) {
                 collapseAndExpandSection(unitInfoSection, isUnitInfoSectionExpanded, unitInfoSectionButtonImage, true, false);
                 isUnitInfoSectionExpanded = true;
-                
-                // Ünite bilgileri açıldığında dropdown'ları aktif et ve değerleri ekle
+            }
+            // Motor dropdown'ını aktif et
+            if(motorComboBox.isDisable()) {
                 motorComboBox.setDisable(false);
                 motorComboBox.getItems().clear();
                 if(SystemDefaults.getLocalHydraulicData().blainMotorMap.containsKey("0")) {
                     motorComboBox.getItems().addAll(SystemDefaults.getLocalHydraulicData().blainMotorMap.get("0"));
                 }
-                
+            }
+        });
+        
+        UIProcess.changeInputDataForComboBox(motorComboBox, newValue -> {
+            // Motor seçildiğinde Soğutma dropdown'ını aktif et
+            if(sogutmaComboBox.isDisable()) {
                 sogutmaComboBox.setDisable(false);
                 sogutmaComboBox.getItems().clear();
                 sogutmaComboBox.getItems().addAll("Var", "Yok");
-                
+            }
+        }, null);
+        
+        UIProcess.changeInputDataForComboBox(sogutmaComboBox, newValue -> {
+            secilenSogutma = newValue.toString();
+            // Soğutma seçildiğinde Tabla Kilit dropdown'ını aktif et
+            if(tablaKilitComboBox.isDisable()) {
                 tablaKilitComboBox.setDisable(false);
                 tablaKilitComboBox.getItems().clear();
                 tablaKilitComboBox.getItems().addAll("Var", "Yok");
-                
+            }
+            // Pompa seçilmişse valf tipini güncelle
+            if(secilenPompa != null) {
+                updateValfTipiOptions();
+            }
+        }, null);
+        
+        UIProcess.changeInputDataForComboBox(tablaKilitComboBox, newValue -> {
+            secilenTablaKilit = newValue.toString();
+            // Tabla Kilit seçildiğinde Pompa dropdown'ını aktif et
+            if(pompaComboBox.isDisable()) {
                 pompaComboBox.setDisable(false);
                 pompaComboBox.getItems().clear();
                 if(SystemDefaults.getLocalHydraulicData().blainPompaMap.containsKey("0")) {
                     pompaComboBox.getItems().addAll(SystemDefaults.getLocalHydraulicData().blainPompaMap.get("0"));
                 }
-                
-                valfTipiComboBox.setDisable(false);
-                updateValfTipiOptions();
-                
-                yagTankiComboBox.setDisable(false);
-                yagTankiComboBox.getItems().clear();
-                yagTankiComboBox.getItems().addAll("BTH 75", "BTH 150", "BTH 250", "BTH 400", "BTH 600", "BTH 1000");
             }
-        });
+        }, null);
         
-        UIProcess.changeInputDataForComboBox(sogutmaComboBox, newValue -> {
-            secilenSogutma = newValue.toString();
+        UIProcess.changeInputDataForComboBox(pompaComboBox, newValue -> {
+            secilenPompa = newValue.toString();
+            // Pompa seçildiğinde Valf Tipi dropdown'ını aktif et ve güncelle
+            if(valfTipiComboBox.isDisable()) {
+                valfTipiComboBox.setDisable(false);
+            }
             updateValfTipiOptions();
         }, null);
         
-        UIProcess.changeInputDataForComboBox(tablaKilitComboBox, newValue -> {
-            secilenTablaKilit = newValue.toString();
-            updateValfTipiOptions();
-        }, null);
-        
-        UIProcess.changeInputDataForComboBox(yagTankiComboBox, newValue -> {
-            secilenYagTanki = newValue.toString();
-            updateValfTipiOptions();
+        UIProcess.changeInputDataForComboBox(valfTipiComboBox, newValue -> {
+            secilenValfTipi = newValue.toString();
+            // Valf tipi seçildiğinde Yağ Tankı dropdown'ını aktif et ve güncelle
+            if(yagTankiComboBox.isDisable()) {
+                yagTankiComboBox.setDisable(false);
+            }
+            updateYagTankiOptions();
         }, null);
     }
     
@@ -175,64 +174,75 @@ public class BlainController implements Initializable {
         
         valfTipiComboBox.getItems().clear();
         
-        // Önce soğutma kriterine göre seçenekleri belirle
-        java.util.List<String> sogutmaBasedOptions;
+        // Soğutma kriterine göre seçenekleri belirle
+        java.util.List<String> valfTipiOptions;
         if(secilenSogutma != null && secilenSogutma.equals("Var")) {
             // Soğutma Var ise KV1S hariç
-            sogutmaBasedOptions = java.util.Arrays.asList("KV2S", "EV100 3/4\"", "EV100 1\"1/2");
+            valfTipiOptions = java.util.Arrays.asList("KV2S", "EV100 3/4\"", "EV100 1\"1/2");
         } else {
             // Soğutma Yok ise veya henüz seçilmemişse hepsi
-            sogutmaBasedOptions = java.util.Arrays.asList("KV1S", "KV2S", "EV100 3/4\"", "EV100 1\"1/2");
+            valfTipiOptions = java.util.Arrays.asList("KV1S", "KV2S", "EV100 3/4\"", "EV100 1\"1/2");
         }
         
-        // Yağ tankı seçimine göre kısıtla
-        java.util.List<String> yagTankiBasedOptions;
-        if(secilenYagTanki != null) {
-            switch(secilenYagTanki) {
-                case "BTH 75":
-                    yagTankiBasedOptions = java.util.Arrays.asList("KV1S", "KV2S");
-                    break;
-                case "BTH 150":
-                    yagTankiBasedOptions = java.util.Arrays.asList("KV2S", "EV100 3/4\"");
-                    break;
-                case "BTH 250":
-                    yagTankiBasedOptions = java.util.Arrays.asList("EV100 3/4\"", "EV100 1\"1/2");
-                    break;
-                case "BTH 400":
-                    yagTankiBasedOptions = java.util.Arrays.asList("EV100 3/4\"", "EV100 1\"1/2");
-                    break;
-                case "BTH 600":
-                    yagTankiBasedOptions = java.util.Arrays.asList("EV100 1\"1/2");
-                    break;
-                default:
-                    yagTankiBasedOptions = sogutmaBasedOptions;
-                    break;
+        valfTipiComboBox.getItems().addAll(valfTipiOptions);
+        
+        // Eğer seçili değer artık listede yoksa, seçimi temizle
+        String currentValue = valfTipiComboBox.getValue();
+        if(currentValue != null && !valfTipiComboBox.getItems().contains(currentValue)) {
+            valfTipiComboBox.getSelectionModel().clearSelection();
+            secilenValfTipi = null;
+            // Valf tipi temizlendiğinde yağ tankı seçeneklerini de güncelle
+            updateYagTankiOptions();
+        }
+    }
+    
+    private void updateYagTankiOptions() {
+        if(yagTankiComboBox == null) return;
+        
+        yagTankiComboBox.getItems().clear();
+        
+        // Valf tipi seçilmemişse tüm seçenekleri göster
+        if(secilenValfTipi == null) {
+            yagTankiComboBox.getItems().addAll("BTH 75", "BTH 150", "BTH 250", "BTH 400", "BTH 600", "BTH 1000");
+            // Eğer seçili değer varsa ve listede yoksa, seçimi temizle
+            String currentValue = yagTankiComboBox.getValue();
+            if(currentValue != null && !yagTankiComboBox.getItems().contains(currentValue)) {
+                yagTankiComboBox.getSelectionModel().clearSelection();
             }
-        } else {
-            yagTankiBasedOptions = sogutmaBasedOptions;
+            return;
         }
         
-        // İki kriterin kesişimini al
-        java.util.List<String> finalOptions = new java.util.ArrayList<>();
-        for(String option : sogutmaBasedOptions) {
-            if(yagTankiBasedOptions.contains(option)) {
-                finalOptions.add(option);
-            }
+        // Valf tipine göre yağ tankı seçeneklerini belirle
+        java.util.List<String> yagTankiOptions;
+        switch(secilenValfTipi) {
+            case "KV1S":
+                // KV1S → sadece BTH 75
+                yagTankiOptions = java.util.Arrays.asList("BTH 75");
+                break;
+            case "KV2S":
+                // KV2S → BTH 75, BTH 150
+                yagTankiOptions = java.util.Arrays.asList("BTH 75", "BTH 150");
+                break;
+            case "EV100 3/4\"":
+                // EV100 3/4 → BTH 150, BTH 250, BTH 400
+                yagTankiOptions = java.util.Arrays.asList("BTH 150", "BTH 250", "BTH 400");
+                break;
+            case "EV100 1\"1/2":
+                // EV100 1"1/2 → BTH 250, BTH 400, BTH 600
+                yagTankiOptions = java.util.Arrays.asList("BTH 250", "BTH 400", "BTH 600");
+                break;
+            default:
+                // Varsayılan olarak tüm seçenekleri göster
+                yagTankiOptions = java.util.Arrays.asList("BTH 75", "BTH 150", "BTH 250", "BTH 400", "BTH 600", "BTH 1000");
+                break;
         }
         
-        valfTipiComboBox.getItems().addAll(finalOptions);
+        yagTankiComboBox.getItems().addAll(yagTankiOptions);
         
-        // BTH 600 seçildiğinde otomatik olarak EV100 1"1/2 seç
-        if(secilenYagTanki != null && secilenYagTanki.equals("BTH 600")) {
-            if(finalOptions.contains("EV100 1\"1/2")) {
-                valfTipiComboBox.setValue("EV100 1\"1/2");
-            }
-        } else {
-            // Eğer seçili değer artık listede yoksa, seçimi temizle
-            String currentValue = valfTipiComboBox.getValue();
-            if(currentValue != null && !valfTipiComboBox.getItems().contains(currentValue)) {
-                valfTipiComboBox.getSelectionModel().clearSelection();
-            }
+        // Eğer seçili değer artık listede yoksa, seçimi temizle
+        String currentValue = yagTankiComboBox.getValue();
+        if(currentValue != null && !yagTankiComboBox.getItems().contains(currentValue)) {
+            yagTankiComboBox.getSelectionModel().clearSelection();
         }
     }
 
