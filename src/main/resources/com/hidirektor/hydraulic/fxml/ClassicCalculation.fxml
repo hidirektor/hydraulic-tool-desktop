@@ -538,7 +538,7 @@
                                                                <children>
                                                                   <VBox alignment="CENTER" spacing="16.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                                                      <children>
-                                                                        <Group fx:id="schemePageOneIconGroup" prefHeight="48.0" prefWidth="48.0">
+                                                                        <Group fx:id="schemePageOneIconGroup">
                                                                            <children>
                                                                               <SVGPath fill="WHITE">
                                                                                  <content>
@@ -565,7 +565,7 @@
                                                                <children>
                                                                   <VBox alignment="CENTER" spacing="16.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                                                      <children>
-                                                                        <Group fx:id="schemePageTwoIconGroup" prefHeight="48.0" prefWidth="48.0">
+                                                                        <Group fx:id="schemePageTwoIconGroup">
                                                                            <children>
                                                                               <SVGPath fill="WHITE">
                                                                                  <content>
