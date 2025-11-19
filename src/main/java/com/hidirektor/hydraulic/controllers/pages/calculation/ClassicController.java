@@ -772,12 +772,13 @@ public class ClassicController implements Initializable  {
                 // Hesaplama sonucu bölümüne scroll yap
                 Platform.runLater(() -> {
                     if(mainScrollPane != null && calculationResultSectionContainer != null) {
-                        mainScrollPane.setVvalue(0.0);
+                        mainScrollPane.requestLayout();
                         mainScrollPane.layout();
+                        // Hesaplama sonucu bölümünün konumunu bul ve scroll yap
                         double targetY = calculationResultSectionContainer.getLayoutY();
                         double scrollPaneHeight = mainScrollPane.getViewportBounds().getHeight();
                         double contentHeight = mainScrollPane.getContent().getBoundsInLocal().getHeight();
-                        if(contentHeight > scrollPaneHeight) {
+                        if(contentHeight > scrollPaneHeight && targetY > 0) {
                             double vvalue = targetY / (contentHeight - scrollPaneHeight);
                             mainScrollPane.setVvalue(Math.max(0.0, Math.min(1.0, vvalue)));
                         }
