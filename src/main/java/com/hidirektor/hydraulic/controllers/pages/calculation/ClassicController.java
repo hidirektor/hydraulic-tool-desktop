@@ -129,6 +129,9 @@ public class ClassicController implements Initializable  {
     
     @FXML
     public AnchorPane schemePageOneOverlay, schemePageTwoOverlay;
+    
+    @FXML
+    public javafx.scene.Group schemePageOneIconGroup, schemePageTwoIconGroup;
 
     private String basincSalteriSchemeDurumu = null;
     private String silindirSayisi = null;
@@ -1611,6 +1614,15 @@ public class ClassicController implements Initializable  {
                     schemePageTwoOverlay.setPrefWidth(schemePageTwo.getFitWidth());
                     schemePageTwoOverlay.setPrefHeight(schemePageTwo.getFitHeight());
                 }
+                // Icon Group'lara Scale transform ekle
+                if(schemePageOneIconGroup != null) {
+                    javafx.scene.transform.Scale scale = new javafx.scene.transform.Scale(3.0, 3.0);
+                    schemePageOneIconGroup.getTransforms().add(scale);
+                }
+                if(schemePageTwoIconGroup != null) {
+                    javafx.scene.transform.Scale scale = new javafx.scene.transform.Scale(3.0, 3.0);
+                    schemePageTwoIconGroup.getTransforms().add(scale);
+                }
                 System.out.println("PDF sayfaları başarıyla yüklendi.");
             });
 
@@ -2152,6 +2164,9 @@ public class ClassicController implements Initializable  {
     @FXML
     public void handleSchemePageOneEnter(MouseEvent event) {
         if(schemePageOne.isVisible() && schemePageOneOverlay != null) {
+            // Overlay'in boyutunu ImageView'a göre ayarla
+            schemePageOneOverlay.setPrefWidth(schemePageOne.getFitWidth());
+            schemePageOneOverlay.setPrefHeight(schemePageOne.getFitHeight());
             schemePageOneOverlay.setVisible(true);
             FadeTransition fadeIn = new FadeTransition(Duration.millis(200), schemePageOneOverlay);
             fadeIn.setFromValue(0.0);
@@ -2181,6 +2196,9 @@ public class ClassicController implements Initializable  {
     @FXML
     public void handleSchemePageTwoEnter(MouseEvent event) {
         if(schemePageTwo.isVisible() && schemePageTwoOverlay != null) {
+            // Overlay'in boyutunu ImageView'a göre ayarla
+            schemePageTwoOverlay.setPrefWidth(schemePageTwo.getFitWidth());
+            schemePageTwoOverlay.setPrefHeight(schemePageTwo.getFitHeight());
             schemePageTwoOverlay.setVisible(true);
             FadeTransition fadeIn = new FadeTransition(Duration.millis(200), schemePageTwoOverlay);
             fadeIn.setFromValue(0.0);
