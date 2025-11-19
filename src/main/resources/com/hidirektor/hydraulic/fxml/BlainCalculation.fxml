@@ -80,7 +80,7 @@
                                                             <Font name="TextaAlt-Regular" size="14.0" />
                                                          </font>
                                                       </Label>
-                                                      <TextField fx:id="inviteUserTextField" minWidth="-Infinity" prefHeight="30.0" prefWidth="240.0" promptText="E-posta ya da kullanıcı adını girin..." styleClass="order-field" />
+                                                      <TextField fx:id="inviteUserTextField" minWidth="-Infinity" onMouseClicked="#handleInviteUserClick" prefHeight="30.0" prefWidth="240.0" promptText="E-posta ya da kullanıcı adını girin..." styleClass="order-field" />
                                                    </children>
                                                 </VBox>
                                                 <ImageView fitHeight="28.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">

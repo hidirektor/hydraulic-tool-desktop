@@ -1,6 +1,8 @@
 package com.hidirektor.hydraulic.controllers.pages.calculation;
 
 import com.hidirektor.hydraulic.Launcher;
+import com.hidirektor.hydraulic.controllers.notification.NotificationController;
+import com.hidirektor.hydraulic.utils.Notification.NotificationUtil;
 import com.hidirektor.hydraulic.utils.Process.UIProcess;
 import com.hidirektor.hydraulic.utils.System.SystemDefaults;
 import javafx.application.Platform;
@@ -122,6 +124,14 @@ public class BlainController implements Initializable {
         // İçerideki AnchorPane'e tıklandığında event propagation'ı durdur
         event.consume();
     }
+    
+    @FXML
+    public void handleInviteUserClick(MouseEvent event) {
+        NotificationUtil.showNotification(orderSectionButton.getScene().getWindow(), 
+            NotificationController.NotificationType.WARNING, 
+            "Ana sunucuya bağlanılamadı lütfen geliştirici ile iletişime geçin.", 
+            "hidirektor@gmail.com");
+    }
 
     private void addHoverEffectToButtons(Button... buttons) {
         ColorAdjust darkenEffect = new ColorAdjust();
@@ -151,6 +161,11 @@ public class BlainController implements Initializable {
         });
         
         UIProcess.changeInputDataForComboBox(motorComboBox, newValue -> {
+            // Motor seçildiğinde Sipariş Bilgileri bölümünü kapat
+            if(isOrderSectionExpanded) {
+                collapseAndExpandSection(orderSection, isOrderSectionExpanded, orderSectionButtonImage, false, true);
+                isOrderSectionExpanded = false;
+            }
             // Motor seçildiğinde Soğutma dropdown'ını aktif et
             if(sogutmaComboBox.isDisable()) {
                 sogutmaComboBox.setDisable(false);

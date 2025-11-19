@@ -16,7 +16,7 @@
                </image></ImageView>
             <VBox prefHeight="128.0" prefWidth="399.0">
                <children>
-                  <Label fx:id="notificationTitle" text="Modal Window">
+                  <Label fx:id="notificationTitle" text="Modal Window" wrapText="true">
                      <font>
                         <Font size="18.0" />
                      </font>

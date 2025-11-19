@@ -58,7 +58,7 @@ public class ClassicController implements Initializable  {
                       unitSchemeSectionContainer, calculationControlSectionContainer;
 
     @FXML
-    public Button orderSectionButton, unitInfoSectionButton, calculationResultSectionButton, partListSectionButton, unitSchemeSectionButton, calculationControlSectionButton;
+    public Button orderSectionButton, unitInfoSectionButton, calculationResultSectionButton, partListSectionButton, unitSchemeSectionButton, calculationControlSectionButton, openPDFInExplorerButton;
 
     @FXML
     public ImageView orderSectionButtonImage, unitInfoSectionButtonImage, calculationResultSectionButtonImage, partListSectionButtonImage, unitSchemeSectionButtonImage, calculationControlSectionButtonImage;
@@ -228,6 +228,13 @@ public class ClassicController implements Initializable  {
         } else if(actionEvent.getSource().equals(calculationControlSectionButton)) {
             collapseAndExpandSection(calculationControlSection, isCalculationControlSectionExpanded, calculationControlSectionButtonImage, false, false);
             isCalculationControlSectionExpanded = !isCalculationControlSectionExpanded;
+        } else if(actionEvent.getSource().equals(openPDFInExplorerButton)) {
+            if(hesaplamaBitti && girilenSiparisNumarasi != null && !girilenSiparisNumarasi.isEmpty()) {
+                String pdfPath = SystemDefaults.userDataPDFFolderPath + girilenSiparisNumarasi + ".pdf";
+                PDFUtil.openFileInExplorer(pdfPath);
+            } else {
+                NotificationUtil.showNotification(orderSectionButton.getScene().getWindow(), NotificationController.NotificationType.ALERT, "Dosya Hatası", "PDF dosyası henüz oluşturulmamış.");
+            }
         } else if(actionEvent.getSource().equals(clearButton)) {
             if(hesaplamaBitti) {
                 clearWholeSelections();
@@ -486,6 +493,11 @@ public class ClassicController implements Initializable  {
         schemePageTwo.setFitHeight(0);
 
         imageTextDisable();
+        
+        // "Dosyada Göster" butonunu gizle
+        if(openPDFInExplorerButton != null) {
+            openPDFInExplorerButton.setVisible(false);
+        }
 
         hesaplamaBitti = false;
     }
@@ -1534,6 +1546,10 @@ public class ClassicController implements Initializable  {
             System.out.println("PDF Şema Yolu: " + pdfPath);
 
             PDFUtil.pdfGenerator("/assets/images/logos/onderlift-logo.png", tankImagePaneSection, hydraulicUnitSchemePane, "/assets/data/hydraulicUnitData/schematicPDF/classic/" + pdfPath, girilenSiparisNumarasi, kabinTitle.getText().toString(), secilenMotor, secilenPompa, secilenUniteTipi, true);
+            // PDF üretildikten sonra "Dosyada Göster" butonunu görünür yap
+            if(openPDFInExplorerButton != null) {
+                openPDFInExplorerButton.setVisible(true);
+            }
             Task<Void> task = new Task<>() {
                 @Override
                 protected Void call() {
@@ -2080,5 +2096,13 @@ public class ClassicController implements Initializable  {
     @FXML
     public void stopEventPropagation(MouseEvent event) {
         event.consume();
+    }
+    
+    @FXML
+    public void handleInviteUserClick(MouseEvent event) {
+        NotificationUtil.showNotification(orderSectionButton.getScene().getWindow(), 
+            NotificationController.NotificationType.WARNING, 
+            "Ana sunucuya bağlanılamadı lütfen geliştirici ile iletişime geçin.", 
+            "hidirektor@gmail.com");
     }
 }

@@ -29,6 +29,8 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.IntBuffer;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Objects;
 
 public class PDFUtil {
@@ -218,14 +220,15 @@ public class PDFUtil {
 
             new File("processed_image.png").delete();
 
-            if (Desktop.isDesktopSupported()) {
-                try {
-                    File pdfFile = new File(ExPDFFilePath);
-                    Desktop.getDesktop().open(pdfFile);
-                } catch (IOException e) {
-                    System.out.println(e.getMessage());
-                }
-            }
+            // PDF otomatik açılmıyor - kullanıcı "Dosyada Göster" butonunu kullanabilir
+            // if (Desktop.isDesktopSupported()) {
+            //     try {
+            //         File pdfFile = new File(ExPDFFilePath);
+            //         Desktop.getDesktop().open(pdfFile);
+            //     } catch (IOException e) {
+            //         System.out.println(e.getMessage());
+            //     }
+            // }
         } catch (DocumentException | IOException e) {
             System.out.println(e.getMessage());
         } catch (Exception e) {
@@ -364,5 +367,38 @@ public class PDFUtil {
                 javafx.embed.swing.SwingFXUtils.toFXImage(bufferedImage, null), null
         );
         return javafx.embed.swing.SwingFXUtils.toFXImage(bufferedImage, null);
+    }
+    
+    // Dosya gezgininde/finder'da aç
+    public static void openFileInExplorer(String filePath) {
+        try {
+            String os = System.getProperty("os.name").toLowerCase();
+            File file = new File(filePath);
+            
+            if (!file.exists()) {
+                System.err.println("Dosya bulunamadı: " + filePath);
+                return;
+            }
+            
+            if (os.contains("win")) {
+                // Windows: explorer /select,"dosya_yolu"
+                String command = "explorer /select,\"" + file.getAbsolutePath() + "\"";
+                Runtime.getRuntime().exec(command);
+            } else if (os.contains("mac")) {
+                // Mac: open -R "dosya_yolu"
+                String command = "open -R \"" + file.getAbsolutePath() + "\"";
+                Runtime.getRuntime().exec(command);
+            } else {
+                // Linux: xdg-open ile klasörü aç
+                Path parentPath = Paths.get(file.getAbsolutePath()).getParent();
+                if (parentPath != null) {
+                    String command = "xdg-open \"" + parentPath.toString() + "\"";
+                    Runtime.getRuntime().exec(command);
+                }
+            }
+        } catch (IOException e) {
+            System.err.println("Dosya gezgininde açılırken hata oluştu: " + e.getMessage());
+            e.printStackTrace();
+        }
     }
 }

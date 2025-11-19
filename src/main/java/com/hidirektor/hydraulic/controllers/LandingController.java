@@ -75,7 +75,7 @@ public class LandingController implements Initializable {
             currentStage = (Stage) sectionNameLabel.getScene().getWindow();
 
             addHoverEffect(closeIcon, minimizeIcon, expandIcon, contactUsButton);
-            addHoverEffectToButtons(createClassicUnit, createPowerPackUnit);
+            addHoverEffectToButtons(createClassicUnit, createPowerPackUnit, createBlainUnit);
             
             // LinkedIn linkini aç
             contactUsButton.setOnMouseClicked(this::openLinkedIn);
