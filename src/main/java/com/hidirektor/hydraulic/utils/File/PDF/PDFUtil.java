@@ -380,24 +380,33 @@ public class PDFUtil {
                 return;
             }
             
+            ProcessBuilder processBuilder;
+            
             if (os.contains("win")) {
                 // Windows: explorer /select,"dosya_yolu"
-                String command = "explorer /select,\"" + file.getAbsolutePath() + "\"";
-                Runtime.getRuntime().exec(command);
+                processBuilder = new ProcessBuilder("explorer", "/select," + file.getAbsolutePath());
             } else if (os.contains("mac")) {
                 // Mac: open -R "dosya_yolu"
-                String command = "open -R \"" + file.getAbsolutePath() + "\"";
-                Runtime.getRuntime().exec(command);
+                processBuilder = new ProcessBuilder("open", "-R", file.getAbsolutePath());
             } else {
                 // Linux: xdg-open ile klasörü aç
                 Path parentPath = Paths.get(file.getAbsolutePath()).getParent();
                 if (parentPath != null) {
-                    String command = "xdg-open \"" + parentPath.toString() + "\"";
-                    Runtime.getRuntime().exec(command);
+                    processBuilder = new ProcessBuilder("xdg-open", parentPath.toString());
+                } else {
+                    System.err.println("Klasör yolu bulunamadı: " + filePath);
+                    return;
                 }
             }
+            
+            processBuilder.start();
+            // Process arka planda çalışır, bekleme gerekmez
+            
         } catch (IOException e) {
             System.err.println("Dosya gezgininde açılırken hata oluştu: " + e.getMessage());
+            e.printStackTrace();
+        } catch (Exception e) {
+            System.err.println("Beklenmeyen hata: " + e.getMessage());
             e.printStackTrace();
         }
     }

@@ -27,6 +27,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.Clipboard;
 import javafx.scene.input.ClipboardContent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Region;
 import javafx.scene.paint.Color;
@@ -56,6 +57,9 @@ public class ClassicController implements Initializable  {
     public AnchorPane orderSection, unitInfoSection, calculationResultSection, partListSection, unitSchemeSection, calculationControlSection,
                       orderSectionContainer, unitInfoSectionContainer, calculationResultSectionContainer, partListSectionContainer, 
                       unitSchemeSectionContainer, calculationControlSectionContainer;
+    
+    @FXML
+    public ScrollPane mainScrollPane;
 
     @FXML
     public Button orderSectionButton, unitInfoSectionButton, calculationResultSectionButton, partListSectionButton, unitSchemeSectionButton, calculationControlSectionButton, openPDFInExplorerButton;
@@ -758,6 +762,27 @@ public class ClassicController implements Initializable  {
                 schemeImage.setImage(image);
 
                 hesaplamaBitti = true;
+                
+                // Ünite bilgileri bölümünü kapat
+                if(isUnitInfoSectionExpanded) {
+                    collapseAndExpandSection(unitInfoSection, isUnitInfoSectionExpanded, unitInfoSectionButtonImage, false, true);
+                    isUnitInfoSectionExpanded = false;
+                }
+                
+                // Hesaplama sonucu bölümüne scroll yap
+                Platform.runLater(() -> {
+                    if(mainScrollPane != null && calculationResultSectionContainer != null) {
+                        mainScrollPane.setVvalue(0.0);
+                        mainScrollPane.layout();
+                        double targetY = calculationResultSectionContainer.getLayoutY();
+                        double scrollPaneHeight = mainScrollPane.getViewportBounds().getHeight();
+                        double contentHeight = mainScrollPane.getContent().getBoundsInLocal().getHeight();
+                        if(contentHeight > scrollPaneHeight) {
+                            double vvalue = targetY / (contentHeight - scrollPaneHeight);
+                            mainScrollPane.setVvalue(Math.max(0.0, Math.min(1.0, vvalue)));
+                        }
+                    }
+                });
             } else {
                 NotificationUtil.showNotification(classicCaclulationTitle.getScene().getWindow(), NotificationController.NotificationType.ALERT, "Hesaplama Hatası", "Hesaplama sonucu beklenmeyen bir hata oluştu.");
             }
