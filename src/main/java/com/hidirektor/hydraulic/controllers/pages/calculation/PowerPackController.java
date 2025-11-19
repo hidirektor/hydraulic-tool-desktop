@@ -179,6 +179,9 @@ public class PowerPackController implements Initializable  {
     public ImageView schemePageOne, schemePageTwo;
     
     @FXML
+    public StackPane schemePageOneContainer, schemePageTwoContainer;
+    
+    @FXML
     public AnchorPane schemePageOneOverlay, schemePageTwoOverlay;
     
     @FXML
@@ -513,6 +516,24 @@ public class PowerPackController implements Initializable  {
         schemePageTwo.setImage(null);
         schemePageTwo.setVisible(false);
         schemePageTwo.setFitHeight(0);
+        
+        // StackPane'leri ve overlay'leri gizle ve managed yap
+        if(schemePageOneContainer != null) {
+            schemePageOneContainer.setVisible(false);
+            schemePageOneContainer.setManaged(false);
+        }
+        if(schemePageTwoContainer != null) {
+            schemePageTwoContainer.setVisible(false);
+            schemePageTwoContainer.setManaged(false);
+        }
+        if(schemePageOneOverlay != null) {
+            schemePageOneOverlay.setVisible(false);
+            schemePageOneOverlay.setManaged(false);
+        }
+        if(schemePageTwoOverlay != null) {
+            schemePageTwoOverlay.setVisible(false);
+            schemePageTwoOverlay.setManaged(false);
+        }
         
         // "Dosyada Göster" butonunu gizle
         if(openPDFInExplorerButton != null) {
@@ -1745,18 +1766,31 @@ public class PowerPackController implements Initializable  {
             });
 
             task.setOnSucceeded(event -> {
+                // StackPane'leri görünür ve managed yap
+                if(schemePageOneContainer != null) {
+                    schemePageOneContainer.setVisible(true);
+                    schemePageOneContainer.setManaged(true);
+                }
+                if(schemePageTwoContainer != null) {
+                    schemePageTwoContainer.setVisible(true);
+                    schemePageTwoContainer.setManaged(true);
+                }
+                
                 schemePageOne.setVisible(true);
                 schemePageOne.setFitHeight(600.0);
                 schemePageTwo.setVisible(true);
                 schemePageTwo.setFitHeight(600.0);
-                // Overlay'lerin boyutunu ImageView'lara göre ayarla
+                
+                // Overlay'lerin boyutunu ImageView'lara göre ayarla ve managed yap
                 if(schemePageOneOverlay != null) {
                     schemePageOneOverlay.setPrefWidth(schemePageOne.getFitWidth());
                     schemePageOneOverlay.setPrefHeight(schemePageOne.getFitHeight());
+                    schemePageOneOverlay.setManaged(true);
                 }
                 if(schemePageTwoOverlay != null) {
                     schemePageTwoOverlay.setPrefWidth(schemePageTwo.getFitWidth());
                     schemePageTwoOverlay.setPrefHeight(schemePageTwo.getFitHeight());
+                    schemePageTwoOverlay.setManaged(true);
                 }
                 // Icon Group'lara Scale transform ekle
                 if(schemePageOneIconGroup != null) {

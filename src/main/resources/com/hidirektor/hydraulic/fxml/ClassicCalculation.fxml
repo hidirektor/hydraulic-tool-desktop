@@ -531,10 +531,10 @@
                                                       <Insets bottom="12.0" left="12.0" right="12.0" top="12.0" />
                                                    </padding>
                                                    <children>
-                                                      <StackPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#handleSchemePageOneClick" onMouseEntered="#handleSchemePageOneEnter" onMouseExited="#handleSchemePageOneExit">
+                                                      <StackPane fx:id="schemePageOneContainer" managed="false" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#handleSchemePageOneClick" onMouseEntered="#handleSchemePageOneEnter" onMouseExited="#handleSchemePageOneExit" visible="false">
                                                          <children>
                                                             <ImageView fx:id="schemePageOne" fitHeight="0.0" fitWidth="400.0" pickOnBounds="true" preserveRatio="true" visible="false" />
-                                                            <AnchorPane fx:id="schemePageOneOverlay" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" mouseTransparent="false" opacity="0.0" prefHeight="600.0" prefWidth="400.0" style="-fx-background-color: rgba(0, 0, 0, 0.7);" visible="false" StackPane.alignment="CENTER">
+                                                            <AnchorPane fx:id="schemePageOneOverlay" managed="false" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" mouseTransparent="false" opacity="0.0" prefHeight="600.0" prefWidth="400.0" style="-fx-background-color: rgba(0, 0, 0, 0.7);" visible="false" StackPane.alignment="CENTER">
                                                                <children>
                                                                   <VBox alignment="CENTER" spacing="16.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                                                      <children>
@@ -558,10 +558,10 @@
                                                             </AnchorPane>
                                                          </children>
                                                       </StackPane>
-                                                      <StackPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#handleSchemePageTwoClick" onMouseEntered="#handleSchemePageTwoEnter" onMouseExited="#handleSchemePageTwoExit">
+                                                      <StackPane fx:id="schemePageTwoContainer" managed="false" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#handleSchemePageTwoClick" onMouseEntered="#handleSchemePageTwoEnter" onMouseExited="#handleSchemePageTwoExit" visible="false">
                                                          <children>
                                                             <ImageView fx:id="schemePageTwo" fitHeight="0.0" fitWidth="400.0" pickOnBounds="true" preserveRatio="true" visible="false" />
-                                                            <AnchorPane fx:id="schemePageTwoOverlay" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" mouseTransparent="false" opacity="0.0" prefHeight="600.0" prefWidth="400.0" style="-fx-background-color: rgba(0, 0, 0, 0.7);" visible="false" StackPane.alignment="CENTER">
+                                                            <AnchorPane fx:id="schemePageTwoOverlay" managed="false" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" mouseTransparent="false" opacity="0.0" prefHeight="600.0" prefWidth="400.0" style="-fx-background-color: rgba(0, 0, 0, 0.7);" visible="false" StackPane.alignment="CENTER">
                                                                <children>
                                                                   <VBox alignment="CENTER" spacing="16.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                                                      <children>
