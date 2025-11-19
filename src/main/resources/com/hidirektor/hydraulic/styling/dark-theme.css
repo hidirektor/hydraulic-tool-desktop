@@ -28,40 +28,40 @@
 }
 
 .colored-button:hover {
-    -fx-background-color: #ffffff;
+    -fx-background-color: #E8ECF0;
     -fx-background-radius: 8em;
-    -fx-text-fill: #060606; /* Metin rengi */
+    -fx-text-fill: #1E3A5F; /* Metin rengi */
 }
 
 .colored-button:pressed {
-    -fx-background-color: #ffffff;
-    -fx-text-fill: #060606;
+    -fx-background-color: #E8ECF0;
+    -fx-text-fill: #1E3A5F;
 }
 
 .colored-button:focused {
-    -fx-background-color: #ffffff;
+    -fx-background-color: #E8ECF0;
     -fx-border-color: transparent;
     -fx-background-radius: 8em;
-    -fx-text-fill: #060606;
+    -fx-text-fill: #1E3A5F;
 }
 
 .colored-button:hover .image-view {
-    -fx-effect: innershadow(gaussian, rgba(230, 95, 43, 1.0), 5, 5, 5, 5);
+    -fx-effect: innershadow(gaussian, rgba(37, 99, 235, 1.0), 5, 5, 5, 5);
 }
 
 .colored-button:pressed .image-view {
-    -fx-effect: innershadow(gaussian, rgba(230, 95, 43, 1.0), 5, 5, 5, 5);
+    -fx-effect: innershadow(gaussian, rgba(37, 99, 235, 1.0), 5, 5, 5, 5);
 }
 
 .colored-button:focused .image-view {
-    -fx-effect: innershadow(gaussian, rgba(230, 95, 43, 1.0), 5, 5, 5, 5);
+    -fx-effect: innershadow(gaussian, rgba(37, 99, 235, 1.0), 5, 5, 5, 5);
 }
 
 .search-field {
     -fx-background-color: #FFFFFF;
-    -fx-text-fill: #060606;
-    -fx-text-color: #060606;
-    -fx-prompt-text-fill: #060606;
+    -fx-text-fill: #1F2937;
+    -fx-text-color: #1F2937;
+    -fx-prompt-text-fill: #6B7280;
     -fx-background-radius: 100em;
     -fx-padding: 0 0 0 26px;
     -fx-font-family: 'TextaAltRegular';
@@ -73,7 +73,7 @@
 
 .search-field .content {
     -fx-alignment: center-left;
-    -fx-text-color: #060606;
+    -fx-text-color: #1F2937;
     -fx-font-family: 'TextaAltBold';
 }
 
@@ -117,7 +117,7 @@
 
 .label {
     -fx-font-family: 'TextaAltBold';
-    -fx-text-fill: #060606;
+    -fx-text-fill: #1F2937;
 }
 
 .scroll-pane {

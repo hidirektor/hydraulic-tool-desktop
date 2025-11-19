@@ -18,6 +18,7 @@ import javafx.scene.effect.ColorAdjust;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
@@ -27,6 +28,8 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Duration;
 
+import java.awt.Desktop;
+import java.net.URI;
 import java.net.URL;
 import java.util.*;
 
@@ -69,6 +72,9 @@ public class LandingController implements Initializable {
 
             addHoverEffect(closeIcon, minimizeIcon, expandIcon, contactUsButton);
             addHoverEffectToButtons(createClassicUnit, createPowerPackUnit);
+            
+            // LinkedIn linkini aç
+            contactUsButton.setOnMouseClicked(this::openLinkedIn);
 
             homeButton.fire();
             Utils.clickButton(homeButton, 1);
@@ -190,5 +196,20 @@ public class LandingController implements Initializable {
         clip.setArcWidth(30);
         clip.setArcHeight(30);
         root.setClip(clip);
+    }
+    
+    @FXML
+    private void openLinkedIn(MouseEvent event) {
+        try {
+            Desktop desktop = Desktop.getDesktop();
+            URI uri = new URI("https://www.linkedin.com/in/hidirektor/");
+            desktop.browse(uri);
+        } catch (Exception e) {
+            e.printStackTrace();
+            NotificationUtil.showNotification(sectionNameLabel.getScene().getWindow(), 
+                NotificationController.NotificationType.ALERT, 
+                "Hata", 
+                "LinkedIn profilini açarken bir hata oluştu: " + e.getMessage());
+        }
     }
 }

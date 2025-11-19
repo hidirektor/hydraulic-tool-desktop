@@ -1,13 +1,13 @@
 .export-button {
-    -fx-background-color: #FFFFFF;
+    -fx-background-color: #2563EB;
     -fx-background-radius: 16;
-    -fx-text-fill: #060606;
+    -fx-text-fill: #FFFFFF;
 }
 
 .freeze-button {
-    -fx-background-color: #FFFFFF;
+    -fx-background-color: #4B5563;
     -fx-background-radius: 16;
-    -fx-text-fill: #060606;
+    -fx-text-fill: #FFFFFF;
 }
 
 .delete-button {
@@ -30,10 +30,10 @@
 }
 
 .checkbox:selected .box {
-    -fx-background-color: rgba(230, 95, 43, 1.0);
+    -fx-background-color: #2563EB;
     -fx-background-radius: 6;
     -fx-background-insets: 1;
-    -fx-border-color: #eef2ff;
+    -fx-border-color: #2563EB;
     -fx-border-width: 2;
     -fx-border-radius: 4;
 }

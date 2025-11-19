@@ -9,24 +9,24 @@
 }
 
 .main-component {
-    -fx-background-color:  #EBDFD7;
+    -fx-background-color:  #F5F7FA;
 }
 
 .main-label {
-    -fx-text-fill: #060606;
+    -fx-text-fill: #1F2937;
     -fx-font-family: 'TextaAltBold';
     -fx-font-size: 20;
     -fx-font-weight: bold;
 }
 
 .description-label {
-    -fx-text-fill: #060606;
+    -fx-text-fill: #1F2937;
     -fx-font-family: 'TextaAltRegular';
     -fx-font-size: 20;
 }
 
 .component-title {
-    -fx-text-fill: #060606;
+    -fx-text-fill: #1F2937;
     -fx-font-family: 'TextaAltRegular';
     -fx-font-size: 16;
 }
@@ -38,9 +38,9 @@
 
 .order-field {
     -fx-background-color: #FFFFFF;
-    -fx-text-fill: #060606;
-    -fx-text-color: #060606;
-    -fx-prompt-text-fill: #060606;
+    -fx-text-fill: #1F2937;
+    -fx-text-color: #1F2937;
+    -fx-prompt-text-fill: #6B7280;
     -fx-background-radius: 100em;
     -fx-padding: 0 0 0 26px;
     -fx-font-family: 'TextaAltRegular';
@@ -48,7 +48,7 @@
 
 .order-field .content {
     -fx-alignment: center-left;
-    -fx-text-color: #060606;
+    -fx-text-color: #1F2937;
     -fx-font-family: 'TextaAltBold';
 }
 
@@ -79,7 +79,7 @@
 }
 
 .export-button {
-    -fx-background-color: #82D1F1;
+    -fx-background-color: #2563EB;
     -fx-background-radius: 6em;
-    -fx-text-fill: #F1F1F1;
+    -fx-text-fill: #FFFFFF;
 }
