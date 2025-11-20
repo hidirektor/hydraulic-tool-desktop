@@ -85,22 +85,74 @@
 }
 
 .result-text-area {
-    -fx-control-inner-background: #f9fafb;
+    -fx-control-inner-background: rgba(255, 255, 255, 0.34);
+    -fx-background-color: rgba(255, 255, 255, 0.34);
     -fx-font-family: 'TextaAltRegular';
     -fx-font-size: 14px;
     -fx-text-fill: #111827;
+    -fx-padding: 8px;
 }
 
 .result-text-area .scroll-bar:vertical {
     -fx-opacity: 0;
     -fx-pref-width: 0;
+    -fx-max-width: 0;
+    -fx-min-width: 0;
+    -fx-background-color: transparent;
+    -fx-background-insets: 0;
+    -fx-padding: 0;
 }
 
 .result-text-area .scroll-bar:horizontal {
     -fx-opacity: 0;
     -fx-pref-height: 0;
+    -fx-max-height: 0;
+    -fx-min-height: 0;
+    -fx-background-color: transparent;
+    -fx-background-insets: 0;
+    -fx-padding: 0;
 }
 
 .result-text-area .scroll-bar {
     -fx-opacity: 0;
+    -fx-background-color: transparent;
+    -fx-background-insets: 0;
+    -fx-padding: 0;
+    -fx-shape: "";
+}
+
+.result-text-area .scroll-bar .track {
+    -fx-opacity: 0;
+    -fx-background-color: transparent;
+    -fx-background-insets: 0;
+    -fx-padding: 0;
+}
+
+.result-text-area .scroll-bar .thumb {
+    -fx-opacity: 0;
+    -fx-background-color: transparent;
+    -fx-background-insets: 0;
+    -fx-padding: 0;
+}
+
+.result-text-area .scroll-bar .increment-button,
+.result-text-area .scroll-bar .decrement-button {
+    -fx-opacity: 0;
+    -fx-pref-width: 0;
+    -fx-pref-height: 0;
+    -fx-background-color: transparent;
+    -fx-background-insets: 0;
+    -fx-padding: 0;
+}
+
+.result-text-area .scroll-bar .increment-arrow,
+.result-text-area .scroll-bar .decrement-arrow {
+    -fx-opacity: 0;
+    -fx-pref-width: 0;
+    -fx-pref-height: 0;
+    -fx-shape: "";
+}
+
+.result-text-area .viewport {
+    -fx-background-color: rgba(255, 255, 255, 0.34);
 }

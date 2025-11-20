@@ -261,7 +261,7 @@
                                                 <Font name="TextaAlt-Regular" size="16.0" />
                                              </font>
                                           </Label>
-                                          <TextArea fx:id="resultTextArea" editable="false" maxHeight="150.0" maxWidth="800.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="800.0" styleClass="result-text-area" style="-fx-control-inner-background: #f9fafb; -fx-font-family: 'TextaAlt-Regular'; -fx-font-size: 14px; -fx-text-fill: #111827;" wrapText="true" />
+                                          <TextArea fx:id="resultTextArea" editable="false" maxHeight="150.0" maxWidth="800.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="800.0" styleClass="result-text-area" wrapText="true" />
                                           <ImageView fx:id="resultImage" fitHeight="600.0" fitWidth="800.0" pickOnBounds="true" preserveRatio="true" />
                                        </children>
                                     </VBox>

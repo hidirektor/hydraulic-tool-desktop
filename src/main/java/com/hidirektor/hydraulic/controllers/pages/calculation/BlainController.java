@@ -77,7 +77,19 @@ public class BlainController implements Initializable {
             // Tüm dropdown'ları başlangıçta disabled yap
             disableAllDropdowns();
             comboBoxListener();
+            // TextArea scrollbar'ını gizle
+            hideTextAreaScrollbars();
         });
+    }
+    
+    private void hideTextAreaScrollbars() {
+        if(resultTextArea != null) {
+            // Scrollbar'ları CSS ile gizle, ayrıca programatik olarak da gizle
+            resultTextArea.lookupAll(".scroll-bar").forEach(node -> {
+                node.setVisible(false);
+                node.setManaged(false);
+            });
+        }
     }
     
     private void disableAllDropdowns() {
