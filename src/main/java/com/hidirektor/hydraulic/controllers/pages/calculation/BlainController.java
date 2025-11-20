@@ -2,18 +2,25 @@ package com.hidirektor.hydraulic.controllers.pages.calculation;
 
 import com.hidirektor.hydraulic.Launcher;
 import com.hidirektor.hydraulic.controllers.notification.NotificationController;
+import com.hidirektor.hydraulic.utils.Model.Table.PartListTable;
 import com.hidirektor.hydraulic.utils.Notification.NotificationUtil;
 import com.hidirektor.hydraulic.utils.Process.UIProcess;
 import com.hidirektor.hydraulic.utils.System.SystemDefaults;
 import javafx.application.Platform;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.Clipboard;
+import javafx.scene.input.ClipboardContent;
 import javafx.scene.effect.ColorAdjust;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -24,10 +31,20 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Region;
 
+import java.io.FileOutputStream;
+import java.io.InputStream;
 import java.net.URL;
-import java.util.LinkedList;
+import java.util.*;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.ResourceBundle;
+import org.apache.poi.ss.usermodel.*;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.yaml.snakeyaml.Yaml;
+import com.google.common.collect.LinkedListMultimap;
+import com.google.common.collect.Multimap;
 
 public class BlainController implements Initializable {
 
@@ -35,13 +52,28 @@ public class BlainController implements Initializable {
     public Label blainCalculationTitle;
 
     @FXML
-    public AnchorPane orderSection, unitInfoSection, calculationResultSection, unitInfoSectionContainer, orderSectionContainer, calculationResultSectionContainer;
+    public AnchorPane orderSection, unitInfoSection, calculationResultSection, partListSection, unitInfoSectionContainer, orderSectionContainer, calculationResultSectionContainer, partListSectionContainer;
 
     @FXML
-    public Button orderSectionButton, unitInfoSectionButton, calculationResultSectionButton, clearButton;
+    public Button orderSectionButton, unitInfoSectionButton, calculationResultSectionButton, partListSectionButton, clearButton;
 
     @FXML
-    public ImageView orderSectionButtonImage, unitInfoSectionButtonImage, calculationResultSectionButtonImage, clearButtonImage;
+    public ImageView orderSectionButtonImage, unitInfoSectionButtonImage, calculationResultSectionButtonImage, partListSectionButtonImage, clearButtonImage;
+    
+    /*
+    Parça listesi componentleri
+     */
+    @FXML
+    private TableView<PartListTable> partListTable;
+
+    @FXML
+    private TableColumn<PartListTable, String> malzemeKodu;
+
+    @FXML
+    private TableColumn<PartListTable, String> secilenMalzeme;
+
+    @FXML
+    private TableColumn<PartListTable, String> adet;
 
     @FXML
     public ImageView resultImage;
@@ -59,7 +91,9 @@ public class BlainController implements Initializable {
     public ComboBox<String> motorComboBox, sogutmaComboBox, tablaKilitComboBox, 
                             pompaComboBox, valfTipiComboBox, yagTankiComboBox;
 
-    boolean isOrderSectionExpanded = false, isUnitInfoSectionExpanded = false, isCalculationResultSectionExpanded = false;
+    boolean isOrderSectionExpanded = false, isUnitInfoSectionExpanded = false, isCalculationResultSectionExpanded = false, isPartListSectionExpanded = false;
+    
+    public static String girilenSiparisNumarasi = "";
     
     private String secilenSogutma = null;
     private String secilenTablaKilit = null;
@@ -74,11 +108,14 @@ public class BlainController implements Initializable {
             addHoverEffectToButtons(clearButton);
             collapseAndExpandSection(orderSection, isOrderSectionExpanded, orderSectionButtonImage, true, false);
             collapseAndExpandSection(calculationResultSection, isCalculationResultSectionExpanded, calculationResultSectionButtonImage, false, true);
+            collapseAndExpandSection(partListSection, isPartListSectionExpanded, partListSectionButtonImage, false, true);
             // Tüm dropdown'ları başlangıçta disabled yap
             disableAllDropdowns();
             comboBoxListener();
             // TextArea scrollbar'ını gizle
             hideTextAreaScrollbars();
+            // Parça listesi tablosunu başlat
+            initializePartListTable();
         });
     }
     
@@ -118,6 +155,16 @@ public class BlainController implements Initializable {
         } else if(actionEvent.getSource().equals(calculationResultSectionButton)) {
             collapseAndExpandSection(calculationResultSection, isCalculationResultSectionExpanded, calculationResultSectionButtonImage, false, false);
             isCalculationResultSectionExpanded = !isCalculationResultSectionExpanded;
+        } else if(actionEvent.getSource().equals(partListSectionButton)) {
+            if(secilenYagTanki == null || secilenValfTipi == null || secilenTablaKilit == null) {
+                NotificationUtil.showNotification(partListSectionButton.getScene().getWindow(), 
+                    NotificationController.NotificationType.ALERT, 
+                    "Şema Hatası", 
+                    "Parça listesini görüntüleyebilmeniz için önce hesaplamayı bitirmeniz gerek.");
+                return;
+            }
+            collapseAndExpandSection(partListSection, isPartListSectionExpanded, partListSectionButtonImage, false, false);
+            isPartListSectionExpanded = !isPartListSectionExpanded;
         } else if(actionEvent.getSource().equals(clearButton)) {
             clearAllFields();
         }
@@ -163,6 +210,24 @@ public class BlainController implements Initializable {
     }
     
     @FXML
+    public void handlePartListSectionClick(MouseEvent event) {
+        // Sadece ana AnchorPane'e tıklandığında (buton veya içerik dışında) collapse/expand yap
+        if(event.getTarget() instanceof Button || event.getTarget() instanceof ImageView) {
+            return; // Buton veya ImageView'e tıklandıysa işlem yapma
+        }
+        // Ana AnchorPane'e tıklandığında collapse/expand yap
+        if(secilenYagTanki == null || secilenValfTipi == null || secilenTablaKilit == null) {
+            NotificationUtil.showNotification(partListSectionContainer.getScene().getWindow(), 
+                NotificationController.NotificationType.ALERT, 
+                "Şema Hatası", 
+                "Parça listesini görüntüleyebilmeniz için önce hesaplamayı bitirmeniz gerek.");
+            return;
+        }
+        collapseAndExpandSection(partListSection, isPartListSectionExpanded, partListSectionButtonImage, false, false);
+        isPartListSectionExpanded = !isPartListSectionExpanded;
+    }
+    
+    @FXML
     public void stopEventPropagation(MouseEvent event) {
         // İçerideki AnchorPane'e tıklandığında event propagation'ı durdur
         event.consume();
@@ -188,6 +253,10 @@ public class BlainController implements Initializable {
 
     private void comboBoxListener() {
         UIProcess.changeInputDataForTextField(siparisNumarasiField, newValue -> {
+            // Sipariş numarasını kaydet
+            if(newValue != null && !newValue.trim().isEmpty()) {
+                girilenSiparisNumarasi = newValue.trim();
+            }
             // Sipariş numarası girildiğinde Ünite Bilgileri bölümünü otomatik aç
             if(!isUnitInfoSectionExpanded) {
                 collapseAndExpandSection(unitInfoSection, isUnitInfoSectionExpanded, unitInfoSectionButtonImage, true, false);
@@ -494,6 +563,8 @@ public class BlainController implements Initializable {
                     collapseAndExpandSection(unitInfoSection, isUnitInfoSectionExpanded, unitInfoSectionButtonImage, false, true);
                     isUnitInfoSectionExpanded = false;
                 }
+                // Parça listesini otomatik yükle
+                createAndLoadPartListTable();
             } catch (Exception e) {
                 System.err.println("Görsel yüklenirken hata oluştu: " + e.getMessage());
                 if(resultImageTitle != null) {
@@ -754,6 +825,11 @@ public class BlainController implements Initializable {
             resultTextArea.clear();
         }
         
+        // Parça listesini temizle
+        if(partListTable != null) {
+            partListTable.getItems().clear();
+        }
+        
         // Tüm bölümleri collapse et
         if(isUnitInfoSectionExpanded) {
             collapseAndExpandSection(unitInfoSection, isUnitInfoSectionExpanded, unitInfoSectionButtonImage, false, true);
@@ -762,6 +838,10 @@ public class BlainController implements Initializable {
         if(isCalculationResultSectionExpanded) {
             collapseAndExpandSection(calculationResultSection, isCalculationResultSectionExpanded, calculationResultSectionButtonImage, false, true);
             isCalculationResultSectionExpanded = false;
+        }
+        if(isPartListSectionExpanded) {
+            collapseAndExpandSection(partListSection, isPartListSectionExpanded, partListSectionButtonImage, false, true);
+            isPartListSectionExpanded = false;
         }
         
         // Sipariş Bilgileri bölümünü expand et
@@ -798,6 +878,554 @@ public class BlainController implements Initializable {
                 }
             }
         }
+    }
+    
+    private void initializePartListTable() {
+        if(partListTable != null && malzemeKodu != null && secilenMalzeme != null && adet != null) {
+            malzemeKodu.setCellValueFactory(new PropertyValueFactory<>("malzemeKoduProperty"));
+            secilenMalzeme.setCellValueFactory(new PropertyValueFactory<>("malzemeAdiProperty"));
+            adet.setCellValueFactory(new PropertyValueFactory<>("malzemeAdetProperty"));
+        }
+    }
+    
+    @FXML
+    public void copyToClipboard() {
+        if(partListTable == null) return;
+        
+        StringBuilder clipboardString = new StringBuilder();
+        ObservableList<PartListTable> veriler = partListTable.getItems();
+
+        for (PartListTable veri : veriler) {
+            clipboardString.append(veri.getMalzemeKoduProperty()).append(" ");
+            clipboardString.append(veri.getMalzemeAdiProperty()).append(" ");
+            clipboardString.append(veri.getMalzemeAdetProperty()).append("\n");
+        }
+
+        ClipboardContent content = new ClipboardContent();
+        content.putString(clipboardString.toString());
+        Clipboard.getSystemClipboard().setContent(content);
+    }
+
+    @FXML
+    public void exportAsExcel() {
+        if(partListTable == null) return;
+        
+        ObservableList<PartListTable> veriler = partListTable.getItems();
+        String excelFileName = SystemDefaults.userDataExcelFolderPath + girilenSiparisNumarasi + ".xlsx";
+
+        Multimap<String, PartListTable> malzemeMultimap = LinkedListMultimap.create();
+        Multimap<String, PartListTable> filteredMultimap = LinkedListMultimap.create();
+        Multimap<String, PartListTable> duplicateMultimap = LinkedListMultimap.create();
+
+        for (PartListTable rowData : veriler) {
+            if (!(rowData.getMalzemeKoduProperty().equals("----") && rowData.getMalzemeAdetProperty().equals("----"))) {
+                String malzemeKey = rowData.getMalzemeKoduProperty();
+
+                filteredMultimap.put(malzemeKey, new PartListTable(
+                        rowData.getMalzemeKoduProperty(),
+                        rowData.getMalzemeAdiProperty(),
+                        rowData.getMalzemeAdetProperty()
+                ));
+            }
+        }
+
+        List<String> keysToRemove = new ArrayList<>();
+        Iterator<String> iterator = filteredMultimap.keySet().iterator();
+
+        while (iterator.hasNext()) {
+            String key = iterator.next();
+
+            // "000-00-00-000" ve "Veri Yok" olmayan key'ler için işlem yap
+            if (!key.equals("000-00-00-000") && !key.equals("Veri Yok")) {
+                int toplamAdet = 0;
+                String currentAdet = "";
+                String malzemeKodu = null;
+                String malzemeAdi = null;
+
+                // Aynı key'e sahip öğeleri topla
+                for (PartListTable data : filteredMultimap.get(key)) {
+                    if (data.getMalzemeAdetProperty() != null && !data.getMalzemeAdetProperty().isEmpty() && !data.getMalzemeAdetProperty().contains("Lt")) {
+                        try {
+                            toplamAdet += Integer.parseInt(data.getMalzemeAdetProperty());
+                        } catch (NumberFormatException e) {
+                            // Parse edilemezse currentAdet'e at
+                            currentAdet = data.getMalzemeAdetProperty();
+                        }
+                    } else {
+                        currentAdet = data.getMalzemeAdetProperty();
+                    }
+                    if (malzemeKodu == null) {
+                        malzemeKodu = data.getMalzemeKoduProperty();
+                    }
+                    if (malzemeAdi == null) {
+                        malzemeAdi = data.getMalzemeAdiProperty();
+                    }
+                }
+
+                // duplicateMultimap'e, key ve toplam adet bilgisi ile veri ekle
+                PartListTable duplicateData;
+                if(toplamAdet > 0) {
+                    duplicateData = new PartListTable(malzemeKodu, malzemeAdi, String.valueOf(toplamAdet));
+                } else {
+                    duplicateData = new PartListTable(malzemeKodu, malzemeAdi, currentAdet);
+                }
+                duplicateMultimap.put(key, duplicateData);
+
+                // Silinecek anahtarı işaretle
+                keysToRemove.add(key);
+            }
+        }
+
+        for (String key : keysToRemove) {
+            filteredMultimap.removeAll(key);
+        }
+
+        // filteredMultimap'teki elemanları sırayla ekle
+        for (String key : filteredMultimap.keySet()) {
+            for (PartListTable data : filteredMultimap.get(key)) {
+                malzemeMultimap.put(key, data);
+            }
+        }
+
+        // duplicateMultimap'teki elemanları sırayla ekle
+        for (String key : duplicateMultimap.keySet()) {
+            for (PartListTable data : duplicateMultimap.get(key)) {
+                malzemeMultimap.put(key, data);
+            }
+        }
+
+        try (Workbook workbook = new XSSFWorkbook()) {
+            Sheet sheet = workbook.createSheet("Malzeme Listesi");
+
+            Row headerRow = sheet.createRow(0);
+            headerRow.createCell(0).setCellValue("Malzeme Kodu");
+            headerRow.createCell(1).setCellValue("Seçilen Malzeme");
+            headerRow.createCell(2).setCellValue("Adet");
+
+            int excelRowIndex = 1;
+            for (PartListTable rowData : malzemeMultimap.values()) {
+                Row row = sheet.createRow(excelRowIndex++);
+                row.createCell(0).setCellValue(rowData.getMalzemeKoduProperty());
+                row.createCell(1).setCellValue(rowData.getMalzemeAdiProperty());
+                row.createCell(2).setCellValue(rowData.getMalzemeAdetProperty());
+            }
+
+            try (FileOutputStream fileOut = new FileOutputStream(excelFileName)) {
+                workbook.write(fileOut);
+                System.out.println("Excel dosyası başarıyla oluşturuldu: " + excelFileName);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            NotificationUtil.showNotification(partListSectionButton.getScene().getWindow(), 
+                NotificationController.NotificationType.ALERT, 
+                "Hata", 
+                "Excel dosyası oluşturulurken bir hata oluştu: " + e.getMessage());
+        }
+    }
+    
+    private void createAndLoadPartListTable() {
+        if(partListTable == null) return;
+        
+        // Parça listesini temizle
+        partListTable.getItems().clear();
+        
+        // Sipariş numarasını kaydet
+        if(siparisNumarasiField != null && siparisNumarasiField.getText() != null && !siparisNumarasiField.getText().trim().isEmpty()) {
+            girilenSiparisNumarasi = siparisNumarasiField.getText().trim();
+        }
+        
+        // Parça listesini yükle
+        // Bu metodlar blain_parts.yml dosyasından verileri okuyacak
+        // Şimdilik placeholder metodlar ekleyeceğim
+        loadMotorParts();
+        loadPompaParts();
+        loadDefaultParts();
+        loadValfParts();
+        loadTankParts();
+        loadTablaSogutmaParts();
+        loadPompaValfBlokParts();
+    }
+    
+    private void loadMotorParts() {
+        if(motorComboBox == null || motorComboBox.getValue() == null) return;
+        
+        String selectedMotor = motorComboBox.getValue().trim();
+        String blainPartsPath = "/assets/data/programDatabase/blain_parts.yml";
+        
+        try {
+            InputStream input = Launcher.class.getResourceAsStream(blainPartsPath);
+            if(input == null) return;
+            
+            Yaml yaml = new Yaml();
+            Map<String, Object> yamlData = yaml.load(input);
+            Map<String, Map<String, Object>> motorData = (Map<String, Map<String, Object>>) yamlData.get("motor");
+            
+            if(motorData != null) {
+                // Motor listesinde seçilen motorun index'ini bul
+                LinkedList<String> motorList = SystemDefaults.getLocalHydraulicData().blainMotorMap.get("0");
+                if(motorList != null) {
+                    int motorIndex = motorList.indexOf(selectedMotor);
+                    if(motorIndex >= 0) {
+                        String motorKey = String.valueOf(motorIndex);
+                        Map<String, Object> motorPartsData = motorData.get(motorKey);
+                        if(motorPartsData != null) {
+                            Map<String, Object> parts = (Map<String, Object>) motorPartsData.get("parts");
+                            if(parts != null) {
+                                generalLoadFuncBlain(parts, "Motor Parçaları");
+                            }
+                        }
+                    }
+                }
+            }
+            input.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    
+    private void loadPompaParts() {
+        if(pompaComboBox == null || pompaComboBox.getValue() == null) return;
+        
+        String selectedPompa = pompaComboBox.getValue().trim();
+        String blainPartsPath = "/assets/data/programDatabase/blain_parts.yml";
+        
+        try {
+            InputStream input = Launcher.class.getResourceAsStream(blainPartsPath);
+            if(input == null) return;
+            
+            Yaml yaml = new Yaml();
+            Map<String, Object> yamlData = yaml.load(input);
+            Map<String, Map<String, Object>> pompaData = (Map<String, Map<String, Object>>) yamlData.get("pompa");
+            
+            if(pompaData != null) {
+                // Pompa listesinde seçilen pompanın index'ini bul
+                LinkedList<String> pompaList = SystemDefaults.getLocalHydraulicData().blainPompaMap.get("0");
+                if(pompaList != null) {
+                    int pompaIndex = pompaList.indexOf(selectedPompa);
+                    if(pompaIndex >= 0) {
+                        String pompaKey = String.valueOf(pompaIndex);
+                        Map<String, Object> pompaPartsData = pompaData.get(pompaKey);
+                        if(pompaPartsData != null) {
+                            Map<String, Object> parts = (Map<String, Object>) pompaPartsData.get("parts");
+                            if(parts != null) {
+                                generalLoadFuncBlain(parts, "Pompa Parçaları");
+                            }
+                        }
+                    }
+                }
+            }
+            input.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    
+    private void loadDefaultParts() {
+        // Default parçaları yükle (basınç şalteri hariç)
+        String blainPartsPath = "/assets/data/programDatabase/blain_parts.yml";
+        
+        try {
+            InputStream input = Launcher.class.getResourceAsStream(blainPartsPath);
+            if(input == null) return;
+            
+            Yaml yaml = new Yaml();
+            Map<String, Object> yamlData = yaml.load(input);
+            Map<String, Map<String, Object>> defaultData = (Map<String, Map<String, Object>>) yamlData.get("default_parts");
+            
+            if(defaultData != null) {
+                Map<String, Object> defaultPartsData = defaultData.get("0");
+                if(defaultPartsData != null) {
+                    Map<String, Object> parts = (Map<String, Object>) defaultPartsData.get("parts");
+                    if(parts != null) {
+                        // Basınç şalterini hariç tut
+                        Map<String, Object> filteredParts = new HashMap<>();
+                        for(Map.Entry<String, Object> entry : parts.entrySet()) {
+                            Map<String, String> partDetails = (Map<String, String>) entry.getValue();
+                            String malzemeKodu = partDetails.get("malzemeKodu");
+                            // Basınç şalteri kodunu kontrol et (150-51-10-454)
+                            if(malzemeKodu != null && !malzemeKodu.equals("150-51-10-454")) {
+                                filteredParts.put(entry.getKey(), entry.getValue());
+                            }
+                        }
+                        generalLoadFuncBlain(filteredParts, "Standart Parçalar");
+                    }
+                }
+            }
+            input.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    
+    private void loadValfParts() {
+        if(valfTipiComboBox == null || valfTipiComboBox.getValue() == null) return;
+        
+        String selectedValf = valfTipiComboBox.getValue().trim();
+        String blainPartsPath = "/assets/data/programDatabase/blain_parts.yml";
+        
+        try {
+            InputStream input = Launcher.class.getResourceAsStream(blainPartsPath);
+            if(input == null) return;
+            
+            Yaml yaml = new Yaml();
+            Map<String, Object> yamlData = yaml.load(input);
+            Map<String, Map<String, Object>> valfData = (Map<String, Map<String, Object>>) yamlData.get("valf");
+            
+            if(valfData != null) {
+                // Valf tipine göre index belirle
+                String valfKey = null;
+                if(selectedValf.equals("KV1S")) {
+                    valfKey = "0";
+                } else if(selectedValf.equals("KV2S")) {
+                    valfKey = "1";
+                } else if(selectedValf.equals("EV100 1\"1/2")) {
+                    valfKey = "2";
+                } else if(selectedValf.equals("EV100 3/4\"")) {
+                    valfKey = "3";
+                }
+                
+                if(valfKey != null) {
+                    Map<String, Object> valfPartsData = valfData.get(valfKey);
+                    if(valfPartsData != null) {
+                        Map<String, Object> parts = (Map<String, Object>) valfPartsData.get("parts");
+                        if(parts != null) {
+                            generalLoadFuncBlain(parts, "Valf Parçaları");
+                        }
+                    }
+                }
+            }
+            input.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    
+    private void loadTankParts() {
+        if(yagTankiComboBox == null || yagTankiComboBox.getValue() == null) return;
+        
+        String selectedTank = yagTankiComboBox.getValue().trim();
+        String blainPartsPath = "/assets/data/programDatabase/blain_parts.yml";
+        
+        try {
+            InputStream input = Launcher.class.getResourceAsStream(blainPartsPath);
+            if(input == null) return;
+            
+            Yaml yaml = new Yaml();
+            Map<String, Object> yamlData = yaml.load(input);
+            Map<String, Map<String, Object>> tankData = (Map<String, Map<String, Object>>) yamlData.get("tank");
+            
+            if(tankData != null) {
+                // Tank tipine göre index belirle
+                String tankKey = null;
+                if(selectedTank.equals("BTH 75")) {
+                    tankKey = "0";
+                } else if(selectedTank.equals("BTH 150")) {
+                    tankKey = "1";
+                } else if(selectedTank.equals("BTH 250")) {
+                    tankKey = "2";
+                } else if(selectedTank.equals("BTH 400")) {
+                    tankKey = "3";
+                } else if(selectedTank.equals("BTH 600")) {
+                    tankKey = "4";
+                } else if(selectedTank.equals("BTH 1000")) {
+                    tankKey = "5";
+                }
+                
+                if(tankKey != null) {
+                    Map<String, Object> tankPartsData = tankData.get(tankKey);
+                    if(tankPartsData != null) {
+                        Map<String, Object> parts = (Map<String, Object>) tankPartsData.get("parts");
+                        if(parts != null) {
+                            generalLoadFuncBlain(parts, "Tank Parçaları");
+                        }
+                    }
+                }
+            }
+            input.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    
+    private void loadTablaSogutmaParts() {
+        if(secilenTablaKilit == null || secilenSogutma == null) return;
+        
+        String blainPartsPath = "/assets/data/programDatabase/blain_parts.yml";
+        
+        try {
+            InputStream input = Launcher.class.getResourceAsStream(blainPartsPath);
+            if(input == null) return;
+            
+            Yaml yaml = new Yaml();
+            Map<String, Object> yamlData = yaml.load(input);
+            Map<String, Map<String, Object>> tablaSogutmaData = (Map<String, Map<String, Object>>) yamlData.get("tabla-sogutma");
+            
+            if(tablaSogutmaData != null) {
+                // Tabla kilit ve soğutma kombinasyonuna göre index belirle
+                String key = null;
+                if(secilenTablaKilit.equals("Var") && secilenSogutma.equals("Var")) {
+                    key = "0";
+                } else if(secilenTablaKilit.equals("Var") && secilenSogutma.equals("Yok")) {
+                    key = "1";
+                } else if(secilenTablaKilit.equals("Yok") && secilenSogutma.equals("Var")) {
+                    key = "2";
+                }
+                // Tabla kilit Yok ve Soğutma Yok durumu için parça yok
+                
+                if(key != null) {
+                    Map<String, Object> tablaSogutmaPartsData = tablaSogutmaData.get(key);
+                    if(tablaSogutmaPartsData != null) {
+                        Map<String, Object> parts = (Map<String, Object>) tablaSogutmaPartsData.get("parts");
+                        if(parts != null) {
+                            generalLoadFuncBlain(parts, "Tabla Kilit ve Soğutma Parçaları");
+                        }
+                    }
+                }
+            }
+            input.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    
+    private void loadPompaValfBlokParts() {
+        if(secilenPompa == null || secilenValfTipi == null) return;
+        
+        String blainPartsPath = "/assets/data/programDatabase/blain_parts.yml";
+        
+        try {
+            InputStream input = Launcher.class.getResourceAsStream(blainPartsPath);
+            if(input == null) return;
+            
+            Yaml yaml = new Yaml();
+            Map<String, Object> yamlData = yaml.load(input);
+            Map<String, Map<String, Object>> pompaValfBlokData = (Map<String, Map<String, Object>>) yamlData.get("pompa-valf-blok");
+            
+            if(pompaValfBlokData != null) {
+                // Pompa ve valf kombinasyonuna göre blok seç
+                List<String> keys = determinePompaValfBlokKeys(secilenPompa, secilenValfTipi);
+                
+                if(keys != null && !keys.isEmpty()) {
+                    for(String key : keys) {
+                        Map<String, Object> blokPartsData = pompaValfBlokData.get(key);
+                        if(blokPartsData != null) {
+                            Map<String, Object> parts = (Map<String, Object>) blokPartsData.get("parts");
+                            if(parts != null) {
+                                generalLoadFuncBlain(parts, "Pompa-Valf Blok Parçaları");
+                            }
+                        }
+                    }
+                }
+            }
+            input.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    
+    private List<String> determinePompaValfBlokKeys(String pompa, String valf) {
+        List<String> keys = new ArrayList<>();
+        
+        // Pompa kapasitesini parse et
+        double pompaKapasitesi = 0;
+        try {
+            // Pompa adından kapasiteyi çıkar (örn: "PAVE025#4A 21,7 LT" -> 21.7)
+            if(pompa.contains("21,7") || pompa.contains("21.7")) {
+                pompaKapasitesi = 21.7;
+            } else if(pompa.contains("28")) {
+                pompaKapasitesi = 28;
+            } else if(pompa.contains("33,4") || pompa.contains("33.4")) {
+                pompaKapasitesi = 33.4;
+            } else if(pompa.contains("38")) {
+                pompaKapasitesi = 38;
+            } else if(pompa.contains("45,6") || pompa.contains("45.6")) {
+                pompaKapasitesi = 45.6;
+            } else if(pompa.contains("53,7") || pompa.contains("53.7")) {
+                pompaKapasitesi = 53.7;
+            } else if(pompa.contains("71,6") || pompa.contains("71.6")) {
+                pompaKapasitesi = 71.6;
+            } else if(pompa.contains("98,9") || pompa.contains("98.9")) {
+                pompaKapasitesi = 98.9;
+            } else if(pompa.contains("121")) {
+                pompaKapasitesi = 121;
+            } else if(pompa.contains("145")) {
+                pompaKapasitesi = 145;
+            } else if(pompa.contains("177,9") || pompa.contains("177.9")) {
+                pompaKapasitesi = 177.9;
+            } else if(pompa.contains("210,5") || pompa.contains("210.5")) {
+                pompaKapasitesi = 210.5;
+            } else if(pompa.contains("247,4") || pompa.contains("247.4")) {
+                pompaKapasitesi = 247.4;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        
+        // Valf tipine ve pompa kapasitesine göre blok key'lerini belirle
+        if(valf.equals("KV1S")) {
+            if(pompaKapasitesi > 0 && pompaKapasitesi <= 40) {
+                keys.add("0"); // KV1S / 20-40
+            } else if(pompaKapasitesi > 40 && pompaKapasitesi <= 80) {
+                keys.add("1"); // KV1S / 40-80
+            } else if(pompaKapasitesi == 40) {
+                keys.add("8"); // KV1S / 40 (Eski model)
+            }
+        } else if(valf.equals("KV2S")) {
+            if(pompaKapasitesi > 0 && pompaKapasitesi <= 40) {
+                keys.add("2"); // KV2S / 20-40
+            } else if(pompaKapasitesi > 40 && pompaKapasitesi <= 80) {
+                keys.add("3"); // KV2S / 40-80
+            } else if(pompaKapasitesi > 80) {
+                keys.add("4"); // KV2S / 80+
+            }
+        } else if(valf.equals("EV100 3/4\"")) {
+            if(pompaKapasitesi >= 80 && pompaKapasitesi < 100) {
+                keys.add("5"); // EV100 3/4 — 80-99 litre
+            } else if(pompaKapasitesi >= 100 && pompaKapasitesi < 125) {
+                keys.add("6"); // EV100 3/4 — 100-124 litre
+            }
+        } else if(valf.equals("EV100 1\"1/2")) {
+            if(pompaKapasitesi >= 125) {
+                // EV100 1.5" için key 7'de 3 blok var (parts içinde '0', '1', '2')
+                keys.add("7"); // BLOK 1.5'' EV 100 / 1, 2, 3 / +KS + BG (hepsi key 7'de)
+            }
+        }
+        
+        return keys.isEmpty() ? null : keys;
+    }
+    
+    private void generalLoadFuncBlain(Map<String, Object> parts, String separatorText) {
+        if(partListTable == null) return;
+        
+        PartListTable separatorData = new PartListTable("----", separatorText, "----");
+        partListTable.getItems().add(separatorData);
+
+        for (Map.Entry<String, Object> entry : parts.entrySet()) {
+            Map<String, String> partDetails = (Map<String, String>) entry.getValue();
+            
+            String malzemeKodu = partDetails.get("malzemeKodu");
+            String malzemeAdi = partDetails.get("malzemeAdi");
+            String malzemeAdet = partDetails.get("malzemeAdet");
+
+            PartListTable data = new PartListTable(malzemeKodu, malzemeAdi, malzemeAdet);
+            partListTable.getItems().add(data);
+        }
+
+        partListTable.setRowFactory(tv -> new javafx.scene.control.TableRow<PartListTable>() {
+            @Override
+            protected void updateItem(PartListTable item, boolean empty) {
+                super.updateItem(item, empty);
+                if (item == null || empty) {
+                    setStyle("");
+                } else {
+                    if (item.getMalzemeKoduProperty().equals("----") && item.getMalzemeAdetProperty().equals("----")) {
+                        setStyle("-fx-background-color: #F9F871; -fx-text-fill: black;");
+                    } else {
+                        setStyle("");
+                    }
+                }
+            }
+        });
     }
 }
 

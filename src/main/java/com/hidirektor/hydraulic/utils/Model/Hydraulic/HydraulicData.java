@@ -87,6 +87,17 @@ public class HydraulicData {
      */
 
     /*
+    Blain Parça Listesi
+     */
+    public Map<String, Map<String, Map<String, String>>> blainParcaMotor = new HashMap<>();
+    public Map<String, Map<String, Map<String, String>>> blainParcaPompa = new HashMap<>();
+    public Map<String, Map<String, Map<String, String>>> blainParcaValf = new HashMap<>();
+    public Map<String, Map<String, Map<String, String>>> blainParcaTank = new HashMap<>();
+    public Map<String, Map<String, Map<String, String>>> blainParcaTablaSogutma = new HashMap<>();
+    public Map<String, Map<String, Map<String, String>>> blainParcaPompaValfBlok = new HashMap<>();
+    public Map<String, Map<String, Map<String, String>>> blainParcaDefault = new HashMap<>();
+
+    /*
     Classic Parça Listesi
      */
     public Map<String, LinkedList<String>> classicParcaMotor = new HashMap<>();
