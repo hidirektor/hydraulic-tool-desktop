@@ -117,9 +117,24 @@ public class PDFUtil {
                     document.close();
                     writer.close();
                     reader.close();
+                } else if(unitType != null && unitType.equals("Blain")) {
+                    // Blain için: sadece PDF'i ikinci sayfaya ekle, metin ekleme
+                    PdfReader reader = new PdfReader(Objects.requireNonNull(Launcher.class.getResource(pdfFilePath)));
+
+                    document.newPage();
+
+                    PdfImportedPage importedPage = writer.getImportedPage(reader, 1);
+                    PdfContentByte cb = writer.getDirectContent();
+
+                    cb.addTemplate(importedPage, 0, 0);
+
+                    document.close();
+                    writer.close();
+                    reader.close();
                 } else {
+                    // PowerPack için
                     String motorText = "AC Motor";
-                    if(PowerPackController.secilenMotorTipi.contains("DC")) {
+                    if(PowerPackController.secilenMotorTipi != null && PowerPackController.secilenMotorTipi.contains("DC")) {
                         motorText = "DC Motor";
                     }
 

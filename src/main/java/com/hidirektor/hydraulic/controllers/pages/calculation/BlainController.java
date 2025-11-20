@@ -1776,6 +1776,15 @@ public class BlainController implements Initializable {
             return;
         }
         
+        // Hesaplama sonucu görseli yüklenmiş mi kontrol et
+        if(resultImage == null || resultImage.getImage() == null) {
+            NotificationUtil.showNotification(orderSectionButton.getScene().getWindow(), 
+                NotificationController.NotificationType.ALERT, 
+                "Şema Hatası", 
+                "Lütfen önce hesaplamayı tamamlayın.");
+            return;
+        }
+        
         // PDF dosya adını ve proje kodunu al
         String[] pdfInfo = getBlainPDFAndProjectCode();
         if(pdfInfo == null) {
@@ -1794,36 +1803,33 @@ public class BlainController implements Initializable {
         System.out.println("PDF Şema Yolu: " + pdfPath);
         System.out.println("Proje Kodu: " + projectCode);
         
-        // PDF'i yükle ve görüntüle
+        // Motor ve pompa bilgilerini hazırla
+        String motorDegeri = motorComboBox != null && motorComboBox.getValue() != null ? motorComboBox.getValue() : "";
+        String pompaDegeri = secilenPompa != null ? secilenPompa : "";
+        
+        // PDF üret (ilk sayfa: logo + parametreler + şema, ikinci sayfa: seçilen PDF)
+        PDFUtil.pdfGenerator("/assets/images/logos/onderlift-logo.png", 
+            calculationResultSection, 
+            null, 
+            pdfPath, 
+            girilenSiparisNumarasi, 
+            projectCode, 
+            motorDegeri, 
+            pompaDegeri, 
+            "Blain", 
+            false); // isKlasik = false, çünkü Blain için özel mantık gerekebilir
+        
+        // PDF üretildikten sonra "Dosyada Göster" butonunu görünür yap
+        if(openPDFInExplorerButton != null) {
+            openPDFInExplorerButton.setVisible(true);
+            openPDFInExplorerButton.setManaged(true);
+        }
+        
+        // PDF sayfalarını ImageView'lara yükle
         Task<Void> task = new Task<>() {
             @Override
             protected Void call() {
-                try {
-                    // PDF dosyasını resources'dan yükle
-                    InputStream pdfStream = Launcher.class.getResourceAsStream(pdfPath);
-                    if(pdfStream == null) {
-                        throw new IOException("PDF dosyası bulunamadı: " + pdfPath);
-                    }
-                    
-                    // Geçici dosya oluştur
-                    java.io.File tempFile = java.io.File.createTempFile("blain_scheme_", ".pdf");
-                    tempFile.deleteOnExit();
-                    
-                    // PDF'i geçici dosyaya kopyala
-                    try (java.io.FileOutputStream fos = new java.io.FileOutputStream(tempFile)) {
-                        byte[] buffer = new byte[1024];
-                        int bytesRead;
-                        while ((bytesRead = pdfStream.read(buffer)) != -1) {
-                            fos.write(buffer, 0, bytesRead);
-                        }
-                    }
-                    
-                    // PDF sayfalarını ImageView'lara yükle
-                    PDFUtil.loadPDFPagesToImageViews(tempFile.getAbsolutePath(), schemePageOne, schemePageTwo);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                    throw new RuntimeException("PDF yüklenirken hata oluştu: " + e.getMessage(), e);
-                }
+                PDFUtil.loadPDFPagesToImageViews(SystemDefaults.userDataPDFFolderPath + girilenSiparisNumarasi + ".pdf", schemePageOne, schemePageTwo);
                 return null;
             }
         };
