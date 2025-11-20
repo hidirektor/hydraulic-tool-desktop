@@ -1,0 +1,863 @@
+motor:
+  '0': #1.5 Kw 230V 50Hz
+    parts:
+      '0':
+        malzemeKodu: "150-52-13-719"
+        malzemeAdi: "ELEKTRİK MOTORU 1.5kw-230-50Hz-Ø14mm-1P (BLAIN)"
+        malzemeAdet: "1"
+  '1': #SBBL010 1,5KW Ø14
+    parts:
+      '0':
+        malzemeKodu: "150-52-13-720"
+        malzemeAdi: "ELEKTRİK MOTORU SBBL010 1,5KW Ø14mm (BLAIN)"
+        malzemeAdet: "1"
+  '2': #SBBL100 2,9KW Ø14
+    parts:
+      '0':
+        malzemeKodu: "150-52-13-709"
+        malzemeAdi: "ELEKTRİK MOTORU SBBL100 2,9KW Ø14 MM (BLAIN)"
+        malzemeAdet: "1"
+  '3': #SBBL153 4,7KW Ø19
+    parts:
+      '0':
+        malzemeKodu: "150-52-13-704"
+        malzemeAdi: "ELEKTRİK MOTORU SBBL153 4,7KW Ø19 MM (BLAIN)"
+        malzemeAdet: "1"
+  '4': #SBBL163 5,8 KW Ø19
+    parts:
+      '0':
+        malzemeKodu: "150-52-13-705"
+        malzemeAdi: "ELEKTRİK MOTORU SBBL163 5,8 KW Ø19 MM (BLAIN)"
+        malzemeAdet: "1"
+  '5': #SBBL173 7,7 KW Ø19
+    parts:
+      '0':
+        malzemeKodu: "150-52-13-708"
+        malzemeAdi: "ELEKTRİK MOTORU SBBL173 7,7 KW Ø19 MM (BLAIN)"
+        malzemeAdet: "1"
+  '6': #SBBL183 9,5 KW Ø19
+    parts:
+      '0':
+        malzemeKodu: "150-52-13-713"
+        malzemeAdi: "ELEKTRİK MOTORU SBBL183 9,5 KW Ø19 MM (BLAIN)"
+        malzemeAdet: "1"
+  '7': #SBBL193 11 KW Ø19
+    parts:
+      '0':
+        malzemeKodu: "150-52-13-716"
+        malzemeAdi: "ELEKTRİK MOTORU SBBL193 11 KW Ø19 MM (BLAIN)"
+        malzemeAdet: "1"
+  '8': #SBBL203 12,5 KW Ø19
+    parts:
+      '0':
+        malzemeKodu: "150-52-13-721"
+        malzemeAdi: "ELEKTRİK MOTORU SBBL203 12,5 KW Ø19 MM (BLAIN)"
+        malzemeAdet: "1"
+  '9': #SBBL212 24KW Ø19
+    parts:
+      '0':
+        malzemeKodu: "150-52-13-714"
+        malzemeAdi: "ELEKTRİK MOTORU SBBL212 24KW Ø19 MM (BLAIN)"
+        malzemeAdet: "1"
+  '10': #SBBL253 14,7 KW Ø19
+    parts:
+      '0':
+        malzemeKodu: "150-52-13-707"
+        malzemeAdi: "ELEKTRİK MOTORU SBBL253 14,7 KW Ø19 MM (BLAIN)"
+        malzemeAdet: "1"
+  '11': #SBBL263 18,4 KW Ø19
+    parts:
+      '0':
+        malzemeKodu: "150-52-13-703"
+        malzemeAdi: "ELEKTRİK MOTORU SBBL263 18,4 KW Ø19 MM (BLAIN)"
+        malzemeAdet: "1"
+  '12': #SBBL275 22 KW Ø19
+    parts:
+      '0':
+        malzemeKodu: "150-52-13-715"
+        malzemeAdi: "ELEKTRİK MOTORU SBBL275 22 KW Ø19 MM (BLAIN)"
+        malzemeAdet: "1"
+  '13': #SBBL926 14.7KW Ø32
+    parts:
+      '0':
+        malzemeKodu: "150-52-13-718"
+        malzemeAdi: "ELEKTRİK MOTORU SBBL926 14.7KW Ø32 MM (BLAIN)"
+        malzemeAdet: "1"
+  '14': #SBBL934 18.4 KW Ø32
+    parts:
+      '0':
+        malzemeKodu: "150-52-13-717"
+        malzemeAdi: "ELEKTRİK MOTORU SBBL934 18.4 KW Ø32 MM (BLAIN)"
+        malzemeAdet: "1"
+pompa:
+  '0': #PAVE025#4A 21,7 LT
+    parts:
+      '0':
+        malzemeKodu: "150-51-01-419"
+        malzemeAdi: "POMPA SEIM EU 25A_HL 20l/m Ø14mm (BLAIN) / GR25 SM 20L 14*155 / PAVE025#4A 21,7 LT"
+        malzemeAdet: "1"
+  '1': #PA025#6B 28 LT
+    parts:
+      '0':
+        malzemeKodu: "150-51-01-423"
+        malzemeAdi: "POMPA SEIM EU 25B 25 l/m Ø19 MM (BLAIN) / GR25 SM 25L 19*155 / PA025#6B 28 LT"
+        malzemeAdet: "1"
+  '2': #PA025#6C 33,4 LT
+    parts:
+      '0':
+        malzemeKodu: "150-51-01-413"
+        malzemeAdi: "POMPA SEIM EU 25C 33 I/m Ø19 MM (BLAIN) / GR25 SM 30L 19*155 / PA025#6C 33,4 LT"
+        malzemeAdet: "1"
+  '3': #PA029#6A 38 LT
+    parts:
+      '0':
+        malzemeKodu: "150-51-01-409"
+        malzemeAdi: "POMPA SEIM EU 29A 35 l/min Ø19mm (BLAIN) / GR32 SM 35L 19*155 / PA029#6A 38 LT"
+        malzemeAdet: "1"
+  '4': #PA029#6B 45,6 LT
+    parts:
+      '0':
+        malzemeKodu: "150-51-01-424"
+        malzemeAdi: "POMPA SEIM EU 29B 43 l/m Ø19 MM (BLAIN) / GR32 SM 45 19*155 / PA029#6B 45,6 LT"
+        malzemeAdet: "1"
+  '5': #PA032#4A 53,7 LT
+    parts:
+      '0':
+        malzemeKodu: "150-51-01-425"
+        malzemeAdi: "POMPA SEIM EU 32A 55 l/m Ø19 MM (BLAIN) / GR32 SM 55 19*155 / PA032#4A 53,7 LT"
+        malzemeAdet: "1"
+  '6': #PA032#4B 71,6 LT
+    parts:
+      '0':
+        malzemeKodu: "150-51-01-433"
+        malzemeAdi: "POMPA SEIM EU 32B 75 l/mim Ø19 MM (BLAIN) / GR32 SM 75 19*155 / PA032#4B 71,6 LT"
+        malzemeAdet: "1"
+  '7': #PA40#4A 98,9 LT
+    parts:
+      '0':
+        malzemeKodu: "150-51-01-434"
+        malzemeAdi: "POMPA SEIM EU 40A 100 l/min Ø19 MM (BLAIN) / GR40 SM 100L 19*155 / PA40#4A 98,9 LT"
+        malzemeAdet: "1"
+  '8': #PA40#4B 121 LT
+    parts:
+      '0':
+        malzemeKodu: "150-51-01-435"
+        malzemeAdi: "POMPA SEIM EU 40B 125 l/min Ø19 MM (BLAIN) / GR40 SM 125L 19*155 / PA40#4B 121 LT"
+        malzemeAdet: "1"
+  '9': #PA40#4C 145 LT
+    parts:
+      '0':
+        malzemeKodu: "150-51-01-414"
+        malzemeAdi: "POMPA SEIM EU 40C 150 l/min Ø19mm  Ø19 MM (BLAIN) / GR40 SM 150L 19*155 / PA40#4C 145 LT"
+        malzemeAdet: "1"
+  '10': #PAP045#4A 177,9 LT
+    parts:
+      '0':
+        malzemeKodu: "150-51-01-431"
+        malzemeAdi: "POMPA SEIM EU 45A 180 l/m Ø32 MM (BLAIN) / GR45 SM 180L 32*220 / PAP045#4A 177,9 LT"
+        malzemeAdet: "1"
+  '11': #PAP045#4B 210,5 LT
+    parts:
+      '0':
+        malzemeKodu: "150-51-01-416"
+        malzemeAdi: "POMPA SEIM EU 45B 210 l/min Ø32mm (BLAIN) /  GR45 SM 210L 32*220 / PAP045#4B 210,5 LT"
+        malzemeAdet: "1"
+  '12': #PAP055#4A 247,4 LT
+    parts:
+      '0':
+        malzemeKodu: "150-51-01-418"
+        malzemeAdi: "POMPA SEIM EU 55A 250 l/min Ø32mm (BLAIN) / GR45 SM 250L 32*220 / PAP055#4A 247,4 LT"
+        malzemeAdet: "1"
+default_parts:
+  '0': #This list has to be included in every project.
+    parts:
+      '0':
+        malzemeKodu: "150-51-10-454"
+        malzemeAdi: "BASINÇ ŞALTERİ ELEMENT PS1-E / 10-160 BAR"
+        malzemeAdet: "1"
+      '1':
+        malzemeKodu: "150-51-09-303"
+        malzemeAdi: "METRİK TERS DİRSEK PİMLİ RK-1010-MTD-L M16 Ø10L"
+        malzemeAdet: "1"
+      '2':
+        malzemeKodu: "150-51-09-025"
+        malzemeAdi: 'BSP METRİK NİPEL RK-1310-RMNP-L 1/4"-M16 Ø10L'
+        malzemeAdet: "1"
+valf:
+  '0': #KV1S
+    parts:
+      '0':
+        malzemeKodu: "150-51-05-501"
+        malzemeAdi: "BLOK KV1S (BLAIN)"
+        malzemeAdet: "1"
+      '1':
+        malzemeKodu: "150-51-09-938"
+        malzemeAdi: "TERS REKOR PİMLİ 1/2 M30"
+        malzemeAdet: "2"
+      '2':
+        malzemeKodu: "150-51-09-059"
+        malzemeAdi: "BSP METRİK NİPEL RK-2620-RMNP-S 3/4'-M30 Ø20S"
+        malzemeAdet: "3"
+      '3':
+        malzemeKodu: "150-51-09-043"
+        malzemeAdi: 'BSP METRİK NİPEL RK-3322-RMNP-L 1"-M30 Ø22L'
+        malzemeAdet: "1"
+      '4':
+        malzemeKodu: "150-51-09-102"
+        malzemeAdi: '3/4" KAYNAKLI MANŞON'
+        malzemeAdet: "2"
+      '5':
+        malzemeKodu: "150-50-23-037"
+        malzemeAdi: "SOMUN M12 FİBERLİ"
+        malzemeAdet: "4"
+      '6':
+        malzemeKodu: "150-50-24-006"
+        malzemeAdi: "PUL M12 BEYAZ"
+        malzemeAdet: "4"
+      '7':
+        malzemeKodu: "150-52-17-045"
+        malzemeAdi: "RAKOR SIKMALI ORB-05 PG16"
+        malzemeAdet: "1"
+      '8':
+        malzemeKodu: "150-50-21-553"
+        malzemeAdi: "CİVATA ANAHTAR BAŞLI M10 25 MM BEYAZ (DIN 933)"
+        malzemeAdet: "4"
+      '9':
+        malzemeKodu: "150-50-24-005"
+        malzemeAdi: "PUL M10 BEYAZ"
+        malzemeAdet: "4"
+      '10':
+        malzemeKodu: "150-50-25-007"
+        malzemeAdi: "YAYLI RONDELA M10 BEYAZ (DIN 127-B)"
+        malzemeAdet: "4"
+      '11':
+        malzemeKodu: "150-51-09-307"
+        malzemeAdi: "METRİK TERS DİRSEK PİMLİ RK-2222-MTD-L M30x2 Ø22L"
+        malzemeAdet: "1"
+      '12':
+        malzemeKodu: "150-51-15-348"
+        malzemeAdi: 'HİDROLİK HORTUM 3/4" R2 M30 90CM DÜZ-90'
+        malzemeAdet: "1"
+      '13':
+        malzemeKodu: "150-51-09-484"
+        malzemeAdi: 'BSP ALLENBAŞLI KÖR TAPA RK-2114-RAT 1/2"'
+        malzemeAdet: "1"
+      '14':
+        malzemeKodu: "150-51-08-022"
+        malzemeAdi: "İTHAL-YAĞ SEVİYE GÖSTERGESİ HB-127"
+        malzemeAdet: "1"
+      '15':
+        malzemeKodu: "150-51-07-200"
+        malzemeAdi: "DEPO KAPAK MDK MİNİ DEPO KAPAK"
+        malzemeAdet: "1"
+  '1': #KV2S
+    parts:
+      '0':
+        malzemeKodu: "150-51-05-503"
+        malzemeAdi: "BLOK KV2S (BLAIN)"
+        malzemeAdet: "1"
+      '1':
+        malzemeKodu: "150-51-09-938"
+        malzemeAdi: "TERS REKOR PİMLİ 1/2 M30"
+        malzemeAdet: "2"
+      '2':
+        malzemeKodu: "150-51-09-059"
+        malzemeAdi: "BSP METRİK NİPEL RK-2620-RMNP-S 3/4'-M30 Ø20S"
+        malzemeAdet: "3"
+      '3':
+        malzemeKodu: "150-51-09-043"
+        malzemeAdi: 'BSP METRİK NİPEL RK-3322-RMNP-L 1"-M30 Ø22L'
+        malzemeAdet: "1"
+      '4':
+        malzemeKodu: "150-51-09-102"
+        malzemeAdi: '3/4" KAYNAKLI MANŞON'
+        malzemeAdet: "2"
+      '5':
+        malzemeKodu: "150-50-23-037"
+        malzemeAdi: "SOMUN M12 FİBERLİ"
+        malzemeAdet: "4"
+      '6':
+        malzemeKodu: "150-50-24-006"
+        malzemeAdi: "PUL M12 BEYAZ"
+        malzemeAdet: "4"
+      '7':
+        malzemeKodu: "150-52-17-045"
+        malzemeAdi: "RAKOR SIKMALI ORB-05 PG16"
+        malzemeAdet: "1"
+      '8':
+        malzemeKodu: "150-50-21-553"
+        malzemeAdi: "CİVATA ANAHTAR BAŞLI M10 25 MM BEYAZ (DIN 933)"
+        malzemeAdet: "4"
+      '9':
+        malzemeKodu: "150-50-24-005"
+        malzemeAdi: "PUL M10 BEYAZ"
+        malzemeAdet: "4"
+      '10':
+        malzemeKodu: "150-50-25-007"
+        malzemeAdi: "YAYLI RONDELA M10 BEYAZ (DIN 127-B)"
+        malzemeAdet: "4"
+      '11':
+        malzemeKodu: "150-51-09-307"
+        malzemeAdi: "METRİK TERS DİRSEK PİMLİ RK-2222-MTD-L M30x2 Ø22L"
+        malzemeAdet: "1"
+      '12':
+        malzemeKodu: "150-51-15-348"
+        malzemeAdi: 'HİDROLİK HORTUM 3/4" R2 M30 90CM DÜZ-90'
+        malzemeAdet: "1"
+      '13':
+        malzemeKodu: "150-51-09-484"
+        malzemeAdi: 'BSP ALLENBAŞLI KÖR TAPA RK-2114-RAT 1/2"'
+        malzemeAdet: "1"
+      '14':
+        malzemeKodu: "150-51-08-022"
+        malzemeAdi: "İTHAL-YAĞ SEVİYE GÖSTERGESİ HB-127"
+        malzemeAdet: "1"
+      '15':
+        malzemeKodu: "150-51-07-200"
+        malzemeAdi: "DEPO KAPAK MDK MİNİ DEPO KAPAK"
+        malzemeAdet: "1"
+  '2': #EV100 1 1/2"
+    parts:
+      '0':
+        malzemeKodu: "150-51-05-504"
+        malzemeAdi: "BLOK EV100 1 1/2\" (BLAIN)"
+        malzemeAdet: "1"
+      '1':
+        malzemeKodu: "150-51-09-232"
+        malzemeAdi: "BSP METRİK TERS REKOR PİMLİ 1 1/2\" M42x2 Ø30S"
+        malzemeAdet: "2"
+      '2':
+        malzemeKodu: "150-51-09-314"
+        malzemeAdi: "METRİK TERS DİRSEK PİMLİ RK-3030-MTD-S M42x2 Ø30S"
+        malzemeAdet: "1"
+      '3':
+        malzemeKodu: "150-51-09-074"
+        malzemeAdi: "BSP METRİK NİPEL RK-4830-RMNP-S 1 1/2\"-M42x2 Ø30S"
+        malzemeAdet: "5"
+      '4':
+        malzemeKodu: "150-51-09-484"
+        malzemeAdi: 'BSP ALLENBAŞLI KÖR TAPA RK-2114-RAT 1/2"'
+        malzemeAdet: "1"
+      '5':
+        malzemeKodu: "150-51-08-022"
+        malzemeAdi: "İTHAL-YAĞ SEVİYE GÖSTERGESİ HB-127"
+        malzemeAdet: "1"
+      '6':
+        malzemeKodu: "150-51-16-502"
+        malzemeAdi: 'HİDROLİK HORTUM 1" 1/4 R2 M42 170CM DÜZ-90'
+        malzemeAdet: "1"
+      '7':
+        malzemeKodu: "150-50-23-037"
+        malzemeAdi: "SOMUN M12 FİBERLİ"
+        malzemeAdet: "4"
+      '8':
+        malzemeKodu: "150-50-24-006"
+        malzemeAdi: "PUL M12 BEYAZ"
+        malzemeAdet: "4"
+      '9':
+        malzemeKodu: "150-50-21-553"
+        malzemeAdi: "CİVATA ANAHTAR BAŞLI M10 25 MM BEYAZ (DIN 933)"
+        malzemeAdet: "4"
+      '10':
+        malzemeKodu: "150-50-24-005"
+        malzemeAdi: "PUL M10 BEYAZ"
+        malzemeAdet: "4"
+      '11':
+        malzemeKodu: "150-50-25-007"
+        malzemeAdi: "YAYLI RONDELA M10 BEYAZ (DIN 127-B)"
+        malzemeAdet: "4"
+      '12':
+        malzemeKodu: "150-52-17-045"
+        malzemeAdi: "RAKOR SIKMALI ORB-05 PG16"
+        malzemeAdet: "1"
+      '13':
+        malzemeKodu: "150-51-07-201"
+        malzemeAdi: "DEPO KAPAK SDK STANDART DEPO KAPAK"
+        malzemeAdet: "1"
+  '3': #EV100 3/4"
+    parts:
+      '0':
+        malzemeKodu: "150-51-05-502"
+        malzemeAdi: "BLOK EV100 3/4\" (BLAIN)"
+        malzemeAdet: "1"
+      '1':
+        malzemeKodu: "150-51-09-211"
+        malzemeAdi: "BSP METRİK TERS REKOR PİMLİ RK-2628-RMTR-L 3/4\" M36x2 Ø28L"
+        malzemeAdet: "2"
+      '2':
+        malzemeKodu: "150-51-09-044"
+        malzemeAdi: "BSP METRİK NİPEL RK-3328-RMNP-L 1\"-M36 Ø28L"
+        malzemeAdet: "5"
+      '3':
+        malzemeKodu: "150-51-09-313"
+        malzemeAdi: "METRİK TERS DİRSEK PİMLİ RK-2525-MTD-S M36x2 Ø25S"
+        malzemeAdet: "1"
+      '4':
+        malzemeKodu: "150-51-16-429"
+        malzemeAdi: 'HİDROLİK HORTUM 1" R2 M36 120CM DÜZ+90'
+        malzemeAdet: "1"
+      '5':
+        malzemeKodu: "150-51-09-484"
+        malzemeAdi: 'BSP ALLENBAŞLI KÖR TAPA RK-2114-RAT 1/2"'
+        malzemeAdet: "1"
+      '6':
+        malzemeKodu: "150-51-08-022"
+        malzemeAdi: "İTHAL-YAĞ SEVİYE GÖSTERGESİ HB-127"
+        malzemeAdet: "1"
+      '7':
+        malzemeKodu: "150-50-23-037"
+        malzemeAdi: "SOMUN M12 FİBERLİ"
+        malzemeAdet: "4"
+      '8':
+        malzemeKodu: "150-50-24-006"
+        malzemeAdi: "PUL M12 BEYAZ"
+        malzemeAdet: "4"
+      '9':
+        malzemeKodu: "150-50-21-553"
+        malzemeAdi: "CİVATA ANAHTAR BAŞLI M10 25 MM BEYAZ (DIN 933)"
+        malzemeAdet: "4"
+      '10':
+        malzemeKodu: "150-50-24-005"
+        malzemeAdi: "PUL M10 BEYAZ"
+        malzemeAdet: "4"
+      '11':
+        malzemeKodu: "150-50-25-007"
+        malzemeAdi: "YAYLI RONDELA M10 BEYAZ (DIN 127-B)"
+        malzemeAdet: "4"
+      '12':
+        malzemeKodu: "150-52-17-045"
+        malzemeAdi: "RAKOR SIKMALI ORB-05 PG16"
+        malzemeAdet: "1"
+      '13':
+        malzemeKodu: "150-51-07-201"
+        malzemeAdi: "DEPO KAPAK SDK STANDART DEPO KAPAK"
+        malzemeAdet: "1"
+tank:
+  '0': #BTH 75
+    parts:
+      '0':
+        malzemeKodu: "150-50-21-062"
+        malzemeAdi: "CİVATA İMBUS M6 16 MM BEYAZ (DIN 912)"
+        malzemeAdet: "10"
+  '1': #BTH 150
+    parts:
+      '0':
+        malzemeKodu: "150-50-21-062"
+        malzemeAdi: "CİVATA İMBUS M6 16 MM BEYAZ (DIN 912)"
+        malzemeAdet: "14"
+  '2': #BTH 250
+    parts:
+      '0':
+        malzemeKodu: "150-50-21-062"
+        malzemeAdi: "CİVATA İMBUS M6 16 MM BEYAZ (DIN 912)"
+        malzemeAdet: "16"
+  '3': #BTH 400
+    parts:
+      '0':
+        malzemeKodu: "150-50-21-062"
+        malzemeAdi: "CİVATA İMBUS M6 16 MM BEYAZ (DIN 912)"
+        malzemeAdet: "20"
+  '4': #BTH 600
+    parts:
+      '0':
+        malzemeKodu: "150-50-21-062"
+        malzemeAdi: "CİVATA İMBUS M6 16 MM BEYAZ (DIN 912)"
+        malzemeAdet: "20"
+  '5': #BTH 1000
+    parts:
+      '0':
+        malzemeKodu: "150-50-21-062"
+        malzemeAdi: "CİVATA İMBUS M6 16 MM BEYAZ (DIN 912)"
+        malzemeAdet: "28"
+tabla-sogutma:
+  '0': # Tabla Kilit Var Soğutma Var
+    parts:
+      '0':
+        malzemeKodu: "150-52-13-012"
+        malzemeAdi: "MOTOR 2.2 kW 380V B5"
+        malzemeAdet: "1"
+      '1':
+        malzemeKodu: "150-51-06-506"
+        malzemeAdi: "1-K 250 KAMPANA"
+        malzemeAdet: "1"
+      '2':
+        malzemeKodu: "150-51-06-579"
+        malzemeAdi: "1PN28 KAPLİN TAKIMI"
+        malzemeAdet: "1"
+      '3':
+        malzemeKodu: "150-50-21-588"
+        malzemeAdi: "CIVATA ANAHTAR BASLI M12x50 (DIN 933)"
+        malzemeAdet: "4"
+      '4':
+        malzemeKodu: "150-50-23-007"
+        malzemeAdi: "M12 Somun"
+        malzemeAdet: "4"
+      '5':
+        malzemeKodu: "150-50-24-026"
+        malzemeAdi: "M12 Pul"
+        malzemeAdet: "4"
+      '6':
+        malzemeKodu: "150-51-01-708"
+        malzemeAdi: "POMPA TANDEM 28.1+4.5 CC (SAĞ DÖNÜŞLÜ)"
+        malzemeAdet: "1"
+      '7':
+        malzemeKodu: "150-50-21-065"
+        malzemeAdi: "CIVATA IMBUS M6x30 (DIN 912)"
+        malzemeAdet: "4"
+      '8':
+        malzemeKodu: "150-51-06-413"
+        malzemeAdi: "30 x 1/2 Dirsek Adaptör Pompa"
+        malzemeAdet: "2"
+      '9':
+        malzemeKodu: "150-51-06-396"
+        malzemeAdi: "40 x 1/2 Düz Adaptör Pompa"
+        malzemeAdet: "2"
+      '10':
+        malzemeKodu: "150-51-07-004"
+        malzemeAdi: "45 Lt Emiş Filtresi"
+        malzemeAdet: "2"
+      '11':
+        malzemeKodu: "150-51-09-055"
+        malzemeAdi: "RK-2116-RMNP-S 1/2\"-M24 Ø16S"
+        malzemeAdet: "1"
+      '12':
+        malzemeKodu: "150-51-09-035"
+        malzemeAdi: "RK-2112-RMNP-L 1/2\"-M18 Ø12L"
+        malzemeAdet: "2"
+      '13':
+        malzemeKodu: "150-51-06-904"
+        malzemeAdi: "SOĞUTMA RADYATÖRÜ FANLI 220VAC"
+        malzemeAdet: "1"
+      '14':
+        malzemeKodu: "150-51-09-063"
+        malzemeAdi: "RK-3316-RMNP-S 1\"-M24 Ø16S"
+        malzemeAdet: "2"
+      '15':
+        malzemeKodu: "150-51-10-171"
+        malzemeAdi: "3/4\" 8 BAR ÇEK VALF FERRO MAX 380 BAR"
+        malzemeAdet: "1"
+      '16':
+        malzemeKodu: "150-51-06-907"
+        malzemeAdi: "0-90° AYARLI TERMOSTAT (1/2\", DALMA 25CM)"
+        malzemeAdet: "1"
+      '17':
+        malzemeKodu: "150-51-09-227"
+        malzemeAdi: "RK-2620-RMTR-S 3/4\" M30x2 Ø20S"
+        malzemeAdet: "1"
+      '18':
+        malzemeKodu: "150-51-09-059"
+        malzemeAdi: "RK-2620-RMNP-S 3/4\"-M30 Ø20S"
+        malzemeAdet: "1"
+      '19':
+        malzemeKodu: "150-51-09-058"
+        malzemeAdi: "RK-2616-RMNP-S 3/4\"-M24 Ø16S"
+        malzemeAdet: "3"
+      '20':
+        malzemeKodu: "150-51-09-134"
+        malzemeAdi: "Dişi Te RK-2626-DT 3/4\""
+        malzemeAdet: "1"
+      '21':
+        malzemeKodu: "150-51-09-105"
+        malzemeAdi: "Kaynaklı Manşon RK-1719-RKM 3/8\""
+        malzemeAdet: "1"
+      '22':
+        malzemeKodu: "150-51-09-106"
+        malzemeAdi: "Kaynaklı Manşon RK-2114-RKM 1/2\""
+        malzemeAdet: "3"
+      '23':
+        malzemeKodu: "150-53-08-484"
+        malzemeAdi: "Kör Tapa RK-2114-RAT 1/2\""
+        malzemeAdet: "1"
+      '24':
+        malzemeKodu: "150-51-09-483"
+        malzemeAdi: "Kör Tapa RK-1719-RAT 3/8\""
+        malzemeAdet: "1"
+      '25':
+        malzemeKodu: "150-51-09-107"
+        malzemeAdi: "Kaynaklı Manşon RK-2614-RKM 3/4\""
+        malzemeAdet: "3"
+      '26':
+        malzemeKodu: "150-51-04-025"
+        malzemeAdi: "VALF AÇIK MERKEZ NG6 24V RH06021-24V"
+        malzemeAdet: "1"
+      '27':
+        malzemeKodu: "150-51-05-036"
+        malzemeAdi: "NG6 TEKLİ EMNİYETLİ VALF BLOĞU"
+        malzemeAdet: "1"
+      '28':
+        malzemeKodu: "150-51-09-029"
+        malzemeAdi: "RK-1710-RMNP-L 3/8\"-M16 Ø10L"
+        malzemeAdet: "2"
+      '29':
+        malzemeKodu: "150-51-09-025"
+        malzemeAdi: "RK-1310-RMNP-L 1/4\"-M16 Ø10L"
+        malzemeAdet: "1"
+      '30':
+        malzemeKodu: "150-51-09-603"
+        malzemeAdi: "Manometre Rekoru RK-1310-MER-L"
+        malzemeAdet: "1"
+      '31':
+        malzemeKodu: "150-51-09-303"
+        malzemeAdi: "Metrik Ters Dirsek Pimli RK-1010-MTD-L"
+        malzemeAdet: "1"
+      '32':
+        malzemeKodu: "150-51-10-802"
+        malzemeAdi: "Manometre"
+        malzemeAdet: "1"
+      '33':
+        malzemeKodu: "150-50-21-069"
+        malzemeAdi: "CİVATA İMBUS M6x50 (DIN 912)"
+        malzemeAdet: "2"
+
+  '1': # Tabla Kilit Var Soğutma Yok
+    parts:
+      '0':
+        malzemeKodu: "150-51-05-401"
+        malzemeAdi: "İTHAL POPETLİ BLOK"
+        malzemeAdet: "1"
+      '1':
+        malzemeKodu: "150-51-06-694"
+        malzemeAdi: "İTHAL KAPLİN"
+        malzemeAdet: "1"
+      '2':
+        malzemeKodu: "150-51-07-050"
+        malzemeAdi: "3/8 Emiş Filtresi"
+        malzemeAdet: "1"
+      '3':
+        malzemeKodu: "150-50-21-065"
+        malzemeAdi: "CIVATA M6x30 İMBUS"
+        malzemeAdet: "4"
+      '4':
+        malzemeKodu: "150-51-05-001"
+        malzemeAdi: "A1 ALÜMİNYUM ARA BLOK"
+        malzemeAdet: "1"
+      '5':
+        malzemeKodu: "150-51-05-002"
+        malzemeAdi: "A3 ALÜMİNYUM ARA BLOK"
+        malzemeAdet: "1"
+      '6':
+        malzemeKodu: "150-51-04-023"
+        malzemeAdi: "VALF AÇIK MERKEZ NG6 24V"
+        malzemeAdet: "1"
+      '7':
+        malzemeKodu: "150-50-21-105"
+        malzemeAdi: "CİVATA M8x80 İMBUS"
+        malzemeAdet: "2"
+      '8':
+        malzemeKodu: "150-51-09-029"
+        malzemeAdi: "RK-1710-RMNP-L 3/8\"-M16 Ø10L"
+        malzemeAdet: "2"
+      '9':
+        malzemeKodu: "150-51-09-360"
+        malzemeAdi: "BSP UZUN REDUKSİYON 3/8\"-3/8\""
+        malzemeAdet: "2"
+      '10':
+        malzemeKodu: "150-53-08-482"
+        malzemeAdi: "Kör Tapa RK-1319-RAT 1/4\""
+        malzemeAdet: "1"
+      '11':
+        malzemeKodu: "150-51-09-201"
+        malzemeAdi: "RK-1310-RMTR-L 1/4\" M16 Ø10L"
+        malzemeAdet: "1"
+      '12':
+        malzemeKodu: "150-51-09-303"
+        malzemeAdi: "Metrik Ters Dirsek Pimli RK-1010-MTD-L"
+        malzemeAdet: "1"
+      '13':
+        malzemeKodu: "150-51-09-990"
+        malzemeAdi: "İthal Kör Tapa 8/2"
+        malzemeAdet: "1"
+      '14':
+        malzemeKodu: "150-51-10-802"
+        malzemeAdi: "Manometre"
+        malzemeAdet: "1"
+      '15':
+        malzemeKodu: "150-51-09-603"
+        malzemeAdi: "Manometre Rekoru RK-1310-MER-L"
+        malzemeAdet: "1"
+      '16':
+        malzemeKodu: "150-51-06-390"
+        malzemeAdi: "Kaynaklı Tank Boğazı"
+        malzemeAdet: "1"
+      '17':
+        malzemeKodu: "150-51-09-014"
+        malzemeAdi: "Uzatma Rekor 3/8\""
+        malzemeAdet: "2"
+
+  '2': # Tabla Kilit Yok Soğutma Var
+    parts:
+      '0':
+        malzemeKodu: "150-52-13-012"
+        malzemeAdi: "MOTOR 2.2 kW 380V B5"
+        malzemeAdet: "1"
+      '1':
+        malzemeKodu: "150-51-06-506"
+        malzemeAdi: "1-K 250 KAMPANA"
+        malzemeAdet: "1"
+      '2':
+        malzemeKodu: "150-51-06-579"
+        malzemeAdi: "1PN28 KAPLİN TAKIMI"
+        malzemeAdet: "1"
+      '3':
+        malzemeKodu: "150-50-21-588"
+        malzemeAdi: "CIVATA ANAHTAR BASLI M12x50"
+        malzemeAdet: "4"
+      '4':
+        malzemeKodu: "150-50-23-007"
+        malzemeAdi: "M12 Somun"
+        malzemeAdet: "4"
+      '5':
+        malzemeKodu: "150-50-24-026"
+        malzemeAdi: "M12 Pul"
+        malzemeAdet: "4"
+      '6':
+        malzemeKodu: "150-51-01-313"
+        malzemeAdi: "Pompa 1PN-281 28.1CC (HEMA)"
+        malzemeAdet: "1"
+      '7':
+        malzemeKodu: "150-50-21-065"
+        malzemeAdi: "CIVATA IMBUS M6x30"
+        malzemeAdet: "4"
+      '8':
+        malzemeKodu: "150-51-06-413"
+        malzemeAdi: "30 x 1/2 Dirsek Adaptör Pompa"
+        malzemeAdet: "2"
+      '9':
+        malzemeKodu: "150-51-06-396"
+        malzemeAdi: "40 x 1/2 Düz Adaptör Pompa"
+        malzemeAdet: "2"
+      '10':
+        malzemeKodu: "150-51-07-004"
+        malzemeAdi: "45 Lt Emiş Filtresi"
+        malzemeAdet: "2"
+      '11':
+        malzemeKodu: "150-51-09-055"
+        malzemeAdi: "RK-2116-RMNP-S 1/2\"-M24 Ø16S"
+        malzemeAdet: "1"
+      '12':
+        malzemeKodu: "150-51-09-035"
+        malzemeAdi: "RK-2112-RMNP-L 1/2\"-M18 Ø12L"
+        malzemeAdet: "2"
+      '13':
+        malzemeKodu: "150-51-06-904"
+        malzemeAdi: "SOĞUTMA RADYATÖRÜ FANLI 220VAC"
+        malzemeAdet: "1"
+      '14':
+        malzemeKodu: "150-51-09-063"
+        malzemeAdi: "RK-3316-RMNP-S 1\"-M24 Ø16S"
+        malzemeAdet: "2"
+      '15':
+        malzemeKodu: "150-51-10-171"
+        malzemeAdi: "3/4\" 8 BAR ÇEK VALF"
+        malzemeAdet: "1"
+      '16':
+        malzemeKodu: "150-51-06-907"
+        malzemeAdi: "0-90° AYARLI TERMOSTAT"
+        malzemeAdet: "1"
+      '17':
+        malzemeKodu: "150-51-09-227"
+        malzemeAdi: "RK-2620-RMTR-S 3/4\" M30x2 Ø20S"
+        malzemeAdet: "1"
+      '18':
+        malzemeKodu: "150-51-09-059"
+        malzemeAdi: "RK-2620-RMNP-S 3/4\"-M30 Ø20S"
+        malzemeAdet: "1"
+      '19':
+        malzemeKodu: "150-51-09-058"
+        malzemeAdi: "RK-2616-RMNP-S 3/4\"-M24 Ø16S"
+        malzemeAdet: "3"
+      '20':
+        malzemeKodu: "150-51-09-134"
+        malzemeAdi: "Dişi Te RK-2626-DT 3/4\""
+        malzemeAdet: "1"
+      '21':
+        malzemeKodu: "150-51-09-105"
+        malzemeAdi: "Kaynaklı Manşon RK-1719-RKM 3/8\""
+        malzemeAdet: "1"
+      '22':
+        malzemeKodu: "150-51-09-106"
+        malzemeAdi: "Kaynaklı Manşon RK-2114-RKM 1/2\""
+        malzemeAdet: "3"
+      '23':
+        malzemeKodu: "150-53-08-484"
+        malzemeAdi: "Kör Tapa RK-2114-RAT 1/2\""
+        malzemeAdet: "1"
+      '24':
+        malzemeKodu: "150-51-09-483"
+        malzemeAdi: "Kör Tapa RK-1719-RAT 3/8\""
+        malzemeAdet: "1"
+      '25':
+        malzemeKodu: "150-51-09-107"
+        malzemeAdi: "Kaynaklı Manşon RK-2614-RKM 3/4\""
+        malzemeAdet: "3"
+pompa-valf-blok:
+  '0': # KV1S / 20-40 — Seçilen valf KV1S ve pompa 40 litreye kadar ise
+    parts:
+      '0':
+        malzemeKodu: "150-51-05-505"
+        malzemeAdi: "BLOK 0.5'' KV1S / 20-40+KS+BG 0.5'' (BLAIN)"
+        malzemeAdet: "1"
+
+  '1': # KV1S / 40-80 — Seçilen valf KV1S ve pompa 40-80 litre arasında ise
+    parts:
+      '0':
+        malzemeKodu: "150-51-05-510"
+        malzemeAdi: "BLOK 0.5'' KV1S / 40-80+KS+BG 0.5'' (BLAIN)"
+        malzemeAdet: "1"
+
+  '2': # KV2S / 20-40 — KV2S valf ve pompa 40 litreye kadar ise
+    parts:
+      '0':
+        malzemeKodu: "150-51-05-506"
+        malzemeAdi: "BLOK 0.5'' KV2S / 20-40+KS+BG 0.5'' (BLAIN)"
+        malzemeAdet: "1"
+
+  '3': # KV2S / 40-80 — KV2S valf ve pompa 40-80 litre arasında ise
+    parts:
+      '0':
+        malzemeKodu: "150-51-05-513"
+        malzemeAdi: "BLOK 0.5'' KV2S / 40-80+KS+BG 0.5'' (BLAIN)"
+        malzemeAdet: "1"
+
+  '4': # KV2S / 80+ — KV2S valf ve pompa 80 litre üzeri ise
+    parts:
+      '0':
+        malzemeKodu: "150-51-05-507"
+        malzemeAdi: "BLOK 0.5'' KV2S / 80+KS+BG 0.5'' (BLAIN)"
+        malzemeAdet: "1"
+
+  '5': # EV100 3/4 — 80-99 litre pompa ise
+    parts:
+      '0':
+        malzemeKodu: "150-51-05-509"
+        malzemeAdi: "BLOK 0.75'' EV 100 / 05 / +KS (BLAIN)"
+        malzemeAdet: "1"
+
+  '6': # EV100 3/4 — 100-124 litre pompa ise
+    parts:
+      '0':
+        malzemeKodu: "150-51-05-508"
+        malzemeAdi: "BLOK 0.75'' EV 100 / 06 +KS (BLAIN)"
+        malzemeAdet: "1"
+
+  '7': # EV100 1.5'' — 125 litre ve üzeri pompa ise
+    parts:
+      '0':
+        malzemeKodu: "150-51-05-514"
+        malzemeAdi: "BLOK 1.5'' EV 100 / 1 / +KS + BG (BLAIN)"
+        malzemeAdet: "1"
+      '1':
+        malzemeKodu: "150-51-05-515"
+        malzemeAdi: "BLOK 1.5'' EV 100 / 2 / +KS + BG (BLAIN)"
+        malzemeAdet: "1"
+      '2':
+        malzemeKodu: "150-51-05-516"
+        malzemeAdi: "BLOK 1.5'' EV 100 / 3 / +KS + BG (BLAIN)"
+        malzemeAdet: "1"
+
+  '8': # KV1S / 40 — Eski model
+    parts:
+      '0':
+        malzemeKodu: "150-51-05-501"
+        malzemeAdi: "BLOK KV1S 05'' / 40 (BLAIN)"
+        malzemeAdet: "1"
