@@ -260,6 +260,7 @@
                                                 <Font name="TextaAlt-Regular" size="16.0" />
                                              </font>
                                           </Label>
+                                          <TextField fx:id="resultTextField" editable="false" maxWidth="800.0" minWidth="-Infinity" prefHeight="30.0" prefWidth="800.0" style="-fx-control-inner-background: #f9fafb; -fx-font-family: 'TextaAlt-Regular'; -fx-font-size: 14px; -fx-text-fill: #111827;" />
                                           <ImageView fx:id="resultImage" fitHeight="600.0" fitWidth="800.0" pickOnBounds="true" preserveRatio="true" />
                                        </children>
                                     </VBox>

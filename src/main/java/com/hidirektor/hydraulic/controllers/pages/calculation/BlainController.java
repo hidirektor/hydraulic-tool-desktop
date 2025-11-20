@@ -16,6 +16,9 @@ import javafx.scene.control.TextField;
 import javafx.scene.effect.ColorAdjust;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.image.PixelReader;
+import javafx.scene.image.PixelWriter;
+import javafx.scene.image.WritableImage;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Region;
@@ -44,6 +47,9 @@ public class BlainController implements Initializable {
 
     @FXML
     public Label resultImageTitle;
+
+    @FXML
+    public TextField resultTextField;
 
     @FXML
     public TextField siparisNumarasiField, inviteUserTextField;
@@ -442,17 +448,25 @@ public class BlainController implements Initializable {
             if(resultImageTitle != null) {
                 resultImageTitle.setText("Lütfen önce hesaplamayı bitirin.");
             }
+            if(resultTextField != null) {
+                resultTextField.clear();
+            }
             return;
         }
+        
+        // Seçilen değerleri text olarak ekle
+        updateResultText();
         
         // Görsel yolunu belirle
         String imagePath = determineImagePath();
         
         if(imagePath != null) {
             try {
-                Image image = new Image(Objects.requireNonNull(Launcher.class.getResourceAsStream(imagePath)));
+                Image originalImage = new Image(Objects.requireNonNull(Launcher.class.getResourceAsStream(imagePath)));
+                // Beyaz arka planı result section'ın arka plan rengine çevir
+                Image processedImage = replaceWhiteBackground(originalImage);
                 if(resultImage != null) {
-                    resultImage.setImage(image);
+                    resultImage.setImage(processedImage);
                 }
                 if(resultImageTitle != null) {
                     resultImageTitle.setText(""); // Görsel yüklendiğinde başlık metnini boş bırak
@@ -482,6 +496,64 @@ public class BlainController implements Initializable {
                 resultImageTitle.setText("Seçilen kombinasyon için görsel bulunamadı.");
             }
         }
+    }
+    
+    private void updateResultText() {
+        if(resultTextField == null) return;
+        
+        StringBuilder text = new StringBuilder();
+        boolean isFirst = true;
+        
+        // Sipariş numarası
+        if(siparisNumarasiField != null && siparisNumarasiField.getText() != null && !siparisNumarasiField.getText().trim().isEmpty()) {
+            if(!isFirst) text.append(" | ");
+            text.append("Sipariş Numarası: ").append(siparisNumarasiField.getText().trim());
+            isFirst = false;
+        }
+        
+        // Motor
+        if(motorComboBox != null && motorComboBox.getValue() != null) {
+            if(!isFirst) text.append(" | ");
+            text.append("Motor: ").append(motorComboBox.getValue());
+            isFirst = false;
+        }
+        
+        // Soğutma
+        if(secilenSogutma != null) {
+            if(!isFirst) text.append(" | ");
+            text.append("Soğutma: ").append(secilenSogutma);
+            isFirst = false;
+        }
+        
+        // Tabla Kilit
+        if(secilenTablaKilit != null) {
+            if(!isFirst) text.append(" | ");
+            text.append("Tabla Kilit: ").append(secilenTablaKilit);
+            isFirst = false;
+        }
+        
+        // Pompa
+        if(secilenPompa != null) {
+            if(!isFirst) text.append(" | ");
+            text.append("Pompa: ").append(secilenPompa);
+            isFirst = false;
+        }
+        
+        // Valf Tipi
+        if(secilenValfTipi != null) {
+            if(!isFirst) text.append(" | ");
+            text.append("Valf Tipi: ").append(secilenValfTipi);
+            isFirst = false;
+        }
+        
+        // Yağ Tankı
+        if(secilenYagTanki != null) {
+            if(!isFirst) text.append(" | ");
+            text.append("Yağ Tankı: ").append(secilenYagTanki);
+            isFirst = false;
+        }
+        
+        resultTextField.setText(text.toString());
     }
     
     private String determineImagePath() {
@@ -576,6 +648,53 @@ public class BlainController implements Initializable {
         
         return null;
     }
+    
+    /**
+     * Görseldeki beyaz (#ffffff) pikselleri result section'ın arka plan rengine çevirir.
+     * Result section arka plan rengi: accordion-section (rgba(255, 255, 255, 0.34)) + main-component (#E5E7EB)
+     * Sonuç renk: yaklaşık #EEEEEE veya #F4F5F7
+     */
+    private Image replaceWhiteBackground(Image originalImage) {
+        if(originalImage == null) return null;
+        
+        int width = (int) originalImage.getWidth();
+        int height = (int) originalImage.getHeight();
+        
+        if(width <= 0 || height <= 0) return originalImage;
+        
+        // Result section arka plan rengi (accordion-section yarı saydam beyaz + main-component gri)
+        // Hesaplanmış sonuç: rgb(238, 238, 238) veya #EEEEEE
+        int backgroundColor = 0xFFEEEEEE; // ARGB formatında: 0xFF = alpha, EEEEEE = renk
+        
+        WritableImage writableImage = new WritableImage(width, height);
+        PixelReader pixelReader = originalImage.getPixelReader();
+        PixelWriter pixelWriter = writableImage.getPixelWriter();
+        
+        // Beyaz rengi tespit etmek için eşik değeri (biraz tolerans için)
+        int whiteThreshold = 250; // 250-255 arası beyaz kabul edilir
+        
+        for(int y = 0; y < height; y++) {
+            for(int x = 0; x < width; x++) {
+                int argb = pixelReader.getArgb(x, y);
+                
+                // ARGB formatından renk bileşenlerini çıkar
+                int red = (argb >> 16) & 0xFF;
+                int green = (argb >> 8) & 0xFF;
+                int blue = argb & 0xFF;
+                
+                // Beyaz veya beyaza yakın renkleri kontrol et (#ffffff veya yakın tonlar)
+                if(red >= whiteThreshold && green >= whiteThreshold && blue >= whiteThreshold) {
+                    // Beyaz pikseli result section arka plan rengine çevir
+                    pixelWriter.setArgb(x, y, backgroundColor);
+                } else {
+                    // Diğer pikselleri olduğu gibi bırak
+                    pixelWriter.setArgb(x, y, argb);
+                }
+            }
+        }
+        
+        return writableImage;
+    }
 
     private void clearAllFields() {
         // Tüm text field'ları temizle
@@ -632,6 +751,9 @@ public class BlainController implements Initializable {
         }
         if(resultImageTitle != null) {
             resultImageTitle.setText("Lütfen önce hesaplamayı bitirin.");
+        }
+        if(resultTextField != null) {
+            resultTextField.clear();
         }
         
         // Tüm bölümleri collapse et
