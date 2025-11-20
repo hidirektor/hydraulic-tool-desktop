@@ -12,6 +12,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.effect.ColorAdjust;
 import javafx.scene.image.Image;
@@ -49,7 +50,7 @@ public class BlainController implements Initializable {
     public Label resultImageTitle;
 
     @FXML
-    public TextField resultTextField;
+    public TextArea resultTextArea;
 
     @FXML
     public TextField siparisNumarasiField, inviteUserTextField;
@@ -448,8 +449,8 @@ public class BlainController implements Initializable {
             if(resultImageTitle != null) {
                 resultImageTitle.setText("Lütfen önce hesaplamayı bitirin.");
             }
-            if(resultTextField != null) {
-                resultTextField.clear();
+            if(resultTextArea != null) {
+                resultTextArea.clear();
             }
             return;
         }
@@ -499,61 +500,46 @@ public class BlainController implements Initializable {
     }
     
     private void updateResultText() {
-        if(resultTextField == null) return;
+        if(resultTextArea == null) return;
         
         StringBuilder text = new StringBuilder();
-        boolean isFirst = true;
         
         // Sipariş numarası
         if(siparisNumarasiField != null && siparisNumarasiField.getText() != null && !siparisNumarasiField.getText().trim().isEmpty()) {
-            if(!isFirst) text.append(" | ");
-            text.append("Sipariş Numarası: ").append(siparisNumarasiField.getText().trim());
-            isFirst = false;
+            text.append("Sipariş Numarası: ").append(siparisNumarasiField.getText().trim()).append("\n");
         }
         
         // Motor
         if(motorComboBox != null && motorComboBox.getValue() != null) {
-            if(!isFirst) text.append(" | ");
-            text.append("Motor: ").append(motorComboBox.getValue());
-            isFirst = false;
+            text.append("Motor: ").append(motorComboBox.getValue()).append("\n");
         }
         
         // Soğutma
         if(secilenSogutma != null) {
-            if(!isFirst) text.append(" | ");
-            text.append("Soğutma: ").append(secilenSogutma);
-            isFirst = false;
+            text.append("Soğutma: ").append(secilenSogutma).append("\n");
         }
         
         // Tabla Kilit
         if(secilenTablaKilit != null) {
-            if(!isFirst) text.append(" | ");
-            text.append("Tabla Kilit: ").append(secilenTablaKilit);
-            isFirst = false;
+            text.append("Tabla Kilit: ").append(secilenTablaKilit).append("\n");
         }
         
         // Pompa
         if(secilenPompa != null) {
-            if(!isFirst) text.append(" | ");
-            text.append("Pompa: ").append(secilenPompa);
-            isFirst = false;
+            text.append("Pompa: ").append(secilenPompa).append("\n");
         }
         
         // Valf Tipi
         if(secilenValfTipi != null) {
-            if(!isFirst) text.append(" | ");
-            text.append("Valf Tipi: ").append(secilenValfTipi);
-            isFirst = false;
+            text.append("Valf Tipi: ").append(secilenValfTipi).append("\n");
         }
         
         // Yağ Tankı
         if(secilenYagTanki != null) {
-            if(!isFirst) text.append(" | ");
-            text.append("Yağ Tankı: ").append(secilenYagTanki);
-            isFirst = false;
+            text.append("Yağ Tankı: ").append(secilenYagTanki).append("\n");
         }
         
-        resultTextField.setText(text.toString());
+        resultTextArea.setText(text.toString());
     }
     
     private String determineImagePath() {
@@ -752,8 +738,8 @@ public class BlainController implements Initializable {
         if(resultImageTitle != null) {
             resultImageTitle.setText("Lütfen önce hesaplamayı bitirin.");
         }
-        if(resultTextField != null) {
-            resultTextField.clear();
+        if(resultTextArea != null) {
+            resultTextArea.clear();
         }
         
         // Tüm bölümleri collapse et
