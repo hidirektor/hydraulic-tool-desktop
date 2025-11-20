@@ -79,6 +79,8 @@ public class HydraulicData {
      */
     public Map<String, LinkedList<String>> blainMotorMap = new HashMap<>();
     public Map<String, LinkedList<String>> blainPompaMap = new HashMap<>();
+    public Map<String, Integer> blainMotorDiameterMap = new HashMap<>();
+    public Map<String, Integer> blainPompaDiameterMap = new HashMap<>();
 
     /*
     Parça Listesi

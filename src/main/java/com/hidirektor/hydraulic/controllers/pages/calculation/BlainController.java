@@ -21,6 +21,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Region;
 
 import java.net.URL;
+import java.util.LinkedList;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
@@ -30,13 +31,19 @@ public class BlainController implements Initializable {
     public Label blainCalculationTitle;
 
     @FXML
-    public AnchorPane orderSection, unitInfoSection, unitInfoSectionContainer, orderSectionContainer;
+    public AnchorPane orderSection, unitInfoSection, calculationResultSection, unitInfoSectionContainer, orderSectionContainer, calculationResultSectionContainer;
 
     @FXML
-    public Button orderSectionButton, unitInfoSectionButton, clearButton;
+    public Button orderSectionButton, unitInfoSectionButton, calculationResultSectionButton, clearButton;
 
     @FXML
-    public ImageView orderSectionButtonImage, unitInfoSectionButtonImage, clearButtonImage;
+    public ImageView orderSectionButtonImage, unitInfoSectionButtonImage, calculationResultSectionButtonImage, clearButtonImage;
+
+    @FXML
+    public ImageView resultImage;
+
+    @FXML
+    public Label resultImageTitle;
 
     @FXML
     public TextField siparisNumarasiField, inviteUserTextField;
@@ -45,18 +52,21 @@ public class BlainController implements Initializable {
     public ComboBox<String> motorComboBox, sogutmaComboBox, tablaKilitComboBox, 
                             pompaComboBox, valfTipiComboBox, yagTankiComboBox;
 
-    boolean isOrderSectionExpanded = false, isUnitInfoSectionExpanded = false;
+    boolean isOrderSectionExpanded = false, isUnitInfoSectionExpanded = false, isCalculationResultSectionExpanded = false;
     
     private String secilenSogutma = null;
     private String secilenTablaKilit = null;
     private String secilenPompa = null;
     private String secilenValfTipi = null;
+    private String secilenYagTanki = null;
+    private Integer secilenMotorDiameter = null; // Seçilen motorun diameter değerini sakla
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         Platform.runLater(() -> {
             addHoverEffectToButtons(clearButton);
             collapseAndExpandSection(orderSection, isOrderSectionExpanded, orderSectionButtonImage, true, false);
+            collapseAndExpandSection(calculationResultSection, isCalculationResultSectionExpanded, calculationResultSectionButtonImage, false, true);
             // Tüm dropdown'ları başlangıçta disabled yap
             disableAllDropdowns();
             comboBoxListener();
@@ -86,8 +96,11 @@ public class BlainController implements Initializable {
             if(!wasExpanded && isUnitInfoSectionExpanded) {
                 disableAllDropdowns();
             }
+        } else if(actionEvent.getSource().equals(calculationResultSectionButton)) {
+            collapseAndExpandSection(calculationResultSection, isCalculationResultSectionExpanded, calculationResultSectionButtonImage, false, false);
+            isCalculationResultSectionExpanded = !isCalculationResultSectionExpanded;
         } else if(actionEvent.getSource().equals(clearButton)) {
-            // Temizle butonu - şimdilik boş, sonra implement edilecek
+            clearAllFields();
         }
     }
     
@@ -117,6 +130,17 @@ public class BlainController implements Initializable {
         if(!wasExpanded && isUnitInfoSectionExpanded) {
             disableAllDropdowns();
         }
+    }
+    
+    @FXML
+    public void handleCalculationResultSectionClick(MouseEvent event) {
+        // Sadece ana AnchorPane'e tıklandığında (buton veya içerik dışında) collapse/expand yap
+        if(event.getTarget() instanceof Button || event.getTarget() instanceof ImageView) {
+            return; // Buton veya ImageView'e tıklandıysa işlem yapma
+        }
+        // Ana AnchorPane'e tıklandığında collapse/expand yap
+        collapseAndExpandSection(calculationResultSection, isCalculationResultSectionExpanded, calculationResultSectionButtonImage, false, false);
+        isCalculationResultSectionExpanded = !isCalculationResultSectionExpanded;
     }
     
     @FXML
@@ -162,15 +186,67 @@ public class BlainController implements Initializable {
         
         UIProcess.changeInputDataForComboBox(motorComboBox, newValue -> {
             // Motor seçildiğinde Sipariş Bilgileri bölümünü kapat
-            if(isOrderSectionExpanded) {
-                collapseAndExpandSection(orderSection, isOrderSectionExpanded, orderSectionButtonImage, false, true);
-                isOrderSectionExpanded = false;
-            }
+            collapseAndExpandSection(orderSection, isOrderSectionExpanded, orderSectionButtonImage, false, true);
+            isOrderSectionExpanded = false;
+            
             // Motor seçildiğinde Soğutma dropdown'ını aktif et
             if(sogutmaComboBox.isDisable()) {
                 sogutmaComboBox.setDisable(false);
                 sogutmaComboBox.getItems().clear();
                 sogutmaComboBox.getItems().addAll("Var", "Yok");
+            }
+            
+            // Seçilen motorun diameter değerini al ve sakla
+            String selectedMotor = motorComboBox.getValue();
+            secilenMotorDiameter = null;
+            
+            if(selectedMotor != null && !selectedMotor.trim().isEmpty()) {
+                selectedMotor = selectedMotor.trim();
+                
+                // Önce direkt eşleştirme dene
+                secilenMotorDiameter = SystemDefaults.getLocalHydraulicData().blainMotorDiameterMap.get(selectedMotor);
+                
+                // Bulunamazsa, map'teki tüm key'leri kontrol et (trim ile)
+                if(secilenMotorDiameter == null) {
+                    for(String mapKey : SystemDefaults.getLocalHydraulicData().blainMotorDiameterMap.keySet()) {
+                        if(mapKey != null && mapKey.trim().equals(selectedMotor)) {
+                            secilenMotorDiameter = SystemDefaults.getLocalHydraulicData().blainMotorDiameterMap.get(mapKey);
+                            break;
+                        }
+                    }
+                }
+                
+                // Hala bulunamazsa, motor listesinden index ile bulmayı dene
+                if(secilenMotorDiameter == null && SystemDefaults.getLocalHydraulicData().blainMotorMap.containsKey("0")) {
+                    LinkedList<String> motorList = SystemDefaults.getLocalHydraulicData().blainMotorMap.get("0");
+                    int motorIndex = motorList.indexOf(selectedMotor);
+                    if(motorIndex >= 0) {
+                        // Motor listesindeki her motor için map'te ara
+                        for(int i = 0; i < motorList.size(); i++) {
+                            String motorFromList = motorList.get(i);
+                            if(motorFromList != null && motorFromList.trim().equals(selectedMotor)) {
+                                Integer diameter = SystemDefaults.getLocalHydraulicData().blainMotorDiameterMap.get(motorFromList.trim());
+                                if(diameter != null) {
+                                    secilenMotorDiameter = diameter;
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            
+            // Motor seçildiğinde pompa seçimini varsa temizle ve pompa listesini güncelle
+            if(!pompaComboBox.isDisable()) {
+                pompaComboBox.getSelectionModel().clearSelection();
+                secilenPompa = null;
+                updatePompaOptions();
+                // Pompa seçimi temizlendiğinde valf tipini de temizle
+                if(valfTipiComboBox.getValue() != null) {
+                    valfTipiComboBox.getSelectionModel().clearSelection();
+                    secilenValfTipi = null;
+                    updateValfTipiOptions();
+                }
             }
         }, null);
         
@@ -193,11 +269,11 @@ public class BlainController implements Initializable {
             // Tabla Kilit seçildiğinde Pompa dropdown'ını aktif et
             if(pompaComboBox.isDisable()) {
                 pompaComboBox.setDisable(false);
-                pompaComboBox.getItems().clear();
-                if(SystemDefaults.getLocalHydraulicData().blainPompaMap.containsKey("0")) {
-                    pompaComboBox.getItems().addAll(SystemDefaults.getLocalHydraulicData().blainPompaMap.get("0"));
-                }
+                // Motor seçildiyse diameter'a göre filtrele, değilse tüm pompaları göster
+                updatePompaOptions();
             }
+            // Tabla kilit değiştiğinde görseli güncelle
+            updateResultImage();
         }, null);
         
         UIProcess.changeInputDataForComboBox(pompaComboBox, newValue -> {
@@ -216,7 +292,67 @@ public class BlainController implements Initializable {
                 yagTankiComboBox.setDisable(false);
             }
             updateYagTankiOptions();
+            // Valf tipi değiştiğinde görseli güncelle
+            updateResultImage();
         }, null);
+        
+        UIProcess.changeInputDataForComboBox(yagTankiComboBox, newValue -> {
+            secilenYagTanki = newValue.toString();
+            // Yağ tankı seçildiğinde hesaplama sonucu görselini güncelle
+            updateResultImage();
+        }, null);
+    }
+    
+    private void updatePompaOptions() {
+        if(pompaComboBox == null) return;
+        
+        pompaComboBox.getItems().clear();
+        
+        // Seçilen motor diameter'ı yoksa veya motor seçilmemişse tüm pompaları göster
+        if(secilenMotorDiameter == null) {
+            if(SystemDefaults.getLocalHydraulicData().blainPompaMap.containsKey("0")) {
+                pompaComboBox.getItems().addAll(SystemDefaults.getLocalHydraulicData().blainPompaMap.get("0"));
+            }
+            return;
+        }
+        
+        // Aynı diameter'a sahip pompaları filtrele
+        if(SystemDefaults.getLocalHydraulicData().blainPompaMap.containsKey("0")) {
+            for(String pompaName : SystemDefaults.getLocalHydraulicData().blainPompaMap.get("0")) {
+                if(pompaName == null) continue;
+                
+                String trimmedPompaName = pompaName.trim();
+                Integer pompaDiameter = SystemDefaults.getLocalHydraulicData().blainPompaDiameterMap.get(trimmedPompaName);
+                
+                // Eğer bulunamazsa, map'teki tüm key'leri kontrol et
+                if(pompaDiameter == null) {
+                    for(String mapKey : SystemDefaults.getLocalHydraulicData().blainPompaDiameterMap.keySet()) {
+                        if(mapKey != null && mapKey.trim().equals(trimmedPompaName)) {
+                            pompaDiameter = SystemDefaults.getLocalHydraulicData().blainPompaDiameterMap.get(mapKey);
+                            break;
+                        }
+                    }
+                }
+                
+                // Diameter eşleşiyorsa listeye ekle
+                if(pompaDiameter != null && pompaDiameter.equals(secilenMotorDiameter)) {
+                    pompaComboBox.getItems().add(pompaName);
+                }
+            }
+        }
+        
+        // Eğer seçili pompa artık listede yoksa, seçimi temizle
+        String currentPompa = pompaComboBox.getValue();
+        if(currentPompa != null && !pompaComboBox.getItems().contains(currentPompa)) {
+            pompaComboBox.getSelectionModel().clearSelection();
+            secilenPompa = null;
+            // Pompa seçimi temizlendiğinde valf tipini de temizle
+            if(valfTipiComboBox.getValue() != null) {
+                valfTipiComboBox.getSelectionModel().clearSelection();
+                secilenValfTipi = null;
+                updateValfTipiOptions();
+            }
+        }
     }
     
     private void updateValfTipiOptions() {
@@ -295,7 +431,226 @@ public class BlainController implements Initializable {
             yagTankiComboBox.getSelectionModel().clearSelection();
         }
     }
+    
+    private void updateResultImage() {
+        // Tüm gerekli seçimler yapılmış mı kontrol et
+        if(secilenYagTanki == null || secilenValfTipi == null || secilenTablaKilit == null) {
+            // Seçimler tamamlanmamışsa görseli temizle
+            if(resultImage != null) {
+                resultImage.setImage(null);
+            }
+            if(resultImageTitle != null) {
+                resultImageTitle.setText("Lütfen önce hesaplamayı bitirin.");
+            }
+            return;
+        }
+        
+        // Görsel yolunu belirle
+        String imagePath = determineImagePath();
+        
+        if(imagePath != null) {
+            try {
+                Image image = new Image(Objects.requireNonNull(Launcher.class.getResourceAsStream(imagePath)));
+                if(resultImage != null) {
+                    resultImage.setImage(image);
+                }
+                if(resultImageTitle != null) {
+                    resultImageTitle.setText(""); // Görsel yüklendiğinde başlık metnini boş bırak
+                }
+                // Hesaplama sonucu bölümünü aç
+                if(!isCalculationResultSectionExpanded) {
+                    collapseAndExpandSection(calculationResultSection, isCalculationResultSectionExpanded, calculationResultSectionButtonImage, true, false);
+                    isCalculationResultSectionExpanded = true;
+                }
+                // Ünite bilgileri bölümünü kapat
+                if(isUnitInfoSectionExpanded) {
+                    collapseAndExpandSection(unitInfoSection, isUnitInfoSectionExpanded, unitInfoSectionButtonImage, false, true);
+                    isUnitInfoSectionExpanded = false;
+                }
+            } catch (Exception e) {
+                System.err.println("Görsel yüklenirken hata oluştu: " + e.getMessage());
+                if(resultImageTitle != null) {
+                    resultImageTitle.setText("Görsel yüklenemedi: " + imagePath);
+                }
+            }
+        } else {
+            // Uygun görsel bulunamadı
+            if(resultImage != null) {
+                resultImage.setImage(null);
+            }
+            if(resultImageTitle != null) {
+                resultImageTitle.setText("Seçilen kombinasyon için görsel bulunamadı.");
+            }
+        }
+    }
+    
+    private String determineImagePath() {
+        if(secilenYagTanki == null || secilenValfTipi == null || secilenTablaKilit == null) {
+            return null;
+        }
+        
+        String yagTanki = secilenYagTanki.trim();
+        String valfTipi = secilenValfTipi.trim();
+        String tablaKilit = secilenTablaKilit.trim();
+        
+        // BTH 75
+        if(yagTanki.equals("BTH 75")) {
+            if(valfTipi.equals("KV1S")) {
+                if(tablaKilit.equals("Var")) {
+                    return "/assets/data/hydraulicUnitData/schematicImages/blain/bth75-kv1s-kilit_motor.png";
+                } else if(tablaKilit.equals("Yok")) {
+                    return "/assets/data/hydraulicUnitData/schematicImages/blain/bth75-kv1s.png";
+                }
+            } else if(valfTipi.equals("KV2S")) {
+                if(tablaKilit.equals("Var")) {
+                    return "/assets/data/hydraulicUnitData/schematicImages/blain/bth75-kv2s-kilit_motor.png";
+                } else if(tablaKilit.equals("Yok")) {
+                    return "/assets/data/hydraulicUnitData/schematicImages/blain/bth75-kv2s.png";
+                }
+            }
+        }
+        // BTH 150
+        else if(yagTanki.equals("BTH 150")) {
+            if(valfTipi.equals("KV2S")) {
+                if(tablaKilit.equals("Var")) {
+                    return "/assets/data/hydraulicUnitData/schematicImages/blain/bth150-kv2s-kilit_motor.png";
+                } else if(tablaKilit.equals("Yok")) {
+                    return "/assets/data/hydraulicUnitData/schematicImages/blain/bth150-kv2s.png";
+                }
+            } else if(valfTipi.equals("EV100 3/4\"")) {
+                if(tablaKilit.equals("Var")) {
+                    return "/assets/data/hydraulicUnitData/schematicImages/blain/bth150-ev100_3-4-kilit_motor.png";
+                } else if(tablaKilit.equals("Yok")) {
+                    return "/assets/data/hydraulicUnitData/schematicImages/blain/bth150-ev100_3-4.png";
+                }
+            }
+        }
+        // BTH 250
+        else if(yagTanki.equals("BTH 250")) {
+            if(valfTipi.equals("EV100 3/4\"")) {
+                if(tablaKilit.equals("Var")) {
+                    return "/assets/data/hydraulicUnitData/schematicImages/blain/bth250-ev100_3-4-kilit_motor.png";
+                } else if(tablaKilit.equals("Yok")) {
+                    return "/assets/data/hydraulicUnitData/schematicImages/blain/bth250-ev100_3-4.png";
+                }
+            } else if(valfTipi.equals("EV100 1\"1/2")) {
+                if(tablaKilit.equals("Var")) {
+                    return "/assets/data/hydraulicUnitData/schematicImages/blain/bth250-ev100_1-1-2-kilit_motor.png";
+                } else if(tablaKilit.equals("Yok")) {
+                    return "/assets/data/hydraulicUnitData/schematicImages/blain/bth250-ev100_1-1-2.png";
+                }
+            }
+        }
+        // BTH 400
+        else if(yagTanki.equals("BTH 400")) {
+            if(valfTipi.equals("EV100 3/4\"")) {
+                if(tablaKilit.equals("Var")) {
+                    return "/assets/data/hydraulicUnitData/schematicImages/blain/bth400-ev100_3-4-kilit_motor.png";
+                } else if(tablaKilit.equals("Yok")) {
+                    return "/assets/data/hydraulicUnitData/schematicImages/blain/bth400-ev100_3-4.png";
+                }
+            } else if(valfTipi.equals("EV100 1\"1/2")) {
+                if(tablaKilit.equals("Var")) {
+                    return "/assets/data/hydraulicUnitData/schematicImages/blain/bth400-ev100_1-1-2-kilit_motor.png";
+                } else if(tablaKilit.equals("Yok")) {
+                    return "/assets/data/hydraulicUnitData/schematicImages/blain/bth400-ev100_1-1-2.png";
+                }
+            }
+        }
+        // BTH 600
+        else if(yagTanki.equals("BTH 600")) {
+            if(valfTipi.equals("EV100 3/4\"")) {
+                if(tablaKilit.equals("Var")) {
+                    return "/assets/data/hydraulicUnitData/schematicImages/blain/bth600-ev100_3-4-kilit_motor.png";
+                } else if(tablaKilit.equals("Yok")) {
+                    return "/assets/data/hydraulicUnitData/schematicImages/blain/bth600-ev100_3-4.png";
+                }
+            } else if(valfTipi.equals("EV100 1\"1/2")) {
+                if(tablaKilit.equals("Var")) {
+                    return "/assets/data/hydraulicUnitData/schematicImages/blain/bth600-ev100_1-1-2-kilit_motor.png";
+                } else if(tablaKilit.equals("Yok")) {
+                    return "/assets/data/hydraulicUnitData/schematicImages/blain/bth600-ev100_1-1-2.png";
+                }
+            }
+        }
+        
+        return null;
+    }
 
+    private void clearAllFields() {
+        // Tüm text field'ları temizle
+        if(siparisNumarasiField != null) {
+            siparisNumarasiField.clear();
+        }
+        if(inviteUserTextField != null) {
+            inviteUserTextField.clear();
+        }
+        
+        // Tüm combo box'ları temizle ve disable et
+        if(motorComboBox != null) {
+            motorComboBox.getSelectionModel().clearSelection();
+            motorComboBox.getItems().clear();
+            motorComboBox.setDisable(true);
+        }
+        if(sogutmaComboBox != null) {
+            sogutmaComboBox.getSelectionModel().clearSelection();
+            sogutmaComboBox.getItems().clear();
+            sogutmaComboBox.setDisable(true);
+        }
+        if(tablaKilitComboBox != null) {
+            tablaKilitComboBox.getSelectionModel().clearSelection();
+            tablaKilitComboBox.getItems().clear();
+            tablaKilitComboBox.setDisable(true);
+        }
+        if(pompaComboBox != null) {
+            pompaComboBox.getSelectionModel().clearSelection();
+            pompaComboBox.getItems().clear();
+            pompaComboBox.setDisable(true);
+        }
+        if(valfTipiComboBox != null) {
+            valfTipiComboBox.getSelectionModel().clearSelection();
+            valfTipiComboBox.getItems().clear();
+            valfTipiComboBox.setDisable(true);
+        }
+        if(yagTankiComboBox != null) {
+            yagTankiComboBox.getSelectionModel().clearSelection();
+            yagTankiComboBox.getItems().clear();
+            yagTankiComboBox.setDisable(true);
+        }
+        
+        // Tüm seçili değerleri null yap
+        secilenSogutma = null;
+        secilenTablaKilit = null;
+        secilenPompa = null;
+        secilenValfTipi = null;
+        secilenYagTanki = null;
+        secilenMotorDiameter = null;
+        
+        // Görseli temizle
+        if(resultImage != null) {
+            resultImage.setImage(null);
+        }
+        if(resultImageTitle != null) {
+            resultImageTitle.setText("Lütfen önce hesaplamayı bitirin.");
+        }
+        
+        // Tüm bölümleri collapse et
+        if(isUnitInfoSectionExpanded) {
+            collapseAndExpandSection(unitInfoSection, isUnitInfoSectionExpanded, unitInfoSectionButtonImage, false, true);
+            isUnitInfoSectionExpanded = false;
+        }
+        if(isCalculationResultSectionExpanded) {
+            collapseAndExpandSection(calculationResultSection, isCalculationResultSectionExpanded, calculationResultSectionButtonImage, false, true);
+            isCalculationResultSectionExpanded = false;
+        }
+        
+        // Sipariş Bilgileri bölümünü expand et
+        if(!isOrderSectionExpanded) {
+            collapseAndExpandSection(orderSection, isOrderSectionExpanded, orderSectionButtonImage, true, false);
+            isOrderSectionExpanded = true;
+        }
+    }
+    
     private void collapseAndExpandSection(AnchorPane targetPane, boolean isExpanded, ImageView targetImageView, boolean forceToOpen, boolean forceToClose) {
         Image arrowDown = new Image(Objects.requireNonNull(Launcher.class.getResourceAsStream("/assets/images/icons/icon_arrow_down.png")));
         Image arrowUp = new Image(Objects.requireNonNull(Launcher.class.getResourceAsStream("/assets/images/icons/icon_arrow_up.png")));

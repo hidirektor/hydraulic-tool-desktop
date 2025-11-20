@@ -1453,18 +1453,44 @@ public class YamlUtil {
 
         Map<String, Map<String, Object>> motorData = (Map<String, Map<String, Object>>) yamlData.get("motor");
 
-        motorData.forEach((key, value) -> {
-            LinkedList<String> motorList = new LinkedList<>();
+        if(motorData != null) {
+            motorData.forEach((key, value) -> {
+                LinkedList<String> motorList = new LinkedList<>();
 
-            Map<String, Map<String, String>> options = (Map<String, Map<String, String>>) value.get("options");
+                Map<String, Map<String, Object>> options = (Map<String, Map<String, Object>>) value.get("options");
 
-            options.forEach((innerKey, motorDetails) -> {
-                String motorName = motorDetails.get("value");
-                motorList.add(motorName);
+                if(options != null) {
+                    options.forEach((innerKey, motorDetails) -> {
+                        String motorName = String.valueOf(motorDetails.get("value")).trim();
+                        motorList.add(motorName);
+                        
+                        // Diameter bilgisini kaydet (motor adını trim'lenmiş haliyle kullan)
+                        Object diameterObj = motorDetails.get("diameter");
+                        
+                        if (diameterObj != null) {
+                            try {
+                                Integer diameter;
+                                // Eğer zaten Integer ise direkt kullan
+                                if(diameterObj instanceof Integer) {
+                                    diameter = (Integer) diameterObj;
+                                } else {
+                                    // String ise parse et
+                                    diameter = Integer.parseInt(String.valueOf(diameterObj));
+                                }
+                                SystemDefaults.getLocalHydraulicData().blainMotorDiameterMap.put(motorName, diameter);
+                            } catch (NumberFormatException e) {
+                                e.printStackTrace();
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    });
+                }
+
+                SystemDefaults.getLocalHydraulicData().blainMotorMap.put(key, motorList);
             });
-
-            SystemDefaults.getLocalHydraulicData().blainMotorMap.put(key, motorList);
-        });
+        }
+        
         input.close();
     }
 
@@ -1475,18 +1501,44 @@ public class YamlUtil {
 
         Map<String, Map<String, Object>> pompaData = (Map<String, Map<String, Object>>) yamlData.get("pompa");
 
-        pompaData.forEach((key, value) -> {
-            LinkedList<String> pompaList = new LinkedList<>();
+        if(pompaData != null) {
+            pompaData.forEach((key, value) -> {
+                LinkedList<String> pompaList = new LinkedList<>();
 
-            Map<String, Map<String, String>> options = (Map<String, Map<String, String>>) value.get("options");
+                Map<String, Map<String, Object>> options = (Map<String, Map<String, Object>>) value.get("options");
 
-            options.forEach((innerKey, pompaDetails) -> {
-                String pompaName = pompaDetails.get("value");
-                pompaList.add(pompaName);
+                if(options != null) {
+                    options.forEach((innerKey, pompaDetails) -> {
+                        String pompaName = String.valueOf(pompaDetails.get("value")).trim();
+                        pompaList.add(pompaName);
+                        
+                        // Diameter bilgisini kaydet (pompa adını trim'lenmiş haliyle kullan)
+                        Object diameterObj = pompaDetails.get("diameter");
+                        
+                        if (diameterObj != null) {
+                            try {
+                                Integer diameter;
+                                // Eğer zaten Integer ise direkt kullan
+                                if(diameterObj instanceof Integer) {
+                                    diameter = (Integer) diameterObj;
+                                } else {
+                                    // String ise parse et
+                                    diameter = Integer.parseInt(String.valueOf(diameterObj));
+                                }
+                                SystemDefaults.getLocalHydraulicData().blainPompaDiameterMap.put(pompaName, diameter);
+                            } catch (NumberFormatException e) {
+                                e.printStackTrace();
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    });
+                }
+
+                SystemDefaults.getLocalHydraulicData().blainPompaMap.put(key, pompaList);
             });
-
-            SystemDefaults.getLocalHydraulicData().blainPompaMap.put(key, pompaList);
-        });
+        }
+        
         input.close();
     }
 }

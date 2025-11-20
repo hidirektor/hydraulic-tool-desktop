@@ -75,7 +75,7 @@ public class FileUtility {
             copyResourceFile("/assets/data/programDatabase/cabins.json", SystemDefaults.cabinsDBPath, false);
             copyResourceFile("/assets/data/programDatabase/classic_combo.yml", SystemDefaults.classicComboDBPath, false);
             copyResourceFile("/assets/data/programDatabase/powerpack_combo.yml", SystemDefaults.powerPackComboDBPath, false);
-            copyResourceFile("/assets/data/programDatabase/blain_combo.yml", SystemDefaults.blainComboDBPath, false);
+            copyResourceFile("/assets/data/programDatabase/blain_combo.yml", SystemDefaults.blainComboDBPath, true);
             copyResourceFile("/assets/data/programDatabase/classic_parts.yml", SystemDefaults.classicPartsDBPath, false);
             copyResourceFile("/assets/data/programDatabase/powerpack_parts_hidros.yml", SystemDefaults.powerPackPartsHidrosDBPath, false);
             copyResourceFile("/assets/data/programDatabase/powerpack_parts_ithal.yml", SystemDefaults.powerPackPartsIthalDBPath, false);
