@@ -83,3 +83,24 @@
     -fx-background-radius: 6em;
     -fx-text-fill: #FFFFFF;
 }
+
+.result-text-area {
+    -fx-control-inner-background: #f9fafb;
+    -fx-font-family: 'TextaAltRegular';
+    -fx-font-size: 14px;
+    -fx-text-fill: #111827;
+}
+
+.result-text-area .scroll-bar:vertical {
+    -fx-opacity: 0;
+    -fx-pref-width: 0;
+}
+
+.result-text-area .scroll-bar:horizontal {
+    -fx-opacity: 0;
+    -fx-pref-height: 0;
+}
+
+.result-text-area .scroll-bar {
+    -fx-opacity: 0;
+}
