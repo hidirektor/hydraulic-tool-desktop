@@ -4,9 +4,11 @@ import com.hidirektor.hydraulic.Launcher;
 import com.hidirektor.hydraulic.controllers.notification.NotificationController;
 import com.hidirektor.hydraulic.utils.Model.Table.PartListTable;
 import com.hidirektor.hydraulic.utils.Notification.NotificationUtil;
+import com.hidirektor.hydraulic.utils.File.PDF.PDFUtil;
 import com.hidirektor.hydraulic.utils.Process.UIProcess;
 import com.hidirektor.hydraulic.utils.System.SystemDefaults;
 import javafx.application.Platform;
+import javafx.concurrent.Task;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -32,6 +34,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Region;
 
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 import java.util.*;
@@ -52,13 +55,13 @@ public class BlainController implements Initializable {
     public Label blainCalculationTitle;
 
     @FXML
-    public AnchorPane orderSection, unitInfoSection, calculationResultSection, partListSection, unitInfoSectionContainer, orderSectionContainer, calculationResultSectionContainer, partListSectionContainer;
+    public AnchorPane orderSection, unitInfoSection, calculationResultSection, partListSection, unitSchemeSection, unitInfoSectionContainer, orderSectionContainer, calculationResultSectionContainer, partListSectionContainer, unitSchemeSectionContainer;
 
     @FXML
-    public Button orderSectionButton, unitInfoSectionButton, calculationResultSectionButton, partListSectionButton, clearButton;
+    public Button orderSectionButton, unitInfoSectionButton, calculationResultSectionButton, partListSectionButton, unitSchemeSectionButton, clearButton, openPDFInExplorerButton;
 
     @FXML
-    public ImageView orderSectionButtonImage, unitInfoSectionButtonImage, calculationResultSectionButtonImage, partListSectionButtonImage, clearButtonImage;
+    public ImageView orderSectionButtonImage, unitInfoSectionButtonImage, calculationResultSectionButtonImage, partListSectionButtonImage, unitSchemeSectionButtonImage, clearButtonImage;
     
     /*
     Parça listesi componentleri
@@ -89,9 +92,26 @@ public class BlainController implements Initializable {
 
     @FXML
     public ComboBox<String> motorComboBox, sogutmaComboBox, tablaKilitComboBox, 
-                            pompaComboBox, valfTipiComboBox, yagTankiComboBox;
+                            pompaComboBox, valfTipiComboBox, yagTankiComboBox, silindirSayisiCombo;
 
-    boolean isOrderSectionExpanded = false, isUnitInfoSectionExpanded = false, isCalculationResultSectionExpanded = false, isPartListSectionExpanded = false;
+    /*
+    Ünite Şeması Componentleri
+     */
+    @FXML
+    public ImageView schemePageOne, schemePageTwo;
+    
+    @FXML
+    public javafx.scene.layout.StackPane schemePageOneContainer, schemePageTwoContainer;
+    
+    @FXML
+    public AnchorPane schemePageOneOverlay, schemePageTwoOverlay;
+    
+    @FXML
+    public javafx.scene.Group schemePageOneIconGroup, schemePageTwoIconGroup;
+
+    boolean isOrderSectionExpanded = false, isUnitInfoSectionExpanded = false, isCalculationResultSectionExpanded = false, isPartListSectionExpanded = false, isUnitSchemeSectionExpanded = false;
+    
+    private String silindirSayisi = null;
     
     public static String girilenSiparisNumarasi = "";
     
@@ -109,6 +129,7 @@ public class BlainController implements Initializable {
             collapseAndExpandSection(orderSection, isOrderSectionExpanded, orderSectionButtonImage, true, false);
             collapseAndExpandSection(calculationResultSection, isCalculationResultSectionExpanded, calculationResultSectionButtonImage, false, true);
             collapseAndExpandSection(partListSection, isPartListSectionExpanded, partListSectionButtonImage, false, true);
+            collapseAndExpandSection(unitSchemeSection, isUnitSchemeSectionExpanded, unitSchemeSectionButtonImage, false, true);
             // Tüm dropdown'ları başlangıçta disabled yap
             disableAllDropdowns();
             comboBoxListener();
@@ -165,6 +186,22 @@ public class BlainController implements Initializable {
             }
             collapseAndExpandSection(partListSection, isPartListSectionExpanded, partListSectionButtonImage, false, false);
             isPartListSectionExpanded = !isPartListSectionExpanded;
+        } else if(actionEvent.getSource().equals(unitSchemeSectionButton)) {
+            collapseAndExpandSection(unitSchemeSection, isUnitSchemeSectionExpanded, unitSchemeSectionButtonImage, false, false);
+            isUnitSchemeSectionExpanded = !isUnitSchemeSectionExpanded;
+        } else if(actionEvent.getSource().equals(openPDFInExplorerButton)) {
+            // PDF dosyasını dosya gezgininde aç
+            if(girilenSiparisNumarasi != null && !girilenSiparisNumarasi.trim().isEmpty()) {
+                String pdfPath = SystemDefaults.userDataPDFFolderPath + girilenSiparisNumarasi + ".pdf";
+                try {
+                    java.awt.Desktop.getDesktop().open(new java.io.File(pdfPath));
+                } catch (Exception e) {
+                    NotificationUtil.showNotification(openPDFInExplorerButton.getScene().getWindow(), 
+                        NotificationController.NotificationType.ALERT, 
+                        "Dosya Hatası", 
+                        "PDF dosyası açılamadı: " + e.getMessage());
+                }
+            }
         } else if(actionEvent.getSource().equals(clearButton)) {
             clearAllFields();
         }
@@ -389,6 +426,12 @@ public class BlainController implements Initializable {
             // Yağ tankı seçildiğinde hesaplama sonucu görselini güncelle
             updateResultImage();
         }, null);
+        
+        // Silindir sayısı combo box listener
+        UIProcess.changeInputDataForComboBox(silindirSayisiCombo, newValue -> {
+            silindirSayisi = newValue;
+            exportSchemeProcess();
+        }, null);
     }
     
     private void updatePompaOptions() {
@@ -565,6 +608,13 @@ public class BlainController implements Initializable {
                 }
                 // Parça listesini otomatik yükle
                 createAndLoadPartListTable();
+                
+                // Silindir sayısı combo box'ını aktif et
+                if(silindirSayisiCombo != null) {
+                    silindirSayisiCombo.setDisable(false);
+                    silindirSayisiCombo.getItems().clear();
+                    silindirSayisiCombo.getItems().addAll("1 Silindir", "2 Silindir", "4 Silindir");
+                }
             } catch (Exception e) {
                 System.err.println("Görsel yüklenirken hata oluştu: " + e.getMessage());
                 if(resultImageTitle != null) {
@@ -765,6 +815,89 @@ public class BlainController implements Initializable {
         return writableImage;
     }
 
+    @FXML
+    public void handleUnitSchemeSectionClick(MouseEvent event) {
+        if(event.getTarget() instanceof Button || event.getTarget() instanceof ImageView) {
+            return;
+        }
+        // Hesaplama bitti mi kontrol et (tüm seçimler yapıldı mı)
+        if(secilenYagTanki != null && secilenValfTipi != null && secilenTablaKilit != null) {
+            collapseAndExpandSection(unitSchemeSection, isUnitSchemeSectionExpanded, unitSchemeSectionButtonImage, false, false);
+            isUnitSchemeSectionExpanded = !isUnitSchemeSectionExpanded;
+        } else {
+            NotificationUtil.showNotification(orderSectionButton.getScene().getWindow(), 
+                NotificationController.NotificationType.ALERT, 
+                "Şema Hatası", 
+                "Ünite şemasını görüntüleyebilmeniz için önce hesaplamayı bitirmeniz gerek.");
+        }
+    }
+    
+    @FXML
+    public void handleSchemePageOneEnter(MouseEvent event) {
+        if(schemePageOne != null && schemePageOne.isVisible() && schemePageOneOverlay != null) {
+            // Overlay'in boyutunu ImageView'a göre ayarla
+            schemePageOneOverlay.setPrefWidth(schemePageOne.getFitWidth());
+            schemePageOneOverlay.setPrefHeight(schemePageOne.getFitHeight());
+            schemePageOneOverlay.setVisible(true);
+            javafx.animation.FadeTransition fadeIn = new javafx.animation.FadeTransition(javafx.util.Duration.millis(200), schemePageOneOverlay);
+            fadeIn.setFromValue(0.0);
+            fadeIn.setToValue(1.0);
+            fadeIn.play();
+        }
+    }
+    
+    @FXML
+    public void handleSchemePageOneExit(MouseEvent event) {
+        if(schemePageOneOverlay != null) {
+            javafx.animation.FadeTransition fadeOut = new javafx.animation.FadeTransition(javafx.util.Duration.millis(200), schemePageOneOverlay);
+            fadeOut.setFromValue(1.0);
+            fadeOut.setToValue(0.0);
+            fadeOut.setOnFinished(e -> schemePageOneOverlay.setVisible(false));
+            fadeOut.play();
+        }
+    }
+    
+    @FXML
+    public void handleSchemePageOneClick(MouseEvent event) {
+        if(schemePageOne != null && schemePageOne.isVisible() && schemePageOne.getImage() != null) {
+            // Tam ekran görüntüleme işlevi buraya eklenecek
+            // showFullscreenImages(0);
+        }
+    }
+    
+    @FXML
+    public void handleSchemePageTwoEnter(MouseEvent event) {
+        if(schemePageTwo != null && schemePageTwo.isVisible() && schemePageTwoOverlay != null) {
+            // Overlay'in boyutunu ImageView'a göre ayarla
+            schemePageTwoOverlay.setPrefWidth(schemePageTwo.getFitWidth());
+            schemePageTwoOverlay.setPrefHeight(schemePageTwo.getFitHeight());
+            schemePageTwoOverlay.setVisible(true);
+            javafx.animation.FadeTransition fadeIn = new javafx.animation.FadeTransition(javafx.util.Duration.millis(200), schemePageTwoOverlay);
+            fadeIn.setFromValue(0.0);
+            fadeIn.setToValue(1.0);
+            fadeIn.play();
+        }
+    }
+    
+    @FXML
+    public void handleSchemePageTwoExit(MouseEvent event) {
+        if(schemePageTwoOverlay != null) {
+            javafx.animation.FadeTransition fadeOut = new javafx.animation.FadeTransition(javafx.util.Duration.millis(200), schemePageTwoOverlay);
+            fadeOut.setFromValue(1.0);
+            fadeOut.setToValue(0.0);
+            fadeOut.setOnFinished(e -> schemePageTwoOverlay.setVisible(false));
+            fadeOut.play();
+        }
+    }
+    
+    @FXML
+    public void handleSchemePageTwoClick(MouseEvent event) {
+        if(schemePageTwo != null && schemePageTwo.isVisible() && schemePageTwo.getImage() != null) {
+            // Tam ekran görüntüleme işlevi buraya eklenecek
+            // showFullscreenImages(1);
+        }
+    }
+    
     private void clearAllFields() {
         // Tüm text field'ları temizle
         if(siparisNumarasiField != null) {
@@ -805,6 +938,11 @@ public class BlainController implements Initializable {
             yagTankiComboBox.getItems().clear();
             yagTankiComboBox.setDisable(true);
         }
+        if(silindirSayisiCombo != null) {
+            silindirSayisiCombo.getSelectionModel().clearSelection();
+            silindirSayisiCombo.getItems().clear();
+            silindirSayisiCombo.setDisable(true);
+        }
         
         // Tüm seçili değerleri null yap
         secilenSogutma = null;
@@ -813,6 +951,43 @@ public class BlainController implements Initializable {
         secilenValfTipi = null;
         secilenYagTanki = null;
         secilenMotorDiameter = null;
+        silindirSayisi = null;
+        
+        // Şema görsellerini temizle
+        if(schemePageOne != null) {
+            schemePageOne.setImage(null);
+            schemePageOne.setVisible(false);
+            schemePageOne.setFitHeight(0);
+        }
+        if(schemePageTwo != null) {
+            schemePageTwo.setImage(null);
+            schemePageTwo.setVisible(false);
+            schemePageTwo.setFitHeight(0);
+        }
+        
+        // StackPane'leri ve overlay'leri gizle
+        if(schemePageOneContainer != null) {
+            schemePageOneContainer.setVisible(false);
+            schemePageOneContainer.setManaged(false);
+        }
+        if(schemePageTwoContainer != null) {
+            schemePageTwoContainer.setVisible(false);
+            schemePageTwoContainer.setManaged(false);
+        }
+        if(schemePageOneOverlay != null) {
+            schemePageOneOverlay.setVisible(false);
+            schemePageOneOverlay.setManaged(false);
+        }
+        if(schemePageTwoOverlay != null) {
+            schemePageTwoOverlay.setVisible(false);
+            schemePageTwoOverlay.setManaged(false);
+        }
+        
+        // "Dosyada Göster" butonunu gizle
+        if(openPDFInExplorerButton != null) {
+            openPDFInExplorerButton.setVisible(false);
+            openPDFInExplorerButton.setManaged(false);
+        }
         
         // Görseli temizle
         if(resultImage != null) {
@@ -1425,6 +1600,294 @@ public class BlainController implements Initializable {
                     }
                 }
             }
+        });
+    }
+    
+    /**
+     * Blain PDF şema seçim mantığı
+     * Seçilen değerlere göre PDF dosya adını ve proje kodunu döndürür
+     */
+    private String[] getBlainPDFAndProjectCode() {
+        if(secilenSogutma == null || secilenTablaKilit == null || secilenValfTipi == null || silindirSayisi == null) {
+            return null;
+        }
+        
+        boolean isSogutmaVar = secilenSogutma.equals("Var");
+        boolean isTablaKilitVar = secilenTablaKilit.equals("Var");
+        
+        // Valf tipini normalize et (EV100 3/4" ve EV100 1"1/2" için EV100 olarak kabul et)
+        String valfTipiNormalized = secilenValfTipi;
+        if(secilenValfTipi.startsWith("EV100")) {
+            valfTipiNormalized = "EV100";
+        }
+        
+        // Silindir sayısını parse et
+        String cylinderNumberStr = silindirSayisi.replaceAll("[^0-9]", "");
+        int cylinderNumber = Integer.parseInt(cylinderNumberStr);
+        
+        // PDF dosya adı ve proje kodu
+        String pdfFileName = null;
+        String projectCode = null;
+        
+        // Soğutma Var, Tabla Kilit Var
+        if(isSogutmaVar && isTablaKilitVar) {
+            if(valfTipiNormalized.equals("KV2S")) {
+                if(cylinderNumber == 1) {
+                    pdfFileName = "B1.pdf";
+                    projectCode = "HS-HP 1231";
+                } else if(cylinderNumber == 2) {
+                    pdfFileName = "B2.pdf";
+                    projectCode = "HS-HP 1232";
+                } else if(cylinderNumber == 4) {
+                    pdfFileName = "B3.pdf";
+                    projectCode = "HS-HP 1234";
+                }
+            } else if(valfTipiNormalized.equals("EV100")) {
+                if(cylinderNumber == 1) {
+                    pdfFileName = "B4.pdf";
+                    projectCode = "HS-HP 1331";
+                } else if(cylinderNumber == 2) {
+                    pdfFileName = "B5.pdf";
+                    projectCode = "HS-HP 1332";
+                } else if(cylinderNumber == 4) {
+                    pdfFileName = "B6.pdf";
+                    projectCode = "HS-HP 1334";
+                }
+            }
+        }
+        // Soğutma Var, Tabla Kilit Yok
+        else if(isSogutmaVar && !isTablaKilitVar) {
+            if(valfTipiNormalized.equals("KV2S")) {
+                if(cylinderNumber == 1) {
+                    pdfFileName = "B7.pdf";
+                    projectCode = "HS-HP 1241";
+                } else if(cylinderNumber == 2) {
+                    pdfFileName = "B8.pdf";
+                    projectCode = "HS-HP 1242";
+                } else if(cylinderNumber == 4) {
+                    pdfFileName = "B9.pdf";
+                    projectCode = "HS-HP 1244";
+                }
+            } else if(valfTipiNormalized.equals("EV100")) {
+                if(cylinderNumber == 1) {
+                    pdfFileName = "B10.pdf";
+                    projectCode = "HS-HP 1341";
+                } else if(cylinderNumber == 2) {
+                    pdfFileName = "B11.pdf";
+                    projectCode = "HS-HP 1342";
+                } else if(cylinderNumber == 4) {
+                    pdfFileName = "B12.pdf";
+                    projectCode = "HS-HP 1344";
+                }
+            }
+        }
+        // Soğutma Yok, Tabla Kilit Var
+        else if(!isSogutmaVar && isTablaKilitVar) {
+            if(valfTipiNormalized.equals("KV1S")) {
+                if(cylinderNumber == 1) {
+                    pdfFileName = "B13.pdf";
+                    projectCode = "HS-HP 1121";
+                } else if(cylinderNumber == 2) {
+                    pdfFileName = "B14.pdf";
+                    projectCode = "HS-HP 1122";
+                } else if(cylinderNumber == 4) {
+                    pdfFileName = "B15.pdf";
+                    projectCode = "HS-HP 1124";
+                }
+            } else if(valfTipiNormalized.equals("KV2S")) {
+                if(cylinderNumber == 1) {
+                    pdfFileName = "B16.pdf";
+                    projectCode = "HS-HP 1221";
+                } else if(cylinderNumber == 2) {
+                    pdfFileName = "B17.pdf";
+                    projectCode = "HS-HP 1222";
+                } else if(cylinderNumber == 4) {
+                    pdfFileName = "B18.pdf";
+                    projectCode = "HS-HP 1224";
+                }
+            } else if(valfTipiNormalized.equals("EV100")) {
+                if(cylinderNumber == 1) {
+                    pdfFileName = "B19.pdf";
+                    projectCode = "HS-HP 1321";
+                } else if(cylinderNumber == 2) {
+                    pdfFileName = "B20.pdf";
+                    projectCode = "HS-HP 1322";
+                } else if(cylinderNumber == 4) {
+                    pdfFileName = "B21.pdf";
+                    projectCode = "HS-HP 1324";
+                }
+            }
+        }
+        // Soğutma Yok, Tabla Kilit Yok
+        else if(!isSogutmaVar && !isTablaKilitVar) {
+            if(valfTipiNormalized.equals("KV1S")) {
+                if(cylinderNumber == 1) {
+                    pdfFileName = "B22.pdf";
+                    projectCode = "HS-HP 1111";
+                } else if(cylinderNumber == 2) {
+                    pdfFileName = "B23.pdf";
+                    projectCode = "HS-HP 1112";
+                } else if(cylinderNumber == 4) {
+                    pdfFileName = "B24.pdf";
+                    projectCode = "HS-HP 1114";
+                }
+            } else if(valfTipiNormalized.equals("KV2S")) {
+                if(cylinderNumber == 1) {
+                    pdfFileName = "B25.pdf";
+                    projectCode = "HS-HP 1211";
+                } else if(cylinderNumber == 2) {
+                    pdfFileName = "B26.pdf";
+                    projectCode = "HS-HP 1212";
+                } else if(cylinderNumber == 4) {
+                    pdfFileName = "B27.pdf";
+                    projectCode = "HS-HP 1214";
+                }
+            } else if(valfTipiNormalized.equals("EV100")) {
+                if(cylinderNumber == 1) {
+                    pdfFileName = "B28.pdf";
+                    projectCode = "HS-HP 1311";
+                } else if(cylinderNumber == 2) {
+                    pdfFileName = "B29.pdf";
+                    projectCode = "HS-HP 1312";
+                } else if(cylinderNumber == 4) {
+                    pdfFileName = "B30.pdf";
+                    projectCode = "HS-HP 1314";
+                }
+            }
+        }
+        
+        if(pdfFileName != null && projectCode != null) {
+            return new String[]{pdfFileName, projectCode};
+        }
+        
+        return null;
+    }
+    
+    /**
+     * PDF şema export işlemi
+     */
+    public void exportSchemeProcess() {
+        // Tüm gerekli seçimler yapılmış mı kontrol et
+        if(secilenSogutma == null || secilenTablaKilit == null || secilenValfTipi == null || silindirSayisi == null) {
+            NotificationUtil.showNotification(orderSectionButton.getScene().getWindow(), 
+                NotificationController.NotificationType.ALERT, 
+                "Şema Hatası", 
+                "Lütfen tüm gerekli seçimleri yapın (Soğutma, Tabla Kilit, Valf Tipi, Silindir Sayısı).");
+            return;
+        }
+        
+        // PDF dosya adını ve proje kodunu al
+        String[] pdfInfo = getBlainPDFAndProjectCode();
+        if(pdfInfo == null) {
+            NotificationUtil.showNotification(orderSectionButton.getScene().getWindow(), 
+                NotificationController.NotificationType.ALERT, 
+                "Şema Hatası", 
+                "Seçilen kombinasyon için PDF şeması bulunamadı.");
+            return;
+        }
+        
+        String pdfFileName = pdfInfo[0];
+        String projectCode = pdfInfo[1];
+        
+        // PDF dosya yolu
+        String pdfPath = "/assets/data/hydraulicUnitData/schematicPDF/blain/" + pdfFileName;
+        System.out.println("PDF Şema Yolu: " + pdfPath);
+        System.out.println("Proje Kodu: " + projectCode);
+        
+        // PDF'i yükle ve görüntüle
+        Task<Void> task = new Task<>() {
+            @Override
+            protected Void call() {
+                try {
+                    // PDF dosyasını resources'dan yükle
+                    InputStream pdfStream = Launcher.class.getResourceAsStream(pdfPath);
+                    if(pdfStream == null) {
+                        throw new IOException("PDF dosyası bulunamadı: " + pdfPath);
+                    }
+                    
+                    // Geçici dosya oluştur
+                    java.io.File tempFile = java.io.File.createTempFile("blain_scheme_", ".pdf");
+                    tempFile.deleteOnExit();
+                    
+                    // PDF'i geçici dosyaya kopyala
+                    try (java.io.FileOutputStream fos = new java.io.FileOutputStream(tempFile)) {
+                        byte[] buffer = new byte[1024];
+                        int bytesRead;
+                        while ((bytesRead = pdfStream.read(buffer)) != -1) {
+                            fos.write(buffer, 0, bytesRead);
+                        }
+                    }
+                    
+                    // PDF sayfalarını ImageView'lara yükle
+                    PDFUtil.loadPDFPagesToImageViews(tempFile.getAbsolutePath(), schemePageOne, schemePageTwo);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    throw new RuntimeException("PDF yüklenirken hata oluştu: " + e.getMessage(), e);
+                }
+                return null;
+            }
+        };
+        
+        task.setOnFailed(event -> {
+            Throwable exception = task.getException();
+            exception.printStackTrace();
+            NotificationUtil.showNotification(orderSectionButton.getScene().getWindow(), 
+                NotificationController.NotificationType.ALERT, 
+                "PDF Hatası", 
+                "PDF dosyası yüklenirken hata oluştu: " + exception.getMessage());
+        });
+        
+        task.setOnSucceeded(event -> {
+            // StackPane'leri görünür ve managed yap
+            if(schemePageOneContainer != null) {
+                schemePageOneContainer.setVisible(true);
+                schemePageOneContainer.setManaged(true);
+            }
+            if(schemePageTwoContainer != null) {
+                schemePageTwoContainer.setVisible(true);
+                schemePageTwoContainer.setManaged(true);
+            }
+            
+            if(schemePageOne != null) {
+                schemePageOne.setVisible(true);
+                schemePageOne.setFitHeight(600.0);
+            }
+            if(schemePageTwo != null) {
+                schemePageTwo.setVisible(true);
+                schemePageTwo.setFitHeight(600.0);
+            }
+            
+            // Overlay'lerin boyutunu ImageView'lara göre ayarla ve managed yap
+            if(schemePageOneOverlay != null && schemePageOne != null) {
+                schemePageOneOverlay.setPrefWidth(schemePageOne.getFitWidth());
+                schemePageOneOverlay.setPrefHeight(schemePageOne.getFitHeight());
+                schemePageOneOverlay.setManaged(true);
+            }
+            if(schemePageTwoOverlay != null && schemePageTwo != null) {
+                schemePageTwoOverlay.setPrefWidth(schemePageTwo.getFitWidth());
+                schemePageTwoOverlay.setPrefHeight(schemePageTwo.getFitHeight());
+                schemePageTwoOverlay.setManaged(true);
+            }
+            
+            // Icon Group'lara Scale transform ekle
+            if(schemePageOneIconGroup != null) {
+                javafx.scene.transform.Scale scale = new javafx.scene.transform.Scale(3.0, 3.0);
+                schemePageOneIconGroup.getTransforms().clear();
+                schemePageOneIconGroup.getTransforms().add(scale);
+            }
+            if(schemePageTwoIconGroup != null) {
+                javafx.scene.transform.Scale scale = new javafx.scene.transform.Scale(3.0, 3.0);
+                schemePageTwoIconGroup.getTransforms().clear();
+                schemePageTwoIconGroup.getTransforms().add(scale);
+            }
+            
+            System.out.println("PDF sayfaları başarıyla yüklendi. Proje Kodu: " + projectCode);
+        });
+        
+        Platform.runLater(() -> {
+            Thread thread = new Thread(task);
+            thread.setDaemon(true);
+            thread.start();
         });
     }
 }

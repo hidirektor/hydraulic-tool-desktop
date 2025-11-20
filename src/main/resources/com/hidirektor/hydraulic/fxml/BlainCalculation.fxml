@@ -5,7 +5,9 @@
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
+<?import javafx.scene.*?>
 <?import java.net.URL?>
 <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="610.0" prefWidth="1040.0" styleClass="main-component" xmlns="http://javafx.com/javafx/17.0.6" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.hidirektor.hydraulic.controllers.pages.calculation.BlainController">
    <children>
@@ -331,6 +333,139 @@
                                                       </TableView>
                                                    </children>
                                                 </VBox>
+                                             </children>
+                                          </AnchorPane>
+                                       </children>
+                                    </VBox>
+                                 </children>
+                              </AnchorPane>
+                           </children>
+                           <padding>
+                              <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+                           </padding>
+                           <VBox.margin>
+                              <Insets left="16.0" right="16.0" />
+                           </VBox.margin>
+                        </AnchorPane>
+                        <AnchorPane fx:id="unitSchemeSectionContainer" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#handleUnitSchemeSectionClick" styleClass="accordion-section">
+                           <children>
+                              <Label styleClass="description-label" text="Ünite Şeması" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <font>
+                                    <Font name="TextaAlt-Regular" size="20.0" />
+                                 </font>
+                                 <padding>
+                                    <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+                                 </padding>
+                              </Label>
+                              <Button fx:id="unitSchemeSectionButton" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#handleClick" styleClass="main-button" text="Görüntüle" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <padding>
+                                    <Insets bottom="12.0" left="16.0" right="16.0" top="12.0" />
+                                 </padding>
+                                 <graphic>
+                                    <ImageView fx:id="unitSchemeSectionButtonImage" fitHeight="14.0" fitWidth="14.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../../../../assets/images/icons/icon_arrow_down.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </Button>
+                              <AnchorPane fx:id="unitSchemeSection" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#stopEventPropagation" prefHeight="0.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="40.0">
+                                 <padding>
+                                    <Insets bottom="12.0" left="12.0" right="12.0" top="12.0" />
+                                 </padding>
+                                 <children>
+                                    <VBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" spacing="16.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                       <children>
+                                          <HBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" spacing="12.0">
+                                             <children>
+                                                <HBox alignment="CENTER_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity">
+                                                   <children>
+                                                      <Button fx:id="openPDFInExplorerButton" managed="false" mnemonicParsing="false" onAction="#handleClick" styleClass="main-button" text="Dosyada Göster" visible="false">
+                                                         <padding>
+                                                            <Insets bottom="12.0" left="16.0" right="16.0" top="12.0" />
+                                                         </padding>
+                                                      </Button>
+                                                   </children>
+                                                </HBox>
+                                                <HBox alignment="CENTER_RIGHT" HBox.hgrow="ALWAYS" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" spacing="12.0">
+                                                   <children>
+                                                      <VBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity">
+                                                         <children>
+                                                            <Label styleClass="component-title" text="Silindir Sayısı">
+                                                               <font>
+                                                                  <Font name="TextaAlt-Regular" size="14.0" />
+                                                               </font>
+                                                            </Label>
+                                                            <ComboBox fx:id="silindirSayisiCombo" disable="true" minWidth="-Infinity" prefWidth="250.0" promptText="Lütfen silindir sayısını seçin." />
+                                                         </children>
+                                                      </VBox>
+                                                   </children>
+                                                </HBox>
+                                             </children>
+                                          </HBox>
+                                          <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity">
+                                             <children>
+                                                <HBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" spacing="12.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                   <padding>
+                                                      <Insets bottom="12.0" left="12.0" right="12.0" top="12.0" />
+                                                   </padding>
+                                                   <children>
+                                                      <StackPane fx:id="schemePageOneContainer" managed="false" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#handleSchemePageOneClick" onMouseEntered="#handleSchemePageOneEnter" onMouseExited="#handleSchemePageOneExit" visible="false">
+                                                         <children>
+                                                            <ImageView fx:id="schemePageOne" fitHeight="0.0" fitWidth="400.0" pickOnBounds="true" preserveRatio="true" visible="false" />
+                                                            <AnchorPane fx:id="schemePageOneOverlay" managed="false" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" mouseTransparent="false" opacity="0.0" prefHeight="600.0" prefWidth="400.0" style="-fx-background-color: rgba(0, 0, 0, 0.7);" visible="false" StackPane.alignment="CENTER">
+                                                               <children>
+                                                                  <VBox alignment="CENTER" spacing="16.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                                     <children>
+                                                                        <Group fx:id="schemePageOneIconGroup">
+                                                                           <children>
+                                                                              <SVGPath fill="WHITE">
+                                                                                 <content>
+                                                                                    M14 3.414L9.414 8 14 12.586v-2.583h2V16h-6v-1.996h2.59L8 9.414l-4.59 4.59H6V16H0v-5.997h2v2.583L6.586 8 2 3.414v2.588H0V0h16v6.002h-2V3.414zm-1.415-1.413H10V0H6v2H3.415L8 6.586 12.585 2z
+                                                                                 </content>
+                                                                              </SVGPath>
+                                                                           </children>
+                                                                        </Group>
+                                                                        <Label text="Tıklayarak tam ekranda görüntüleyebilirsiniz" textFill="WHITE" wrapText="true">
+                                                                           <font>
+                                                                              <Font name="TextaAlt-Regular" size="14.0" />
+                                                                           </font>
+                                                                        </Label>
+                                                                     </children>
+                                                                  </VBox>
+                                                               </children>
+                                                            </AnchorPane>
+                                                         </children>
+                                                      </StackPane>
+                                                      <StackPane fx:id="schemePageTwoContainer" managed="false" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#handleSchemePageTwoClick" onMouseEntered="#handleSchemePageTwoEnter" onMouseExited="#handleSchemePageTwoExit" visible="false">
+                                                         <children>
+                                                            <ImageView fx:id="schemePageTwo" fitHeight="0.0" fitWidth="400.0" pickOnBounds="true" preserveRatio="true" visible="false" />
+                                                            <AnchorPane fx:id="schemePageTwoOverlay" managed="false" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" mouseTransparent="false" opacity="0.0" prefHeight="600.0" prefWidth="400.0" style="-fx-background-color: rgba(0, 0, 0, 0.7);" visible="false" StackPane.alignment="CENTER">
+                                                               <children>
+                                                                  <VBox alignment="CENTER" spacing="16.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                                     <children>
+                                                                        <Group fx:id="schemePageTwoIconGroup">
+                                                                           <children>
+                                                                              <SVGPath fill="WHITE">
+                                                                                 <content>
+                                                                                    M14 3.414L9.414 8 14 12.586v-2.583h2V16h-6v-1.996h2.59L8 9.414l-4.59 4.59H6V16H0v-5.997h2v2.583L6.586 8 2 3.414v2.588H0V0h16v6.002h-2V3.414zm-1.415-1.413H10V0H6v2H3.415L8 6.586 12.585 2z
+                                                                                 </content>
+                                                                              </SVGPath>
+                                                                           </children>
+                                                                        </Group>
+                                                                        <Label text="Tıklayarak tam ekranda görüntüleyebilirsiniz" textFill="WHITE" wrapText="true">
+                                                                           <font>
+                                                                              <Font name="TextaAlt-Regular" size="14.0" />
+                                                                           </font>
+                                                                        </Label>
+                                                                     </children>
+                                                                  </VBox>
+                                                               </children>
+                                                            </AnchorPane>
+                                                         </children>
+                                                      </StackPane>
+                                                   </children>
+                                                </HBox>
                                              </children>
                                           </AnchorPane>
                                        </children>
