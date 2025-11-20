@@ -75,14 +75,54 @@ public class PDFUtil {
             paragraph.setSpacingBefore(15);  // 15dp üst boşluk
             document.add(paragraph);
 
-            addAnchorPaneToPDF(tankImage, document, "tankImage");
+            // Blain için özel mantık: sadece resultImage'ı ekle (resultTextArea'yı değil)
+            if(unitType != null && unitType.equals("Blain")) {
+                // Blain için: tankImage içindeki resultImage'ı bul ve ekle
+                if(tankImage != null) {
+                    // resultImage'ı bulmak için AnchorPane içindeki tüm ImageView'ları ara
+                    javafx.scene.image.ImageView resultImageView = findResultImageView(tankImage);
+                    if(resultImageView != null && resultImageView.getImage() != null) {
+                        // ImageView'dan JavaFX Image'i al
+                        javafx.scene.image.Image fxImage = resultImageView.getImage();
+                        
+                        // JavaFX Image'i BufferedImage'e çevir
+                        java.awt.image.BufferedImage bufferedImage = SwingFXUtils.fromFXImage(fxImage, null);
+                        
+                        // Geçici PNG dosyası oluştur
+                        File tempPngFile = File.createTempFile("blain_result_image_", ".png");
+                        tempPngFile.deleteOnExit();
+                        ImageIO.write(bufferedImage, "png", tempPngFile);
+                        
+                        // PDF'e ekle
+                        Image pdfImage = Image.getInstance(tempPngFile.getAbsolutePath());
+                        float targetWidth = document.getPageSize().getWidth() * 0.8f;
+                        float targetHeight = (pdfImage.getHeight() / (float) pdfImage.getWidth()) * targetWidth * 0.55f;
+                        pdfImage.scaleToFit(targetWidth, targetHeight);
+                        pdfImage.setAlignment(Image.ALIGN_CENTER);
+                        pdfImage.setSpacingBefore(10);
+                        document.add(pdfImage);
+                        
+                        // Geçici dosyayı sil
+                        if(tempPngFile.exists() && tempPngFile.delete()) {
+                            System.out.println("Geçici PNG dosyası silindi: " + tempPngFile.getAbsolutePath());
+                        }
+                    }
+                }
+            } else {
+                // Klasik ve PowerPack için normal mantık
+                addAnchorPaneToPDF(tankImage, document, "tankImage");
 
-            if(schemeImage != null) {
-                addAnchorPaneToPDF(schemeImage, document, "schemeImage");
+                if(schemeImage != null) {
+                    addAnchorPaneToPDF(schemeImage, document, "schemeImage");
+                }
             }
 
-            // "HALİL" metnini sayfanın en altına yerleştir
-            Paragraph halilParagraph = new Paragraph(kullanilacakKabin, unicodeFont);
+            // Proje kodu metnini ekle
+            String projectCodeText = kullanilacakKabin;
+            if(unitType != null && unitType.equals("Blain")) {
+                projectCodeText = kullanilacakKabin + " Şeması Sonraki Sayfadadır";
+            }
+            Paragraph halilParagraph = new Paragraph(projectCodeText, unicodeFont);
             halilParagraph.setAlignment(Element.ALIGN_CENTER);
             halilParagraph.setSpacingBefore(20);  // 20dp boşluk
             document.add(halilParagraph);
@@ -273,6 +313,39 @@ public class PDFUtil {
         if (pngFile.exists() && pngFile.delete()) {
             System.out.println("Geçici PNG dosyası silindi: " + pngFilePath2);
         }
+    }
+    
+    /**
+     * AnchorPane içinde resultImage ImageView'ını bulur
+     * En büyük boyutlu ve görünür ImageView'ı döndürür (genellikle resultImage)
+     */
+    private static javafx.scene.image.ImageView findResultImageView(javafx.scene.Parent parent) {
+        javafx.scene.image.ImageView largestImageView = null;
+        double largestSize = 0;
+        
+        for(javafx.scene.Node node : parent.getChildrenUnmodifiable()) {
+            if(node instanceof javafx.scene.image.ImageView) {
+                javafx.scene.image.ImageView imageView = (javafx.scene.image.ImageView) node;
+                if(imageView.isVisible() && imageView.getImage() != null) {
+                    double size = imageView.getFitWidth() * imageView.getFitHeight();
+                    if(size > largestSize) {
+                        largestSize = size;
+                        largestImageView = imageView;
+                    }
+                }
+            }
+            if(node instanceof javafx.scene.Parent) {
+                javafx.scene.image.ImageView found = findResultImageView((javafx.scene.Parent) node);
+                if(found != null) {
+                    double size = found.getFitWidth() * found.getFitHeight();
+                    if(size > largestSize) {
+                        largestSize = size;
+                        largestImageView = found;
+                    }
+                }
+            }
+        }
+        return largestImageView;
     }
 
     public static void cropImage(int startX, int startY, int width, int height, String fileName) {
