@@ -3,58 +3,88 @@ motor:
     options:
       '0':
         value: "1.5 Kw 230V 50Hz"
+        diameter: 14
       '1':
         value: "SBBL010 1,5KW Ø14"
+        diameter: 14
       '2':
         value: "SBBL100 2,9KW Ø14"
+        diameter: 14
       '3':
         value: "SBBL153 4,7KW Ø19"
+        diameter: 19
       '4':
         value: "SBBL163 5,8 KW Ø19"
+        diameter: 19
       '5':
-        value: "SBBL173 7,7 KW Ø19 "
+        value: "SBBL173 7,7 KW Ø19"
+        diameter: 19
       '6':
         value: "SBBL183 9,5 KW Ø19"
+        diameter: 19
       '7':
         value: "SBBL193 11 KW Ø19"
+        diameter: 19
       '8':
         value: "SBBL203 12,5 KW Ø19"
+        diameter: 19
       '9':
         value: "SBBL212 24KW Ø19"
+        diameter: 19
       '10':
         value: "SBBL253 14,7 KW Ø19"
+        diameter: 19
       '11':
         value: "SBBL263 18,4 KW Ø19"
+        diameter: 19
       '12':
         value: "SBBL275 22 KW Ø19"
+        diameter: 19
       '13':
         value: "SBBL926 14.7KW Ø32"
+        diameter: 32
       '14':
         value: "SBBL934 18.4 KW Ø32"
+        diameter: 32
 pompa:
   '0':
     options:
       '0':
         value: "PAVE025#4A 21,7 LT"
+        diameter: 14
       '1':
-        value: "PA025#6C 33,4 LT"
+        value: "PA025#6B 28 LT"
+        diameter: 19
       '2':
-        value: "PA029#6A 38 LT"
+        value: "PA025#6C 33,4 LT"
+        diameter: 19
       '3':
-        value: "PA029#6B 45,6 LT"
+        value: "PA029#6A 38 LT"
+        diameter: 19
       '4':
-        value: "PA032#4A 53,7 LT"
+        value: "PA029#6B 45,6 LT"
+        diameter: 19
       '5':
-        value: "PA032#4B 71,6 LT"
+        value: "PA032#4A 53,7 LT"
+        diameter: 19
       '6':
-        value: "PA40#4A 98,9 LT"
+        value: "PA032#4B 71,6 LT"
+        diameter: 19
       '7':
-        value: "PA40#4B 121 LT"
+        value: "PA40#4A 98,9 LT"
+        diameter: 19
       '8':
-        value: "PA40#4C 145 LT"
+        value: "PA40#4B 121 LT"
+        diameter: 19
       '9':
-        value: "PAP045#4A 177,9 LT"
+        value: "PA40#4C 145 LT"
+        diameter: 19
       '10':
-        value: "PAP045#4B 210,5 LT"
+        value: "PAP045#4A 177,9 LT"
+        diameter: 32
       '11':
+        value: "PAP045#4B 210,5 LT"
+        diameter: 32
+      '12':
         value: "PAP055#4A 247,4 LT"
+        diameter: 32
