@@ -69,7 +69,7 @@ public class PDFUtil {
             BaseFont baseFont = BaseFont.createFont(String.valueOf(Launcher.class.getResource("/assets/fonts/Quicksand-Medium.ttf")), BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
             Font unicodeFont = new Font(baseFont, 22, Font.BOLD);
 
-            // Girilen Sipariş Numarasını ve metni ekle
+            // Girilen Sipariş Numarasını ve metni ekle (ortalanmış)
             Paragraph paragraph = new Paragraph(girilenSiparisNumarasi + " Numaralı Sipariş", unicodeFont);
             paragraph.setAlignment(Element.ALIGN_CENTER);
             paragraph.setSpacingBefore(15);  // 15dp üst boşluk
@@ -93,10 +93,10 @@ public class PDFUtil {
                         tempPngFile.deleteOnExit();
                         ImageIO.write(bufferedImage, "png", tempPngFile);
                         
-                        // PDF'e ekle
+                        // PDF'e ekle (büyütülmüş)
                         Image pdfImage = Image.getInstance(tempPngFile.getAbsolutePath());
-                        float targetWidth = document.getPageSize().getWidth() * 0.8f;
-                        float targetHeight = (pdfImage.getHeight() / (float) pdfImage.getWidth()) * targetWidth * 0.55f;
+                        float targetWidth = document.getPageSize().getWidth() * 0.9f; // 0.8'den 0.9'a büyütüldü
+                        float targetHeight = (pdfImage.getHeight() / (float) pdfImage.getWidth()) * targetWidth * 0.65f; // 0.55'ten 0.65'e büyütüldü
                         pdfImage.scaleToFit(targetWidth, targetHeight);
                         pdfImage.setAlignment(Image.ALIGN_CENTER);
                         pdfImage.setSpacingBefore(10);
@@ -107,7 +107,56 @@ public class PDFUtil {
                             System.out.println("Geçici PNG dosyası silindi: " + tempPngFile.getAbsolutePath());
                         }
                     }
+                    
+                    // resultTextArea içeriğini bul ve PDF'e ekle
+                    javafx.scene.control.TextArea resultTextArea = findResultTextArea(tankImage);
+                    if(resultTextArea != null && resultTextArea.getText() != null && !resultTextArea.getText().trim().isEmpty()) {
+                        // TextArea içeriğini al
+                        String textContent = resultTextArea.getText();
+                        
+                        // Her satırı ayrı bir Paragraph olarak ekle
+                        String[] lines = textContent.split("\n");
+                        Font textFont = new Font(baseFont, 12, Font.NORMAL); // Normal boyut font
+                        
+                        Paragraph textSpacer = new Paragraph(" ");
+                        textSpacer.setSpacingBefore(15); // Görselden sonra boşluk
+                        document.add(textSpacer);
+                        
+                        for(String line : lines) {
+                            if(line != null && !line.trim().isEmpty()) {
+                                Paragraph textParagraph = new Paragraph(line.trim(), textFont);
+                                textParagraph.setAlignment(Element.ALIGN_LEFT);
+                                textParagraph.setSpacingBefore(5); // Satırlar arası boşluk
+                                textParagraph.setIndentationLeft(50); // Sol kenar boşluğu
+                                document.add(textParagraph);
+                            }
+                        }
+                    }
                 }
+                
+                // Blain için: Proje kodu metnini sayfanın en altına ekle (küçük yazı)
+                // Mutlak konumlandırma kullanarak metni her zaman ilk sayfanın en altına yerleştir
+                String projectCodeText = kullanilacakKabin + " Şeması Bir Sonraki Sayfadadır";
+                
+                // Metni mevcut sayfanın (ilk sayfa) en altına mutlak konumlandır
+                PdfContentByte cb = writer.getDirectContent();
+                cb.saveState();
+                
+                cb.beginText();
+                cb.setFontAndSize(baseFont, 14);
+                cb.setRGBColorFill(0, 0, 0);
+                
+                // Metni ortalamak için genişliği hesapla
+                float textWidth = baseFont.getWidthPoint(projectCodeText, 14);
+                float pageWidth = document.getPageSize().getWidth();
+                float xPosition = (pageWidth - textWidth) / 2;
+                float yPosition = 40; // Alt kenar boşluğu (sayfanın en altından 40pt yukarıda)
+                
+                cb.setTextMatrix(xPosition, yPosition);
+                cb.showText(projectCodeText);
+                cb.endText();
+                
+                cb.restoreState();
             } else {
                 // Klasik ve PowerPack için normal mantık
                 addAnchorPaneToPDF(tankImage, document, "tankImage");
@@ -115,17 +164,13 @@ public class PDFUtil {
                 if(schemeImage != null) {
                     addAnchorPaneToPDF(schemeImage, document, "schemeImage");
                 }
-            }
 
-            // Proje kodu metnini ekle
-            String projectCodeText = kullanilacakKabin;
-            if(unitType != null && unitType.equals("Blain")) {
-                projectCodeText = kullanilacakKabin + " Şeması Sonraki Sayfadadır";
+                // "HALİL" metnini sayfanın en altına yerleştir
+                Paragraph halilParagraph = new Paragraph(kullanilacakKabin, unicodeFont);
+                halilParagraph.setAlignment(Element.ALIGN_CENTER);
+                halilParagraph.setSpacingBefore(20);  // 20dp boşluk
+                document.add(halilParagraph);
             }
-            Paragraph halilParagraph = new Paragraph(projectCodeText, unicodeFont);
-            halilParagraph.setAlignment(Element.ALIGN_CENTER);
-            halilParagraph.setSpacingBefore(20);  // 20dp boşluk
-            document.add(halilParagraph);
 
             if(pdfFilePath != null) {
                 if(isKlasik) {
@@ -161,12 +206,41 @@ public class PDFUtil {
                     // Blain için: sadece PDF'i ikinci sayfaya ekle, metin ekleme
                     PdfReader reader = new PdfReader(Objects.requireNonNull(Launcher.class.getResource(pdfFilePath)));
 
+                    // İkinci sayfayı landscape (yatay) olarak oluştur
+                    document.setPageSize(PageSize.A4.rotate());
                     document.newPage();
+                    
+                    // Landscape sayfa için arka plan rengini ayarla
+                    PdfContentByte landscapeContentByte = writer.getDirectContentUnder();
+                    BaseColor landscapeBackgroundColor = new BaseColor(255, 255, 255);
+                    landscapeContentByte.setColorFill(landscapeBackgroundColor);
+                    landscapeContentByte.rectangle(0, 0, document.getPageSize().getWidth(), document.getPageSize().getHeight());
+                    landscapeContentByte.fill();
 
                     PdfImportedPage importedPage = writer.getImportedPage(reader, 1);
                     PdfContentByte cb = writer.getDirectContent();
 
-                    cb.addTemplate(importedPage, 0, 0);
+                    // PDF'in sayfaya tam sığması için scale hesapla
+                    float pageWidth = document.getPageSize().getWidth();
+                    float pageHeight = document.getPageSize().getHeight();
+                    float importedWidth = importedPage.getWidth();
+                    float importedHeight = importedPage.getHeight();
+                    
+                    // Scale faktörünü hesapla (en küçük scale'i kullan ki hem genişlik hem yükseklik sığsın)
+                    float scaleX = pageWidth / importedWidth;
+                    float scaleY = pageHeight / importedHeight;
+                    float scale = Math.min(scaleX, scaleY);
+                    
+                    // Ölçeklenmiş genişlik ve yükseklik
+                    float scaledWidth = importedWidth * scale;
+                    float scaledHeight = importedHeight * scale;
+                    
+                    // Ortalamak için offset hesapla
+                    float offsetX = (pageWidth - scaledWidth) / 2;
+                    float offsetY = (pageHeight - scaledHeight) / 2;
+                    
+                    // Template'i scale ve offset ile ekle
+                    cb.addTemplate(importedPage, scale, 0, 0, scale, offsetX, offsetY);
 
                     document.close();
                     writer.close();
@@ -346,6 +420,27 @@ public class PDFUtil {
             }
         }
         return largestImageView;
+    }
+    
+    /**
+     * AnchorPane içinde resultTextArea TextArea'sını bulur
+     */
+    private static javafx.scene.control.TextArea findResultTextArea(javafx.scene.Parent parent) {
+        for(javafx.scene.Node node : parent.getChildrenUnmodifiable()) {
+            if(node instanceof javafx.scene.control.TextArea) {
+                javafx.scene.control.TextArea textArea = (javafx.scene.control.TextArea) node;
+                // resultTextArea'yı bulmak için id veya başka bir özellik kontrol edebiliriz
+                // Şimdilik ilk TextArea'yı döndürelim (genellikle resultTextArea olacak)
+                return textArea;
+            }
+            if(node instanceof javafx.scene.Parent) {
+                javafx.scene.control.TextArea found = findResultTextArea((javafx.scene.Parent) node);
+                if(found != null) {
+                    return found;
+                }
+            }
+        }
+        return null;
     }
 
     public static void cropImage(int startX, int startY, int width, int height, String fileName) {

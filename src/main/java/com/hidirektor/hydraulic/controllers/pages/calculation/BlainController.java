@@ -34,7 +34,6 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Region;
 
 import java.io.FileOutputStream;
-import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 import java.util.*;
@@ -190,17 +189,15 @@ public class BlainController implements Initializable {
             collapseAndExpandSection(unitSchemeSection, isUnitSchemeSectionExpanded, unitSchemeSectionButtonImage, false, false);
             isUnitSchemeSectionExpanded = !isUnitSchemeSectionExpanded;
         } else if(actionEvent.getSource().equals(openPDFInExplorerButton)) {
-            // PDF dosyasını dosya gezgininde aç
+            // PDF dosyasının kaydedildiği klasörü dosya gezgininde aç
             if(girilenSiparisNumarasi != null && !girilenSiparisNumarasi.trim().isEmpty()) {
                 String pdfPath = SystemDefaults.userDataPDFFolderPath + girilenSiparisNumarasi + ".pdf";
-                try {
-                    java.awt.Desktop.getDesktop().open(new java.io.File(pdfPath));
-                } catch (Exception e) {
-                    NotificationUtil.showNotification(openPDFInExplorerButton.getScene().getWindow(), 
-                        NotificationController.NotificationType.ALERT, 
-                        "Dosya Hatası", 
-                        "PDF dosyası açılamadı: " + e.getMessage());
-                }
+                PDFUtil.openFileInExplorer(pdfPath);
+            } else {
+                NotificationUtil.showNotification(openPDFInExplorerButton.getScene().getWindow(), 
+                    NotificationController.NotificationType.ALERT, 
+                    "Dosya Hatası", 
+                    "PDF dosyası henüz oluşturulmamış.");
             }
         } else if(actionEvent.getSource().equals(clearButton)) {
             clearAllFields();
@@ -860,8 +857,7 @@ public class BlainController implements Initializable {
     @FXML
     public void handleSchemePageOneClick(MouseEvent event) {
         if(schemePageOne != null && schemePageOne.isVisible() && schemePageOne.getImage() != null) {
-            // Tam ekran görüntüleme işlevi buraya eklenecek
-            // showFullscreenImages(0);
+            showFullscreenImages(0);
         }
     }
     
@@ -893,8 +889,7 @@ public class BlainController implements Initializable {
     @FXML
     public void handleSchemePageTwoClick(MouseEvent event) {
         if(schemePageTwo != null && schemePageTwo.isVisible() && schemePageTwo.getImage() != null) {
-            // Tam ekran görüntüleme işlevi buraya eklenecek
-            // showFullscreenImages(1);
+            showFullscreenImages(1);
         }
     }
     
@@ -1895,6 +1890,93 @@ public class BlainController implements Initializable {
             thread.setDaemon(true);
             thread.start();
         });
+    }
+    
+    private void showFullscreenImages(int startIndex) {
+        // Mevcut görselleri topla
+        java.util.List<Image> images = new java.util.ArrayList<>();
+        if(schemePageOne != null && schemePageOne.isVisible() && schemePageOne.getImage() != null) {
+            images.add(schemePageOne.getImage());
+        }
+        if(schemePageTwo != null && schemePageTwo.isVisible() && schemePageTwo.getImage() != null) {
+            images.add(schemePageTwo.getImage());
+        }
+        
+        if(images.isEmpty()) {
+            return;
+        }
+        
+        // Başlangıç indeksini kontrol et
+        if(startIndex < 0 || startIndex >= images.size()) {
+            startIndex = 0;
+        }
+        
+        final int[] currentIndex = {startIndex};
+        
+        javafx.stage.Stage fullscreenStage = new javafx.stage.Stage();
+        fullscreenStage.initStyle(javafx.stage.StageStyle.UNDECORATED);
+        fullscreenStage.setFullScreen(true);
+        fullscreenStage.setFullScreenExitHint(""); // Varsayılan hint'i kaldır
+        
+        ImageView fullscreenImageView = new ImageView(images.get(currentIndex[0]));
+        fullscreenImageView.setPreserveRatio(true);
+        fullscreenImageView.setFitWidth(fullscreenStage.getWidth());
+        fullscreenImageView.setFitHeight(fullscreenStage.getHeight());
+        
+        Label exitHintLabel = new Label("ESC tuşuna basarak çıkış yapabilirsiniz");
+        exitHintLabel.setStyle("-fx-background-color: rgba(0, 0, 0, 0.7); -fx-text-fill: white; -fx-padding: 8 16 8 16; -fx-font-size: 14px;");
+        exitHintLabel.setAlignment(javafx.geometry.Pos.CENTER);
+        javafx.scene.layout.StackPane.setAlignment(exitHintLabel, javafx.geometry.Pos.TOP_CENTER);
+        
+        javafx.scene.layout.StackPane root = new javafx.scene.layout.StackPane();
+        root.setStyle("-fx-background-color: black;");
+        root.getChildren().addAll(fullscreenImageView, exitHintLabel);
+        
+        // Görsel değiştirme fonksiyonu
+        java.util.function.Consumer<Integer> changeImage = (newIndex) -> {
+            if(newIndex >= 0 && newIndex < images.size()) {
+                currentIndex[0] = newIndex;
+                fullscreenImageView.setImage(images.get(currentIndex[0]));
+            }
+        };
+        
+        // ImageView'ın gerçek genişliğini takip et ve Label genişliğini ayarla
+        fullscreenImageView.boundsInLocalProperty().addListener((obs, oldVal, newVal) -> {
+            if(newVal.getWidth() > 0) {
+                exitHintLabel.setPrefWidth(newVal.getWidth());
+            }
+        });
+        
+        fullscreenStage.widthProperty().addListener((obs, oldVal, newVal) -> {
+            fullscreenImageView.setFitWidth(newVal.doubleValue());
+        });
+        fullscreenStage.heightProperty().addListener((obs, oldVal, newVal) -> {
+            fullscreenImageView.setFitHeight(newVal.doubleValue());
+        });
+        
+        javafx.scene.Scene scene = new javafx.scene.Scene(root);
+        fullscreenStage.setScene(scene);
+        fullscreenStage.show();
+        
+        // Root'u focusable yap ve focus al
+        root.setFocusTraversable(true);
+        root.requestFocus();
+        
+        // Klavye kontrolleri
+        root.setOnKeyPressed(e -> {
+            if(e.getCode() == javafx.scene.input.KeyCode.ESCAPE) {
+                fullscreenStage.close();
+            } else if(e.getCode() == javafx.scene.input.KeyCode.LEFT || e.getCode() == javafx.scene.input.KeyCode.UP) {
+                // Önceki görsel
+                changeImage.accept((currentIndex[0] - 1 + images.size()) % images.size());
+            } else if(e.getCode() == javafx.scene.input.KeyCode.RIGHT || e.getCode() == javafx.scene.input.KeyCode.DOWN) {
+                // Sonraki görsel
+                changeImage.accept((currentIndex[0] + 1) % images.size());
+            }
+        });
+        
+        // Tıklayınca kapatma
+        root.setOnMouseClicked(e -> fullscreenStage.close());
     }
 }
 
