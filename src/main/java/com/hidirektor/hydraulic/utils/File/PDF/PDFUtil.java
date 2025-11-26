@@ -74,6 +74,19 @@ public class PDFUtil {
             paragraph.setSpacingBefore(15);  // 15dp üst boşluk
             document.add(paragraph);
 
+            // Blain için: Sipariş başlığının hemen alt satırına Proje Numarası’nı ekle
+            if(unitType != null && unitType.equals("Blain")) {
+                Font projectFont = new Font(baseFont, 14, Font.NORMAL);
+                String projeNumarasiText = "Proje Numarası: ";
+                if(motorDegeri != null && !motorDegeri.trim().isEmpty()) {
+                    projeNumarasiText += motorDegeri.trim();
+                }
+                Paragraph projectLine = new Paragraph(projeNumarasiText, projectFont);
+                projectLine.setAlignment(Element.ALIGN_CENTER);
+                projectLine.setSpacingBefore(5);
+                document.add(projectLine);
+            }
+
             // Blain için özel mantık: resultImage PNG'sini şimdilik PDF'e eklemiyoruz
             if(unitType != null && unitType.equals("Blain")) {
                 // Blain için: tankImage içindeki resultImage'ı bulmaya yönelik if/else yapısı ileride
@@ -101,25 +114,22 @@ public class PDFUtil {
                         document.add(textSpacer);
                         
                         for(String line : lines) {
-                            if(line != null && !line.trim().isEmpty()) {
-                                Paragraph textParagraph = new Paragraph(line.trim(), textFont);
+                            if(line == null) continue;
+                            String trimmed = line.trim();
+                            
+                            // Sipariş numarası zaten logonun altında yazdığı için PDF’e tekrar ekleme
+                            if(trimmed.startsWith("Sipariş Numarası:")) {
+                                continue;
+                            }
+                            
+                            if(!trimmed.isEmpty()) {
+                                Paragraph textParagraph = new Paragraph(trimmed, textFont);
                                 textParagraph.setAlignment(Element.ALIGN_LEFT);
                                 textParagraph.setSpacingBefore(5); // Satırlar arası boşluk
                                 textParagraph.setIndentationLeft(50); // Sol kenar boşluğu
                                 document.add(textParagraph);
                             }
                         }
-
-                        // Malzeme listesinin hemen altına "Proje Numarası: <değer>" satırını ekle
-                        String projeNumarasiText = "Proje Numarası: ";
-                        if(motorDegeri != null && !motorDegeri.trim().isEmpty()) {
-                            projeNumarasiText += motorDegeri.trim();
-                        }
-                        Paragraph projectNumberParagraph = new Paragraph(projeNumarasiText, textFont);
-                        projectNumberParagraph.setAlignment(Element.ALIGN_LEFT);
-                        projectNumberParagraph.setSpacingBefore(10);
-                        projectNumberParagraph.setIndentationLeft(50);
-                        document.add(projectNumberParagraph);
                     }
                 }
                 
