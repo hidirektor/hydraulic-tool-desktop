@@ -1759,6 +1759,130 @@ public class BlainController implements Initializable {
     }
     
     /**
+     * Blain için proje numarası hesaplama
+     * Soğutma, Tabla Kilit, Valf Tipi ve Yağ Tankı kombinasyonuna göre proje numarasını döndürür
+     */
+    private String getBlainProjectNumber() {
+        if(secilenSogutma == null || secilenTablaKilit == null || secilenValfTipi == null || secilenYagTanki == null) {
+            return null;
+        }
+
+        String sogutma = secilenSogutma.trim();
+        String kilit = secilenTablaKilit.trim();
+        String valfTipi = secilenValfTipi.trim();
+        // BTH 75 -> BTH75 gibi, boşlukları kaldırarak normalize et
+        String yagTankiNormalized = secilenYagTanki.replace(" ", "").trim();
+
+        boolean sogutmaVar = sogutma.equalsIgnoreCase("Var");
+        boolean sogutmaYok = sogutma.equalsIgnoreCase("Yok");
+        boolean kilitVar = kilit.equalsIgnoreCase("Var");
+        boolean kilitYok = kilit.equalsIgnoreCase("Yok");
+
+        // Soğutma Yok, Tank Kilit Yok
+        if(sogutmaYok && kilitYok) {
+            if(valfTipi.equals("KV1S") && yagTankiNormalized.equals("BTH75")) {
+                return "H75-1S-1";
+            } else if(valfTipi.equals("KV2S") && yagTankiNormalized.equals("BTH75")) {
+                return "H75-2S-2";
+            } else if(valfTipi.equals("KV2S") && yagTankiNormalized.equals("BTH150")) {
+                return "H150-2S-3";
+            } else if(valfTipi.equals("EV100 3/4\"") && yagTankiNormalized.equals("BTH150")) {
+                return "H150-3/4\"-4";
+            } else if(valfTipi.equals("KV2S") && yagTankiNormalized.equals("BTH250")) {
+                return "H250-2S-5";
+            } else if(valfTipi.equals("EV100 3/4\"") && yagTankiNormalized.equals("BTH250")) {
+                return "H250-3/4\"-6";
+            } else if(valfTipi.equals("EV100 1\"1/2") && yagTankiNormalized.equals("BTH250")) {
+                return "H250-1 1/2\"-7";
+            } else if(valfTipi.equals("EV100 3/4\"") && yagTankiNormalized.equals("BTH400")) {
+                // Kullanıcının metninde "H400-e/4\"-8" yazıyor; burada "3/4" olarak düzeltilmiştir.
+                return "H400-3/4\"-8";
+            } else if(valfTipi.equals("EV100 1\"1/2") && yagTankiNormalized.equals("BTH400")) {
+                return "H400-1 1/2\"-9";
+            } else if(valfTipi.equals("EV100 1\"1/2") && yagTankiNormalized.equals("BTH600")) {
+                return "H600-1 1/2\"-10";
+            } else if(valfTipi.equals("EV100 1\"1/2") && yagTankiNormalized.equals("BTH1000")) {
+                return "H1000-1 1/2\"-11";
+            }
+        }
+
+        // Soğutma Yok, Tank Kilit Var
+        if(sogutmaYok && kilitVar) {
+            if(valfTipi.equals("KV1S") && yagTankiNormalized.equals("BTH75")) {
+                return "H75-1S-12";
+            } else if(valfTipi.equals("KV2S") && yagTankiNormalized.equals("BTH75")) {
+                return "H75-2S-13";
+            } else if(valfTipi.equals("KV2S") && yagTankiNormalized.equals("BTH150")) {
+                return "H150-2S-14";
+            } else if(valfTipi.equals("EV100 3/4\"") && yagTankiNormalized.equals("BTH150")) {
+                return "H150-3/4\"-15";
+            } else if(valfTipi.equals("KV2S") && yagTankiNormalized.equals("BTH250")) {
+                return "H250-2S-16";
+            } else if(valfTipi.equals("EV100 3/4\"") && yagTankiNormalized.equals("BTH250")) {
+                return "H250-3/4\"-17";
+            } else if(valfTipi.equals("EV100 1\"1/2") && yagTankiNormalized.equals("BTH250")) {
+                return "H250-1 1/2\"-18";
+            } else if(valfTipi.equals("EV100 3/4\"") && yagTankiNormalized.equals("BTH400")) {
+                return "H400-3/4\"-19";
+            } else if(valfTipi.equals("EV100 1\"1/2") && yagTankiNormalized.equals("BTH400")) {
+                return "H400-1 1/2\"-20";
+            } else if(valfTipi.equals("EV100 1\"1/2") && yagTankiNormalized.equals("BTH600")) {
+                return "H600-1 1/2\"-21";
+            } else if(valfTipi.equals("EV100 1\"1/2") && yagTankiNormalized.equals("BTH1000")) {
+                return "H1000-1 1/2\"-22";
+            }
+        }
+
+        // Soğutma Var, Tank Kilit Yok
+        if(sogutmaVar && kilitYok) {
+            if(valfTipi.equals("KV2S") && yagTankiNormalized.equals("BTH150")) {
+                return "H150-2S-23";
+            } else if(valfTipi.equals("EV100 3/4\"") && yagTankiNormalized.equals("BTH150")) {
+                return "H7150-3/4\"-24";
+            } else if(valfTipi.equals("KV2S") && yagTankiNormalized.equals("BTH250")) {
+                return "H250-2S-25";
+            } else if(valfTipi.equals("EV100 3/4\"") && yagTankiNormalized.equals("BTH250")) {
+                return "H250-3/4\"-26";
+            } else if(valfTipi.equals("EV100 1\"1/2") && yagTankiNormalized.equals("BTH250")) {
+                return "H250-1 1/2\"-27";
+            } else if(valfTipi.equals("EV100 3/4\"") && yagTankiNormalized.equals("BTH400")) {
+                return "H400-3/4\"-28";
+            } else if(valfTipi.equals("EV100 1\"1/2") && yagTankiNormalized.equals("BTH400")) {
+                return "H400-1 1/2\"-29";
+            } else if(valfTipi.equals("EV100 1\"1/2") && yagTankiNormalized.equals("BTH600")) {
+                return "H600-1 1/2\"-30";
+            } else if(valfTipi.equals("EV100 1\"1/2") && yagTankiNormalized.equals("BTH1000")) {
+                return "H1000-1 1/2\"-31";
+            }
+        }
+
+        // Soğutma Var, Tank Kilit Var
+        if(sogutmaVar && kilitVar) {
+            if(valfTipi.equals("KV2S") && yagTankiNormalized.equals("BTH150")) {
+                return "H150-2S-32";
+            } else if(valfTipi.equals("EV100 3/4\"") && yagTankiNormalized.equals("BTH150")) {
+                return "H150-3/4\"-33";
+            } else if(valfTipi.equals("KV2S") && yagTankiNormalized.equals("BTH250")) {
+                return "H250-2S-34";
+            } else if(valfTipi.equals("EV100 3/4\"") && yagTankiNormalized.equals("BTH250")) {
+                return "H250-3/4\"-35";
+            } else if(valfTipi.equals("EV100 1\"1/2") && yagTankiNormalized.equals("BTH250")) {
+                return "H250-1 1/2\"-36";
+            } else if(valfTipi.equals("EV100 3/4\"") && yagTankiNormalized.equals("BTH400")) {
+                return "H400-3/4\"-37";
+            } else if(valfTipi.equals("EV100 1\"1/2") && yagTankiNormalized.equals("BTH400")) {
+                return "H400-1 1/2\"-38";
+            } else if(valfTipi.equals("EV100 1\"1/2") && yagTankiNormalized.equals("BTH600")) {
+                return "H600-1 1/2\"-39";
+            } else if(valfTipi.equals("EV100 1\"1/2") && yagTankiNormalized.equals("BTH1000")) {
+                return "H1000-1 1/2\"-40";
+            }
+        }
+
+        return null;
+    }
+    
+    /**
      * PDF şema export işlemi
      */
     public void exportSchemeProcess() {
@@ -1798,9 +1922,11 @@ public class BlainController implements Initializable {
         System.out.println("PDF Şema Yolu: " + pdfPath);
         System.out.println("Proje Kodu: " + projectCode);
         
-        // Motor ve pompa bilgilerini hazırla
-        String motorDegeri = motorComboBox != null && motorComboBox.getValue() != null ? motorComboBox.getValue() : "";
-        String pompaDegeri = secilenPompa != null ? secilenPompa : "";
+        // Blain için proje numarasını hesapla
+        String projeNumarasi = getBlainProjectNumber();
+        if(projeNumarasi == null) {
+            projeNumarasi = "";
+        }
         
         // PDF üret (ilk sayfa: logo + parametreler + şema, ikinci sayfa: seçilen PDF)
         PDFUtil.pdfGenerator("/assets/images/logos/onderlift-logo.png", 
@@ -1809,8 +1935,8 @@ public class BlainController implements Initializable {
             pdfPath, 
             girilenSiparisNumarasi, 
             projectCode, 
-            motorDegeri, 
-            pompaDegeri, 
+            projeNumarasi,  // Blain için motorDegeri parametresi proje numarasını taşır
+            "",             // Blain için pompaDegeri kullanılmıyor
             "Blain", 
             false); // isKlasik = false, çünkü Blain için özel mantık gerekebilir
         

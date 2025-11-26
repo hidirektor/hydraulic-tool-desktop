@@ -57,7 +57,6 @@ public class PDFUtil {
             contentByte.rectangle(0, 0, document.getPageSize().getWidth(), document.getPageSize().getHeight());
             contentByte.fill();
 
-            // İlk resmi ekle ve boyutunu ayarla (yükseklik küçültüldü)
             Image image1 = Image.getInstance(Objects.requireNonNull(Launcher.class.getResource(pngFilePath1)));
             float targetWidth1 = document.getPageSize().getWidth() * 0.8f;  // Genişliği %80'e ayarla
             float targetHeight1 = (image1.getHeight() / (float) image1.getWidth()) * targetWidth1 * 0.7f; // Yüksekliği %70'e küçült
@@ -75,40 +74,19 @@ public class PDFUtil {
             paragraph.setSpacingBefore(15);  // 15dp üst boşluk
             document.add(paragraph);
 
-            // Blain için özel mantık: sadece resultImage'ı ekle (resultTextArea'yı değil)
+            // Blain için özel mantık: resultImage PNG'sini şimdilik PDF'e eklemiyoruz
             if(unitType != null && unitType.equals("Blain")) {
-                // Blain için: tankImage içindeki resultImage'ı bul ve ekle
+                // Blain için: tankImage içindeki resultImage'ı bulmaya yönelik if/else yapısı ileride
+                // PNG eklemek için tekrar kullanılacak; şu an sadece malzeme metinleri ve proje numarası yazılacak.
                 if(tankImage != null) {
                     // resultImage'ı bulmak için AnchorPane içindeki tüm ImageView'ları ara
                     javafx.scene.image.ImageView resultImageView = findResultImageView(tankImage);
                     if(resultImageView != null && resultImageView.getImage() != null) {
-                        // ImageView'dan JavaFX Image'i al
-                        javafx.scene.image.Image fxImage = resultImageView.getImage();
-                        
-                        // JavaFX Image'i BufferedImage'e çevir
-                        java.awt.image.BufferedImage bufferedImage = SwingFXUtils.fromFXImage(fxImage, null);
-                        
-                        // Geçici PNG dosyası oluştur
-                        File tempPngFile = File.createTempFile("blain_result_image_", ".png");
-                        tempPngFile.deleteOnExit();
-                        ImageIO.write(bufferedImage, "png", tempPngFile);
-                        
-                        // PDF'e ekle (büyütülmüş)
-                        Image pdfImage = Image.getInstance(tempPngFile.getAbsolutePath());
-                        float targetWidth = document.getPageSize().getWidth() * 0.9f; // 0.8'den 0.9'a büyütüldü
-                        float targetHeight = (pdfImage.getHeight() / (float) pdfImage.getWidth()) * targetWidth * 0.65f; // 0.55'ten 0.65'e büyütüldü
-                        pdfImage.scaleToFit(targetWidth, targetHeight);
-                        pdfImage.setAlignment(Image.ALIGN_CENTER);
-                        pdfImage.setSpacingBefore(10);
-                        document.add(pdfImage);
-                        
-                        // Geçici dosyayı sil
-                        if(tempPngFile.exists() && tempPngFile.delete()) {
-                            System.out.println("Geçici PNG dosyası silindi: " + tempPngFile.getAbsolutePath());
-                        }
+                        // Buradaki if bloğu ileride PNG eklemek için kullanılacak.
+                        // Şimdilik bilerek boş bırakılıyor.
                     }
-                    
-                    // resultTextArea içeriğini bul ve PDF'e ekle
+
+                    // resultTextArea içeriğini bul ve PDF'e ekle (seçim yapılan malzemeler)
                     javafx.scene.control.TextArea resultTextArea = findResultTextArea(tankImage);
                     if(resultTextArea != null && resultTextArea.getText() != null && !resultTextArea.getText().trim().isEmpty()) {
                         // TextArea içeriğini al
@@ -131,6 +109,17 @@ public class PDFUtil {
                                 document.add(textParagraph);
                             }
                         }
+
+                        // Malzeme listesinin hemen altına "Proje Numarası: <değer>" satırını ekle
+                        String projeNumarasiText = "Proje Numarası: ";
+                        if(motorDegeri != null && !motorDegeri.trim().isEmpty()) {
+                            projeNumarasiText += motorDegeri.trim();
+                        }
+                        Paragraph projectNumberParagraph = new Paragraph(projeNumarasiText, textFont);
+                        projectNumberParagraph.setAlignment(Element.ALIGN_LEFT);
+                        projectNumberParagraph.setSpacingBefore(10);
+                        projectNumberParagraph.setIndentationLeft(50);
+                        document.add(projectNumberParagraph);
                     }
                 }
                 
