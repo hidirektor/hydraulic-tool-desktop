@@ -68,24 +68,18 @@ public class PDFUtil {
             BaseFont baseFont = BaseFont.createFont(String.valueOf(Launcher.class.getResource("/assets/fonts/Quicksand-Medium.ttf")), BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
             Font unicodeFont = new Font(baseFont, 22, Font.BOLD);
 
-            // Girilen Sipariş Numarasını ve metni ekle (ortalanmış)
-            Paragraph paragraph = new Paragraph(girilenSiparisNumarasi + " Numaralı Sipariş", unicodeFont);
+            // Başlık kısmı
+            Paragraph paragraph;
+            if(unitType != null && unitType.equals("Blain")) {
+                // Blain için: Proje Numarası = girilen sipariş numarası
+                paragraph = new Paragraph("Proje Numarası: " + girilenSiparisNumarasi, unicodeFont);
+            } else {
+                // Diğer üniteler için eski davranış
+                paragraph = new Paragraph(girilenSiparisNumarasi + " Numaralı Sipariş", unicodeFont);
+            }
             paragraph.setAlignment(Element.ALIGN_CENTER);
             paragraph.setSpacingBefore(15);  // 15dp üst boşluk
             document.add(paragraph);
-
-            // Blain için: Sipariş başlığının hemen alt satırına Proje Numarası’nı ekle
-            if(unitType != null && unitType.equals("Blain")) {
-                Font projectFont = new Font(baseFont, 14, Font.NORMAL);
-                String projeNumarasiText = "Proje Numarası: ";
-                if(motorDegeri != null && !motorDegeri.trim().isEmpty()) {
-                    projeNumarasiText += motorDegeri.trim();
-                }
-                Paragraph projectLine = new Paragraph(projeNumarasiText, projectFont);
-                projectLine.setAlignment(Element.ALIGN_CENTER);
-                projectLine.setSpacingBefore(5);
-                document.add(projectLine);
-            }
 
             // Blain için özel mantık: resultImage PNG'sini şimdilik PDF'e eklemiyoruz
             if(unitType != null && unitType.equals("Blain")) {
@@ -117,7 +111,7 @@ public class PDFUtil {
                             if(line == null) continue;
                             String trimmed = line.trim();
                             
-                            // Sipariş numarası zaten logonun altında yazdığı için PDF’e tekrar ekleme
+                            // Bazı başlıklar zaten üst tarafta gösterildiği için gövdede tekrar yazma
                             if(trimmed.startsWith("Sipariş Numarası:")) {
                                 continue;
                             }

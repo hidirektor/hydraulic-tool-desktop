@@ -258,7 +258,7 @@
                                  <children>
                                     <VBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" spacing="16.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                        <children>
-                                          <Label fx:id="resultImageTitle" style="-fx-text-fill: #111827;" text="Lütfen önce hesaplamayı bitirin." AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                          <Label fx:id="resultImageTitle" style="-fx-text-fill: #111827;" text="" visible="false" managed="false" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
                                              <font>
                                                 <Font name="TextaAlt-Regular" size="16.0" />
                                              </font>

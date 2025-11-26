@@ -134,6 +134,11 @@ public class BlainController implements Initializable {
             comboBoxListener();
             // TextArea scrollbar'ını gizle
             hideTextAreaScrollbars();
+            // Artık 2D görseli kullanmıyoruz, ImageView alanını tamamen gizle
+            if(resultImage != null) {
+                resultImage.setVisible(false);
+                resultImage.setManaged(false); // layout'ta yer kaplamasın
+            }
             // Parça listesi tablosunu başlat
             initializePartListTable();
         });
@@ -563,13 +568,7 @@ public class BlainController implements Initializable {
     private void updateResultImage() {
         // Tüm gerekli seçimler yapılmış mı kontrol et
         if(secilenYagTanki == null || secilenValfTipi == null || secilenTablaKilit == null) {
-            // Seçimler tamamlanmamışsa görseli temizle
-            if(resultImage != null) {
-                resultImage.setImage(null);
-            }
-            if(resultImageTitle != null) {
-                resultImageTitle.setText("Lütfen önce hesaplamayı bitirin.");
-            }
+            // Seçimler tamamlanmamışsa sadece text alanını temizle
             if(resultTextArea != null) {
                 resultTextArea.clear();
             }
@@ -579,53 +578,26 @@ public class BlainController implements Initializable {
         // Seçilen değerleri text olarak ekle
         updateResultText();
         
-        // Görsel yolunu belirle
-        String imagePath = determineImagePath();
+        // Görseli artık arayüzde göstermiyoruz, sadece text ve diğer süreçler çalışacak.
+
+        // Hesaplama sonucu bölümünü aç
+        if(!isCalculationResultSectionExpanded) {
+            collapseAndExpandSection(calculationResultSection, isCalculationResultSectionExpanded, calculationResultSectionButtonImage, true, false);
+            isCalculationResultSectionExpanded = true;
+        }
+        // Ünite bilgileri bölümünü kapat
+        if(isUnitInfoSectionExpanded) {
+            collapseAndExpandSection(unitInfoSection, isUnitInfoSectionExpanded, unitInfoSectionButtonImage, false, true);
+            isUnitInfoSectionExpanded = false;
+        }
+        // Parça listesini otomatik yükle
+        createAndLoadPartListTable();
         
-        if(imagePath != null) {
-            try {
-                Image originalImage = new Image(Objects.requireNonNull(Launcher.class.getResourceAsStream(imagePath)));
-                // Beyaz arka planı result section'ın arka plan rengine çevir
-                Image processedImage = replaceWhiteBackground(originalImage);
-                if(resultImage != null) {
-                    resultImage.setImage(processedImage);
-                }
-                if(resultImageTitle != null) {
-                    resultImageTitle.setText(""); // Görsel yüklendiğinde başlık metnini boş bırak
-                }
-                // Hesaplama sonucu bölümünü aç
-                if(!isCalculationResultSectionExpanded) {
-                    collapseAndExpandSection(calculationResultSection, isCalculationResultSectionExpanded, calculationResultSectionButtonImage, true, false);
-                    isCalculationResultSectionExpanded = true;
-                }
-                // Ünite bilgileri bölümünü kapat
-                if(isUnitInfoSectionExpanded) {
-                    collapseAndExpandSection(unitInfoSection, isUnitInfoSectionExpanded, unitInfoSectionButtonImage, false, true);
-                    isUnitInfoSectionExpanded = false;
-                }
-                // Parça listesini otomatik yükle
-                createAndLoadPartListTable();
-                
-                // Silindir sayısı combo box'ını aktif et
-                if(silindirSayisiCombo != null) {
-                    silindirSayisiCombo.setDisable(false);
-                    silindirSayisiCombo.getItems().clear();
-                    silindirSayisiCombo.getItems().addAll("1 Silindir", "2 Silindir", "4 Silindir");
-                }
-            } catch (Exception e) {
-                System.err.println("Görsel yüklenirken hata oluştu: " + e.getMessage());
-                if(resultImageTitle != null) {
-                    resultImageTitle.setText("Görsel yüklenemedi: " + imagePath);
-                }
-            }
-        } else {
-            // Uygun görsel bulunamadı
-            if(resultImage != null) {
-                resultImage.setImage(null);
-            }
-            if(resultImageTitle != null) {
-                resultImageTitle.setText("Seçilen kombinasyon için görsel bulunamadı.");
-            }
+        // Silindir sayısı combo box'ını aktif et
+        if(silindirSayisiCombo != null) {
+            silindirSayisiCombo.setDisable(false);
+            silindirSayisiCombo.getItems().clear();
+            silindirSayisiCombo.getItems().addAll("1 Silindir", "2 Silindir", "4 Silindir");
         }
     }
     
@@ -634,24 +606,10 @@ public class BlainController implements Initializable {
         
         StringBuilder text = new StringBuilder();
         
-        // Sipariş numarası
-        if(siparisNumarasiField != null && siparisNumarasiField.getText() != null && !siparisNumarasiField.getText().trim().isEmpty()) {
-            text.append("Sipariş Numarası: ").append(siparisNumarasiField.getText().trim()).append("\n");
-        }
-        
+        // Sıralama:
         // Motor
         if(motorComboBox != null && motorComboBox.getValue() != null) {
             text.append("Motor: ").append(motorComboBox.getValue()).append("\n");
-        }
-        
-        // Soğutma
-        if(secilenSogutma != null) {
-            text.append("Soğutma: ").append(secilenSogutma).append("\n");
-        }
-        
-        // Tabla Kilit
-        if(secilenTablaKilit != null) {
-            text.append("Tabla Kilit: ").append(secilenTablaKilit).append("\n");
         }
         
         // Pompa
@@ -664,9 +622,25 @@ public class BlainController implements Initializable {
             text.append("Valf Tipi: ").append(secilenValfTipi).append("\n");
         }
         
+        // Soğutma
+        if(secilenSogutma != null) {
+            text.append("Soğutma: ").append(secilenSogutma).append("\n");
+        }
+        
+        // Tabla Kilit
+        if(secilenTablaKilit != null) {
+            text.append("Tabla Kilit: ").append(secilenTablaKilit).append("\n");
+        }
+        
         // Yağ Tankı
         if(secilenYagTanki != null) {
             text.append("Yağ Tankı: ").append(secilenYagTanki).append("\n");
+        }
+        
+        // Tank Kapak Kodu (Blain proje numarası)
+        String tankKapakKodu = getBlainProjectNumber();
+        if(tankKapakKodu != null && !tankKapakKodu.trim().isEmpty()) {
+            text.append("Tank Kapak Kodu: ").append(tankKapakKodu.trim()).append("\n");
         }
         
         resultTextArea.setText(text.toString());
@@ -989,7 +963,8 @@ public class BlainController implements Initializable {
             resultImage.setImage(null);
         }
         if(resultImageTitle != null) {
-            resultImageTitle.setText("Lütfen önce hesaplamayı bitirin.");
+            // Blain için 2D görseli kullanmıyoruz; uyarı metnini de göstermeyelim
+            resultImageTitle.setText("");
         }
         if(resultTextArea != null) {
             resultTextArea.clear();
@@ -1892,15 +1867,6 @@ public class BlainController implements Initializable {
                 NotificationController.NotificationType.ALERT, 
                 "Şema Hatası", 
                 "Lütfen tüm gerekli seçimleri yapın (Soğutma, Tabla Kilit, Valf Tipi, Silindir Sayısı).");
-            return;
-        }
-        
-        // Hesaplama sonucu görseli yüklenmiş mi kontrol et
-        if(resultImage == null || resultImage.getImage() == null) {
-            NotificationUtil.showNotification(orderSectionButton.getScene().getWindow(), 
-                NotificationController.NotificationType.ALERT, 
-                "Şema Hatası", 
-                "Lütfen önce hesaplamayı tamamlayın.");
             return;
         }
         
