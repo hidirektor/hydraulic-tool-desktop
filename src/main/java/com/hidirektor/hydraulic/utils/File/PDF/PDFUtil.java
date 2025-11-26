@@ -107,6 +107,8 @@ public class PDFUtil {
                         textSpacer.setSpacingBefore(15); // Görselden sonra boşluk
                         document.add(textSpacer);
                         
+                        boolean hasTankKapakLine = false;
+                        
                         for(String line : lines) {
                             if(line == null) continue;
                             String trimmed = line.trim();
@@ -116,6 +118,10 @@ public class PDFUtil {
                                 continue;
                             }
                             
+                            if(trimmed.startsWith("Tank Kapak Kodu:")) {
+                                hasTankKapakLine = true;
+                            }
+                            
                             if(!trimmed.isEmpty()) {
                                 Paragraph textParagraph = new Paragraph(trimmed, textFont);
                                 textParagraph.setAlignment(Element.ALIGN_LEFT);
@@ -123,6 +129,16 @@ public class PDFUtil {
                                 textParagraph.setIndentationLeft(50); // Sol kenar boşluğu
                                 document.add(textParagraph);
                             }
+                        }
+
+                        // Her ihtimale karşı: TextArea'da satır yoksa ama motorDegeriyle Tank Kapak Kodu geldiyse ekle
+                        if(!hasTankKapakLine && motorDegeri != null && !motorDegeri.trim().isEmpty()) {
+                            String tankKapakLine = "Tank Kapak Kodu: " + motorDegeri.trim();
+                            Paragraph textParagraph = new Paragraph(tankKapakLine, textFont);
+                            textParagraph.setAlignment(Element.ALIGN_LEFT);
+                            textParagraph.setSpacingBefore(5);
+                            textParagraph.setIndentationLeft(50);
+                            document.add(textParagraph);
                         }
                     }
                 }
