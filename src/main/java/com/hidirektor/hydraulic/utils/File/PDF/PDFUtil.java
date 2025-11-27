@@ -44,261 +44,33 @@ public class PDFUtil {
                                     String motorDegeri,
                                     String pompaDegeri,
                                     String unitType, boolean isKlasik) {
+        boolean isBlain = unitType != null && unitType.equals("Blain");
+        String exPDFFilePath = null;
         try {
-            String ExPDFFilePath = SystemDefaults.userDataPDFFolderPath + girilenSiparisNumarasi + ".pdf";
+            if(isBlain) {
+                String featuresPdfPath = SystemDefaults.userDataPDFFolderPath + girilenSiparisNumarasi + " Hidrolik Ünite Özellikleri.pdf";
+                String schemePdfPath = SystemDefaults.userDataPDFFolderPath + girilenSiparisNumarasi + " Hidrolik Şema.pdf";
 
-            Document document = new Document();
-            PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream(ExPDFFilePath));
-            document.open();
+                generateBlainUnitFeaturesPdf(pngFilePath1, tankImage, girilenSiparisNumarasi, kullanilacakKabin, motorDegeri, featuresPdfPath);
 
-            PdfContentByte contentByte = writer.getDirectContentUnder();
-            BaseColor backgroundColor = new BaseColor(255, 255, 255);
-            contentByte.setColorFill(backgroundColor);
-            contentByte.rectangle(0, 0, document.getPageSize().getWidth(), document.getPageSize().getHeight());
-            contentByte.fill();
-
-            Image image1 = Image.getInstance(Objects.requireNonNull(Launcher.class.getResource(pngFilePath1)));
-            float targetWidth1 = document.getPageSize().getWidth() * 0.8f;  // Genişliği %80'e ayarla
-            float targetHeight1 = (image1.getHeight() / (float) image1.getWidth()) * targetWidth1 * 0.7f; // Yüksekliği %70'e küçült
-            image1.scaleToFit(targetWidth1, targetHeight1);
-            image1.setAlignment(Image.ALIGN_CENTER);
-            document.add(image1);
-
-            // Türkçe karakter destekleyen fontu yükle
-            BaseFont baseFont = BaseFont.createFont(String.valueOf(Launcher.class.getResource("/assets/fonts/Quicksand-Medium.ttf")), BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
-            Font unicodeFont = new Font(baseFont, 22, Font.BOLD);
-
-            // Başlık kısmı
-            Paragraph paragraph;
-            if(unitType != null && unitType.equals("Blain")) {
-                // Blain için: Proje Numarası = girilen sipariş numarası
-                paragraph = new Paragraph("Proje Numarası: " + girilenSiparisNumarasi, unicodeFont);
-            } else {
-                // Diğer üniteler için eski davranış
-                paragraph = new Paragraph(girilenSiparisNumarasi + " Numaralı Sipariş", unicodeFont);
-            }
-            paragraph.setAlignment(Element.ALIGN_CENTER);
-            paragraph.setSpacingBefore(15);  // 15dp üst boşluk
-            document.add(paragraph);
-
-            // Blain için özel mantık: resultImage PNG'sini şimdilik PDF'e eklemiyoruz
-            if(unitType != null && unitType.equals("Blain")) {
-                // Blain için: tankImage içindeki resultImage'ı bulmaya yönelik if/else yapısı ileride
-                // PNG eklemek için tekrar kullanılacak; şu an sadece malzeme metinleri ve proje numarası yazılacak.
-                if(tankImage != null) {
-                    // resultImage'ı bulmak için AnchorPane içindeki tüm ImageView'ları ara
-                    javafx.scene.image.ImageView resultImageView = findResultImageView(tankImage);
-                    if(resultImageView != null && resultImageView.getImage() != null) {
-                        // Buradaki if bloğu ileride PNG eklemek için kullanılacak.
-                        // Şimdilik bilerek boş bırakılıyor.
-                    }
-
-                    // resultTextArea içeriğini bul ve PDF'e ekle (seçim yapılan malzemeler)
-                    javafx.scene.control.TextArea resultTextArea = findResultTextArea(tankImage);
-                    if(resultTextArea != null && resultTextArea.getText() != null && !resultTextArea.getText().trim().isEmpty()) {
-                        // TextArea içeriğini al
-                        String textContent = resultTextArea.getText();
-                        
-                        // Her satırı ayrı bir Paragraph olarak ekle
-                        String[] lines = textContent.split("\n");
-                        Font textFont = new Font(baseFont, 12, Font.NORMAL); // Normal boyut font
-                        
-                        Paragraph textSpacer = new Paragraph(" ");
-                        textSpacer.setSpacingBefore(15); // Görselden sonra boşluk
-                        document.add(textSpacer);
-                        
-                        boolean hasTankKapakLine = false;
-                        
-                        for(String line : lines) {
-                            if(line == null) continue;
-                            String trimmed = line.trim();
-                            
-                            // Bazı başlıklar zaten üst tarafta gösterildiği için gövdede tekrar yazma
-                            if(trimmed.startsWith("Sipariş Numarası:")) {
-                                continue;
-                            }
-                            
-                            if(trimmed.startsWith("Tank Kapak Kodu:")) {
-                                hasTankKapakLine = true;
-                            }
-                            
-                            if(!trimmed.isEmpty()) {
-                                Paragraph textParagraph = new Paragraph(trimmed, textFont);
-                                textParagraph.setAlignment(Element.ALIGN_LEFT);
-                                textParagraph.setSpacingBefore(5); // Satırlar arası boşluk
-                                textParagraph.setIndentationLeft(50); // Sol kenar boşluğu
-                                document.add(textParagraph);
-                            }
-                        }
-
-                        // Her ihtimale karşı: TextArea'da satır yoksa ama motorDegeriyle Tank Kapak Kodu geldiyse ekle
-                        if(!hasTankKapakLine && motorDegeri != null && !motorDegeri.trim().isEmpty()) {
-                            String tankKapakLine = "Tank Kapak Kodu: " + motorDegeri.trim();
-                            Paragraph textParagraph = new Paragraph(tankKapakLine, textFont);
-                            textParagraph.setAlignment(Element.ALIGN_LEFT);
-                            textParagraph.setSpacingBefore(5);
-                            textParagraph.setIndentationLeft(50);
-                            document.add(textParagraph);
-                        }
-                    }
-                }
-                
-                // Blain için: Proje kodu metnini sayfanın en altına ekle (küçük yazı)
-                // Mutlak konumlandırma kullanarak metni her zaman ilk sayfanın en altına yerleştir
-                String projectCodeText = kullanilacakKabin + " Şeması Bir Sonraki Sayfadadır";
-                
-                // Metni mevcut sayfanın (ilk sayfa) en altına mutlak konumlandır
-                PdfContentByte cb = writer.getDirectContent();
-                cb.saveState();
-                
-                cb.beginText();
-                cb.setFontAndSize(baseFont, 14);
-                cb.setRGBColorFill(0, 0, 0);
-                
-                // Metni ortalamak için genişliği hesapla
-                float textWidth = baseFont.getWidthPoint(projectCodeText, 14);
-                float pageWidth = document.getPageSize().getWidth();
-                float xPosition = (pageWidth - textWidth) / 2;
-                float yPosition = 40; // Alt kenar boşluğu (sayfanın en altından 40pt yukarıda)
-                
-                cb.setTextMatrix(xPosition, yPosition);
-                cb.showText(projectCodeText);
-                cb.endText();
-                
-                cb.restoreState();
-            } else {
-                // Klasik ve PowerPack için normal mantık
-                addAnchorPaneToPDF(tankImage, document, "tankImage");
-
-                if(schemeImage != null) {
-                    addAnchorPaneToPDF(schemeImage, document, "schemeImage");
+                if(pdfFilePath != null && !pdfFilePath.trim().isEmpty()) {
+                    generateBlainSchemePdf(pdfFilePath, schemePdfPath);
                 }
 
-                // "HALİL" metnini sayfanın en altına yerleştir
-                Paragraph halilParagraph = new Paragraph(kullanilacakKabin, unicodeFont);
-                halilParagraph.setAlignment(Element.ALIGN_CENTER);
-                halilParagraph.setSpacingBefore(20);  // 20dp boşluk
-                document.add(halilParagraph);
-            }
-
-            if(pdfFilePath != null) {
-                if(isKlasik) {
-                    PdfReader reader = new PdfReader(Objects.requireNonNull(Launcher.class.getResource(pdfFilePath)));
-
-                    document.newPage();
-
-                    PdfImportedPage importedPage = writer.getImportedPage(reader, 1);
-                    PdfContentByte cb = writer.getDirectContent();
-
-                    cb.addTemplate(importedPage, 0, 0);
-
-                    cb.beginText();
-                    BaseFont bf = BaseFont.createFont(BaseFont.TIMES_ROMAN, BaseFont.CP1252, BaseFont.NOT_EMBEDDED);
-                    cb.setFontAndSize(bf, 6);
-
-                    float xPosition = document.getPageSize().getWidth() - 110; // Sağ kenar boşluğu
-                    float yPosition = document.getPageSize().getHeight() - 65; // Sayfanın üstünden 50 birim boşluk
-
-                    cb.setTextMatrix(xPosition, yPosition);
-                    cb.showText(pompaDegeri);
-
-                    yPosition -= 13;
-                    cb.setTextMatrix(xPosition, yPosition);
-                    cb.showText(motorDegeri);
-
-                    cb.endText();
-
-                    document.close();
-                    writer.close();
-                    reader.close();
-                } else if(unitType != null && unitType.equals("Blain")) {
-                    // Blain için: sadece PDF'i ikinci sayfaya ekle, metin ekleme
-                    PdfReader reader = new PdfReader(Objects.requireNonNull(Launcher.class.getResource(pdfFilePath)));
-
-                    // İkinci sayfayı landscape (yatay) olarak oluştur
-                    document.setPageSize(PageSize.A4.rotate());
-                    document.newPage();
-                    
-                    // Landscape sayfa için arka plan rengini ayarla
-                    PdfContentByte landscapeContentByte = writer.getDirectContentUnder();
-                    BaseColor landscapeBackgroundColor = new BaseColor(255, 255, 255);
-                    landscapeContentByte.setColorFill(landscapeBackgroundColor);
-                    landscapeContentByte.rectangle(0, 0, document.getPageSize().getWidth(), document.getPageSize().getHeight());
-                    landscapeContentByte.fill();
-
-                    PdfImportedPage importedPage = writer.getImportedPage(reader, 1);
-                    PdfContentByte cb = writer.getDirectContent();
-
-                    // PDF'in sayfaya tam sığması için scale hesapla
-                    float pageWidth = document.getPageSize().getWidth();
-                    float pageHeight = document.getPageSize().getHeight();
-                    float importedWidth = importedPage.getWidth();
-                    float importedHeight = importedPage.getHeight();
-                    
-                    // Scale faktörünü hesapla (en küçük scale'i kullan ki hem genişlik hem yükseklik sığsın)
-                    float scaleX = pageWidth / importedWidth;
-                    float scaleY = pageHeight / importedHeight;
-                    float scale = Math.min(scaleX, scaleY);
-                    
-                    // Ölçeklenmiş genişlik ve yükseklik
-                    float scaledWidth = importedWidth * scale;
-                    float scaledHeight = importedHeight * scale;
-                    
-                    // Ortalamak için offset hesapla
-                    float offsetX = (pageWidth - scaledWidth) / 2;
-                    float offsetY = (pageHeight - scaledHeight) / 2;
-                    
-                    // Template'i scale ve offset ile ekle
-                    cb.addTemplate(importedPage, scale, 0, 0, scale, offsetX, offsetY);
-
-                    document.close();
-                    writer.close();
-                    reader.close();
-                } else {
-                    // PowerPack için
-                    String motorText = "AC Motor";
-                    if(PowerPackController.secilenMotorTipi != null && PowerPackController.secilenMotorTipi.contains("DC")) {
-                        motorText = "DC Motor";
-                    }
-
-                    PdfReader reader = new PdfReader(Objects.requireNonNull(Launcher.class.getResource(pdfFilePath)));
-
-                    document.newPage();
-
-                    PdfImportedPage importedPage = writer.getImportedPage(reader, 1);
-                    PdfContentByte cb = writer.getDirectContent();
-
-                    cb.addTemplate(importedPage, 0, 0);
-
-                    cb.beginText();
-                    BaseFont bf = BaseFont.createFont(BaseFont.TIMES_ROMAN, BaseFont.CP1252, BaseFont.NOT_EMBEDDED);
-                    cb.setFontAndSize(bf, 7);
-
-                    float xPosition = document.getPageSize().getWidth() - 110; // Sağ kenar boşluğu
-                    float yPosition = document.getPageSize().getHeight() - 53; // Sayfanın üstünden 50 birim boşluk
-
-                    cb.setTextMatrix(xPosition - 112, yPosition);
-                    cb.showText(motorText);
-
-                    cb.setTextMatrix(xPosition - 182, yPosition);
-                    cb.showText(motorText);
-
-                    cb.setTextMatrix(xPosition, yPosition);
-                    cb.showText(motorDegeri);
-
-                    yPosition -= 13;
-                    cb.setTextMatrix(xPosition, yPosition);
-                    cb.showText(pompaDegeri);
-
-                    cb.endText();
-
-                    document.close();
-                    writer.close();
-                    reader.close();
-                }
+                exPDFFilePath = featuresPdfPath;
             } else {
-                document.close();
-                writer.close();
+                exPDFFilePath = SystemDefaults.userDataPDFFolderPath + girilenSiparisNumarasi + ".pdf";
+                generateStandardUnitPdf(pngFilePath1,
+                        tankImage,
+                        schemeImage,
+                        pdfFilePath,
+                        girilenSiparisNumarasi,
+                        kullanilacakKabin,
+                        motorDegeri,
+                        pompaDegeri,
+                        unitType,
+                        isKlasik,
+                        exPDFFilePath);
             }
 
             System.out.println("PDF oluşturuldu.");
@@ -339,7 +111,7 @@ public class PDFUtil {
                         girilenSiparisNumarasi,
                         Utils.getCurrentUnixTime(),
                         unitType,
-                        ExPDFFilePath,
+                        exPDFFilePath,
                         null,
                         "no",
                         SystemDefaults.loggedInUser.getUserID(),
@@ -349,7 +121,7 @@ public class PDFUtil {
                         girilenSiparisNumarasi,
                         Utils.getCurrentUnixTime(),
                         unitType,
-                        ExPDFFilePath,
+                        exPDFFilePath,
                         null,
                         "yes",
                         System.getProperty("user.name"),
@@ -357,21 +129,283 @@ public class PDFUtil {
             }
 
             new File("processed_image.png").delete();
-
-            // PDF otomatik açılmıyor - kullanıcı "Dosyada Göster" butonunu kullanabilir
-            // if (Desktop.isDesktopSupported()) {
-            //     try {
-            //         File pdfFile = new File(ExPDFFilePath);
-            //         Desktop.getDesktop().open(pdfFile);
-            //     } catch (IOException e) {
-            //         System.out.println(e.getMessage());
-            //     }
-            // }
         } catch (DocumentException | IOException e) {
             System.out.println(e.getMessage());
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
+    }
+
+    private static void generateStandardUnitPdf(String pngFilePath1,
+                                                AnchorPane tankImage,
+                                                AnchorPane schemeImage,
+                                                String pdfFilePath,
+                                                String girilenSiparisNumarasi,
+                                                String kullanilacakKabin,
+                                                String motorDegeri,
+                                                String pompaDegeri,
+                                                String unitType,
+                                                boolean isKlasik,
+                                                String outputFilePath) throws Exception {
+        Document document = new Document();
+        PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream(outputFilePath));
+        document.open();
+
+        PdfContentByte contentByte = writer.getDirectContentUnder();
+        BaseColor backgroundColor = new BaseColor(255, 255, 255);
+        contentByte.setColorFill(backgroundColor);
+        contentByte.rectangle(0, 0, document.getPageSize().getWidth(), document.getPageSize().getHeight());
+        contentByte.fill();
+
+        Image image1 = Image.getInstance(Objects.requireNonNull(Launcher.class.getResource(pngFilePath1)));
+        float targetWidth1 = document.getPageSize().getWidth() * 0.8f;
+        float targetHeight1 = (image1.getHeight() / (float) image1.getWidth()) * targetWidth1 * 0.7f;
+        image1.scaleToFit(targetWidth1, targetHeight1);
+        image1.setAlignment(Image.ALIGN_CENTER);
+        document.add(image1);
+
+        BaseFont baseFont = BaseFont.createFont(String.valueOf(Launcher.class.getResource("/assets/fonts/Quicksand-Medium.ttf")), BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
+        Font unicodeFont = new Font(baseFont, 22, Font.BOLD);
+
+        Paragraph paragraph;
+        if(unitType != null && unitType.equals("Blain")) {
+            paragraph = new Paragraph("Proje Numarası: " + girilenSiparisNumarasi, unicodeFont);
+        } else {
+            paragraph = new Paragraph(girilenSiparisNumarasi + " Numaralı Sipariş", unicodeFont);
+        }
+        paragraph.setAlignment(Element.ALIGN_CENTER);
+        paragraph.setSpacingBefore(15);
+        document.add(paragraph);
+
+        addAnchorPaneToPDF(tankImage, document, "tankImage");
+
+        if(schemeImage != null) {
+            addAnchorPaneToPDF(schemeImage, document, "schemeImage");
+        }
+
+        Paragraph halilParagraph = new Paragraph(kullanilacakKabin, unicodeFont);
+        halilParagraph.setAlignment(Element.ALIGN_CENTER);
+        halilParagraph.setSpacingBefore(20);
+        document.add(halilParagraph);
+
+        if(pdfFilePath != null) {
+            if(isKlasik) {
+                PdfReader reader = new PdfReader(Objects.requireNonNull(Launcher.class.getResource(pdfFilePath)));
+
+                document.newPage();
+
+                PdfImportedPage importedPage = writer.getImportedPage(reader, 1);
+                PdfContentByte cb = writer.getDirectContent();
+
+                cb.addTemplate(importedPage, 0, 0);
+
+                cb.beginText();
+                BaseFont bf = BaseFont.createFont(BaseFont.TIMES_ROMAN, BaseFont.CP1252, BaseFont.NOT_EMBEDDED);
+                cb.setFontAndSize(bf, 6);
+
+                float xPosition = document.getPageSize().getWidth() - 110;
+                float yPosition = document.getPageSize().getHeight() - 65;
+
+                cb.setTextMatrix(xPosition, yPosition);
+                cb.showText(pompaDegeri);
+
+                yPosition -= 13;
+                cb.setTextMatrix(xPosition, yPosition);
+                cb.showText(motorDegeri);
+
+                cb.endText();
+
+                document.close();
+                writer.close();
+                reader.close();
+            } else {
+                String motorText = "AC Motor";
+                if(PowerPackController.secilenMotorTipi != null && PowerPackController.secilenMotorTipi.contains("DC")) {
+                    motorText = "DC Motor";
+                }
+
+                PdfReader reader = new PdfReader(Objects.requireNonNull(Launcher.class.getResource(pdfFilePath)));
+
+                document.newPage();
+
+                PdfImportedPage importedPage = writer.getImportedPage(reader, 1);
+                PdfContentByte cb = writer.getDirectContent();
+
+                cb.addTemplate(importedPage, 0, 0);
+
+                cb.beginText();
+                BaseFont bf = BaseFont.createFont(BaseFont.TIMES_ROMAN, BaseFont.CP1252, BaseFont.NOT_EMBEDDED);
+                cb.setFontAndSize(bf, 7);
+
+                float xPosition = document.getPageSize().getWidth() - 110;
+                float yPosition = document.getPageSize().getHeight() - 53;
+
+                cb.setTextMatrix(xPosition - 112, yPosition);
+                cb.showText(motorText);
+
+                cb.setTextMatrix(xPosition - 182, yPosition);
+                cb.showText(motorText);
+
+                cb.setTextMatrix(xPosition, yPosition);
+                cb.showText(motorDegeri);
+
+                yPosition -= 13;
+                cb.setTextMatrix(xPosition, yPosition);
+                cb.showText(pompaDegeri);
+
+                cb.endText();
+
+                document.close();
+                writer.close();
+                reader.close();
+            }
+        } else {
+            document.close();
+            writer.close();
+        }
+    }
+
+    private static void generateBlainUnitFeaturesPdf(String pngFilePath1,
+                                                     AnchorPane tankImage,
+                                                     String girilenSiparisNumarasi,
+                                                     String kullanilacakKabin,
+                                                     String motorDegeri,
+                                                     String outputFilePath) throws Exception {
+        Document document = new Document();
+        PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream(outputFilePath));
+        document.open();
+
+        PdfContentByte contentByte = writer.getDirectContentUnder();
+        BaseColor backgroundColor = new BaseColor(255, 255, 255);
+        contentByte.setColorFill(backgroundColor);
+        contentByte.rectangle(0, 0, document.getPageSize().getWidth(), document.getPageSize().getHeight());
+        contentByte.fill();
+
+        Image image1 = Image.getInstance(Objects.requireNonNull(Launcher.class.getResource(pngFilePath1)));
+        float targetWidth1 = document.getPageSize().getWidth() * 0.8f;
+        float targetHeight1 = (image1.getHeight() / (float) image1.getWidth()) * targetWidth1 * 0.7f;
+        image1.scaleToFit(targetWidth1, targetHeight1);
+        image1.setAlignment(Image.ALIGN_CENTER);
+        document.add(image1);
+
+        BaseFont baseFont = BaseFont.createFont(String.valueOf(Launcher.class.getResource("/assets/fonts/Quicksand-Medium.ttf")), BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
+        Font unicodeFont = new Font(baseFont, 22, Font.BOLD);
+        Font textFont = new Font(baseFont, 12, Font.NORMAL);
+
+        Paragraph projectNumber = new Paragraph("Proje Numarası: " + girilenSiparisNumarasi, unicodeFont);
+        projectNumber.setAlignment(Element.ALIGN_CENTER);
+        projectNumber.setSpacingBefore(15);
+        document.add(projectNumber);
+
+        if(tankImage != null) {
+            javafx.scene.control.TextArea resultTextArea = findResultTextArea(tankImage);
+            if(resultTextArea != null && resultTextArea.getText() != null && !resultTextArea.getText().trim().isEmpty()) {
+                String[] lines = resultTextArea.getText().split("\n");
+
+                Paragraph textSpacer = new Paragraph(" ");
+                textSpacer.setSpacingBefore(15);
+                document.add(textSpacer);
+
+                boolean hasTankKapakLine = false;
+
+                for(String line : lines) {
+                    if(line == null) continue;
+                    String trimmed = line.trim();
+
+                    if(trimmed.startsWith("Sipariş Numarası:")) {
+                        continue;
+                    }
+
+                    if(trimmed.startsWith("Tank Kapak Kodu:")) {
+                        hasTankKapakLine = true;
+                    }
+
+                    if(!trimmed.isEmpty()) {
+                        Paragraph textParagraph = new Paragraph(trimmed, textFont);
+                        textParagraph.setAlignment(Element.ALIGN_LEFT);
+                        textParagraph.setSpacingBefore(5);
+                        textParagraph.setIndentationLeft(50);
+                        document.add(textParagraph);
+                    }
+                }
+
+                if(!hasTankKapakLine && motorDegeri != null && !motorDegeri.trim().isEmpty()) {
+                    String tankKapakLine = "Tank Kapak Kodu: " + motorDegeri.trim();
+                    Paragraph textParagraph = new Paragraph(tankKapakLine, textFont);
+                    textParagraph.setAlignment(Element.ALIGN_LEFT);
+                    textParagraph.setSpacingBefore(5);
+                    textParagraph.setIndentationLeft(50);
+                    document.add(textParagraph);
+                }
+            } else if(motorDegeri != null && !motorDegeri.trim().isEmpty()) {
+                Paragraph fallbackTankKapak = new Paragraph("Tank Kapak Kodu: " + motorDegeri.trim(), textFont);
+                fallbackTankKapak.setAlignment(Element.ALIGN_LEFT);
+                fallbackTankKapak.setSpacingBefore(5);
+                fallbackTankKapak.setIndentationLeft(50);
+                document.add(fallbackTankKapak);
+            }
+        }
+
+        String projectCodeText = kullanilacakKabin + " Şeması Bir Sonraki Sayfadadır";
+        PdfContentByte cb = writer.getDirectContent();
+        cb.saveState();
+        cb.beginText();
+        cb.setFontAndSize(baseFont, 14);
+        cb.setRGBColorFill(0, 0, 0);
+
+        float textWidth = baseFont.getWidthPoint(projectCodeText, 14);
+        float pageWidth = document.getPageSize().getWidth();
+        float xPosition = (pageWidth - textWidth) / 2;
+        float yPosition = 40;
+
+        cb.setTextMatrix(xPosition, yPosition);
+        cb.showText(projectCodeText);
+        cb.endText();
+        cb.restoreState();
+
+        document.close();
+        writer.close();
+    }
+
+    private static void generateBlainSchemePdf(String pdfFilePath, String outputFilePath) throws Exception {
+        if(pdfFilePath == null || pdfFilePath.trim().isEmpty()) {
+            return;
+        }
+
+        Document document = new Document(PageSize.A4.rotate());
+        PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream(outputFilePath));
+        document.open();
+
+        PdfContentByte landscapeContentByte = writer.getDirectContentUnder();
+        BaseColor landscapeBackgroundColor = new BaseColor(255, 255, 255);
+        landscapeContentByte.setColorFill(landscapeBackgroundColor);
+        landscapeContentByte.rectangle(0, 0, document.getPageSize().getWidth(), document.getPageSize().getHeight());
+        landscapeContentByte.fill();
+
+        PdfReader reader = new PdfReader(Objects.requireNonNull(Launcher.class.getResource(pdfFilePath)));
+        PdfImportedPage importedPage = writer.getImportedPage(reader, 1);
+        PdfContentByte cb = writer.getDirectContent();
+
+        float pageWidth = document.getPageSize().getWidth();
+        float pageHeight = document.getPageSize().getHeight();
+        float importedWidth = importedPage.getWidth();
+        float importedHeight = importedPage.getHeight();
+
+        float scaleX = pageWidth / importedWidth;
+        float scaleY = pageHeight / importedHeight;
+        float scale = Math.min(scaleX, scaleY);
+
+        float scaledWidth = importedWidth * scale;
+        float scaledHeight = importedHeight * scale;
+
+        float offsetX = (pageWidth - scaledWidth) / 2;
+        float offsetY = (pageHeight - scaledHeight) / 2;
+
+        cb.addTemplate(importedPage, scale, 0, 0, scale, offsetX, offsetY);
+
+        document.close();
+        writer.close();
+        reader.close();
     }
 
     public static void addAnchorPaneToPDF(AnchorPane calculationResultSection, Document document, String pngFilePath2) throws Exception {
@@ -550,6 +584,40 @@ public class PDFUtil {
         } catch (IOException e) {
             e.printStackTrace();
             System.err.println("PDF dosyasını işlerken bir hata oluştu: " + e.getMessage());
+        }
+    }
+
+    public static void loadSeparatePDFsToImageViews(String featurePdfPath,
+                                                    String schemePdfPath,
+                                                    ImageView schemePageOne,
+                                                    ImageView schemePageTwo) {
+        try {
+            setSinglePagePdfToImageView(featurePdfPath, schemePageOne);
+            setSinglePagePdfToImageView(schemePdfPath, schemePageTwo);
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.err.println("PDF dosyaları yüklenirken hata oluştu: " + e.getMessage());
+        }
+    }
+
+    private static void setSinglePagePdfToImageView(String pdfPath, ImageView target) throws IOException {
+        if(pdfPath == null || target == null) {
+            return;
+        }
+
+        File file = new File(pdfPath);
+        if(!file.exists()) {
+            return;
+        }
+
+        try(PDDocument document = PDDocument.load(file)) {
+            if(document.getNumberOfPages() == 0) {
+                return;
+            }
+
+            PDFRenderer renderer = new PDFRenderer(document);
+            BufferedImage pageImage = renderer.renderImageWithDPI(0, 150);
+            target.setImage(convertToJavaFXImage(pageImage));
         }
     }
 

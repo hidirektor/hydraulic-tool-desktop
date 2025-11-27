@@ -196,7 +196,7 @@ public class BlainController implements Initializable {
         } else if(actionEvent.getSource().equals(openPDFInExplorerButton)) {
             // PDF dosyasının kaydedildiği klasörü dosya gezgininde aç
             if(girilenSiparisNumarasi != null && !girilenSiparisNumarasi.trim().isEmpty()) {
-                String pdfPath = SystemDefaults.userDataPDFFolderPath + girilenSiparisNumarasi + ".pdf";
+                String pdfPath = SystemDefaults.userDataPDFFolderPath + girilenSiparisNumarasi + " Hidrolik Ünite Özellikleri.pdf";
                 PDFUtil.openFileInExplorer(pdfPath);
             } else {
                 NotificationUtil.showNotification(openPDFInExplorerButton.getScene().getWindow(), 
@@ -1913,10 +1913,13 @@ public class BlainController implements Initializable {
         }
         
         // PDF sayfalarını ImageView'lara yükle
+        final String featurePdfPath = SystemDefaults.userDataPDFFolderPath + girilenSiparisNumarasi + " Hidrolik Ünite Özellikleri.pdf";
+        final String schemePdfPath = SystemDefaults.userDataPDFFolderPath + girilenSiparisNumarasi + " Hidrolik Şema.pdf";
+        
         Task<Void> task = new Task<>() {
             @Override
             protected Void call() {
-                PDFUtil.loadPDFPagesToImageViews(SystemDefaults.userDataPDFFolderPath + girilenSiparisNumarasi + ".pdf", schemePageOne, schemePageTwo);
+                PDFUtil.loadSeparatePDFsToImageViews(featurePdfPath, schemePdfPath, schemePageOne, schemePageTwo);
                 return null;
             }
         };
