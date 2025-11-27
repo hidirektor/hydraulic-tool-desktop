@@ -632,15 +632,14 @@ public class BlainController implements Initializable {
             text.append("Tabla Kilit: ").append(secilenTablaKilit).append("\n");
         }
         
-        // Yağ Tankı
+        // Yağ Tankı & Tank Kapak Kodu (H kodu)
         if(secilenYagTanki != null) {
             text.append("Yağ Tankı: ").append(secilenYagTanki).append("\n");
-        }
-        
-        // Tank Kapak Kodu (Blain proje numarası)
-        String tankKapakKodu = getBlainProjectNumber();
-        if(tankKapakKodu != null && !tankKapakKodu.trim().isEmpty()) {
-            text.append("Tank Kapak Kodu: ").append(tankKapakKodu.trim()).append("\n");
+            
+            String tankKapakKodu = getBlainProjectNumber();
+            if(tankKapakKodu != null && !tankKapakKodu.trim().isEmpty()) {
+                text.append("Tank Kapak Kodu: ").append(tankKapakKodu.trim()).append("\n");
+            }
         }
         
         resultTextArea.setText(text.toString());
@@ -1851,6 +1850,50 @@ public class BlainController implements Initializable {
                 return "H600-1 1/2\"-39";
             } else if(valfTipi.equals("EV100 1\"1/2") && yagTankiNormalized.equals("BTH1000")) {
                 return "H1000-1 1/2\"-40";
+            }
+        }
+
+        // Seçilen kombinasyon için özel bir kod tanımlı değilse,
+        // valf & yağ tankı eşleşmesine göre temel kodu döndür.
+        String fallbackProjectNumber = getBaseProjectNumber(valfTipi, yagTankiNormalized);
+        if(fallbackProjectNumber != null) {
+            return fallbackProjectNumber;
+        }
+
+        return null;
+    }
+
+    private String getBaseProjectNumber(String valfTipi, String yagTankiNormalized) {
+        if(valfTipi.equals("KV1S") && yagTankiNormalized.equals("BTH75")) {
+            return "H75-1S-1";
+        }
+        if(valfTipi.equals("KV2S")) {
+            if(yagTankiNormalized.equals("BTH75")) {
+                return "H75-2S-2";
+            } else if(yagTankiNormalized.equals("BTH150")) {
+                return "H150-2S-3";
+            } else if(yagTankiNormalized.equals("BTH250")) {
+                return "H250-2S-5";
+            }
+        }
+        if(valfTipi.equals("EV100 3/4\"")) {
+            if(yagTankiNormalized.equals("BTH150")) {
+                return "H150-3/4\"-4";
+            } else if(yagTankiNormalized.equals("BTH250")) {
+                return "H250-3/4\"-6";
+            } else if(yagTankiNormalized.equals("BTH400")) {
+                return "H400-3/4\"-8";
+            }
+        }
+        if(valfTipi.equals("EV100 1\"1/2")) {
+            if(yagTankiNormalized.equals("BTH250")) {
+                return "H250-1 1/2\"-7";
+            } else if(yagTankiNormalized.equals("BTH400")) {
+                return "H400-1 1/2\"-9";
+            } else if(yagTankiNormalized.equals("BTH600")) {
+                return "H600-1 1/2\"-10";
+            } else if(yagTankiNormalized.equals("BTH1000")) {
+                return "H1000-1 1/2\"-11";
             }
         }
 

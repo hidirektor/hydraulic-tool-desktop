@@ -31,6 +31,8 @@ import java.io.IOException;
 import java.nio.IntBuffer;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 public class PDFUtil {
@@ -306,36 +308,66 @@ public class PDFUtil {
                 textSpacer.setSpacingBefore(15);
                 document.add(textSpacer);
 
-                boolean hasTankKapakLine = false;
+                List<String> orderedLines = new ArrayList<>();
+                String tankKapakLine = null;
 
                 for(String line : lines) {
                     if(line == null) continue;
                     String trimmed = line.trim();
 
-                    if(trimmed.startsWith("Sipariş Numarası:")) {
+                    if(trimmed.isEmpty() || trimmed.startsWith("Sipariş Numarası:")) {
                         continue;
                     }
 
                     if(trimmed.startsWith("Tank Kapak Kodu:")) {
-                        hasTankKapakLine = true;
+                        tankKapakLine = trimmed;
+                        continue;
                     }
 
-                    if(!trimmed.isEmpty()) {
-                        Paragraph textParagraph = new Paragraph(trimmed, textFont);
-                        textParagraph.setAlignment(Element.ALIGN_LEFT);
-                        textParagraph.setSpacingBefore(5);
-                        textParagraph.setIndentationLeft(50);
-                        document.add(textParagraph);
-                    }
+                    orderedLines.add(trimmed);
                 }
 
-                if(!hasTankKapakLine && motorDegeri != null && !motorDegeri.trim().isEmpty()) {
-                    String tankKapakLine = "Tank Kapak Kodu: " + motorDegeri.trim();
-                    Paragraph textParagraph = new Paragraph(tankKapakLine, textFont);
+                boolean tankKapakInserted = false;
+
+                for(String orderedLine : orderedLines) {
+                    Paragraph textParagraph = new Paragraph(orderedLine, textFont);
                     textParagraph.setAlignment(Element.ALIGN_LEFT);
                     textParagraph.setSpacingBefore(5);
                     textParagraph.setIndentationLeft(50);
                     document.add(textParagraph);
+
+                    if(orderedLine.startsWith("Yağ Tankı:") && !tankKapakInserted) {
+                        String lineToInsert = tankKapakLine;
+                        if(lineToInsert == null || lineToInsert.isEmpty()) {
+                            if(motorDegeri != null && !motorDegeri.trim().isEmpty()) {
+                                lineToInsert = "Tank Kapak Kodu: " + motorDegeri.trim();
+                            }
+                        }
+
+                        if(lineToInsert != null && !lineToInsert.isEmpty()) {
+                            Paragraph tankParagraph = new Paragraph(lineToInsert, textFont);
+                            tankParagraph.setAlignment(Element.ALIGN_LEFT);
+                            tankParagraph.setSpacingBefore(5);
+                            tankParagraph.setIndentationLeft(50);
+                            document.add(tankParagraph);
+                            tankKapakInserted = true;
+                        }
+                    }
+                }
+
+                if(!tankKapakInserted) {
+                    String fallbackLine = tankKapakLine;
+                    if((fallbackLine == null || fallbackLine.isEmpty()) && motorDegeri != null && !motorDegeri.trim().isEmpty()) {
+                        fallbackLine = "Tank Kapak Kodu: " + motorDegeri.trim();
+                    }
+
+                    if(fallbackLine != null && !fallbackLine.isEmpty()) {
+                        Paragraph tankParagraph = new Paragraph(fallbackLine, textFont);
+                        tankParagraph.setAlignment(Element.ALIGN_LEFT);
+                        tankParagraph.setSpacingBefore(5);
+                        tankParagraph.setIndentationLeft(50);
+                        document.add(tankParagraph);
+                    }
                 }
             } else if(motorDegeri != null && !motorDegeri.trim().isEmpty()) {
                 Paragraph fallbackTankKapak = new Paragraph("Tank Kapak Kodu: " + motorDegeri.trim(), textFont);
