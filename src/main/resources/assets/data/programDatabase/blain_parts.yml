@@ -187,248 +187,232 @@ valf:
   '0': #KV1S
     parts:
       '0':
-        malzemeKodu: "150-51-05-501"
-        malzemeAdi: "BLOK KV1S (BLAIN)"
-        malzemeAdet: "1"
-      '1':
         malzemeKodu: "150-51-09-938"
         malzemeAdi: "TERS REKOR PİMLİ 1/2 M30"
         malzemeAdet: "2"
-      '2':
+      '1':
         malzemeKodu: "150-51-09-059"
         malzemeAdi: "BSP METRİK NİPEL RK-2620-RMNP-S 3/4'-M30 Ø20S"
         malzemeAdet: "3"
-      '3':
+      '2':
         malzemeKodu: "150-51-09-043"
         malzemeAdi: 'BSP METRİK NİPEL RK-3322-RMNP-L 1"-M30 Ø22L'
         malzemeAdet: "1"
-      '4':
+      '3':
         malzemeKodu: "150-51-09-102"
         malzemeAdi: '3/4" KAYNAKLI MANŞON'
         malzemeAdet: "2"
-      '5':
+      '4':
         malzemeKodu: "150-50-23-037"
         malzemeAdi: "SOMUN M12 FİBERLİ"
         malzemeAdet: "4"
-      '6':
+      '5':
         malzemeKodu: "150-50-24-006"
         malzemeAdi: "PUL M12 BEYAZ"
         malzemeAdet: "4"
-      '7':
+      '6':
         malzemeKodu: "150-52-17-045"
         malzemeAdi: "RAKOR SIKMALI ORB-05 PG16"
         malzemeAdet: "1"
-      '8':
+      '7':
         malzemeKodu: "150-50-21-553"
         malzemeAdi: "CİVATA ANAHTAR BAŞLI M10 25 MM BEYAZ (DIN 933)"
         malzemeAdet: "4"
-      '9':
+      '8':
         malzemeKodu: "150-50-24-005"
         malzemeAdi: "PUL M10 BEYAZ"
         malzemeAdet: "4"
-      '10':
+      '9':
         malzemeKodu: "150-50-25-007"
         malzemeAdi: "YAYLI RONDELA M10 BEYAZ (DIN 127-B)"
         malzemeAdet: "4"
-      '11':
+      '10':
         malzemeKodu: "150-51-09-307"
         malzemeAdi: "METRİK TERS DİRSEK PİMLİ RK-2222-MTD-L M30x2 Ø22L"
         malzemeAdet: "1"
-      '12':
+      '11':
         malzemeKodu: "150-51-15-348"
         malzemeAdi: 'HİDROLİK HORTUM 3/4" R2 M30 90CM DÜZ-90'
         malzemeAdet: "1"
-      '13':
+      '12':
         malzemeKodu: "150-51-09-484"
         malzemeAdi: 'BSP ALLENBAŞLI KÖR TAPA RK-2114-RAT 1/2"'
         malzemeAdet: "1"
-      '14':
+      '13':
         malzemeKodu: "150-51-08-022"
         malzemeAdi: "İTHAL-YAĞ SEVİYE GÖSTERGESİ HB-127"
         malzemeAdet: "1"
-      '15':
+      '14':
         malzemeKodu: "150-51-07-200"
         malzemeAdi: "DEPO KAPAK MDK MİNİ DEPO KAPAK"
         malzemeAdet: "1"
   '1': #KV2S
     parts:
       '0':
-        malzemeKodu: "150-51-05-503"
-        malzemeAdi: "BLOK KV2S (BLAIN)"
-        malzemeAdet: "1"
-      '1':
         malzemeKodu: "150-51-09-938"
         malzemeAdi: "TERS REKOR PİMLİ 1/2 M30"
         malzemeAdet: "2"
-      '2':
+      '1':
         malzemeKodu: "150-51-09-059"
         malzemeAdi: "BSP METRİK NİPEL RK-2620-RMNP-S 3/4'-M30 Ø20S"
         malzemeAdet: "3"
-      '3':
+      '2':
         malzemeKodu: "150-51-09-043"
         malzemeAdi: 'BSP METRİK NİPEL RK-3322-RMNP-L 1"-M30 Ø22L'
         malzemeAdet: "1"
-      '4':
+      '3':
         malzemeKodu: "150-51-09-102"
         malzemeAdi: '3/4" KAYNAKLI MANŞON'
         malzemeAdet: "2"
-      '5':
+      '4':
         malzemeKodu: "150-50-23-037"
         malzemeAdi: "SOMUN M12 FİBERLİ"
         malzemeAdet: "4"
-      '6':
+      '5':
         malzemeKodu: "150-50-24-006"
         malzemeAdi: "PUL M12 BEYAZ"
         malzemeAdet: "4"
-      '7':
+      '6':
         malzemeKodu: "150-52-17-045"
         malzemeAdi: "RAKOR SIKMALI ORB-05 PG16"
         malzemeAdet: "1"
-      '8':
+      '7':
         malzemeKodu: "150-50-21-553"
         malzemeAdi: "CİVATA ANAHTAR BAŞLI M10 25 MM BEYAZ (DIN 933)"
         malzemeAdet: "4"
-      '9':
+      '8':
         malzemeKodu: "150-50-24-005"
         malzemeAdi: "PUL M10 BEYAZ"
         malzemeAdet: "4"
-      '10':
+      '9':
         malzemeKodu: "150-50-25-007"
         malzemeAdi: "YAYLI RONDELA M10 BEYAZ (DIN 127-B)"
         malzemeAdet: "4"
-      '11':
+      '10':
         malzemeKodu: "150-51-09-307"
         malzemeAdi: "METRİK TERS DİRSEK PİMLİ RK-2222-MTD-L M30x2 Ø22L"
         malzemeAdet: "1"
-      '12':
+      '11':
         malzemeKodu: "150-51-15-348"
         malzemeAdi: 'HİDROLİK HORTUM 3/4" R2 M30 90CM DÜZ-90'
         malzemeAdet: "1"
-      '13':
+      '12':
         malzemeKodu: "150-51-09-484"
         malzemeAdi: 'BSP ALLENBAŞLI KÖR TAPA RK-2114-RAT 1/2"'
         malzemeAdet: "1"
-      '14':
+      '13':
         malzemeKodu: "150-51-08-022"
         malzemeAdi: "İTHAL-YAĞ SEVİYE GÖSTERGESİ HB-127"
         malzemeAdet: "1"
-      '15':
+      '14':
         malzemeKodu: "150-51-07-200"
         malzemeAdi: "DEPO KAPAK MDK MİNİ DEPO KAPAK"
         malzemeAdet: "1"
   '2': #EV100 1 1/2"
     parts:
       '0':
-        malzemeKodu: "150-51-05-504"
-        malzemeAdi: "BLOK EV100 1 1/2\" (BLAIN)"
-        malzemeAdet: "1"
-      '1':
         malzemeKodu: "150-51-09-232"
         malzemeAdi: "BSP METRİK TERS REKOR PİMLİ 1 1/2\" M42x2 Ø30S"
         malzemeAdet: "2"
-      '2':
+      '1':
         malzemeKodu: "150-51-09-314"
         malzemeAdi: "METRİK TERS DİRSEK PİMLİ RK-3030-MTD-S M42x2 Ø30S"
         malzemeAdet: "1"
-      '3':
+      '2':
         malzemeKodu: "150-51-09-074"
         malzemeAdi: "BSP METRİK NİPEL RK-4830-RMNP-S 1 1/2\"-M42x2 Ø30S"
         malzemeAdet: "5"
-      '4':
+      '3':
         malzemeKodu: "150-51-09-484"
         malzemeAdi: 'BSP ALLENBAŞLI KÖR TAPA RK-2114-RAT 1/2"'
         malzemeAdet: "1"
-      '5':
+      '4':
         malzemeKodu: "150-51-08-022"
         malzemeAdi: "İTHAL-YAĞ SEVİYE GÖSTERGESİ HB-127"
         malzemeAdet: "1"
-      '6':
+      '5':
         malzemeKodu: "150-51-16-502"
         malzemeAdi: 'HİDROLİK HORTUM 1" 1/4 R2 M42 170CM DÜZ-90'
         malzemeAdet: "1"
-      '7':
+      '6':
         malzemeKodu: "150-50-23-037"
         malzemeAdi: "SOMUN M12 FİBERLİ"
         malzemeAdet: "4"
-      '8':
+      '7':
         malzemeKodu: "150-50-24-006"
         malzemeAdi: "PUL M12 BEYAZ"
         malzemeAdet: "4"
-      '9':
+      '8':
         malzemeKodu: "150-50-21-553"
         malzemeAdi: "CİVATA ANAHTAR BAŞLI M10 25 MM BEYAZ (DIN 933)"
         malzemeAdet: "4"
-      '10':
+      '9':
         malzemeKodu: "150-50-24-005"
         malzemeAdi: "PUL M10 BEYAZ"
         malzemeAdet: "4"
-      '11':
+      '10':
         malzemeKodu: "150-50-25-007"
         malzemeAdi: "YAYLI RONDELA M10 BEYAZ (DIN 127-B)"
         malzemeAdet: "4"
-      '12':
+      '11':
         malzemeKodu: "150-52-17-045"
         malzemeAdi: "RAKOR SIKMALI ORB-05 PG16"
         malzemeAdet: "1"
-      '13':
+      '12':
         malzemeKodu: "150-51-07-201"
         malzemeAdi: "DEPO KAPAK SDK STANDART DEPO KAPAK"
         malzemeAdet: "1"
   '3': #EV100 3/4"
     parts:
       '0':
-        malzemeKodu: "150-51-05-502"
-        malzemeAdi: "BLOK EV100 3/4\" (BLAIN)"
-        malzemeAdet: "1"
-      '1':
         malzemeKodu: "150-51-09-211"
         malzemeAdi: "BSP METRİK TERS REKOR PİMLİ RK-2628-RMTR-L 3/4\" M36x2 Ø28L"
         malzemeAdet: "2"
-      '2':
+      '1':
         malzemeKodu: "150-51-09-044"
         malzemeAdi: "BSP METRİK NİPEL RK-3328-RMNP-L 1\"-M36 Ø28L"
         malzemeAdet: "5"
-      '3':
+      '2':
         malzemeKodu: "150-51-09-313"
         malzemeAdi: "METRİK TERS DİRSEK PİMLİ RK-2525-MTD-S M36x2 Ø25S"
         malzemeAdet: "1"
-      '4':
+      '3':
         malzemeKodu: "150-51-16-429"
         malzemeAdi: 'HİDROLİK HORTUM 1" R2 M36 120CM DÜZ+90'
         malzemeAdet: "1"
-      '5':
+      '4':
         malzemeKodu: "150-51-09-484"
         malzemeAdi: 'BSP ALLENBAŞLI KÖR TAPA RK-2114-RAT 1/2"'
         malzemeAdet: "1"
-      '6':
+      '5':
         malzemeKodu: "150-51-08-022"
         malzemeAdi: "İTHAL-YAĞ SEVİYE GÖSTERGESİ HB-127"
         malzemeAdet: "1"
-      '7':
+      '6':
         malzemeKodu: "150-50-23-037"
         malzemeAdi: "SOMUN M12 FİBERLİ"
         malzemeAdet: "4"
-      '8':
+      '7':
         malzemeKodu: "150-50-24-006"
         malzemeAdi: "PUL M12 BEYAZ"
         malzemeAdet: "4"
-      '9':
+      '8':
         malzemeKodu: "150-50-21-553"
         malzemeAdi: "CİVATA ANAHTAR BAŞLI M10 25 MM BEYAZ (DIN 933)"
         malzemeAdet: "4"
-      '10':
+      '9':
         malzemeKodu: "150-50-24-005"
         malzemeAdi: "PUL M10 BEYAZ"
         malzemeAdet: "4"
-      '11':
+      '10':
         malzemeKodu: "150-50-25-007"
         malzemeAdi: "YAYLI RONDELA M10 BEYAZ (DIN 127-B)"
         malzemeAdet: "4"
-      '12':
+      '11':
         malzemeKodu: "150-52-17-045"
         malzemeAdi: "RAKOR SIKMALI ORB-05 PG16"
         malzemeAdet: "1"
-      '13':
+      '12':
         malzemeKodu: "150-51-07-201"
         malzemeAdi: "DEPO KAPAK SDK STANDART DEPO KAPAK"
         malzemeAdet: "1"
