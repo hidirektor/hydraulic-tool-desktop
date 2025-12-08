@@ -33,11 +33,13 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Region;
 
+import java.io.File;
 import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.net.URL;
 import java.util.*;
 import java.util.Iterator;
+import java.nio.file.Paths;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -196,8 +198,17 @@ public class BlainController implements Initializable {
         } else if(actionEvent.getSource().equals(openPDFInExplorerButton)) {
             // PDF dosyasının kaydedildiği klasörü dosya gezgininde aç
             if(girilenSiparisNumarasi != null && !girilenSiparisNumarasi.trim().isEmpty()) {
-                String pdfPath = SystemDefaults.userDataPDFFolderPath + girilenSiparisNumarasi + " Hidrolik Ünite Özellikleri.pdf";
-                PDFUtil.openFileInExplorer(pdfPath);
+                String featurePath = Paths.get(SystemDefaults.userDataPDFFolderPath, girilenSiparisNumarasi + " Hidrolik Ünite Özellikleri.pdf").toString();
+                String schemePath = Paths.get(SystemDefaults.userDataPDFFolderPath, girilenSiparisNumarasi + " Hidrolik Şema.pdf").toString();
+
+                if(new File(featurePath).exists()) {
+                    PDFUtil.openFileInExplorer(featurePath);
+                } else if(new File(schemePath).exists()) {
+                    PDFUtil.openFileInExplorer(schemePath);
+                } else {
+                    // Hiçbiri yoksa, klasörü aç
+                    PDFUtil.openFileInExplorer(SystemDefaults.userDataPDFFolderPath);
+                }
             } else {
                 NotificationUtil.showNotification(openPDFInExplorerButton.getScene().getWindow(), 
                     NotificationController.NotificationType.ALERT, 

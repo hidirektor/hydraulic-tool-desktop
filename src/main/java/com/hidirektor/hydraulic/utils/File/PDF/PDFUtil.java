@@ -661,34 +661,48 @@ public class PDFUtil {
         return javafx.embed.swing.SwingFXUtils.toFXImage(bufferedImage, null);
     }
     
-    // Dosya gezgininde/finder'da aç
+    // Dosya gezgininde/finder'da aç (dosya veya klasör desteklenir)
     public static void openFileInExplorer(String filePath) {
         try {
             String os = System.getProperty("os.name").toLowerCase();
             File file = new File(filePath);
             
             if (!file.exists()) {
-                System.err.println("Dosya bulunamadı: " + filePath);
+                System.err.println("Dosya/klasör bulunamadı: " + filePath);
                 return;
             }
+            
+            boolean isDirectory = file.isDirectory();
             
             ProcessBuilder processBuilder;
             
             if (os.contains("win")) {
-                // Windows: explorer /select,"dosya_yolu"
-                processBuilder = new ProcessBuilder("explorer", "/select," + file.getAbsolutePath());
+                // Windows: explorer /select,"dosya_yolu" veya klasörü aç
+                if(isDirectory) {
+                    processBuilder = new ProcessBuilder("explorer", file.getAbsolutePath());
+                } else {
+                    processBuilder = new ProcessBuilder("explorer", "/select," + file.getAbsolutePath());
+                }
             } else if (os.contains("mac")) {
-                // Mac: open -R "dosya_yolu"
-                processBuilder = new ProcessBuilder("open", "-R", file.getAbsolutePath());
+                // Mac: open -R "dosya_yolu" veya klasörü aç
+                if(isDirectory) {
+                    processBuilder = new ProcessBuilder("open", file.getAbsolutePath());
+                } else {
+                    processBuilder = new ProcessBuilder("open", "-R", file.getAbsolutePath());
+                }
             } else {
                 // Linux: xdg-open ile klasörü aç
-                Path parentPath = Paths.get(file.getAbsolutePath()).getParent();
-                if (parentPath != null) {
-                    processBuilder = new ProcessBuilder("xdg-open", parentPath.toString());
+                Path targetPath;
+                if(isDirectory) {
+                    targetPath = file.toPath();
                 } else {
-                    System.err.println("Klasör yolu bulunamadı: " + filePath);
-                    return;
+                    targetPath = Paths.get(file.getAbsolutePath()).getParent();
+                    if (targetPath == null) {
+                        System.err.println("Klasör yolu bulunamadı: " + filePath);
+                        return;
+                    }
                 }
+                processBuilder = new ProcessBuilder("xdg-open", targetPath.toString());
             }
             
             processBuilder.start();
