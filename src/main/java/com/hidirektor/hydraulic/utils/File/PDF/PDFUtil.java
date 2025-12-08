@@ -673,30 +673,34 @@ public class PDFUtil {
             }
             
             boolean isDirectory = file.isDirectory();
+            String canonicalPath = file.getCanonicalPath();
+            // Windows explorer sometimes defaults to Documents if the path isn't quoted or is relative.
+            // Use canonical paths and explicit quoting.
             
             ProcessBuilder processBuilder;
             
             if (os.contains("win")) {
                 // Windows: explorer /select,"dosya_yolu" veya klasörü aç
+                String normalized = canonicalPath.replace("/", "\\");
                 if(isDirectory) {
-                    processBuilder = new ProcessBuilder("explorer", file.getAbsolutePath());
+                    processBuilder = new ProcessBuilder("explorer", normalized);
                 } else {
-                    processBuilder = new ProcessBuilder("explorer", "/select," + file.getAbsolutePath());
+                    processBuilder = new ProcessBuilder("explorer", String.format("/select,\"%s\"", normalized));
                 }
             } else if (os.contains("mac")) {
                 // Mac: open -R "dosya_yolu" veya klasörü aç
                 if(isDirectory) {
-                    processBuilder = new ProcessBuilder("open", file.getAbsolutePath());
+                    processBuilder = new ProcessBuilder("open", canonicalPath);
                 } else {
-                    processBuilder = new ProcessBuilder("open", "-R", file.getAbsolutePath());
+                    processBuilder = new ProcessBuilder("open", "-R", canonicalPath);
                 }
             } else {
                 // Linux: xdg-open ile klasörü aç
                 Path targetPath;
                 if(isDirectory) {
-                    targetPath = file.toPath();
+                    targetPath = Paths.get(canonicalPath);
                 } else {
-                    targetPath = Paths.get(file.getAbsolutePath()).getParent();
+                    targetPath = Paths.get(canonicalPath).getParent();
                     if (targetPath == null) {
                         System.err.println("Klasör yolu bulunamadı: " + filePath);
                         return;

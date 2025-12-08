@@ -48,10 +48,12 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.jetbrains.annotations.Nullable;
 import org.json.JSONObject;
 
+import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.URL;
 import java.util.*;
+import java.nio.file.Paths;
 
 public class ClassicController implements Initializable  {
 
@@ -248,8 +250,14 @@ public class ClassicController implements Initializable  {
             isCalculationControlSectionExpanded = !isCalculationControlSectionExpanded;
         } else if(actionEvent.getSource().equals(openPDFInExplorerButton)) {
             if(hesaplamaBitti && girilenSiparisNumarasi != null && !girilenSiparisNumarasi.isEmpty()) {
-                String pdfPath = SystemDefaults.userDataPDFFolderPath + girilenSiparisNumarasi + ".pdf";
-                PDFUtil.openFileInExplorer(pdfPath);
+                String pdfPath = Paths.get(SystemDefaults.userDataPDFFolderPath, girilenSiparisNumarasi + ".pdf").toString();
+                File pdfFile = new File(pdfPath);
+                if(pdfFile.exists()) {
+                    PDFUtil.openFileInExplorer(pdfPath);
+                } else {
+                    // Dosya yoksa direkt klasörü aç
+                    PDFUtil.openFileInExplorer(SystemDefaults.userDataPDFFolderPath);
+                }
             } else {
                 NotificationUtil.showNotification(orderSectionButton.getScene().getWindow(), NotificationController.NotificationType.ALERT, "Dosya Hatası", "PDF dosyası henüz oluşturulmamış.");
             }
