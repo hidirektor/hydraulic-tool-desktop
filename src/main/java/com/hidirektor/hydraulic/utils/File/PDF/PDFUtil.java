@@ -680,12 +680,12 @@ public class PDFUtil {
             ProcessBuilder processBuilder;
             
             if (os.contains("win")) {
-                // Windows: explorer /select,"dosya_yolu" veya klasörü aç
+                // Windows: explorer /select, <path> -> ProcessBuilder handles quoting, so pass path as a separate arg.
                 String normalized = canonicalPath.replace("/", "\\");
-                if(isDirectory) {
+                if (isDirectory) {
                     processBuilder = new ProcessBuilder("explorer", normalized);
                 } else {
-                    processBuilder = new ProcessBuilder("explorer", String.format("/select,\"%s\"", normalized));
+                    processBuilder = new ProcessBuilder("explorer", "/select,", normalized);
                 }
             } else if (os.contains("mac")) {
                 // Mac: open -R "dosya_yolu" veya klasörü aç

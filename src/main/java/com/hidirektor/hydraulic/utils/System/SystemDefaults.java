@@ -5,7 +5,7 @@ import com.hidirektor.hydraulic.utils.Model.User.User;
 
 public class SystemDefaults {
 
-    public static String CURRENT_VERSION = "v2.2.7";
+    public static String CURRENT_VERSION = "v2.2.8";
 
     public static final String PREF_NODE_NAME = "ondergrup";
     public static final String DEFAULT_DISPLAY_PREF_KEY = "default_display";
