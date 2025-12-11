@@ -720,4 +720,45 @@ public class PDFUtil {
             e.printStackTrace();
         }
     }
+
+    // Dosyayı varsayılan uygulama ile aç (Excel gibi)
+    public static void openFileWithDefaultApp(String filePath) {
+        if (filePath == null || filePath.isEmpty()) {
+            return;
+        }
+
+        File file = new File(filePath);
+        if (!file.exists()) {
+            System.err.println("Açılacak dosya bulunamadı: " + filePath);
+            return;
+        }
+
+        try {
+            if (Desktop.isDesktopSupported()) {
+                Desktop desktop = Desktop.getDesktop();
+                if (desktop.isSupported(Desktop.Action.OPEN)) {
+                    desktop.open(file);
+                    return;
+                }
+            }
+
+            String os = System.getProperty("os.name").toLowerCase();
+            String canonicalPath = file.getCanonicalPath();
+
+            ProcessBuilder processBuilder;
+            if (os.contains("win")) {
+                String normalized = canonicalPath.replace("/", "\\");
+                processBuilder = new ProcessBuilder("cmd", "/c", "start", "", normalized);
+            } else if (os.contains("mac")) {
+                processBuilder = new ProcessBuilder("open", canonicalPath);
+            } else {
+                processBuilder = new ProcessBuilder("xdg-open", canonicalPath);
+            }
+
+            processBuilder.start();
+        } catch (Exception e) {
+            System.err.println("Dosya açılırken hata oluştu: " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
 }

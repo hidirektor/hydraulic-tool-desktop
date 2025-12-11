@@ -436,7 +436,7 @@ public class PowerPackController implements Initializable  {
                             jsonObject);
                 }
 
-                DesktopUtil.startExternalApplicationAsync(excelFileName);
+                PDFUtil.openFileWithDefaultApp(excelFileName);
             }
 
         } catch (IOException e) {

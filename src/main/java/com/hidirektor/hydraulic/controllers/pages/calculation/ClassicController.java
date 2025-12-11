@@ -438,7 +438,7 @@ public class ClassicController implements Initializable  {
                             jsonObject);
                 }
 
-                DesktopUtil.startExternalApplicationAsync(excelFileName);
+                PDFUtil.openFileWithDefaultApp(excelFileName);
             }
 
         } catch (IOException e) {

@@ -1168,6 +1168,7 @@ public class BlainController implements Initializable {
             try (FileOutputStream fileOut = new FileOutputStream(excelFileName)) {
                 workbook.write(fileOut);
                 System.out.println("Excel dosyası başarıyla oluşturuldu: " + excelFileName);
+                PDFUtil.openFileWithDefaultApp(excelFileName);
             }
         } catch (Exception e) {
             e.printStackTrace();
