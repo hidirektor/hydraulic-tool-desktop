@@ -1277,7 +1277,7 @@ public class BlainController implements Initializable {
     }
     
     private void loadDefaultParts() {
-        // Default parçaları yükle (basınç şalteri hariç)
+        // Default parçaları yükle
         String blainPartsPath = "/assets/data/programDatabase/blain_parts.yml";
         
         try {
@@ -1293,17 +1293,7 @@ public class BlainController implements Initializable {
                 if(defaultPartsData != null) {
                     Map<String, Object> parts = (Map<String, Object>) defaultPartsData.get("parts");
                     if(parts != null) {
-                        // Basınç şalterini hariç tut
-                        Map<String, Object> filteredParts = new HashMap<>();
-                        for(Map.Entry<String, Object> entry : parts.entrySet()) {
-                            Map<String, String> partDetails = (Map<String, String>) entry.getValue();
-                            String malzemeKodu = partDetails.get("malzemeKodu");
-                            // Basınç şalteri kodunu kontrol et (150-51-10-454)
-                            if(malzemeKodu != null && !malzemeKodu.equals("150-51-10-454")) {
-                                filteredParts.put(entry.getKey(), entry.getValue());
-                            }
-                        }
-                        generalLoadFuncBlain(filteredParts, "Standart Parçalar");
+                        generalLoadFuncBlain(parts, "Standart Parçalar");
                     }
                 }
             }
