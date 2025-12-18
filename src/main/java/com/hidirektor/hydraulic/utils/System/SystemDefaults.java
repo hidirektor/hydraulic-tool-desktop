@@ -5,7 +5,7 @@ import com.hidirektor.hydraulic.utils.Model.User.User;
 
 public class SystemDefaults {
 
-    public static String CURRENT_VERSION = "v2.3.0";
+    public static String CURRENT_VERSION = "v2.3.1";
 
     public static final String PREF_NODE_NAME = "ondergrup";
     public static final String DEFAULT_DISPLAY_PREF_KEY = "default_display";
@@ -34,6 +34,7 @@ public class SystemDefaults {
     public static String powerPackComboDBPath;
     public static String blainComboDBPath;
     public static String classicPartsDBPath;
+    public static String blainPartsDBPath;
     public static String powerPackPartsHidrosDBPath;
     public static String powerPackPartsIthalDBPath;
     public static String schematicTextsDBPath;

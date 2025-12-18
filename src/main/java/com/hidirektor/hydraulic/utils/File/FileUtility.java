@@ -52,6 +52,7 @@ public class FileUtility {
         SystemDefaults.powerPackComboDBPath = SystemDefaults.programDataPath + "powerpack_combo.yml";
         SystemDefaults.blainComboDBPath = SystemDefaults.programDataPath + "blain_combo.yml";
         SystemDefaults.classicPartsDBPath = SystemDefaults.programDataPath + "classic_parts.yml";
+        SystemDefaults.blainPartsDBPath = SystemDefaults.programDataPath + "blain_parts.yml";
         SystemDefaults.powerPackPartsHidrosDBPath = SystemDefaults.programDataPath + "powerpack_parts_hidros.yml";
         SystemDefaults.powerPackPartsIthalDBPath = SystemDefaults.programDataPath + "powerpack_parts_ithal.yml";
         SystemDefaults.schematicTextsDBPath = SystemDefaults.programDataPath + "schematic_texts.yml";
@@ -77,6 +78,7 @@ public class FileUtility {
             copyResourceFile("/assets/data/programDatabase/powerpack_combo.yml", SystemDefaults.powerPackComboDBPath, false);
             copyResourceFile("/assets/data/programDatabase/blain_combo.yml", SystemDefaults.blainComboDBPath, true);
             copyResourceFile("/assets/data/programDatabase/classic_parts.yml", SystemDefaults.classicPartsDBPath, false);
+            copyResourceFile("/assets/data/programDatabase/blain_parts.yml", SystemDefaults.blainPartsDBPath, true);
             copyResourceFile("/assets/data/programDatabase/powerpack_parts_hidros.yml", SystemDefaults.powerPackPartsHidrosDBPath, false);
             copyResourceFile("/assets/data/programDatabase/powerpack_parts_ithal.yml", SystemDefaults.powerPackPartsIthalDBPath, false);
             copyResourceFile("/assets/data/programDatabase/schematic_texts.yml", SystemDefaults.schematicTextsDBPath, false);

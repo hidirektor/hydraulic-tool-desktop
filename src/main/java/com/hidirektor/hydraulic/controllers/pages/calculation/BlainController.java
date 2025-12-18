@@ -34,6 +34,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Region;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.net.URL;
@@ -1206,10 +1207,9 @@ public class BlainController implements Initializable {
         if(motorComboBox == null || motorComboBox.getValue() == null) return;
         
         String selectedMotor = motorComboBox.getValue().trim();
-        String blainPartsPath = "/assets/data/programDatabase/blain_parts.yml";
         
         try {
-            InputStream input = Launcher.class.getResourceAsStream(blainPartsPath);
+            InputStream input = new FileInputStream(SystemDefaults.blainPartsDBPath);
             if(input == null) return;
             
             Yaml yaml = new Yaml();
@@ -1243,10 +1243,9 @@ public class BlainController implements Initializable {
         if(pompaComboBox == null || pompaComboBox.getValue() == null) return;
         
         String selectedPompa = pompaComboBox.getValue().trim();
-        String blainPartsPath = "/assets/data/programDatabase/blain_parts.yml";
         
         try {
-            InputStream input = Launcher.class.getResourceAsStream(blainPartsPath);
+            InputStream input = new FileInputStream(SystemDefaults.blainPartsDBPath);
             if(input == null) return;
             
             Yaml yaml = new Yaml();
@@ -1278,10 +1277,8 @@ public class BlainController implements Initializable {
     
     private void loadDefaultParts() {
         // Default parçaları yükle
-        String blainPartsPath = "/assets/data/programDatabase/blain_parts.yml";
-        
         try {
-            InputStream input = Launcher.class.getResourceAsStream(blainPartsPath);
+            InputStream input = new FileInputStream(SystemDefaults.blainPartsDBPath);
             if(input == null) return;
             
             Yaml yaml = new Yaml();
@@ -1307,10 +1304,9 @@ public class BlainController implements Initializable {
         if(valfTipiComboBox == null || valfTipiComboBox.getValue() == null) return;
         
         String selectedValf = valfTipiComboBox.getValue().trim();
-        String blainPartsPath = "/assets/data/programDatabase/blain_parts.yml";
         
         try {
-            InputStream input = Launcher.class.getResourceAsStream(blainPartsPath);
+            InputStream input = new FileInputStream(SystemDefaults.blainPartsDBPath);
             if(input == null) return;
             
             Yaml yaml = new Yaml();
@@ -1350,10 +1346,9 @@ public class BlainController implements Initializable {
         if(yagTankiComboBox == null || yagTankiComboBox.getValue() == null) return;
         
         String selectedTank = yagTankiComboBox.getValue().trim();
-        String blainPartsPath = "/assets/data/programDatabase/blain_parts.yml";
         
         try {
-            InputStream input = Launcher.class.getResourceAsStream(blainPartsPath);
+            InputStream input = new FileInputStream(SystemDefaults.blainPartsDBPath);
             if(input == null) return;
             
             Yaml yaml = new Yaml();
@@ -1396,10 +1391,8 @@ public class BlainController implements Initializable {
     private void loadTablaSogutmaParts() {
         if(secilenTablaKilit == null || secilenSogutma == null) return;
         
-        String blainPartsPath = "/assets/data/programDatabase/blain_parts.yml";
-        
         try {
-            InputStream input = Launcher.class.getResourceAsStream(blainPartsPath);
+            InputStream input = new FileInputStream(SystemDefaults.blainPartsDBPath);
             if(input == null) return;
             
             Yaml yaml = new Yaml();
@@ -1437,10 +1430,8 @@ public class BlainController implements Initializable {
     private void loadPompaValfBlokParts() {
         if(secilenPompa == null || secilenValfTipi == null) return;
         
-        String blainPartsPath = "/assets/data/programDatabase/blain_parts.yml";
-        
         try {
-            InputStream input = Launcher.class.getResourceAsStream(blainPartsPath);
+            InputStream input = new FileInputStream(SystemDefaults.blainPartsDBPath);
             if(input == null) return;
             
             Yaml yaml = new Yaml();
