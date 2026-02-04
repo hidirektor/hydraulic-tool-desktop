@@ -187,9 +187,11 @@ jobs:
       - name: Create Release
         uses: softprops/action-gh-release@v1
         with:
-          token: ${{ secrets.SETUP_TOKEN }}
+
           tag_name: v${{ env.version }}
           name: The "Jerry-Proof" Protocol v${{ env.version }}
           body: |
             Wubba Lubba Dub Dub! Calculations Faster Than a... Burp... Portal Gun!
           files: artifacts/*
+        env:
+          GITHUB_TOKEN: ${{ secrets.SETUP_TOKEN }}
