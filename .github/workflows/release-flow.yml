@@ -196,4 +196,4 @@ jobs:
             Wubba Lubba Dub Dub! Calculations Faster Than a... Burp... Portal Gun!
           files: artifacts/*
         env:
-          GITHUB_TOKEN: ${{ secrets.SETUP_TOKEN }}
+          GITHUB_TOKEN: ${{ github.token }}
